@@ -91,10 +91,10 @@
     }
 </style>
 
-<img src="asset/dashboard2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
-<img src="asset/login1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
-<img src="asset/login2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
-<img src="asset/dashbaord1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
+<img src="asset/dashboard2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -1">
+<img src="asset/login1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -2">
+<img src="asset/login2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -3">
+<img src="asset/dashbaord1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -4">
     <div id="login">
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -115,9 +115,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-
                                 <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN" id='login-btn'>
-
                             </div>
                         </form>
                     </div>
@@ -136,7 +134,11 @@
 
 <!-- Login script -->
 <script type="text/javascript">
-  $('.btnSubmit').on('click', function() {
+  var pathname = location.pathname;
+  if(pathname == '/' || pathname == '/') {
+    window.open('index.html');
+  }
+  $('#login-btn').on('click', function() {
     loginUser();
   })
   function loginUser()
@@ -180,13 +182,12 @@
     });
   }
 </script>
-
-    <script>
+    <!-- <script>
         document.getElementById('login-btn').onclick = function() {
             alert('Login');
             window.open('homepage.html');
         }
-    </script>
+    </script> -->
 
 </body>
 
