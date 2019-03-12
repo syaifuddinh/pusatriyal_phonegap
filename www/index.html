@@ -49,7 +49,7 @@
 
 <body>
     <div class="">
-        
+
         <div id="deviceready" class="">
             <style>
     body {
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN" onclick="location.href = 'homepage.html'">
+                                <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN">
                             </div>
                         </form>
                     </div>
@@ -130,6 +130,54 @@
     <script type="text/javascript">
         app.initialize();
     </script>
+
+<!-- Login script -->
+<script type="text/javascript">
+  $('.btnSubmit').on('click', function() {
+    loginUser();
+  })
+  function loginUser()
+  {
+    form = $('#login-form').serialize();
+    $.ajax({
+      url: 'http://localhost/pusatriyal/login',
+      type    : 'get',
+      data    :  form + "&pindah=N",
+      dataType: 'json',
+      success : function(response){
+        console.log(response);
+        if(response.status=='sukses') {
+          // console.log('Sukses');
+          window.open('homepage.html');
+        } else if(response.status=='gagal') {
+          // console.log('Gagal');
+          alert(response.data);
+        } else if(response.status=='Aktif') {
+          // console.log('Aktif');
+          window.open('homepage.html');
+        }
+      },
+      error: function(jqXHR, exception) {
+        if (jqXHR.status === 0) {
+            alert('Not connect.\n Verify Network.');
+        } else if (jqXHR.status == 404) {
+            alert('Requested page not found. [404]');
+        } else if (jqXHR.status == 500) {
+            alert('Internal Server Error [500].');
+        } else if (exception === 'parsererror') {
+            alert('Requested JSON parse failed.');
+        } else if (exception === 'timeout') {
+            alert('Time out error.');
+        } else if (exception === 'abort') {
+            alert('Ajax request aborted.');
+        } else {
+            alert('Uncaught Error.\n' + jqXHR.responseText);
+        }
+      }
+    });
+  }
+</script>
+
 </body>
 
 </html>
