@@ -174,7 +174,15 @@
                 buttons: [
                     ['<button><b>YES</b></button>', function (instance, toast) {
                         instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-                        window.open('homepage.html');
+                        $.ajax({
+                            url     :  'http://localhost/pusatriyal/login',
+                            type    : 'get',
+                            data    :  form + "&pindah=Y",
+                            dataType: 'json',
+                            success : function(response){
+                              window.open('homepage.html');
+                            }
+                        })
                     }, true],
                     ['<button>NO</button>', function (instance, toast) {
                         instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
