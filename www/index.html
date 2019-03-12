@@ -44,13 +44,13 @@
       <script src='./js/jquery.min.js'></script>
       <script src='./js/bootstrap.min.js'></script>
       <script src='./js/iziToast.min.js'></script>
-      
+
     <title>Hello World</title>
 </head>
 
 <body>
     <div class="">
-        
+
         <div id="deviceready" class="">
             <style>
     body {
@@ -91,10 +91,10 @@
     }
 </style>
 
-<img src="asset/dashboard2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
-<img src="asset/login1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
-<img src="asset/login2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
-<img src="asset/dashbaord1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
+<img src="asset/dashboard2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -1">
+<img src="asset/login1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -2">
+<img src="asset/login2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -3">
+<img src="asset/dashbaord1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -4">
     <div id="login">
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -132,10 +132,64 @@
     <script type="text/javascript">
         app.initialize();
     </script>
-    <script>
-        
-    </script>
-    
+
+<!-- Login script -->
+<script type="text/javascript">
+  var pathname = location.pathname;
+  if(pathname == '/' || pathname == '/') {
+    window.open('index.html');
+  }
+  $('#login-btn').on('click', function() {
+    loginUser();
+  })
+  function loginUser()
+  {
+    form = $('#login-form').serialize();
+    $.ajax({
+      url: 'http://localhost/pusatriyal/login',
+      type    : 'get',
+      data    :  form + "&pindah=N",
+      dataType: 'json',
+      success : function(response){
+        console.log(response);
+        if(response.status=='sukses') {
+          console.log('Sukses');
+          window.open('homepage.html');
+        } else if(response.status=='gagal') {
+          console.log('Gagal');
+          alert(response.data);
+        } else if(response.status=='Aktif') {
+          console.log('Aktif');
+          window.open('homepage.html');
+        }
+      },
+      error: function(jqXHR, exception) {
+        if (jqXHR.status === 0) {
+            alert('Not connect.\n Verify Network.');
+        } else if (jqXHR.status == 404) {
+            alert('Requested page not found. [404]');
+        } else if (jqXHR.status == 500) {
+            alert('Internal Server Error [500].');
+        } else if (exception === 'parsererror') {
+            alert('Requested JSON parse failed.');
+        } else if (exception === 'timeout') {
+            alert('Time out error.');
+        } else if (exception === 'abort') {
+            alert('Ajax request aborted.');
+        } else {
+            alert('Uncaught Error.\n' + jqXHR.responseText);
+        }
+      }
+    });
+  }
+</script>
+    <!-- <script>
+        document.getElementById('login-btn').onclick = function() {
+            alert('Login');
+            window.open('homepage.html');
+        }
+    </script> -->
+
 </body>
 
 </html>

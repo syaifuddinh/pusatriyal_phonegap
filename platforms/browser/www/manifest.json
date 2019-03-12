@@ -7,6 +7,9 @@
   "description": "Sistem Informasi Pusat Riyal.",
   "author": "syaifudinhadi8@gmail.com",
   "icons": [],
+<<<<<<< HEAD
+=======
   "orientation": "portrait",
+>>>>>>> 7ac536e33778df236774564631b8fe76ca496746
   "start_url": "index.html"
 }
