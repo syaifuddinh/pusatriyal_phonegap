@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap Example</title>
+</head>
+<body>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .title-edit
+    {
+        margin-top: 60px;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        width: 70%;
+        border: none;
+        color: #42ec98;
+    }
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    .listx
+    {
+      font-weight: bold;
+    }
+</style>
+
+
+<h5 class="title-edit">Kegiatan Manasik</h5>
+<div class="list-group list-group-flush">
+  <a href="#" class="list-group-item list-group-item-action listx">Perencanaan</a>
+  <a href="#" class="list-group-item list-group-item-action listx">Pelaksanaan</a>
+  <a href="#" class="list-group-item list-group-item-action listx">Pelaksanaan Penjualan</a>
+  <a href="#" class="list-group-item list-group-item-action listx">Laporan Penjualan</a>
+  <a href="#" class="list-group-item list-group-item-action listx">Laporan Penjualan (realtime)</a>
+</div>
+<img src="asset/dashbaord1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -4;">
+<img src="asset/dashboard2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -3;">
+<img src="asset/login1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -2;">
+<img src="asset/login2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -1;">
+
+</body>
+</html>
