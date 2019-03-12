@@ -35,15 +35,16 @@
     <feature name="Vibration">
         <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
-    <name>helloworld</name>
+    <name>Pusat Riyal</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Sistem Informasi Pusat Riyal.
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+        syaifudinhadi8@gmail.com
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-intent href="file://*/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -71,5 +72,7 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="android-minSdkVersion" value="14" />
 </widget>
