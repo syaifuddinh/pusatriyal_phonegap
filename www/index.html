@@ -115,15 +115,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN">
-=======
+
                                 <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN" id='login-btn'>
->>>>>>> 7ac536e33778df236774564631b8fe76ca496746
-=======
-                                <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN" id='login-btn'>
->>>>>>> 7ac536e33778df236774564631b8fe76ca496746
+
                             </div>
                         </form>
                     </div>
@@ -156,13 +150,13 @@
       success : function(response){
         console.log(response);
         if(response.status=='sukses') {
-          // console.log('Sukses');
+          console.log('Sukses');
           window.open('homepage.html');
         } else if(response.status=='gagal') {
-          // console.log('Gagal');
+          console.log('Gagal');
           alert(response.data);
         } else if(response.status=='Aktif') {
-          // console.log('Aktif');
+          console.log('Aktif');
           window.open('homepage.html');
         }
       },
@@ -193,7 +187,7 @@
             window.open('homepage.html');
         }
     </script>
-    
+
 </body>
 
 </html>
