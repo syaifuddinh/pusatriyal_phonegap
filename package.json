@@ -21,11 +21,7 @@
     }
   },
   "dependencies": {
-<<<<<<< HEAD
     "cordova-android": "^7.1.4",
-=======
-    "cordova-android": "~7.1.4",
->>>>>>> 7ac536e33778df236774564631b8fe76ca496746
     "cordova-plugin-battery-status": "~1.2.4",
     "cordova-plugin-camera": "~2.4.1",
     "cordova-plugin-media-capture": "~1.4.3",

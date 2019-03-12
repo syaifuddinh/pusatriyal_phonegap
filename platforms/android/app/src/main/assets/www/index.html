@@ -44,7 +44,7 @@
       <script src='./js/jquery.min.js'></script>
       <script src='./js/bootstrap.min.js'></script>
       <script src='./js/iziToast.min.js'></script>
-      
+
     <title>Hello World</title>
 </head>
 
@@ -91,10 +91,10 @@
     }
 </style>
 
-<img src="asset/dashboard2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
-<img src="asset/login1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
-<img src="asset/login2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
-<img src="asset/dashbaord1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0;">
+<img src="asset/dashboard2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -1">
+<img src="asset/login1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -2">
+<img src="asset/login2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -3">
+<img src="asset/dashbaord1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -4">
     <div id="login">
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -115,15 +115,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN">
-=======
                                 <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN" id='login-btn'>
->>>>>>> 7ac536e33778df236774564631b8fe76ca496746
-=======
-                                <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN" id='login-btn'>
->>>>>>> 7ac536e33778df236774564631b8fe76ca496746
                             </div>
                         </form>
                     </div>
@@ -139,12 +131,14 @@
     <script type="text/javascript">
         app.initialize();
     </script>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 <!-- Login script -->
 <script type="text/javascript">
-  $('.btnSubmit').on('click', function() {
+  var pathname = location.pathname;
+  if(pathname == '/' || pathname == '/') {
+    window.open('index.html');
+  }
+  $('#login-btn').on('click', function() {
     loginUser();
   })
   function loginUser()
@@ -158,13 +152,13 @@
       success : function(response){
         console.log(response);
         if(response.status=='sukses') {
-          // console.log('Sukses');
+          console.log('Sukses');
           window.open('homepage.html');
         } else if(response.status=='gagal') {
-          // console.log('Gagal');
+          console.log('Gagal');
           alert(response.data);
         } else if(response.status=='Aktif') {
-          // console.log('Aktif');
+          console.log('Aktif');
           window.open('homepage.html');
         }
       },
@@ -188,25 +182,13 @@
     });
   }
 </script>
-
-=======
-    <script>
+    <!-- <script>
         document.getElementById('login-btn').onclick = function() {
             alert('Login');
             window.open('homepage.html');
         }
-    </script>
-    
->>>>>>> 7ac536e33778df236774564631b8fe76ca496746
-=======
-    <script>
-        document.getElementById('login-btn').onclick = function() {
-            alert('Login');
-            window.open('file:///homepage.html');
-        }
-    </script>
-    
->>>>>>> 7ac536e33778df236774564631b8fe76ca496746
+    </script> -->
+
 </body>
 
 </html>
