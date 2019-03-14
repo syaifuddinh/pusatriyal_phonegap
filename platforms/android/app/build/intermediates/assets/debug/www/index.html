@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <link rel="stylesheet" href='./css/bootstrap.min.css'>
+      <link rel="stylesheet" href='./css/iziToast.min.css'>
+      <script src='./js/jquery.min.js'></script>
+      <script src='./js/bootstrap.min.js'></script>
+      <script src='./js/iziToast.min.js'></script>
+
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div class="">
+
+        <div id="deviceready" class="">
+            <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    #login .container #login-row #login-column #login-box {
+      margin-top: 160px;
+      max-width: 600px;
+      height: 320px;
+    }
+    #login .container #login-row #login-column #login-box #login-form {
+      padding: 20px;
+    }
+    #login .container #login-row #login-column #login-box #login-form #register-link {
+      margin-top: -85px;
+    }
+
+    .btnSubmit
+    {
+        border-radius: 70mm;
+        margin-top: 8mm;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .form-control-plaintext
+    {
+      outline: 0;
+    }
+</style>
+
+<img src="asset/dashboard2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -1">
+<img src="asset/login1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -2">
+<img src="asset/login2.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -3">
+<img src="asset/dashbaord1.png" alt="" style="position: fixed; width:100%; bottom:0; right:0; z-index: -4">
+    <div id="login">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-12">
+                    <div id="login-box" class="col-md-12 mx-auto">
+                        <form id="login-form" class="form" action="" method="post" autocomplete="off">
+                            <h3 class="text-center" style="color: #42ec98;font-weight: bold;margin-bottom:10mm">LOGIN</h3>
+                            <div class="form-group">
+                                <label for="username" style="font-weight: bold; color: #42ec98;">USERNAME:</label><br>
+                                <div class="border-bottom-1">
+                                  <input type="text" name="username" id="username" class="form-control form-control-plaintext" placeholder="Isi username...." style="border:0px solid;width:100%">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" style="font-weight: bold; color: #42ec98;">PASSWORD:</label><br>
+                                <div class="border-bottom border-bottom-1">
+                                  <input type="password" name="password" id="password" class="form-control form-control-plaintext" placeholder="Isi password" style="border-width:0px;width:100%">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="button" name="submit" class="btnSubmit float-right" value="LOGIN" id='login-btn'>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+  <script type="text/javascript">
+
+
+  var pathname = location.pathname;
+  if(pathname == '/' || pathname == '') {
+    location.href = 'index.html';
+  }
+
+  $(document).ready(function() {
+    $('#login-btn').on('click', function() {
+      loginUser();
+    })
+    function loginUser()
+    {
+      form = $('#login-form').serialize();
+      $.ajax({
+        url: host + 'login',
+        type    : 'get',
+        data    :  form + "&pindah=N",
+        dataType: 'json',
+        success : function(response){
+          console.log(response);
+          if(response.status=='sukses') {
+            iziToast.success({
+                title: 'Selamat',
+                message: 'Login berhasil !',
+                position: 'topRight'
+            });
+            window.open('homepage.html');
+          } else if(response.status=='gagal') {
+            iziToast.warning({
+                title: 'Perhatian',
+                message: response.data,
+                position: 'topRight'
+            });
+          } else if(response.status=='Aktif') {
+            iziToast.question({
+                timeout: 20000,
+                close: false,
+                overlay: true,
+                displayMode: 'once',
+                id: 'question',
+                zindex: 999,
+                title: 'Perhatian',
+                message: 'Akun sudah login, Apakah anda yakin pindah ke perangkat ini ?',
+                position: 'center',
+                buttons: [
+                    ['<button><b>YES</b></button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        $.ajax({
+                            url     :  'http://localhost/pusatriyal/login',
+                            type    : 'get',
+                            data    :  form + "&pindah=Y",
+                            dataType: 'json',
+                            success : function(response){
+                              window.open('homepage.html');
+                            }
+                        })
+                    }, true],
+                    ['<button>NO</button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        window.location.reload();
+                    }],
+                ],
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closing | closedBy: ' + closedBy);
+                },
+                onClosed: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                }
+            });
+          }
+        },
+        error: function(jqXHR, exception) {
+          if (jqXHR.status === 0) {
+            alert('Not connect.\n Verify Network.');
+          } else if (jqXHR.status == 404) {
+            alert('Requested page not found. [404]');
+          } else if (jqXHR.status == 500) {
+            alert('Internal Server Error [500].');
+          } else if (exception === 'parsererror') {
+            alert('Requested JSON parse failed.');
+          } else if (exception === 'timeout') {
+            alert('Time out error.');
+          } else if (exception === 'abort') {
+            alert('Ajax request aborted.');
+          } else {
+            alert('Uncaught Error.\n' + jqXHR.responseText);
+          }
+        }
+      });
+    }
+  })
+</script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="config/config.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+<!-- Login script -->
+
+    <!-- <script>
+        document.getElementById('login-btn').onclick = function() {
+            alert('Login');
+            window.open('homepage.html');
+        }
+    </script> -->
+
+</body>
+
+</html>
