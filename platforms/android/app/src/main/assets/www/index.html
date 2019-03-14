@@ -142,7 +142,7 @@
     {
       form = $('#login-form').serialize();
       $.ajax({
-        url: 'http://localhost/pusatriyal/login',
+        url: host + 'login',
         type    : 'get',
         data    :  form + "&pindah=N",
         dataType: 'json',
