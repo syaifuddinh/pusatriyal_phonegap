@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Mar 14 10:43:02 ICT 2019
+#Thu Mar 14 10:55:23 ICT 2019
 20.base=D\:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 143.base=D\:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 237.path=www/node_modules/jquery/src/core/camelCase.js
