@@ -149,11 +149,7 @@
     {
       form = $('#login-form').serialize();
       $.ajax({
-<<<<<<< HEAD
-        url: 'http://localhost/pusatriyal/login',
-=======
         url: host + 'login',
->>>>>>> d60c58bda6475fbfc18e6ffc7b05e724bce8f84f
         type    : 'get',
         data    :  form + "&pindah=N",
         dataType: 'json',
@@ -187,11 +183,7 @@
                     ['<button><b>YES</b></button>', function (instance, toast) {
                         instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
                         $.ajax({
-<<<<<<< HEAD
-                            url     :  'http://localhost/pusatriyal/login',
-=======
                             url     :  host + 'login',
->>>>>>> d60c58bda6475fbfc18e6ffc7b05e724bce8f84f
                             type    : 'get',
                             data    :  form + "&pindah=Y",
                             dataType: 'json',
@@ -202,11 +194,7 @@
                     }, true],
                     ['<button>NO</button>', function (instance, toast) {
                         instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-<<<<<<< HEAD
-                        window.location.reload();
-=======
-                        
->>>>>>> d60c58bda6475fbfc18e6ffc7b05e724bce8f84f
+
                     }],
                 ],
                 onClosing: function(instance, toast, closedBy){
@@ -239,7 +227,7 @@
     }
   })
 </script>
-    
+
 <!-- Login script -->
 
     <!-- <script>
