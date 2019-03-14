@@ -126,11 +126,14 @@
 
         </div>
     </div>
-    <script type="text/javascript">
+  <script type="text/javascript">
+
+
   var pathname = location.pathname;
   if(pathname == '/' || pathname == '') {
     location.href = 'index.html';
   }
+
   $('#login-btn').on('click', function() {
     loginUser();
   })
@@ -158,24 +161,26 @@
       },
       error: function(jqXHR, exception) {
         if (jqXHR.status === 0) {
+
             alert('Not connect.\n Verify Network.');
-        } else if (jqXHR.status == 404) {
+          } else if (jqXHR.status == 404) {
             alert('Requested page not found. [404]');
-        } else if (jqXHR.status == 500) {
+          } else if (jqXHR.status == 500) {
             alert('Internal Server Error [500].');
-        } else if (exception === 'parsererror') {
+          } else if (exception === 'parsererror') {
             alert('Requested JSON parse failed.');
-        } else if (exception === 'timeout') {
+          } else if (exception === 'timeout') {
             alert('Time out error.');
-        } else if (exception === 'abort') {
+          } else if (exception === 'abort') {
             alert('Ajax request aborted.');
-        } else {
+          } else {
             alert('Uncaught Error.\n' + jqXHR.responseText);
+          }
         }
-      }
-    });
-  }
-</script>       
+      });
+    }
+  })
+</script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="config/config.js"></script>
