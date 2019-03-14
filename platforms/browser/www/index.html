@@ -134,34 +134,73 @@
     location.href = 'index.html';
   }
 
-  $('#login-btn').on('click', function() {
-    loginUser();
-  })
-  function loginUser()
-  {
-    var origin = location.protocol + '//' + location.host;
-    form = $('#login-form').serialize();
-    $.ajax({
-      url: 'http://localhost/pusatriyal/login',
-      type    : 'get',
-      data    :  form + "&pindah=N&host=" + origin,
-      dataType: 'json',
-      success : function(response){
-        console.log(response);
-        if(response.status=='sukses') {
-          console.log('Sukses');
-          window.open('homepage.html');
-        } else if(response.status=='gagal') {
-          console.log('Gagal');
-          alert(response.data);
-        } else if(response.status=='Aktif') {
-          console.log('Aktif');
-          window.open('homepage.html');
-        }
-      },
-      error: function(jqXHR, exception) {
-        if (jqXHR.status === 0) {
-
+  $(document).ready(function() {
+    $('#login-btn').on('click', function() {
+      loginUser();
+    })
+    function loginUser()
+    {
+      form = $('#login-form').serialize();
+      $.ajax({
+        url: 'http://localhost/pusatriyal/login',
+        type    : 'get',
+        data    :  form + "&pindah=N",
+        dataType: 'json',
+        success : function(response){
+          console.log(response);
+          if(response.status=='sukses') {
+            iziToast.success({
+                title: 'Selamat',
+                message: 'Login berhasil !',
+                position: 'topRight'
+            });
+            window.open('homepage.html');
+          } else if(response.status=='gagal') {
+            iziToast.warning({
+                title: 'Perhatian',
+                message: response.data,
+                position: 'topRight'
+            });
+          } else if(response.status=='Aktif') {
+            iziToast.question({
+                timeout: 20000,
+                close: false,
+                overlay: true,
+                displayMode: 'once',
+                id: 'question',
+                zindex: 999,
+                title: 'Perhatian',
+                message: 'Akun sudah login, Apakah anda yakin pindah ke perangkat ini ?',
+                position: 'center',
+                buttons: [
+                    ['<button><b>YES</b></button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        $.ajax({
+                            url     :  'http://localhost/pusatriyal/login',
+                            type    : 'get',
+                            data    :  form + "&pindah=Y",
+                            dataType: 'json',
+                            success : function(response){
+                              window.open('homepage.html');
+                            }
+                        })
+                    }, true],
+                    ['<button>NO</button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        window.location.reload();
+                    }],
+                ],
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closing | closedBy: ' + closedBy);
+                },
+                onClosed: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                }
+            });
+          }
+        },
+        error: function(jqXHR, exception) {
+          if (jqXHR.status === 0) {
             alert('Not connect.\n Verify Network.');
           } else if (jqXHR.status == 404) {
             alert('Requested page not found. [404]');
