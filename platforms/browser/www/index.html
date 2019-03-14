@@ -136,11 +136,12 @@
   })
   function loginUser()
   {
+    var origin = location.protocol + '//' + location.host;
     form = $('#login-form').serialize();
     $.ajax({
       url: 'http://localhost/pusatriyal/login',
       type    : 'get',
-      data    :  form + "&pindah=N",
+      data    :  form + "&pindah=N&host=" + origin,
       dataType: 'json',
       success : function(response){
         console.log(response);

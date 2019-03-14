@@ -78,9 +78,11 @@ html,body{
 .menu-header{
 	width: 100%;
 	height: 50px;
-	padding: 20px;
 	position: initial;
 	z-index: 1;
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
 }
 .text-alamraya{
 	color: #9bd4b8 !important;
