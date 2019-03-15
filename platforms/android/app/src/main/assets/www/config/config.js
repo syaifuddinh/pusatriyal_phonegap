@@ -1,1 +1,1 @@
-host = 'http://localhost/git/pusatriyal/';
+host = 'http://pusatriyal.alamraya.site/';
