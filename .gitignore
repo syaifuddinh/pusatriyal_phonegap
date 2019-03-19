@@ -1,7 +1,7 @@
 
 *.xml
 *.json
-/platform
+/platforms
 platforms/android/.gradle/4.1/fileHashes/fileHashes.bin
 platforms/android/.gradle/4.1/fileHashes/fileHashes.lock
 platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin

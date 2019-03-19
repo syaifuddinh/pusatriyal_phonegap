@@ -8,15 +8,42 @@
 	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./node_modules/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="./asset/css/alamraya-style.css">
+	<link rel="stylesheet" type="text/css" href="./asset/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+	<style>
+		.rounded-btn {
+	      width: 12mm;
+	      height: 12mm;
+	      border-radius:1000mm;
+	      position: fixed;
+	      bottom: 7mm;
+	      right: 5mm;
+	      display: flex;
+	      justify-content: center;
+	      align-content: center;
+	      color: white;
+	      z-index: 1000;
+	      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6)
+	    }
 
+	    div .maincard {
+	    	margin-bottom: 40mm
+	    }
+
+	    .card-body:hover {
+	    	background: #e6e6e6;
+	    }
+	</style>
 </head>
 <body>
+	<div id="loading_icon" class='hidden' style="position: fixed;bottom: 2mm;left: 3mm;z-index:60;">
+		<img src="/img/ellipsis.gif" alt="Loading...." style="width: 20mm;height: auto">
+	</div>
 	<div class="bg-top"></div>
 	<div class="bg-bottom"></div>
 	<section class="sidebar">
 				<div class="sidebar-header">
 					<a href="#">
-						<img src="asset/logo-pusat-riyal.png" width="170px" height="auto">
+						<img src="asset/img/logo-pusat-riyal.png" width="170px" height="auto">
 					</a>
 				</div>
 				<ul>
@@ -27,12 +54,12 @@
 						<a href="#">Credit</a>
 					</li>
 					<li>
-						<a href="#">Logout</a>
+						<a href="#" id="logout-btn">Logout</a>
 					</li>
 				</ul>
 			</section>
 	<div class="sidebar-menu-off"></div>
-	<section class="menu-header" style="background: #105e42">
+	<section class="menu-header" style="background: #007139">
 		<button type="button" class="btn text-alamraya" id="btn-menu">
 			<i class="fa fa-bars"></i>
 		</button>
@@ -43,16 +70,19 @@
 			<i class="fa fa-bell-o"></i>
 		</button>
 	</section>
-	<content>
-		
-	</content>
-
+	<content></content>
+	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="bootstrap-datetimepicker/js/moment.js"></script>
+	<script type="text/javascript" src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="config/routing.js"></script>
 	<script type="text/javascript" src="js/features/logout.js"></script>
 
 	<script type="text/javascript">
+		loading_icon = $('#loading_icon');
+
 		$(document).ready(function(){
 			$('#btn-menu, .sidebar-menu-off').click(function(){
 				$('body').toggleClass('sidebar-collapse');
@@ -62,9 +92,32 @@
 				Routing.backward();
 			});
 			Routing.init('content');
+			csrf_token = '';
+			$.ajax({
+	      url: url('token'),
+	      type    : 'get',
+	      success : function(resp){
+	      	csrf_token = resp.csrf_token;
+	      },
+	      error: function(jqXHR, exception) {
+	        if (jqXHR.status === 0) {
+	            alert('Not connect.\n Verify Network.');
+	        } else if (jqXHR.status == 404) {
+	            alert('Requested page not found. [404]');
+	        } else if (jqXHR.status == 500) {
+	            alert('Internal Server Error [500].');
+	        } else if (exception === 'parsererror') {
+	            alert('Requested JSON parse failed.');
+	        } else if (exception === 'timeout') {
+	            alert('Time out error.');
+	        } else if (exception === 'abort') {
+	            alert('Ajax request aborted.');
+	        } else {
+	            alert('Uncaught Error.\n' + jqXHR.responseText);
+	        }
+	      }
+    });
 		});
 	</script>
-
-	
 </body>
 </html>
