@@ -1,6 +1,12 @@
+function preview_manasik_plan(dom) {
+	var el = $(dom);
+	alert( el.attr('pusatriyal-target') );
+	$('#tgl_kegiatan').val('abc');
+}
+
 $(document).ready(function(){
 	$.ajax({
-	      url: url('marketing/manasik/perencanaan/list_perencanaan'),
+	      url: url('api/marketing/manasik/perencanaan/list_perencanaan'),
 	      type    : 'get',
 	      dataType : 'json',
 	      success : function(resp){
@@ -13,6 +19,10 @@ $(document).ready(function(){
 	        		unit = units[x];
 	        		console.log(unit);
 	        		content = $(rawcontent);
+	        		// Set-up routing untuk menampilkan preview
+	        		content.attr('pusatriyal-role', 'routing');
+	        		content.attr('pusatriyal-target', 'includes/manasik/preview-perencanaan.html');
+	        		content.attr('pusatriyal-callback', 'preview_manasik_plan');
 	        		content.append(
 	        			'<input type="hidden" name="mp_id" value="' + unit.mp_id + '">'
 	        		)
@@ -31,6 +41,8 @@ $(document).ready(function(){
 
 	        		$('.card').append(content);
 	        	}
+
+	        	Routing.load_routing();
 	        }
 	        else {
 	        	card.html('<div class="card-body"><h4 class="card-title">Tidak Ada Data Yang Ditampilkan</h4></div>')

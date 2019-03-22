@@ -25,6 +25,12 @@
 	      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6)
 	    }
 
+		.pusatriyal-submit {
+			position: fixed;
+		    bottom: 7mm;
+		    right: 5mm;
+		    display: flex;
+		}
 	    div .maincard {
 	    	margin-bottom: 40mm
 	    }
@@ -32,9 +38,13 @@
 	    .card-body:hover {
 	    	background: #e6e6e6;
 	    }
+
+	    content {
+	    	margin-top: 20mm;
+	    }
 	</style>
 </head>
-<body>
+<body style="padding-top: 10mm">
 	<div id="loading_icon" class='hidden' style="position: fixed;bottom: 2mm;left: 3mm;z-index:60;">
 		<img src="/img/ellipsis.gif" alt="Loading...." style="width: 20mm;height: auto">
 	</div>
@@ -59,7 +69,7 @@
 				</ul>
 			</section>
 	<div class="sidebar-menu-off"></div>
-	<section class="menu-header" style="background: #007139">
+	<section class="menu-header" style="background: #007139;position:fixed;width: 100%;top: 0;left: 0">
 		<button type="button" class="btn text-alamraya" id="btn-menu">
 			<i class="fa fa-bars"></i>
 		</button>
