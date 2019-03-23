@@ -7,12 +7,10 @@ function insert_perencanaan() {
 	      success : function(resp){
 	      	var card = $('.card');
 	        var units = resp.data;
-	        var unit, rawcontent
-
-	        , content;
+	        var unit, rawcontent, content;
 	        if(units.length > 0) {
 	        	rawcontent = $('rawcontent.datalist').html();
-	        	foreach(x = 0;x < units.length;x++) {
+	        	for(x = 0;x < units.length;x++) {
 	        		unit = units[x];
 	        		content = $(rawcontent);
 	        		content.find('.card-title').text( 
@@ -95,13 +93,59 @@ function validate_form()
   }
 $(document).ready(function(){
   $('#_token').val( csrf_token );
-  $('#tgl_kegiatan').DatePicker({
-  	format : 'dd-mm-yyyy'
-  });
+  // $('#tgl_kegiatan').datepicker({
+  // 	format : 'dd-mm-yyyy'
+  // });
   $('#btn_submit').on('click', function() {
     var is_complete = validate_form();
     if(is_complete == true) {
     	insert_perencanaan();
     }
+  });
+
+  $(document).on('click', '#btn-hapusperencanaan', function(){
+	iziToast.question({
+	    timeout: 20000,
+	    close: false,
+	    overlay: true,
+	    displayMode: 'once',
+	    id: 'question',
+	    zindex: 999,
+	    title: 'Perhatian',
+	    message: 'Apa Anda yakin mau menghapus data ini?',
+	    position: 'center',
+	    buttons: [
+	        ['<button><b>YES</b></button>', function (instance, toast) {
+	        	var mp_id = $('#mp_id').val();
+	 
+				$.ajax({
+			  		url:url('api/marketing/manasik/perencanaan/hapus_perencanaan/' + mp_id),
+			  		type:'post',
+			  		success:function(e){
+			  			iziToast.success({
+			  				title:'Sukses!',
+			  				message:e.status
+			  			})
+			            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+			  			Routing.backward();
+			  		},
+			  		error:function(e){
+			  			iziToast.error({
+			  				title:'Gagal!',
+			  				message:e.message
+			  			});
+			            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+			  		}
+			  	})
+	 
+	        }, true],
+	        ['<button>NO</button>', function (instance, toast) {
+	 
+	            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+	 
+	        }],
+	    ]
+	});  	
+  	
   });
 });
