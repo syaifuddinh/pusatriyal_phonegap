@@ -1,13 +1,27 @@
 function insert_perencanaan() {
 	var formdata = $('form').serialize();
 	$.ajax({
-	      url: url('marketing/manasik/perencanaan/simpan_perencanaan'),
-	      type    : 'get',
+	      url: url('api/marketing/manasik/perencanaan/simpan_perencanaan'),
+	      type    : 'post',
 	      data : formdata,
 	      success : function(resp){
 	      	var card = $('.card');
 	        var units = resp.data;
 	        var unit, rawcontent, content;
+
+	        console.log(resp);
+	        if(resp.status === "gagal"){
+	        	pesan = "";
+	        	for (i =0; i < resp.message.errorInfo.length; i++) {
+	        		pesan += resp.message.errorInfo[i] + ' ';
+	        	}
+
+	        	iziToast.info({
+	        		title:resp.status,
+	        		message: pesan
+	        	});
+	        	return false;
+	        }
 	        if(units.length > 0) {
 	        	rawcontent = $('rawcontent.datalist').html();
 	        	for(x = 0;x < units.length;x++) {
@@ -53,38 +67,40 @@ function insert_perencanaan() {
 
 function validate_form()
   {
-    var message ="";
-    if ($('#nota').val() == "") {
-      message = "Nota masih kosong";
+    var message =[];
+    // if ($('#nota').val() == "") {
+    //   message.push("Nota masih kosong");
+    // }
+    if ($('#tgl_perencanaan').val() == "") {
+      message.push("Tanggal kegiatan masih kosong");
     }
-    else if ($('#tgl_kegiatan').val() == "") {
-      message = "Tanggal kegiatan masih kosong";
+    if ($('#tempat').val() == "") {
+      message.push("Tempat kegiatan masih kosong");
     }
-    else if ($('#tempat_kegiatan').val() == "") {
-      message = "Tempat kegiatan masih kosong";
+    if ($('#pic').val() == "") {
+      message.push("PIC masih kosong");
     }
-    else if ($('#pic').val() == "") {
-      message = "PIC masih kosong";
+    if ($('#aktifitas').val() == "") {
+      message.push("Kegiatan masih kosong");
     }
-    else if ($('#kegiatan').val() == "") {
-      message = "Kegiatan masih kosong";
+    if ($('#petugas1').val() == "") {
+      message.push("Petugas kegiatan 1 masih kosong");
     }
-    else if ($('#pet_1').val() == "") {
-      message = "Petugas kegiatan 1 masih kosong";
+    if ($('#petugas2').val() == "") {
+      message.push("Petugas kegiatan 2 masih kosong");
     }
-    else if ($('#pet_2').val() == "") {
-      message = "Petugas kegiatan 2 masih kosong";
-    }
-    else if ($('#pet_3').val() == "") {
-      message = "Petugas kegiatan 3 masih kosong";
+    if ($('#petugas3').val() == "") {
+      message.push("Petugas kegiatan 3 masih kosong");
     }
 
-    if (message != "") {
-      iziToast.warning({
-        title: 'Perhatian',
-        position: 'topRight',
-        message: message,
-      });
+    if (message.length != 0) {
+    	for(i=0;i<message.length;i++){
+			iziToast.warning({
+				title: 'Perhatian',
+				position: 'topRight',
+				message: message[i],
+			});
+		}
       return false;
     }
     else {
@@ -93,9 +109,9 @@ function validate_form()
   }
 $(document).ready(function(){
   $('#_token').val( csrf_token );
-  // $('#tgl_kegiatan').datepicker({
-  // 	format : 'dd-mm-yyyy'
-  // });
+  $('#tgl_perencanaan').datepicker({
+  	format : 'dd-mm-yyyy'
+  });
   $('#btn_submit').on('click', function() {
     var is_complete = validate_form();
     if(is_complete == true) {
@@ -148,4 +164,116 @@ $(document).ready(function(){
 	});  	
   	
   });
+
+	$("#pic").select2({
+          placeholder: "Pilih PIC",
+          ajax: {
+            url: url('api/find_m_mem'),
+            dataType: 'json',
+            data: function (params) {
+              return {
+                  keyword: $.trim(params.term),
+              };
+            },
+            processResults: function (res) {
+            	if(res.length > 0) {
+            		for(x = 0;x < res.length;x++) {
+            			
+        				res[x]['id'] = res[x].m_id;
+        				res[x]['text'] = res[x].m_name;
+            		}
+            	}
+            	console.log(res);
+                return {
+                    results: res
+                };
+            },
+            cache: true
+          }, 
+    });
+	$("#petugas1").select2({
+          placeholder: "Pilih Petugas 1",
+          ajax: {
+            url: url('api/find_m_mem'),
+            dataType: 'json',
+            data: function (params) {
+              return {
+                  keyword: $.trim(params.term),
+              };
+            },
+            processResults: function (res) {
+            	if(res.length > 0) {
+            		for(x = 0;x < res.length;x++) {
+            			
+        				res[x]['id'] = res[x].m_id;
+        				res[x]['text'] = res[x].m_name;
+            		}
+            	}
+            	console.log(res);
+                return {
+                    results: res
+                };
+            },
+            cache: true
+          }, 
+    });
+	$("#petugas2").select2({
+          placeholder: "Pilih Petugas 2",
+          ajax: {
+            url: url('api/find_m_mem'),
+            dataType: 'json',
+            data: function (params) {
+              return {
+                  keyword: $.trim(params.term),
+              };
+            },
+            processResults: function (res) {
+            	if(res.length > 0) {
+            		for(x = 0;x < res.length;x++) {
+            			
+        				res[x]['id'] = res[x].m_id;
+        				res[x]['text'] = res[x].m_name;
+            		}
+            	}
+            	console.log(res);
+                return {
+                    results: res
+                };
+            },
+            cache: true
+          }, 
+    });
+	$("#petugas3").select2({
+          placeholder: "Pilih Petugas 3",
+          ajax: {
+            url: url('api/find_m_mem'),
+            dataType: 'json',
+            data: function (params) {
+              return {
+                  keyword: $.trim(params.term),
+              };
+            },
+            processResults: function (res) {
+            	if(res.length > 0) {
+            		for(x = 0;x < res.length;x++) {
+            			
+        				res[x]['id'] = res[x].m_id;
+        				res[x]['text'] = res[x].m_name;
+            		}
+            	}
+            	console.log(res);
+                return {
+                    results: res
+                };
+            },
+            cache: true
+          }, 
+    });        	
+
+    $.ajax({
+    	url:url('api/marketing/manasik/GetMaxNota'),
+    	type:'get',
+    	
+    })
+
 });

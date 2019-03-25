@@ -1,7 +1,31 @@
 function preview_manasik_plan(dom) {
-	var el = $(dom);
-	alert( el.attr('pusatriyal-target') );
+	 el = $(dom);
+	
+	var id = el.find('#id_perencanaan').val();
+
 	$('#tgl_kegiatan').val('abc');
+
+	var tes, test;
+
+	for (var i = 0; i < units.length; i++) {
+		tes = units[i];
+		if (tes.mp_id === id) {
+			test = tes;
+		}
+	}
+	
+	console.log('object terpilih');
+	console.log(test);
+
+	$('#nota').val(test.mp_code);
+	$('#tgl_kegiatan').val(test.mp_date);
+	$('#tempat_kegiatan').val(test.mp_place);
+	$('#pic').val($(test.petugas_pic).text());
+	$('#kegiatan').val(test.mp_plan_activity);
+	$('#pet_1').val(test.emp_1.m_name);
+	$('#pet_2').val(test.emp_2.m_name);
+	$('#pet_3').val(test.emp_3.m_name);
+	$('#mp_id').val(test.mp_id);
 }
 
 $(document).ready(function(){
@@ -19,6 +43,7 @@ $(document).ready(function(){
 	        		unit = units[x];
 	        		console.log(unit);
 	        		content = $(rawcontent);
+	        		content.append('<input type="hidden" name="id_perencanaan" id="id_perencanaan" value="'+ unit.mp_id +'">')
 	        		// Set-up routing untuk menampilkan preview
 	        		content.attr('pusatriyal-role', 'routing');
 	        		content.attr('pusatriyal-target', 'includes/manasik/preview-perencanaan.html');

@@ -7,9 +7,11 @@
     <link rel="shortcut icon" href="asset/img/icon-pusat-riyal.png">
 	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./node_modules/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="./asset/css/alamraya-style.css">
 	<link rel="stylesheet" type="text/css" href="./css/iziToast.min.css">
-	<link rel="stylesheet" type="text/css" href="./asset/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="./node_modules/select2/dist/css/select2.min.css">
+
 	<style>
 		.rounded-btn {
 	      width: 12mm;
@@ -44,6 +46,10 @@
 	    	margin-top: 20mm;
 	    }
 	</style>
+
+	<!-- harus ditempatkan dibawah sendiri -->
+	<link rel="stylesheet" type="text/css" href="./asset/css/alamraya-style.css">
+	<!-- End -->
 </head>
 <body style="padding-top: 10mm">
 	<div id="loading_icon" class='hidden' style="position: fixed;bottom: 2mm;left: 3mm;z-index:60;">
@@ -86,8 +92,10 @@
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/iziToast.min.js"></script>
-	<script type="text/javascript" src="bootstrap-datetimepicker/js/moment.js"></script>
-	<script type="text/javascript" src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap-datetimepicker/js/moment.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="node_modules/select2/dist/js/select2.min.js"></script>
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="config/routing.js"></script>
 	<script type="text/javascript" src="js/features/logout.js"></script>
@@ -106,6 +114,7 @@
 			Routing.init('content');
 			csrf_token = '';
 			
+			$.fn.select2.defaults.set("width", "100%");
 		});
 	</script>
 </body>

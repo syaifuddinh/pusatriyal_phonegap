@@ -99,63 +99,71 @@
     }
 </style>
 
-<button class="btn btn-primary rounded-btn">
+<button class="btn btn-primary rounded-btn" onclick="validate_form();insert_perencanaan();">
   <i class="fa fa-check"></i>
 </button>
 <h5 class="title-edit">Form Perencanaan Kegiatan Manasik</h5>
 <form id="login-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
 <input type="hidden" name="_token" id="_token">
-                            <div class="form-group">
-                                <label class="label-for" for="nota">Nota</label><br>
-                                <div class="border-bottom-1">
-                                  <input type="text" name="nota" id="nota" class="form-control-plaintext" placeholder="( Auto )" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="label-for" for="tgl_kegiatan" >Tanggal Kegiatan</label><br>
-                                <div class="border-bottom border-bottom-1">
-                                  <input type="text" name="mp_date" id="tgl_kegiatan" class="form-control-plaintext" placeholder="01/01/2019">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="tempat_kegiatan" class="label-for">Tempat Kegiatan</label><br>
-                                <div class="border-bottom border-bottom-1">
-                                  <input type="text" name="tempat_kegiatan" id="tempat_kegiatan" class="form-control-plaintext" placeholder="Jeddah">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pic" class="label-for">PIC</label><br>
-                                <div class="border-bottom border-bottom-1">
-                                  <input type="text" name="pic" id="pic" class="form-control-plaintext" placeholder="Sujali">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="kegiatan" class="label-for">Kegiatan</label><br>
-                                <div class="border-bottom border-bottom-1">
-                                  <input type="text" name="kegiatan" id="kegiatan" class="form-control-plaintext" placeholder="Thawaf">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pet_1" class="label-for">Petugas Kegiatan 1</label><br>
-                                <div class="border-bottom border-bottom-1">
-                                  <input type="text" name="pet_1" id="pet_1" class="form-control-plaintext" placeholder="Ari" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pet_2" class="label-for">Petugas Kegiatan 2</label><br>
-                                <div class="border-bottom border-bottom-1">
-                                  <input type="text" name="pet_2" id="pet_2" class="form-control-plaintext" placeholder="Gupoh" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pet_3" class="label-for">Petugas Kegiatan 3</label><br>
-                                <div class="border-bottom border-bottom-1">
-                                  <input type="text" name="pet_3" id="pet_3" class="form-control-plaintext" placeholder="Pali" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                            </div>
-                        </form>
+    <div class="form-group">
+        <label class="label-for" for="nota">Nota</label><br>
+        <div class="border-bottom-1">
+          <input type="text" name="nota" id="nota" class="form-control-plaintext" placeholder="( Auto )" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="label-for" for="tgl_perencanaan" >Tanggal Kegiatan</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" name="tgl_perencanaan" id="tgl_perencanaan" class="form-control-plaintext">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="tempat" class="label-for">Tempat Kegiatan</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" name="tempat" id="tempat" class="form-control-plaintext" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pic" class="label-for">PIC</label><br>
+        <div class="border-bottom border-bottom-1">
+           <select class="form-control-plaintext" name="pic" id="pic">
+            <option value="" selected="" disabled="">--Pilih--</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="aktifitas" class="label-for">Kegiatan</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" name="aktifitas" id="aktifitas" class="form-control-plaintext" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pet_1" class="label-for">Petugas Kegiatan 1</label><br>
+        <div class="border-bottom border-bottom-1">
+          <select class="form-control-plaintext" id="petugas1" name="petugas1">
+            <option value="" selected="" disabled="">--Pilih--</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pet_2" class="label-for">Petugas Kegiatan 2</label><br>
+        <div class="border-bottom border-bottom-1">
+          <select class="form-control-plaintext" id="petugas2" name="petugas2">
+            <option value="" selected="" disabled="">--Pilih--</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pet_3" class="label-for">Petugas Kegiatan 3</label><br>
+        <div class="border-bottom border-bottom-1">
+          <select class="form-control-plaintext" id="petugas3" name="petugas3">
+            <option value="" selected="" disabled="">--Pilih--</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-group">
+    </div>
+</form>
 
     <script type="text/javascript" src="includes/manasik/js/form-perencanaan-commander.js"></script>
 </div>
