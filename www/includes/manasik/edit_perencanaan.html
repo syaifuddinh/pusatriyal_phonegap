@@ -1,165 +1,167 @@
 <div class="subcontent" style="">
-<style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-    }
+  <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+      }
 
-    .title-edit
-    {
+      .title-edit
+      {
+          margin-top: 60px;
+          margin-left: 20px;
+          margin-bottom: 30px;
+          width: 70%;
+          border: none;
+          color: #14c56d;
+      }
+
+      .btnSubmit
+      {
+          border-radius: 50mm;
+          margin-top: 8mm;
+          margin-bottom: 50px;
+          padding: 3mm 10mm;
+          border: none;
+          cursor: pointer;
+          background: #42ec98;
+          color: #FFFFFF;
+          font-weight: bold;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .border-bottom-1 {
+          border-bottom: 2px solid #42ec98 !important;
+      }
+      .label-for
+      {
+        font-weight: bold;
+        color: #646464ff;
+        margin-bottom: 0px;
+      }
+      .listx
+      {
+        font-weight: bold;
+      }
+
+      .card-body {
+        border-bottom:1px solid #e7e7e7;
+      }
+      .card {
+        margin-left: 4mm;
+        margin-right: 4mm;
+        margin-bottom: 10mm;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+      }
+      #login .container #login-row #login-column #login-box {
         margin-top: 60px;
-        margin-left: 20px;
-        margin-bottom: 30px;
-        width: 70%;
-        border: none;
-        color: #14c56d;
-    }
+        max-width: 600px;
+        height: 320px;
+      }
+      #login .container #login-row #login-column #login-box #login-form {
+        padding: 26px;
+        margin-bottom: 35mm;
+      }
+      #login .container #login-row #login-column #login-box #login-form #register-link {
+        margin-top: -85px;
+      }
 
-    .btnSubmit
-    {
-        border-radius: 50mm;
-        margin-top: 8mm;
-        margin-bottom: 50px;
-        padding: 3mm 10mm;
-        border: none;
-        cursor: pointer;
-        background: #42ec98;
-        color: #FFFFFF;
+
+      .btnSubmit
+      {
+          border-radius: 50mm;
+          margin-top: 8mm;
+          margin-bottom: 50px;
+          padding: 3mm 10mm;
+          border: none;
+          cursor: pointer;
+          background: #42ec98;
+          color: #FFFFFF;
+          font-weight: bold;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .border-bottom-1 {
+          border-bottom: 2px solid #42ec98 !important;
+      }
+      .label-for
+      {
         font-weight: bold;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .border-bottom-1 {
-        border-bottom: 2px solid #42ec98 !important;
-    }
-    .label-for
-    {
-      font-weight: bold;
-      color: #646464ff;
-      margin-bottom: 0px;
-    }
-    .listx
-    {
-      font-weight: bold;
-    }
+        color: #646464ff;
+        margin-bottom: 0px;
+      }
+      form {
+        padding-left: 5mm;
+        padding-right: 5mm;
+      }
+  </style>
 
-    .card-body {
-      border-bottom:1px solid #e7e7e7;
-    }
-    .card {
-      margin-left: 4mm;
-      margin-right: 4mm;
-      margin-bottom: 10mm;
-    }
+  <div class="pusatriyal-submit btn-group">
     
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-    }
-    #login .container #login-row #login-column #login-box {
-      margin-top: 60px;
-      max-width: 600px;
-      height: 320px;
-    }
-    #login .container #login-row #login-column #login-box #login-form {
-      padding: 26px;
-      margin-bottom: 35mm;
-    }
-    #login .container #login-row #login-column #login-box #login-form #register-link {
-      margin-top: -85px;
-    }
+    <button class="btn btn-primary rounded-btn" id="btn-update">
+      <i class="fa fa-check"></i>
+    </button>
+  </div>
+  <h5 class="title-edit">Edit Perencanaan Kegiatan Manasik</h5>
+  <form id="login-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
+    <input type="hidden" name="_token" id="_token">
+    <input type="hidden" name="mp_id" id="mp_id">
+    <div class="form-group">
+        <label class="label-for" for="nota">Nota</label><br>
+        <div class="border-bottom-1">
+          <input type="text" readonly="" name="nota" id="nota" class="form-control-plaintext"  readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="label-for" for="tgl_perencanaan" >Tanggal Kegiatan</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" name="tgl_perencanaan" id="tgl_perencanaan32" class="form-control-plaintext" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="tempat_kegiatan" class="label-for">Tempat Kegiatan</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" name="tempat" id="tempat" class="form-control-plaintext" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pic" class="label-for">PIC</label><br>
+        <div class="border-bottom border-bottom-1">
+          <!-- <input type="text" name="pic" id="pic" class="form-control-plaintext" > -->
+          <select class="form-control-plaintext select2" id="pic" name="pic"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="aktifitas" class="label-for">Kegiatan</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" name="aktifitas" id="aktifitas" class="form-control-plaintext"  >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="petugas1" class="label-for">Petugas Kegiatan 1</label><br>
+        <div class="border-bottom border-bottom-1">
+          <!-- <input type="text" name="petugas1" id="petugas1" class="form-control-plaintext"  > -->
+          <select class="form-control-plaintext select2" id="petugas1" name="petugas1"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="petugas2" class="label-for">Petugas Kegiatan 2</label><br>
+        <div class="border-bottom border-bottom-1">
+          <!-- <input type="text" name="petugas2" id="petugas2" class="form-control-plaintext" > -->
+          <select class="form-control-plaintext select2" id="petugas2" name="petugas2"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="petugas3" class="label-for">Petugas Kegiatan 3</label><br>
+        <div class="border-bottom border-bottom-1">
+          <!-- <input type="text" name="petugas3" id="petugas3" class="form-control-plaintext"  > -->
+          <select class="form-control-plaintext select2" id="petugas3" name="petugas3"></select>
+        </div>
+    </div>
+  </form>
 
-
-    .btnSubmit
-    {
-        border-radius: 50mm;
-        margin-top: 8mm;
-        margin-bottom: 50px;
-        padding: 3mm 10mm;
-        border: none;
-        cursor: pointer;
-        background: #42ec98;
-        color: #FFFFFF;
-        font-weight: bold;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .border-bottom-1 {
-        border-bottom: 2px solid #42ec98 !important;
-    }
-    .label-for
-    {
-      font-weight: bold;
-      color: #646464ff;
-      margin-bottom: 0px;
-    }
-    form {
-      padding-left: 5mm;
-      padding-right: 5mm;
-    }
-</style>
-
-<div class="pusatriyal-submit btn-group">
-  
-  <button class="btn btn-primary rounded-btn">
-    <i class="fa fa-check"></i>
-  </button>
-</div>
-<h5 class="title-edit">Edit Perencanaan Kegiatan Manasik</h5>
-<form id="login-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
-<input type="hidden" name="_token" id="_token">
-<input type="hidden" name="mp_id" id="mp_id">
-                            <div class="form-group">
-                                <label class="label-for" for="nota">Nota</label><br>
-                                <div class="border-bottom-1" id="mp_code">
-                                  <input type="text" readonly="" name="nota" id="nota" class="form-control-plaintext"  readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="label-for" for="tgl_kegiatan" >Tanggal Kegiatan</label><br>
-                                <div class="border-bottom border-bottom-1" id="tanggal">
-                                  <input type="text" readonly="" name="mp_date" id="tgl_kegiatan" class="form-control-plaintext" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="tempat_kegiatan" class="label-for">Tempat Kegiatan</label><br>
-                                <div class="border-bottom border-bottom-1" id="mp_place">
-                                  <input type="text" readonly="" name="tempat_kegiatan" id="tempat_kegiatan" class="form-control-plaintext" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pic" class="label-for">PIC</label><br>
-                                <div class="border-bottom border-bottom-1" id="petugas_pic">
-                                  <input type="text" readonly="" name="pic" id="pic" class="form-control-plaintext" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="kegiatan" class="label-for">Kegiatan</label><br>
-                                <div class="border-bottom border-bottom-1" id="mp_plan_activity">
-                                  <input type="text" readonly="" name="kegiatan" id="kegiatan" class="form-control-plaintext"  >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pet_1" class="label-for">Petugas Kegiatan 1</label><br>
-                                <div class="border-bottom border-bottom-1" id="mp_employe1">
-                                  <input type="text" readonly="" name="pet_1" id="pet_1" class="form-control-plaintext"  >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pet_2" class="label-for">Petugas Kegiatan 2</label><br>
-                                <div class="border-bottom border-bottom-1"  id="mp_employe2">
-                                  <input type="text" readonly="" name="pet_2" id="pet_2" class="form-control-plaintext" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pet_3" class="label-for">Petugas Kegiatan 3</label><br>
-                                <div class="border-bottom border-bottom-1"  id="mp_employe3">
-                                  <input type="text" readonly="" name="pet_3" id="pet_3" class="form-control-plaintext"  >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                            </div>
-                        </form>
-
-    <script type="text/javascript" src="includes/manasik/js/form-perencanaan-commander.js"></script>
+    <script type="text/javascript" src="includes/manasik/js/edit-manasik-commander.js"></script>
 </div>
