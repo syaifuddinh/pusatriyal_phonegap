@@ -133,9 +133,7 @@
     </script>
 
   <script type="text/javascript">
-$(window).error(function(e){
-    e.preventDefault();
-});
+
 
   var pathname = location.pathname;
   if(pathname == '/' || pathname == '') {
@@ -143,12 +141,6 @@ $(window).error(function(e){
   }
 
   $(document).ready(function() {
-     var store = window.localStorage;
-     var access_token = store.getItem('access_token');
-     if( access_token != null ) {
-        window.location = 'homepage.html';
-     }   
-
     $('#login-btn').on('click', function() {
       loginUser();
     })
@@ -156,28 +148,68 @@ $(window).error(function(e){
     {
       form = $('#login-form').serialize();
       $.ajax({
-        url: host + 'oauth/token',
-        
-        type    : 'post',
-        data    :  form + '&grant_type=' + grant_type + '&client_secret=' + client_secret + '&client_id=' + client_id,
+        url: host + 'login',
+        type    : 'get',
+        data    :  form + "&pindah=N",
         dataType: 'json',
-        success : function(response){;
-            if(response.access_token != undefined) {
-
-                store.setItem('access_token', response.access_token);
-                store.setItem('refresh_token', response.refresh_token);
-                store.setItem('token_type', response.token_type);
-                window.open('homepage.html');
-            }
+        success : function(response){
+          console.log(response);
+          if(response.status=='sukses') {
+            iziToast.success({
+                title: 'Selamat',
+                message: 'Login berhasil !',
+                position: 'topRight'
+            });
+            window.open('homepage.html');
+          } else if(response.status=='gagal') {
+            iziToast.warning({
+                title: 'Perhatian',
+                message: response.data,
+                position: 'topRight'
+            });
+          } else if(response.status=='Aktif') {
+            iziToast.question({
+                timeout: 20000,
+                close: false,
+                overlay: true,
+                displayMode: 'once',
+                id: 'question',
+                zindex: 999,
+                title: 'Perhatian',
+                message: 'Akun sudah login, Apakah anda yakin pindah ke perangkat ini ?',
+                position: 'center',
+                buttons: [
+                    ['<button><b>YES</b></button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        $.ajax({
+                            url     :  host + 'login',
+                            type    : 'get',
+                            data    :  form + "&pindah=Y",
+                            dataType: 'json',
+                            success : function(response){
+                              window.open('homepage.html');
+                            }
+                        })
+                    }, true],
+                    ['<button>NO</button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        
+                    }],
+                ],
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closing | closedBy: ' + closedBy);
+                },
+                onClosed: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                }
+            });
+          }
         },
         error: function(jqXHR, exception) {
-           console.log(jqXHR);
           if (jqXHR.status === 0) {
             alert('Not connect.\n Verify Network.');
           } else if (jqXHR.status == 404) {
             alert('Requested page not found. [404]');
-          } else if (jqXHR.status == 401) {
-            alert('Username atau password tidak ditemukan.');
           } else if (jqXHR.status == 500) {
             alert('Internal Server Error [500].');
           } else if (exception === 'parsererror') {

@@ -1,15 +1,3 @@
-console.log(window.location.pathname);
-function isPhoneGap() {
-    return (window.cordova || window.PhoneGap || window.phonegap) 
-    && /^file:\/{3}[^\/]/i.test(window.location.href) 
-    && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
-}
-
-if ( isPhoneGap() ) {
-    console.log("Running on PhoneGap!");
-} else {
-    console.log("Not running on PhoneGap!");
-}
 var Routing = {
 	el : null,
 	history : ['dashboard_menu.html'],
@@ -37,21 +25,42 @@ var Routing = {
 	init : function(el) {
 		el = $(el);
 		this.el = el;
-		this.load_page('dashboard_menu.html');
+		var self = this;
+		$.ajax({
+	      url: '/dashboard_menu.html',
+	      type    : 'get',
+	      success : function(response){
+	        el.html(response);
+	        self.load_routing()
+	      },
+	      error: function(jqXHR, exception) {
+	        if (jqXHR.status === 0) {
+	            alert('Not connect.\n Verify Network.');
+	        } else if (jqXHR.status == 404) {
+	            alert('Requested page not found. [404]');
+	        } else if (jqXHR.status == 500) {
+	            alert('Internal Server Error [500].');
+	        } else if (exception === 'parsererror') {
+	            alert('Requested JSON parse failed.');
+	        } else if (exception === 'timeout') {
+	            alert('Time out error.');
+	        } else if (exception === 'abort') {
+	            alert('Ajax request aborted.');
+	        } else {
+	            alert('Uncaught Error.\n' + jqXHR.responseText);
+	        }
+	      }
+	    });
 	},
-	load_page : function(path, option = {} ) {
+	load_page : function(path) {
 		var el = this.el;
 		var self = this;
-		var path = path.replace(/$\/(.*)/, '$1');	
 		$.ajax({
 	      url: path,
 	      type    : 'get',
 	      success : function(response){
 	        el.html(response);
-	        self.load_routing();
-	        if( option.callback != undefined ) {
-	        	option.callback( option.dom );
-	        }
+	        self.load_routing()
 	      },
 	      error: function(jqXHR, exception) {
 	        if (jqXHR.status === 0) {
@@ -83,15 +92,8 @@ var Routing = {
 				unit = $( units[x] );
 				unit.click(function(){
 					var target = $(this).attr('pusatriyal-target');
-					var callback = $(this).attr('pusatriyal-callback');
-					var dom = this;
-					var construct = {
-						'dom' : dom,
-						'callback' : window[callback],
-					}
 					self.history_push(target);
-					self.load_page(target, construct);
-
+					self.load_page(target);
 				});
 
 			}
