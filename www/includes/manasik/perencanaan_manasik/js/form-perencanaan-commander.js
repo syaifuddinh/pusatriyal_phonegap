@@ -1,3 +1,65 @@
+
+function edit_perencanaan_view(dom){
+  el = $(dom);
+  var id = el.find('#mp_id').val();
+
+  var coba, ujicoba;
+  for (var j = 0; j < units.length; j++) {
+    coba = units[j];
+    if(coba.mp_id === id){
+      ujicoba = coba;
+    }
+  }
+
+  $.ajax({
+    url:url('api/find_m_mem'),
+    type:'get',
+    success:function(res){
+      for(var a=0;a<res.length;a++){
+        $('#pic').append('<option value="'+res[a].m_id+'">'+res[a].m_name+'</option>')
+        $('#petugas1').append('<option value="'+res[a].m_id+'">'+res[a].m_name+'</option>')
+        $('#petugas2').append('<option value="'+res[a].m_id+'">'+res[a].m_name+'</option>')
+        $('#petugas3').append('<option value="'+res[a].m_id+'">'+res[a].m_name+'</option>')
+      }
+    },
+    error: function(jqXHR, exception) {
+      if (jqXHR.status === 0) {
+          alert('Not connect.\n Verify Network.');
+      } else if (jqXHR.status == 404) {
+          alert('Requested page not found. [404]');
+      } else if (jqXHR.status == 500) {
+          alert('Internal Server Error [500].');
+      } else if (exception === 'parsererror') {
+          alert('Requested JSON parse failed.');
+      } else if (exception === 'timeout') {
+          alert('Time out error.');
+      } else if (exception === 'abort') {
+          alert('Ajax request aborted.');
+      } else {
+          alert('Uncaught Error.\n' + jqXHR.responseText);
+      }
+    },
+    complete:function(){
+     
+     
+     
+      $('#pic').val(ujicoba.mp_pic).trigger('change');
+      
+      $('#petugas1').val(ujicoba.emp_1.m_id).trigger('change');
+      $('#petugas2').val(ujicoba.emp_2.m_id).trigger('change');
+      $('#petugas3').val(ujicoba.emp_3.m_id).trigger('change');
+     
+    }
+  });
+  $('#nota').val(ujicoba.mp_code);
+  $('#tgl_perencanaan32').val(ujicoba.mp_date);
+  $('#tempat').val(ujicoba.mp_place);
+  $('#aktifitas').val(ujicoba.mp_plan_activity);
+  $('#mp_id').val(ujicoba.mp_id);
+  console.log(ujicoba);
+    
+}
+
 function insert_perencanaan() {
 	var formdata = $('form').serialize();
 	$.ajax({
@@ -6,7 +68,6 @@ function insert_perencanaan() {
 	      data : formdata,
 	      success : function(resp){
 	      	var card = $('.card');
-	        var units = resp.data;
 	        var unit, rawcontent, content;
 
 	        console.log(resp);
@@ -22,28 +83,13 @@ function insert_perencanaan() {
 	        	});
 	        	return false;
 	        }
-	        if(units.length > 0) {
-	        	rawcontent = $('rawcontent.datalist').html();
-	        	for(x = 0;x < units.length;x++) {
-	        		unit = units[x];
-	        		content = $(rawcontent);
-	        		content.find('.card-title').text( 
-	        			unit.mp_code
-	        		);
-	        		content.find('.card-subtitle').text( 
-	        			unit.mp_place
-	        		);
-	        		content.find('.card-info-first').text( 
-	        			unit.tanggal
-	        		);
-	        		content.find('.card-info-second').text( 
-	        			unit.status
-	        		);
-	        	}
-	        }
-	        else {
-	        	card.html('<div class="card-body"><h4 class="card-title">Tidak Ada Data Yang Ditampilkan</h4></div>')
-	        }
+	        iziToast.success({
+	        	title:'Sukses',
+	        	message:'Nota ' + resp.nota + ' ' + resp.status +' ditambahkan!'
+	        });
+
+          Routing.load_page('includes/manasik/perencanaan_manasik/index-perencanaan.html');
+	        
 	      },
 	      error: function(jqXHR, exception) {
 	        if (jqXHR.status === 0) {
@@ -273,7 +319,28 @@ $(document).ready(function(){
     $.ajax({
     	url:url('api/marketing/manasik/GetMaxNota'),
     	type:'get',
-    	
+    	success:function(res){
+    		// console.log(res);
+    		$('#nota').val(res);
+    	},
+    	error: function(jqXHR, exception) {
+	        if (jqXHR.status === 0) {
+	            alert('Not connect.\n Verify Network.');
+	        } else if (jqXHR.status == 404) {
+	            alert('Requested page not found. [404]');
+	        } else if (jqXHR.status == 500) {
+	            alert('Internal Server Error [500].');
+	        } else if (exception === 'parsererror') {
+	            alert('Requested JSON parse failed.');
+	        } else if (exception === 'timeout') {
+	            alert('Time out error.');
+	        } else if (exception === 'abort') {
+	            alert('Ajax request aborted.');
+	        } else {
+	            alert('Uncaught Error.\n' + jqXHR.responseText);
+	        }
+      	}
     })
+
 
 });

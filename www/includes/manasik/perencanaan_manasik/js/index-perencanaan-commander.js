@@ -5,27 +5,28 @@ function preview_manasik_plan(dom) {
 
 	$('#tgl_kegiatan').val('abc');
 
-	var tes, test;
+	var tes, preview_manasik_json;
 
 	for (var i = 0; i < units.length; i++) {
 		tes = units[i];
 		if (tes.mp_id === id) {
-			test = tes;
+			preview_manasik_json = tes;
 		}
 	}
 	
 	console.log('object terpilih');
-	console.log(test);
+	// console.log(preview_manasik_json);
 
-	$('#nota').val(test.mp_code);
-	$('#tgl_kegiatan').val(test.mp_date);
-	$('#tempat_kegiatan').val(test.mp_place);
-	$('#pic').val($(test.petugas_pic).text());
-	$('#kegiatan').val(test.mp_plan_activity);
-	$('#pet_1').val(test.emp_1.m_name);
-	$('#pet_2').val(test.emp_2.m_name);
-	$('#pet_3').val(test.emp_3.m_name);
-	$('#mp_id').val(test.mp_id);
+	$('#nota').val(preview_manasik_json.mp_code);
+	$('#tgl_kegiatan').val(preview_manasik_json.mp_date);
+	$('#tempat_kegiatan').val(preview_manasik_json.mp_place);
+	$('#pic').val($(preview_manasik_json.petugas_pic).text());
+	$('#kegiatan').val(preview_manasik_json.mp_plan_activity);
+	$('#pet_1').val(preview_manasik_json.emp_1.m_name);
+	$('#pet_2').val(preview_manasik_json.emp_2.m_name);
+	$('#pet_3').val(preview_manasik_json.emp_3.m_name);
+	$('#mp_id').val(preview_manasik_json.mp_id);
+	$('#btn-edit').append('<input type="hidden" name="mp_id" id="mp_id" value="'+ preview_manasik_json.mp_id +'">')
 }
 
 $(document).ready(function(){
@@ -46,7 +47,7 @@ $(document).ready(function(){
 	        		content.append('<input type="hidden" name="id_perencanaan" id="id_perencanaan" value="'+ unit.mp_id +'">')
 	        		// Set-up routing untuk menampilkan preview
 	        		content.attr('pusatriyal-role', 'routing');
-	        		content.attr('pusatriyal-target', 'includes/manasik/preview-perencanaan.html');
+	        		content.attr('pusatriyal-target', 'includes/manasik/perencanaan_manasik/preview-perencanaan.html');
 	        		content.attr('pusatriyal-callback', 'preview_manasik_plan');
 	        		content.append(
 	        			'<input type="hidden" name="mp_id" value="' + unit.mp_id + '">'

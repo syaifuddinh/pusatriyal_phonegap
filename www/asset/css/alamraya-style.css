@@ -195,3 +195,6 @@ rawcontent, .hidden {
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 }
+.pusatriyal-submit{
+	z-index: 2;
+}
