@@ -35,6 +35,13 @@
     <feature name="Vibration">
         <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
+<<<<<<< HEAD
+=======
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+>>>>>>> c9eac61b48a3e0aaf3b317394c992907b1de22bc
     <name>Pusat Riyal</name>
     <description>
         Sistem Informasi Pusat Riyal.
@@ -44,6 +51,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-intent href="file://*/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -71,5 +79,7 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="android-minSdkVersion" value="14" />
 </widget>
