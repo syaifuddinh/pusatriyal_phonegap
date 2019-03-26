@@ -198,3 +198,25 @@ rawcontent, .hidden {
 .pusatriyal-submit{
 	z-index: 2;
 }
+.breadcrumb-pusatriyal{
+	display: block;
+	width: 100%;
+	font-size: 15pt;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    padding: 20px;
+    width: 70%;
+    border: none;
+}
+.breadcrumb-pusatriyal span.active,
+.breadcrumb-pusatriyal span:last-child
+{
+	font-weight: bold;
+    color: #14c56d;
+}
+.breadcrumb-pusatriyal span:after{
+	content: ' / ';
+}
+.breadcrumb-pusatriyal span:last-child:after{
+	content: '';
+}
