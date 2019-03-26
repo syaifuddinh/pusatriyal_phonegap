@@ -35,13 +35,10 @@
     <feature name="Vibration">
         <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
-<<<<<<< HEAD
-=======
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
->>>>>>> c9eac61b48a3e0aaf3b317394c992907b1de22bc
     <name>Pusat Riyal</name>
     <description>
         Sistem Informasi Pusat Riyal.

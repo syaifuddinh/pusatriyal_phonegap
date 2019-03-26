@@ -1,0 +1,68 @@
+<div class="subcontent">
+  <h5 class="title-edit"></h5>
+  <div class="list-group list-group-flush">
+    <button type="button" class="btn btn-primary" onclick="start()" name="button">Start</button>
+    <button type="button" class="btn btn-warning" onclick="stop()" name="button">Stop</button>
+  </div>
+
+  <p id="status"></p>
+
+  </div>
+</div>
+<script type="text/javascript">
+var interval;
+var latitude;
+var longitude;
+function start(){
+  geo();
+
+  pushgps();
+};
+
+function stop(){
+  stoppush();
+}
+
+function geo(){
+  var successHandler = function(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    };
+
+    var errorHandler = function (errorObj) {
+    alert(errorObj.code + ": " + errorObj.message);
+
+    alert("something wrong take this lat " + 26.0546106);
+    alert("something wrong take this lng " + -98.3939791);
+
+    };
+
+    navigator.geolocation.getCurrentPosition(
+    successHandler, errorHandler,
+    {enableHighAccuracy: true, maximumAge: 10000});
+//   navigator.geolocation.getCurrentPosition(function(position) {
+//   latitude = position.coords.latitude;
+//   longitude = position.coords.longitude;
+// });
+}
+
+function pushgps(){
+ interval = setInterval(function () {
+   $('#status').text('Sedang Berjalan . . . ');
+   var username = localStorage.getItem('username');
+    $.ajax({
+      type: 'get',
+      url: url('/api/gpspush'),
+      dataType: 'json',
+      data: {username, latitude, longitude},
+      success : function(response){
+      }
+    });
+  }, 3000);
+}
+
+function stoppush(){
+  clearInterval(interval);
+  $('#status').text('DIberhentikan . . . ');
+}
+</script>

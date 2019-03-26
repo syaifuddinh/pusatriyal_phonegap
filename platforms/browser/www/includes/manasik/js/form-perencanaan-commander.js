@@ -270,4 +270,10 @@ $(document).ready(function(){
           }, 
     });        	
 
+    $.ajax({
+    	url:url('api/marketing/manasik/GetMaxNota'),
+    	type:'get',
+    	
+    })
+
 });

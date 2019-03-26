@@ -4,11 +4,15 @@
 	<title>Dashboard</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="asset/img/icon-pusat-riyal.png">
+	<meta http-equiv=“Content-Security-Policy” content=“default-src ‘self’ gap://ready file://* *; style-src ‘self’ ‘unsafe-inline’; script-src ‘self’ ‘unsafe-inline’ ‘unsafe-eval’”/>
+  <link rel="shortcut icon" href="asset/img/icon-pusat-riyal.png">
 	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./node_modules/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="./asset/css/alamraya-style.css">
-	<link rel="stylesheet" type="text/css" href="./asset/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/iziToast.min.css">
+	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="./node_modules/select2/dist/css/select2.min.css">
+
 	<style>
 		.rounded-btn {
 	      width: 12mm;
@@ -43,6 +47,10 @@
 	    	margin-top: 20mm;
 	    }
 	</style>
+
+	<!-- harus ditempatkan dibawah sendiri -->
+	<link rel="stylesheet" type="text/css" href="./asset/css/alamraya-style.css">
+	<!-- End -->
 </head>
 <body style="padding-top: 10mm">
 	<div id="loading_icon" class='hidden' style="position: fixed;bottom: 2mm;left: 3mm;z-index:60;">
@@ -64,7 +72,7 @@
 						<a href="#">Credit</a>
 					</li>
 					<li>
-						<a href="#" id="logout-btn">Logout</a>
+						<a href="#" id="btn-logout">Logout</a>
 					</li>
 				</ul>
 			</section>
@@ -84,8 +92,11 @@
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	<script type="text/javascript" src="bootstrap-datetimepicker/js/moment.js"></script>
-	<script type="text/javascript" src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="js/iziToast.min.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap-datetimepicker/js/moment.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="node_modules/select2/dist/js/select2.min.js"></script>
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="config/routing.js"></script>
 	<script type="text/javascript" src="js/features/logout.js"></script>
@@ -103,7 +114,17 @@
 			});
 			Routing.init('content');
 			csrf_token = '';
-			
+
+			$.fn.select2.defaults.set("width", "100%");
+
+			$('#btn-logout').click(function(){
+				localStorage.removeItem('access_token');
+				localStorage.removeItem('refresh_token');
+				localStorage.removeItem('token_type');
+				localStorage.removeItem('username');
+
+				window.location.href = 'index.html';
+			})
 		});
 	</script>
 </body>
