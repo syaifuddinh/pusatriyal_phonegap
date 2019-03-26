@@ -1,7 +1,7 @@
 function preview_manasik_plan(dom) {
 	var el = $(dom);
 	alert( el.attr('pusatriyal-target') );
-	$('#tgl_kegiatan').val('abc');
+	$('#tgl_kegiatan').val('abcde');
 }
 
 $(document).ready(function(){
