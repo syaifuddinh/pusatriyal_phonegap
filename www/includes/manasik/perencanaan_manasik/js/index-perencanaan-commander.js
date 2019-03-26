@@ -15,7 +15,6 @@ function preview_manasik_plan(dom) {
 	}
 	
 	console.log('object terpilih');
-	// console.log(preview_manasik_json);
 
 	$('#nota').val(preview_manasik_json.mp_code);
 	$('#tgl_kegiatan').val(preview_manasik_json.mp_date);
