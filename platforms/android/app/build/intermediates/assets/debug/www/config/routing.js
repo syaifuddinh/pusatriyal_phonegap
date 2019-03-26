@@ -1,3 +1,4 @@
+console.log(window.location.pathname);
 var Routing = {
 	el : null,
 	history : ['dashboard_menu.html'],
@@ -25,42 +26,21 @@ var Routing = {
 	init : function(el) {
 		el = $(el);
 		this.el = el;
-		var self = this;
-		$.ajax({
-	      url: '/dashboard_menu.html',
-	      type    : 'get',
-	      success : function(response){
-	        el.html(response);
-	        self.load_routing()
-	      },
-	      error: function(jqXHR, exception) {
-	        if (jqXHR.status === 0) {
-	            alert('Not connect.\n Verify Network.');
-	        } else if (jqXHR.status == 404) {
-	            alert('Requested page not found. [404]');
-	        } else if (jqXHR.status == 500) {
-	            alert('Internal Server Error [500].');
-	        } else if (exception === 'parsererror') {
-	            alert('Requested JSON parse failed.');
-	        } else if (exception === 'timeout') {
-	            alert('Time out error.');
-	        } else if (exception === 'abort') {
-	            alert('Ajax request aborted.');
-	        } else {
-	            alert('Uncaught Error.\n' + jqXHR.responseText);
-	        }
-	      }
-	    });
+		this.load_page('dashboard_menu.html');
 	},
-	load_page : function(path) {
+	load_page : function(path, option = {} ) {
 		var el = this.el;
 		var self = this;
+		var path = path.replace(/$\/(.*)/, '$1');	
 		$.ajax({
 	      url: path,
 	      type    : 'get',
 	      success : function(response){
 	        el.html(response);
-	        self.load_routing()
+	        self.load_routing();
+	        if( option.callback != undefined ) {
+	        	option.callback( option.dom );
+	        }
 	      },
 	      error: function(jqXHR, exception) {
 	        if (jqXHR.status === 0) {
@@ -92,8 +72,15 @@ var Routing = {
 				unit = $( units[x] );
 				unit.click(function(){
 					var target = $(this).attr('pusatriyal-target');
+					var callback = $(this).attr('pusatriyal-callback');
+					var dom = this;
+					var construct = {
+						'dom' : dom,
+						'callback' : window[callback],
+					}
 					self.history_push(target);
-					self.load_page(target);
+					self.load_page(target, construct);
+
 				});
 
 			}
