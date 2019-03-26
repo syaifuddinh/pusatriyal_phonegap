@@ -88,7 +88,7 @@ function insert_perencanaan() {
 	        	message:'Nota ' + resp.nota + ' ' + resp.status +' ditambahkan!'
 	        });
 
-          Routing.load_page('includes/manasik/index-perencanaan.html');
+          Routing.load_page('includes/manasik/perencanaan_manasik/index-perencanaan.html');
 	        
 	      },
 	      error: function(jqXHR, exception) {

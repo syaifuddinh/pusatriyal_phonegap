@@ -47,7 +47,7 @@ $(document).ready(function(){
 	        		content.append('<input type="hidden" name="id_perencanaan" id="id_perencanaan" value="'+ unit.mp_id +'">')
 	        		// Set-up routing untuk menampilkan preview
 	        		content.attr('pusatriyal-role', 'routing');
-	        		content.attr('pusatriyal-target', 'includes/manasik/preview-perencanaan.html');
+	        		content.attr('pusatriyal-target', 'includes/manasik/perencanaan_manasik/preview-perencanaan.html');
 	        		content.attr('pusatriyal-callback', 'preview_manasik_plan');
 	        		content.append(
 	        			'<input type="hidden" name="mp_id" value="' + unit.mp_id + '">'
