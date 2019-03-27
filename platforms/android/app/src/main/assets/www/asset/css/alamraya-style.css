@@ -245,3 +245,18 @@ rawcontent, .hidden {
 	height: 17px;
 	width: 17px;
 }
+.badge-antrian {
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    padding: 10px;
+    font-size: 55pt;
+}
+.form-group.form-tagihan label{
+	position: absolute;
+	left: 25px;
+}
+.form-group.form-tagihan input{
+	height: 75px;
+	font-size: 25pt;
+}
