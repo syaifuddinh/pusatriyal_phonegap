@@ -1,11 +1,11 @@
 $(document).ready(function(){
 	$.ajax({
-		url: url('api/marketing/manasik/pelaksanaan_kegiatan/list_pelaksanaan'),
+		url: url('api/marketing/manasik/pelaksanaan_kegiatan/getlist_status'),
 		type    : 'get',
 		dataType : 'json',
 		success : function(resp){
 			var card = $('.card');
-			units = resp;
+			units = resp.data;
 			var unit, rawcontent, content;
 			console.log(units);
 			if(units.length > 0) {
@@ -16,7 +16,7 @@ $(document).ready(function(){
 					content = $(rawcontent);
 					// Set-up routing untuk menampilkan preview
 					content.attr('pusatriyal-role', 'routing');
-					content.attr('pusatriyal-target', 'includes/manasik/pelaksanaan_manasik/tab_pelaksanaan_mansik/preview-pelaksanaan.html');
+					content.attr('pusatriyal-target', 'includes/manasik/pelaksanaan_manasik/tab_produk_dikembalikan/preview-pelaksanaan.html');
 					content.attr('pusatriyal-callback', 'preview_pelaksanaan_func');
 					content.append(
 						'<input type="hidden" name="me_id" value="' + unit.me_id + '">'

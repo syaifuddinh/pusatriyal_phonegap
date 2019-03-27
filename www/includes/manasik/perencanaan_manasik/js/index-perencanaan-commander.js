@@ -1,3 +1,16 @@
+function display_manasik_plan(obj) {
+	$('#nota').val(obj.mp_code);
+	$('#tgl_kegiatan').val(obj.mp_date);
+	$('#tempat_kegiatan').val(obj.mp_place);
+	$('#pic').val($(obj.petugas_pic).text());
+	$('#kegiatan').val(obj.mp_plan_activity);
+	$('#pet_1').val(obj.emp_1.m_name);
+	$('#pet_2').val(obj.emp_2.m_name);
+	$('#pet_3').val(obj.emp_3.m_name);
+	$('#mp_id').val(obj.mp_id);
+	$('#btn-edit').append('<input type="hidden" name="mp_id" id="mp_id" value="'+ obj.mp_id +'">')
+}
+
 function preview_manasik_plan(dom) {
 	 el = $(dom);
 	
@@ -5,27 +18,18 @@ function preview_manasik_plan(dom) {
 
 	$('#tgl_kegiatan').val('abc');
 
-	var tes, preview_manasik_json;
+	var tes;
 
 	for (var i = 0; i < units.length; i++) {
 		tes = units[i];
 		if (tes.mp_id === id) {
 			preview_manasik_json = tes;
+			display_manasik_plan(preview_manasik_json);
 		}
 	}
 	
 	console.log('object terpilih');
-
-	$('#nota').val(preview_manasik_json.mp_code);
-	$('#tgl_kegiatan').val(preview_manasik_json.mp_date);
-	$('#tempat_kegiatan').val(preview_manasik_json.mp_place);
-	$('#pic').val($(preview_manasik_json.petugas_pic).text());
-	$('#kegiatan').val(preview_manasik_json.mp_plan_activity);
-	$('#pet_1').val(preview_manasik_json.emp_1.m_name);
-	$('#pet_2').val(preview_manasik_json.emp_2.m_name);
-	$('#pet_3').val(preview_manasik_json.emp_3.m_name);
-	$('#mp_id').val(preview_manasik_json.mp_id);
-	$('#btn-edit').append('<input type="hidden" name="mp_id" id="mp_id" value="'+ preview_manasik_json.mp_id +'">')
+	
 }
 
 $(document).ready(function(){
