@@ -1,3 +1,77 @@
+function display_pembayaran_json(json){
+
+	$.ajax({
+		url:url('api/marketing/manasik/penjualan_manasik/listbarang'),
+		type:'get',
+		dataType:'json',
+		data:{
+			id:json.sm_id
+		},
+		success:function(res){
+			$('#table_produk tbody').html('');
+			console.log(res);
+			var datas = res;
+			console.log(datas);
+			for (var i = 0; i < datas.length; i++) {
+				$('#table_produk tbody').append(
+					'<tr>'+
+						'<td>'+ datas[i].ir_name+'</td>'+
+						'<td>'+ datas[i].smd_qty+'</td>'+
+					'</tr>'
+					);
+			}
+
+		},
+		error: function(jqXHR, exception) {
+			if (jqXHR.status === 0) {
+			    alert('Not connect.\n Verify Network.');
+			} else if (jqXHR.status == 404) {
+			    alert('Requested page not found. [404]');
+			} else if (jqXHR.status == 500) {
+			    alert('Internal Server Error [500].');
+			} else if (exception === 'parsererror') {
+			    alert('Requested JSON parse failed.');
+			} else if (exception === 'timeout') {
+			    alert('Time out error.');
+			} else if (exception === 'abort') {
+			    alert('Ajax request aborted.');
+			} else {
+			    alert('Uncaught Error.\n' + jqXHR.responseText);
+			}
+		},
+		complete:function(res){
+			$('#sm_id').val(json.sm_id);
+			$('.badge-antrian').text(json.sm_antrian);
+			$('#tagihan').val(accounting.formatNumber(json.sm_net));
+			$('#pembeli').val(json.c_name);
+			$('#no_hp').val(json.c_hp);
+			$('#alamat').val(json.c_address);
+			$('#petugas').val(json.m_name);
+			$('#btn-proses').append('<input type="hidden" name="sm_id" id="sm_id" value="'+json.sm_id+'">');
+			console.log(res);
+		}
+	})
+
+}
+
+function preview_pembayaran_func(dom){
+	el = $(dom);
+
+	var id = parseInt(el.find('[name="sm_id"]').val());
+	console.log(id);
+	var tes;
+	for (var i = 0; i < units.length; i++) {
+		tes = units[i];
+		console.log(tes);
+		if (tes.sm_id === id) {
+			console.log('statement if is true');
+			global_pembayaran_json = tes;
+			display_pembayaran_json(global_pembayaran_json);
+		}
+
+	}
+}
+
 $(document).ready(function(){
 
 	function ajax_penjualan_manasik(){

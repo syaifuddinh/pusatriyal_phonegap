@@ -1,14 +1,18 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html>
 <head>
 	<title>Dashboard</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="asset/img/icon-pusat-riyal.png">
+	<meta http-equiv=“Content-Security-Policy” content=“default-src ‘self’ gap://ready file://* *; style-src ‘self’ ‘unsafe-inline’; script-src ‘self’ ‘unsafe-inline’ ‘unsafe-eval’”/>
+  <link rel="shortcut icon" href="asset/img/icon-pusat-riyal.png">
 	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./node_modules/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="./asset/css/alamraya-style.css">
-	<link rel="stylesheet" type="text/css" href="./asset/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/iziToast.min.css">
+	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="./node_modules/select2/dist/css/select2.min.css">
+
 	<style>
 		.rounded-btn {
 	      width: 12mm;
@@ -25,6 +29,12 @@
 	      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6)
 	    }
 
+		.pusatriyal-submit {
+			position: fixed;
+		    bottom: 7mm;
+		    right: 5mm;
+		    display: flex;
+		}
 	    div .maincard {
 	    	margin-bottom: 40mm
 	    }
@@ -32,11 +42,19 @@
 	    .card-body:hover {
 	    	background: #e6e6e6;
 	    }
+
+	    content {
+	    	margin-top: 20mm;
+	    }
 	</style>
+
+	<!-- harus ditempatkan dibawah sendiri -->
+	<link rel="stylesheet" type="text/css" href="./asset/css/alamraya-style.css">
+	<!-- End -->
 </head>
-<body>
+<body style="padding-top: 10mm">
 	<div id="loading_icon" class='hidden' style="position: fixed;bottom: 2mm;left: 3mm;z-index:60;">
-		<img src="/img/ellipsis.gif" alt="Loading...." style="width: 20mm;height: auto">
+		<img src="img/ellipsis.gif" alt="Loading...." style="width: 20mm;height: auto">
 	</div>
 	<div class="bg-top"></div>
 	<div class="bg-bottom"></div>
@@ -54,12 +72,12 @@
 						<a href="#">Credit</a>
 					</li>
 					<li>
-						<a href="#" id="logout-btn">Logout</a>
+						<a href="#" id="btn-logout">Logout</a>
 					</li>
 				</ul>
 			</section>
 	<div class="sidebar-menu-off"></div>
-	<section class="menu-header" style="background: #007139">
+	<section class="menu-header" style="background: #007139;position:fixed;width: 100%;top: 0;left: 0">
 		<button type="button" class="btn text-alamraya" id="btn-menu">
 			<i class="fa fa-bars"></i>
 		</button>
@@ -74,15 +92,22 @@
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	<script type="text/javascript" src="bootstrap-datetimepicker/js/moment.js"></script>
-	<script type="text/javascript" src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="js/iziToast.min.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap-datetimepicker/js/moment.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="node_modules/select2/dist/js/select2.min.js"></script>
+	<script type="text/javascript" src="node_modules/jquery-maskmoney/dist/jquery.maskMoney.min.js"></script>
+	<script type="text/javascript" src="node_modules/accounting-js/dist/accounting.umd.js"></script>
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="config/routing.js"></script>
 	<script type="text/javascript" src="js/features/logout.js"></script>
 
 	<script type="text/javascript">
 		loading_icon = $('#loading_icon');
-
+		iziToast.settings({
+			position:'topRight'//Where it will be shown. It can be bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
+		})
 		$(document).ready(function(){
 			$('#btn-menu, .sidebar-menu-off').click(function(){
 				$('body').toggleClass('sidebar-collapse');
@@ -93,30 +118,17 @@
 			});
 			Routing.init('content');
 			csrf_token = '';
-			$.ajax({
-	      url: url('token'),
-	      type    : 'get',
-	      success : function(resp){
-	      	csrf_token = resp.csrf_token;
-	      },
-	      error: function(jqXHR, exception) {
-	        if (jqXHR.status === 0) {
-	            alert('Not connect.\n Verify Network.');
-	        } else if (jqXHR.status == 404) {
-	            alert('Requested page not found. [404]');
-	        } else if (jqXHR.status == 500) {
-	            alert('Internal Server Error [500].');
-	        } else if (exception === 'parsererror') {
-	            alert('Requested JSON parse failed.');
-	        } else if (exception === 'timeout') {
-	            alert('Time out error.');
-	        } else if (exception === 'abort') {
-	            alert('Ajax request aborted.');
-	        } else {
-	            alert('Uncaught Error.\n' + jqXHR.responseText);
-	        }
-	      }
-    });
+
+			$.fn.select2.defaults.set("width", "100%");
+
+			$('#btn-logout').click(function(){
+				localStorage.removeItem('access_token');
+				localStorage.removeItem('refresh_token');
+				localStorage.removeItem('token_type');
+				localStorage.removeItem('username');
+
+				window.location.href = 'index.html';
+			})
 		});
 	</script>
 </body>
