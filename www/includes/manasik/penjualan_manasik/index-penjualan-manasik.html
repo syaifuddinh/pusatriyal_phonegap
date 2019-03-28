@@ -46,20 +46,27 @@
 
 
 <div class="breadcrumb-pusatriyal">
-  <span class="active">Kegiatan Manasik</span>
+  <span class="active">Penjualan Kegiatan Manasik</span>
 </div>
 <div class="list-group list-group-flush">
 
+  <div class="form-group m-3">
+      <div class="border-bottom border-bottom-1">
+        <select class="form-control-plaintext" name="kode_pelaksanaan_manasik" id="kode_pelaksanaan_manasik"></select>
+      </div>
+  </div>
+
   <a href="#" class="list-group-item list-group-item-action listx"  
-  pusatriyal-role='routing' pusatriyal-callback='notif' 
-  pusatriyal-target='includes/manasik/perencanaan_manasik/index-perencanaan.html'>Perencanaan Kegiatan Manasik</a>
+  pusatriyal-role='routing' pusatriyal-callback='list_penjualan' 
+  pusatriyal-target='includes/manasik/penjualan_manasik/tab_penjualan/index-penjualan.html'>List Penjualan</a>
   <a href="#" class="list-group-item list-group-item-action listx" 
   pusatriyal-role='routing' 
-  pusatriyal-target='includes/manasik/pelaksanaan_manasik/index-pelaksanaan.html'>Pelaksanaan Kegiatan Manasik</a>
+  pusatriyal-target='includes/manasik/penjualan_manasik/tab_pembayaran/index-pembayaran.html'>List Pembayaran</a>
   <a href="#" class="list-group-item list-group-item-action listx"  
   pusatriyal-role='routing' 
-  pusatriyal-target='includes/manasik/penjualan_manasik/index-penjualan-manasik.html'>Penjualan Kegiatan Manasik</a>
+  pusatriyal-target='includes/manasik/penjualan_manasik/tab_serahterima/index-serahterima.html'>List Serah Terima</a>
+</div>
+<script type="text/javascript" src="includes/manasik/penjualan_manasik/js/index-penjualan-manasik-commander.js"></script>
 </div>
 
-</div>
 

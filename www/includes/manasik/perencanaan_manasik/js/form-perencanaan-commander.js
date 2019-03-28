@@ -42,7 +42,6 @@ function edit_perencanaan_view(dom){
     complete:function(){
      
      
-     
       $('#pic').val(ujicoba.mp_pic).trigger('change');
       
       $('#petugas1').val(ujicoba.emp_1.m_id).trigger('change');
