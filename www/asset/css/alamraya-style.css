@@ -257,3 +257,15 @@ rawcontent, .hidden {
 	height: 75px;
 	font-size: 25pt;
 }
+fieldset{
+	border:1px solid #14c56d; 
+	padding: .75rem;
+}
+.card-body.card-forlist{
+	position: inherit;
+}
+.btn-card-forlist-remove{
+	position: absolute;
+	top: 0;
+	right: 0;
+}

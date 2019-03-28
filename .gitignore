@@ -1,8 +1,8 @@
 
 *.xml
 *.json
-platforms/*
-node_modules/*
+/platforms
+/node_modules
 www/config/config.js
 /platform
 
