@@ -4,8 +4,7 @@
 	<title>Dashboard</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv=“Content-Security-Policy” content=“default-src ‘self’ gap://ready file://* *; style-src ‘self’ ‘unsafe-inline’; script-src ‘self’ ‘unsafe-inline’ ‘unsafe-eval’”/>
-  <link rel="shortcut icon" href="asset/img/icon-pusat-riyal.png">
+    <link rel="shortcut icon" href="asset/img/icon-pusat-riyal.png">
 	<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./node_modules/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="./css/iziToast.min.css">
@@ -72,7 +71,7 @@
 						<a href="#">Credit</a>
 					</li>
 					<li>
-						<a href="#" id="btn-logout">Logout</a>
+						<a href="#" id="logout-btn">Logout</a>
 					</li>
 				</ul>
 			</section>
@@ -118,17 +117,8 @@
 			});
 			Routing.init('content');
 			csrf_token = '';
-
+			
 			$.fn.select2.defaults.set("width", "100%");
-
-			$('#btn-logout').click(function(){
-				localStorage.removeItem('access_token');
-				localStorage.removeItem('refresh_token');
-				localStorage.removeItem('token_type');
-				localStorage.removeItem('username');
-
-				window.location.href = 'index.html';
-			})
 		});
 	</script>
 </body>

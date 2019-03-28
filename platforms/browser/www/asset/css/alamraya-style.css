@@ -45,6 +45,12 @@ rawcontent, .hidden {
 	height: 100%;
 	z-index: -1;
 }
+.screen-width-phone{
+	/*width: 360px;*/
+	height: 100vh;
+	border:1px solid lightgray;
+	margin: auto;
+}
 .content{
 	margin-top: 50px;
 	padding-left: 30px;
@@ -191,69 +197,4 @@ rawcontent, .hidden {
 }
 .pusatriyal-submit{
 	z-index: 2;
-}
-.breadcrumb-pusatriyal{
-	display: block;
-	width: 100%;
-	font-size: 15pt;
-    margin-top: 60px;
-    margin-bottom: 30px;
-    padding: 20px;
-    border: none;
-}
-.breadcrumb-pusatriyal span.active,
-.breadcrumb-pusatriyal span:last-child
-{
-	font-weight: bold;
-    color: #14c56d;
-}
-.breadcrumb-pusatriyal span:after{
-	content: ' / ';
-}
-.breadcrumb-pusatriyal span:last-child:after{
-	content: '';
-}
-
-#div-filter:focus-within .checkbox-group{
-	max-height: 200px;
-}
-
-#div-filter .checkbox-group{
-	
-	max-height: 0px;
-	overflow: hidden;
-
-	transition: .5s ease-in-out;
-	background-color: #14c56d;
-	color: white;
-	width: 100%;
-}
-#div-filter .checkbox-group:hover{
-	max-height: 200px;
-}
-.checkbox-group label,
-.checkbox-group label:focus
-{
-	display: block;
-	padding: 10px;
-	cursor: pointer;
-}
-.checkbox-group label input[type="checkbox"],
-.checkbox-group label input[type="radio"]
-{
-	margin-right: .75rem;
-	height: 17px;
-	width: 17px;
-}
-.badge-antrian {
-    text-align: center;
-    font-size: 55pt;
-}
-.form-group.form-tagihan label{
-	position: absolute;
-	left: 25px;
-}
-.form-group.form-tagihan input{
-	height: 75px;
-	font-size: 25pt;
 }

@@ -4,3 +4,5 @@
 platforms/*
 node_modules/*
 www/config/config.js
+/platform
+

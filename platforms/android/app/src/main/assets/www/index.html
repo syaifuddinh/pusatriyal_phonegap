@@ -26,7 +26,7 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-
+    
     <!-- Good default declaration:
     * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
     * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
@@ -147,7 +147,7 @@ $(window).error(function(e){
      var access_token = store.getItem('access_token');
      if( access_token != null ) {
         window.location = 'homepage.html';
-     }
+     }   
 
     $('#login-btn').on('click', function() {
       loginUser();
@@ -157,19 +157,16 @@ $(window).error(function(e){
       form = $('#login-form').serialize();
       $.ajax({
         url: host + 'oauth/token',
-
+        
         type    : 'post',
         data    :  form + '&grant_type=' + grant_type + '&client_secret=' + client_secret + '&client_id=' + client_id,
         dataType: 'json',
         success : function(response){;
             if(response.access_token != undefined) {
-              username = $('#username').val();
 
                 store.setItem('access_token', response.access_token);
                 store.setItem('refresh_token', response.refresh_token);
                 store.setItem('token_type', response.token_type);
-                store.setItem('username', username);
-
                 window.open('homepage.html');
             }
         },
@@ -197,7 +194,7 @@ $(window).error(function(e){
     }
   })
 </script>
-
+    
 <!-- Login script -->
 
     <!-- <script>
