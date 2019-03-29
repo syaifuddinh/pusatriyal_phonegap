@@ -6,3 +6,9 @@
 www/config/config.js
 /platform
 
+platforms/android/android.json
+platforms/android/app/src/main/assets/www/config/config.js
+platforms/android/app/src/main/assets/www/index.html
+platforms/browser/browser.json
+platforms/browser/www/config/config.js
+platforms/browser/www/index.html
