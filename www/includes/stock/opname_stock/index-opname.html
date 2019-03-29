@@ -63,13 +63,15 @@
 
 <div class="form-group m-3">
   <label>Tanggal Opname</label>
-  <div class="input-group input-daterange">
-    <input type="text" class="form-control" name="">
-    <div class="input-group-append">
-      <span class="input-group-text">-</span>
+  <form id="form_date_range">
+    <div class="input-group input-daterange">
+      <input type="text" class="form-control" name="date_from" id="from">
+      <div class="input-group-append">
+        <span class="input-group-text">-</span>
+      </div>
+      <input type="text" class="form-control" name="date_to" id="to">
     </div>
-    <input type="text" class="form-control" name="">
-  </div>
+  </form>
 </div>
 
 <div class="form-group m-3" id="div-filter">
@@ -80,14 +82,7 @@
 
 </div>
 <div class="card maincard" id="list-for-filter">
-  <div class="card-filter">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <h6 class="card-subtitle" style="margin-bottom: 1mm">Some example text. Some example text.</h6>
-        <a href="#" class="badge badge-primary card-info-first">Card link</a>
-        <a href="#" class="badge card-info-second">Another link</a>
-      </div>
-    </div>
+  
 </div>
 
   <rawcontent class='datalist'>
