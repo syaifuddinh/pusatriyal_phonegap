@@ -3,20 +3,53 @@ $('.input-daterange').datepicker({
 });
 
 function preview_opname_json(json){
+	$('#list-item').html('');
+	$('#nota').text(json.or_code);
+	$('#tgl_opname').val(json.or_date);
+	$('#posisi').val(json.posisi.p_gudang);
 
+	console.log(json);
+
+	for(var c=0;c<json.detail.length;c++){
+		var dom = $('rawcontent.datalist').html();
+		var el = $(dom);
+
+		var data = json.detail[c];
+		var collapse = 'collapse-' + c;
+		el.find('.header-collapse').attr('id', 'heading-'+ c);
+		el.find('.header-collapse').attr('id', 'header-'+ c);
+		el.find('.btn-header').text(data.item.ir_code + ' - ' + data.item.ir_name);
+		el.find('.btn-header').attr('data-target', '#'+ collapse);
+		el.find('.btn-header').attr('aria-controls', 'collapse');
+		el.find('.datalist-collapse').attr('id', 'collapse-'+ c);
+		el.find('.datalist-collapse').attr('aria-labelledby', 'heading-'+ c);
+		if(data.od_detail === 'N'){
+			el.find('#status').text('-');
+		} else if(data.od_detail === 'H'){
+			el.find('#status').text('Hilang');
+		} else if(data.od_detail === 'R'){
+			el.find('#status').text('Rusak');
+		}
+		el.find('#qty_sistem').text(data.od_system);
+		el.find('#qty_real').text(data.od_real);
+
+		console.log(c);
+		$('#list-item').append(el);
+	}
 }
 
 function preview_opname_func(dom){
 	var el = $(dom);
 
-	var id = el.find('[name="c_id"]').val();
+	var id = el.find('[name="or_id"]').val();
 
 	var tes;
 	for (var i = 0; i < units.length; i++) {
 		tes = units[i];
-		if (tes.c_id === parseInt(id)) {
-			customer_json = tes;
-			preview_customer_json(customer_json);
+
+		if (tes.or_id === parseInt(id)) {
+			opname_json = tes;
+			preview_opname_json(opname_json);
 		}
 	}
 }

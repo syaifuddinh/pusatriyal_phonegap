@@ -269,3 +269,9 @@ fieldset{
 	top: 0;
 	right: 0;
 }
+.pusatriyal-submit{
+	box-shadow: 1px 1px 3px 0 gray;
+}
+.accordion .card-header:after ~ .accordion .collapse.show{
+	content: "\f0d8";
+}
