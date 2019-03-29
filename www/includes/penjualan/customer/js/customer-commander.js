@@ -1,4 +1,17 @@
 function preview_customer_json(json){
+	$('#btn-edit').append('<input type="hidden" name="c_id" id="c_id">');
+	$('#c_id').val(json.c_id);
+	$('#kode').val(json.c_code);
+	$('#nama').val(json.c_name);
+	if(json.c_type === 'R'){
+		$('#jenis_customer').val('Riyal');
+	} else if(json.c_type === 'B'){
+		$('#jenis_customer').val('Barang');
+	}
+	$('#email').val(json.c_email);
+	$('#nohp').val(json.c_hp);
+	$('#group').val(json.c_pricegroup);
+	$('#alamat').val(json.c_address);
 
 }
 
@@ -15,6 +28,13 @@ function preview_customer_func(dom){
 			preview_customer_json(customer_json);
 		}
 	}
+}
+
+function customer_form(dom){
+	console.log('function running');
+	var el = $(dom);
+	var kode = el.find('#codex').val();
+	$('#kode').val(kode);
 }
 $(document).ready(function(){
 	$.ajax({
@@ -43,7 +63,7 @@ $(document).ready(function(){
 						unit.c_code
 					);
 					content.find('.card-subtitle').html( 
-						'<table class="table">'+
+						'<table cellpadding="5px">'+
 							'<tr>'+
 								'<th width="30%">Nama</th>'+
 								'<td>'+unit.c_name+'</td>'+
@@ -65,7 +85,7 @@ $(document).ready(function(){
 						content.find('.card-info-second').addClass('badge-secondary')
 					} else if(unit.c_type === 'R'){
 						content.find('.card-info-second').text( 
-							'Type Customer : Real'
+							'Type Customer : Riyal'
 						);
 						content.find('.card-info-second').addClass('badge-success')
 					}
@@ -98,6 +118,32 @@ $(document).ready(function(){
 		}
 	});
 
+
+	$.ajax({
+		url:url('api/master/customer/get_customer_for_form'),
+		type:'get',
+		dataType:'json',
+		success:function(res){
+			$('#btn-tambah').append('<input type="hidden" name="codex" id="codex" value="'+ res.finalkode +'">')
+		},
+		error: function(jqXHR, exception) {
+			if (jqXHR.status === 0) {
+			    alert('Not connect.\n Verify Network.');
+			} else if (jqXHR.status == 404) {
+			    alert('Requested page not found. [404]');
+			} else if (jqXHR.status == 500) {
+			    alert('Internal Server Error [500].');
+			} else if (exception === 'parsererror') {
+			    alert('Requested JSON parse failed.');
+			} else if (exception === 'timeout') {
+			    alert('Time out error.');
+			} else if (exception === 'abort') {
+			    alert('Ajax request aborted.');
+			} else {
+			    alert('Uncaught Error.\n' + jqXHR.responseText);
+			}
+		}
+	})
 	$('#input-filter-customer').on('keyup', function(){
 		// Declare variables
 		var input, filter, ul, li, a, i, txtValue;

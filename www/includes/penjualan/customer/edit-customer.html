@@ -99,16 +99,16 @@
 
 <div class="pusatriyal-submit btn-group">
   
-  <button class="btn btn-primary rounded-btn" id="btn-simpan">
+  <button class="btn btn-primary rounded-btn" id="btn-update">
     <i class="fa fa-check"></i>
   </button>
 </div>
 <div class="breadcrumb-pusatriyal">
-  <span class="active">Form Customer</span>
+  <span class="active">Edit Customer</span>
 </div>
 <form id="customer-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
 <input type="hidden" name="_token" id="_token">
-<!-- <input type="hidden" name="sm_id" id="sm_id"> -->
+<input type="hidden" name="id" id="c_id">
     <div class="form-group">
         <label for="kode" class="label-for">Kode Customer</label>
         <input type="text" readonly="" name="kode" id="kode" class="form-control">
@@ -162,8 +162,8 @@
 
 </form>
 
-    <script type="text/javascript" src="includes/penjualan/customer/js/form-customer-commander.js"></script>
+    <script type="text/javascript" src="includes/penjualan/customer/js/edit-customer-commander.js"></script>
   <script type="text/javascript">
-    // display_pembayaran_json(global_pembayaran_json);
+    preview_customer_json(json);
   </script>
 </div>

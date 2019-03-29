@@ -53,6 +53,7 @@ $(document).ready(function(){
 		var f = $('#form_date_range');
 		var dataX = f.find('input').serialize();
 		console.log(dataX);
+		$('#list-for-filter').html('');
 		$.ajax({
 			url: url('api/riyal/stock/opname_stock/get_items_date'),
 			type    : 'get',
