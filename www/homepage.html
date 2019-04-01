@@ -108,6 +108,9 @@
 		iziToast.settings({
 			position:'topRight'//Where it will be shown. It can be bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
 		})
+
+		$.extend( $.fn.datepicker.defaults, {disableTouchKeyboard:true});
+
 		$(document).ready(function(){
 			$('#btn-menu, .sidebar-menu-off').click(function(){
 				$('body').toggleClass('sidebar-collapse');
@@ -131,6 +134,29 @@
 			})
 
 		});
+	</script>
+
+	<script type="text/javascript">
+
+		cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
+		    switch(status){
+		        case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+		            console.log("Permission not requested");
+		            break;
+		        case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+		            console.log("Permission granted");
+		            break;
+		        case cordova.plugins.diagnostic.permissionStatus.DENIED:
+		            console.log("Permission denied");
+		            break;
+		        case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+		            console.log("Permission permanently denied");
+		            break;
+		    }
+		}, function(error){
+		    console.error(error);
+		});		
+
 	</script>
 </body>
 </html>
