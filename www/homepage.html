@@ -39,7 +39,7 @@
 	    	margin-bottom: 40mm
 	    }
 
-	    .card-body:hover {
+	    .card-body:hover:not(.card-forlist){
 	    	background: #e6e6e6;
 	    }
 
@@ -97,13 +97,17 @@
 	<script type="text/javascript" src="node_modules/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 	<script type="text/javascript" src="node_modules/select2/dist/js/select2.min.js"></script>
+	<script type="text/javascript" src="node_modules/jquery-maskmoney/dist/jquery.maskMoney.min.js"></script>
+	<script type="text/javascript" src="node_modules/accounting-js/dist/accounting.umd.js"></script>
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="config/routing.js"></script>
 	<script type="text/javascript" src="js/features/logout.js"></script>
 
 	<script type="text/javascript">
 		loading_icon = $('#loading_icon');
-
+		iziToast.settings({
+			position:'topRight'//Where it will be shown. It can be bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
+		})
 		$(document).ready(function(){
 			$('#btn-menu, .sidebar-menu-off').click(function(){
 				$('body').toggleClass('sidebar-collapse');
@@ -125,6 +129,7 @@
 
 				window.location.href = 'index.html';
 			})
+
 		});
 	</script>
 </body>

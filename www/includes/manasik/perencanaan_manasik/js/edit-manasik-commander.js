@@ -18,6 +18,7 @@ $(document).ready(function(){
 				});
 
 				Routing.load_page('includes/manasik/perencanaan_manasik/index-perencanaan.html');
+				
 			},
 			error: function(jqXHR, exception) {
 		      if (jqXHR.status === 0) {
