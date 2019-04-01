@@ -162,15 +162,19 @@ $(window).error(function(e){
         data    :  form + '&grant_type=' + grant_type + '&client_secret=' + client_secret + '&client_id=' + client_id,
         dataType: 'json',
         success : function(response){;
+          console.log(response);
             if(response.access_token != undefined) {
+              console.log(response);
               username = $('#username').val();
 
                 store.setItem('access_token', response.access_token);
                 store.setItem('refresh_token', response.refresh_token);
                 store.setItem('token_type', response.token_type);
-                store.setItem('username', username);
+                store.setItem('m_name', response.m_username);
+                store.setItem('m_name', response.m_name);
+                store.setItem('m_id', response.m_id);
 
-                window.open('homepage.html');
+                // window.open('homepage.html');
             }
         },
         error: function(jqXHR, exception) {
