@@ -457,6 +457,14 @@ module.exports = [
     "merges": [
       "cordova.plugins.diagnostic.external_storage"
     ]
+  },
+  {
+    "id": "cordova-plugin-geolocation-android-activator.geolocation-activator",
+    "file": "plugins/cordova-plugin-geolocation-android-activator/www/geolocation-activator.js",
+    "pluginId": "cordova-plugin-geolocation-android-activator",
+    "clobbers": [
+      "navigator.geolocation.activator"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -474,7 +482,9 @@ module.exports.metadata =
   "cordova-plugin-network-information": "1.3.4",
   "cordova-plugin-vibration": "2.1.6",
   "cordova-plugin-whitelist": "1.3.3",
-  "cordova.plugins.diagnostic": "4.0.12"
+  "cordova-android-support-gradle-release": "2.1.0",
+  "cordova.plugins.diagnostic": "4.0.12",
+  "cordova-plugin-geolocation-android-activator": "1.1.2"
 };
 // BOTTOM OF METADATA
 });

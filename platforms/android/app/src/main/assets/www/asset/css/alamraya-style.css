@@ -275,3 +275,9 @@ fieldset{
 .accordion .card-header:after ~ .accordion .collapse.show{
 	content: "\f0d8";
 }
+.menu-header .menu-notif > *{
+	vertical-align: middle;
+	display: inline-block;
+	white-space: nowrap;
+	margin: auto;
+}

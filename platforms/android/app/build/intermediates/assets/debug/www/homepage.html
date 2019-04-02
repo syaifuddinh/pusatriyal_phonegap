@@ -89,6 +89,7 @@
 		</button>
 	</section>
 	<content></content>
+	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
@@ -137,30 +138,25 @@
 	</script>
 
 	<script type="text/javascript">
-		
-    // onSuccess Callback
-    // This method accepts a Position object, which contains the
-    // current GPS coordinates
-    //
-    var onSuccess = function(position) {
-        alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n' +
-              'Altitude: '          + position.coords.altitude          + '\n' +
-              'Accuracy: '          + position.coords.accuracy          + '\n' +
-              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-              'Heading: '           + position.coords.heading           + '\n' +
-              'Speed: '             + position.coords.speed             + '\n' +
-              'Timestamp: '         + position.timestamp                + '\n');
-    };
+		function onDeviceReady(){
+			
+			cordova.plugins.diagnostic.isLocationAvailable(function(available){
+			    console.log("Location is " + (available ? "available" : "not available"));
+			    if (!available) {
+			    	var confirmation = confirm('GPS tidak aktif!\n'+
+			    		'Ingin masuk ke pengaturan GPS?');
 
-    // onError Callback receives a PositionError object
-    //
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
+			    	if (confirmation) {
+			    		cordova.plugins.diagnostic.switchToLocationSettings();
+			    	}
+			    }
+			}, function(error){
+			    console.error("The following error occurred: "+error);
+			});	
 
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		}
+
+	$(document).on('deviceready', onDeviceReady);
 	</script>
 </body>
 </html>

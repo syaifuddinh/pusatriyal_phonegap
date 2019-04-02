@@ -89,6 +89,7 @@
 		</button>
 	</section>
 	<content></content>
+	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
@@ -137,26 +138,25 @@
 	</script>
 
 	<script type="text/javascript">
+		function onDeviceReady(){
+			
+			cordova.plugins.diagnostic.isLocationAvailable(function(available){
+			    console.log("Location is " + (available ? "available" : "not available"));
+			    if (!available) {
+			    	var confirmation = confirm('GPS tidak aktif!\n'+
+			    		'Ingin masuk ke pengaturan GPS?');
 
-		cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
-		    switch(status){
-		        case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
-		            console.log("Permission not requested");
-		            break;
-		        case cordova.plugins.diagnostic.permissionStatus.GRANTED:
-		            console.log("Permission granted");
-		            break;
-		        case cordova.plugins.diagnostic.permissionStatus.DENIED:
-		            console.log("Permission denied");
-		            break;
-		        case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
-		            console.log("Permission permanently denied");
-		            break;
-		    }
-		}, function(error){
-		    console.error(error);
-		});		
+			    	if (confirmation) {
+			    		cordova.plugins.diagnostic.switchToLocationSettings();
+			    	}
+			    }
+			}, function(error){
+			    console.error("The following error occurred: "+error);
+			});	
 
+		}
+
+	$(document).on('deviceready', onDeviceReady);
 	</script>
 </body>
 </html>
