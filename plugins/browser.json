@@ -45,9 +45,6 @@
     },
     "cordova.plugins.diagnostic": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
-    "cordova-plugin-geolocation-android-activator": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
     }
   },
   "dependent_plugins": {

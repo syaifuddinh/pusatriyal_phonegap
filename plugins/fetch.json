@@ -122,13 +122,5 @@
     "variables": {
       "ANDROID_SUPPORT_VERSION": "27.+"
     }
-  },
-  "cordova-plugin-geolocation-android-activator": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-geolocation-android-activator@^1.1.2"
-    },
-    "is_top_level": true,
-    "variables": {}
   }
 }
