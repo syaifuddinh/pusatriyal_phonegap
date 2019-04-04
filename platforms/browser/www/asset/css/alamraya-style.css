@@ -269,7 +269,7 @@ fieldset{
 	top: 0;
 	right: 0;
 }
-.pusatriyal-submit{
+.pusatriyal-submit:not(> .rounded-btn){
 	box-shadow: 1px 1px 3px 0 gray;
 }
 .accordion > .card .btn.collapsed:after{
@@ -279,8 +279,7 @@ fieldset{
 	right: 5px;
 	position: absolute;
 }
-.accordion > .card .btn:not(.collapsed):after,
-.accordion > .card .btn:after
+.accordion > .card .btn:not(.collapsed):after
 {
 	font-family: 'FontAwesome';
 	content: "\f0d8";
@@ -290,4 +289,12 @@ fieldset{
 }
 .accordion{
 	position: inherit;
+}
+.sidebar-footer{
+	position: absolute;
+	bottom: 0;	
+	width: 100%;
+}
+.sidebar-logout{
+	border-top:1px solid #5e626b;
 }

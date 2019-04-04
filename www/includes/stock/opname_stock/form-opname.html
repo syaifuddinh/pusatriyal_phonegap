@@ -1,5 +1,8 @@
 <div class="subcontent" style="">
 <style>
+    .table-accordion{
+      font-size: 9pt;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -95,6 +98,10 @@
     .iziToast-buttons{
       width: 100%;
     }
+    .rounded-btn{
+      bottom: 0;
+      right: 0;
+    }
 </style>
 
 <div class="pusatriyal-submit btn-group">
@@ -180,56 +187,69 @@
         <button class="btn btn-primary btn-block" type="button" id="btn-append">Tambah ke list</button>
       </div>
     </fieldset>
+    <div id="form-list-item">
+      <div class="accordion">
+        <div class="card">
+          <div class="card-header bg-success header-collapse p-0" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                BRG/0001 - 10 Riyal
+              </button>
+            </h5>
+          </div>
 
-    <div class="card">
-      <div class="card-body card-forlist">
+          <div id="collapseOne" class="collapse datalist-collapse" aria-labelledby="headingOne" data-parent="#form-list-item">
+            <div class="card">
+              <div class="card-body card-forlist p-3">
 
-        <button class="btn btn-danger btn-card-forlist-remove" type="button">
-          <i class="fa fa-times-circle"></i>
-        </button>
+                <table class="w-100 table-accordion">
+                  <tr>
+                    <th>Qty Sistem</th>
+                    <td>
+                      <div class="input-group">
+                        <input type="text" readonly="" class="form-control" name="">
+                        <div class="input-group-append">
+                          <span class="input-group-text">Lembar</span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Satuan</th>
+                    <td><input type="text" readonly="" class="form-control" name=""></td>
+                  </tr>
+                  <tr>
+                    <th>Qty Real</th>
+                    <td>
+                      <div class="input-group">
+                        <input type="number" class="form-control" name="">
+                        <div class="input-group-append">
+                          <span class="input-group-text">Lembar</span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
 
-        <table class="table">
-          <tbody>
-            <tr>
-              <th colspan="2">Kode - Nama Item</th>
+              </div>
+              <div class="card-footer">
+                <small for="opname_dt[]">Opname</small>
+                <select class="" id="opname_dt" name="opname_dt[]">
+                  <option selected="" value="N">-</option>
+                  <option value="H">Hilang</option>
+                  <option value="R">Rusak</option>
+                </select>
+                <button class="btn btn-danger btn-sm btn-hapus pull-right btn-hapus-accordion" type="button"><i class="fa fa-trash-o"></i> Hapus</button>
+              </div>
               
-            </tr>
-            <tr>
-              <td colspan="2">OR/XXXXXX/XX</td>
-            </tr>
-            <tr>
-              <th>Satuan</th>
-              <td>RIYAL</td>
-            </tr>
-            <tr>
-              <th>Qty Sistem</th>
-              <td>1</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="">
-          <label>Qty Real</label>
-          <div class="border-bottom border-bottom-1">
-            <input type="text" class="form-control-plaintext" name="">
+            </div>
           </div>
         </div>
-
-        <div class="">
-          <label>Opname</label>
-          <select class="select2 form-control" id="opname_dt" name="opname_dt[]">
-            <option selected="" value="N">-</option>
-            <option value="H">Hilang</option>
-            <option value="R">Rusak</option>
-          </select>
-        </div>
-
       </div>
     </div>
-    
 </form>
 
-    <script type="text/javascript" src="includes/manasik/penjualan_manasik/tab_serahterima/js/preview-serahterima-commander.js"></script>
+    <script type="text/javascript" src="includes/stock/opname_stock/js/form-opname-commander.js"></script>
   <script type="text/javascript">
     // display_pembayaran_json(global_pembayaran_json);
   </script>
