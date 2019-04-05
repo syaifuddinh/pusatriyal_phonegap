@@ -269,9 +269,32 @@ fieldset{
 	top: 0;
 	right: 0;
 }
-.pusatriyal-submit{
+.pusatriyal-submit:not(> .rounded-btn){
 	box-shadow: 1px 1px 3px 0 gray;
 }
-.accordion .card-header:after ~ .accordion .collapse.show{
+.accordion > .card .btn.collapsed:after{
+	font-family: 'FontAwesome';
+	content: "\f0d7";
+	top: 5px;
+	right: 5px;
+	position: absolute;
+}
+.accordion > .card .btn:not(.collapsed):after
+{
+	font-family: 'FontAwesome';
 	content: "\f0d8";
+	top: 5px;
+	right: 5px;
+	position: absolute;
+}
+.accordion{
+	position: inherit;
+}
+.sidebar-footer{
+	position: absolute;
+	bottom: 0;	
+	width: 100%;
+}
+.sidebar-logout{
+	border-top:1px solid #5e626b;
 }
