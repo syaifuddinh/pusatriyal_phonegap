@@ -193,7 +193,7 @@
     </div>
     <div class="form-group">
         <label for="netto" class="label-for">Bukti transfer</label><br>
-        <div class="border-bottom border-bottom-1">          
+        <div class="border-bottom border-bottom-1">
           <img src="" id="buktitransfer" class="img-responsive" style="max-width: 120mm">
         </div>
     </div>
@@ -244,52 +244,52 @@
           $('#buktitransfer').attr('src', url('storage') + '/' + response.penjualan.sr_bukti_transfer);
         }
 
-        // for (var i = 0; i < response.penjualan_dt.length; i++) {
-        //
-        //   valueqty = parseFloat(response.penjualan_dt[i].srdt_qty) * parseFloat(response.penjualan_dt[i].ir_nilaitoreal);
-        //
-        //   html += '<div class="accordion">'+
-        //     '<div class="card">'+
-        //       '<div class="card-header bg-success header-collapse p-0" id="headingOne">'+
-        //         '<h5 class="mb-0">'+
-        //           '<button class="btn btn-link btn-block btn-header text-white" type="button" data-toggle="collapse" data-target="#collapse'+i+'" aria-expanded="true" aria-controls="collapseOne">'+
-        //             response.penjualan_dt[i].ir_name+
-        //           '</button>'+
-        //         '</h5>'+
-        //       '</div>'+
-        //       ''+
-        //       '<div id="collapse'+i+'" class="collapse datalist-collapse" aria-labelledby="headingOne" data-parent="#list-item">'+
-        //         '<div class="card">'+
-        //           '<div class="card-body card-forlist p-3">'+
-        //             ''+
-        //             '<span>'+
-        //               '<small class="font-weight-bold">Stock</small> <small id="stock">'+response.penjualan_dt[i].sr_qty+'</small>'+
-        //             '</span>'+
-        //             '<br>'+
-        //             '<span>'+
-        //               '<small class="font-weight-bold">Qty</small> <small id="qty">'+response.penjualan_dt[i].srdt_qty+'</small>'+
-        //             '</span>'+
-        //             '<br>'+
-        //             '<span>'+
-        //               '<small class="font-weight-bold">Qty</small> <small id="qty">'+valueqty+'</small>'+
-        //             '</span>'+
-        //             '<br>'+
-        //             '<span>'+
-        //               '<small class="font-weight-bold">Price</small> <small id="price">'+get_currency(response.penjualan_dt[i].srdt_price)+'</small>'+
-        //             '</span>'+
-        //           '</div>'+
-        //           '<div class="card-footer">'+
-        //             '<span>'+
-        //               '<span class="font-weight-bold">Total</span> <span id="status">'+get_currency(response.penjualan_dt[i].srdt_total)+'</span>'+
-        //             '</span>'+
-        //           '</div>'+
-        //           ''+
-        //         '</div>'+
-        //       '</div>'+
-        //     '</div>'+
-        //   '</div>';
-        // }
-        // $('#list-item').html(html);
+        for (var i = 0; i < response.penjualan_dt.length; i++) {
+
+          valueqty = parseFloat(response.penjualan_dt[i].srdt_qty) * parseFloat(response.penjualan_dt[i].ir_nilaitoreal);
+
+          html += '<div class="accordion">'+
+            '<div class="card">'+
+              '<div class="card-header bg-success header-collapse p-0" id="headingOne">'+
+                '<h5 class="mb-0">'+
+                  '<button class="btn btn-link btn-block btn-header text-white" type="button" data-toggle="collapse" data-target="#collapse'+i+'" aria-expanded="true" aria-controls="collapseOne">'+
+                    response.penjualan_dt[i].ir_name+
+                  '</button>'+
+                '</h5>'+
+              '</div>'+
+              ''+
+              '<div id="collapse'+i+'" class="collapse datalist-collapse" aria-labelledby="headingOne" data-parent="#list-item">'+
+                '<div class="card">'+
+                  '<div class="card-body card-forlist p-3">'+
+                    ''+
+                    '<span>'+
+                      '<small class="font-weight-bold">Stock</small> <small id="stock">'+response.penjualan_dt[i].sr_qty+'</small>'+
+                    '</span>'+
+                    '<br>'+
+                    '<span>'+
+                      '<small class="font-weight-bold">Qty</small> <small id="qty">'+response.penjualan_dt[i].srdt_qty+'</small>'+
+                    '</span>'+
+                    '<br>'+
+                    '<span>'+
+                      '<small class="font-weight-bold">Value Qty</small> <small id="valueqty">'+response.penjualan_dt[i].srdt_valueqty+'</small>'+
+                    '</span>'+
+                    '<br>'+
+                    '<span>'+
+                      '<small class="font-weight-bold">Price</small> <small id="price">'+get_currency(response.penjualan_dt[i].srdt_price)+'</small>'+
+                    '</span>'+
+                  '</div>'+
+                  '<div class="card-footer">'+
+                    '<span>'+
+                      '<span class="font-weight-bold">Total</span> <span id="status">'+get_currency(response.penjualan_dt[i].srdt_total)+'</span>'+
+                    '</span>'+
+                  '</div>'+
+                  ''+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+          '</div>';
+        }
+        $('#list-item').html(html);
       }
     });
   });
