@@ -96,7 +96,6 @@
 		</button>
 	</section>
 	<content></content>
-	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
@@ -124,8 +123,6 @@
 				$('body').toggleClass('sidebar-collapse');
 			});
 
-
-
 			$('#btn-backward').click(function(){
 				Routing.backward();
 			});
@@ -144,15 +141,60 @@
 			})
 
 		});
-		document.addEventListener("menubutton", onMenuKeyDown, false);
-
-		function onMenuKeyDown() {
-			console.log('menu button pressed');
-		    // Handle the back button
-		    $('body').addClass('sidebar-collapse');
-		}
 	</script>
 
+	<script type="text/javascript">
+
+		cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
+		    switch(status){
+		        case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+		            console.log("Permission not requested");
+		            break;
+		        case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+		            console.log("Permission granted");
+		            break;
+		        case cordova.plugins.diagnostic.permissionStatus.DENIED:
+		            console.log("Permission denied");
+		            break;
+		        case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+		            console.log("Permission permanently denied");
+		            break;
+		    }
+		}, function(error){
+		    console.error(error);
+		});
+
+		function get_currency(v) {
+	if( /^\d([0-9\.]+)$/.test(v) ) {
+
+		var desimal = '';
+		if( /\./.test(v) ==  true ) {
+			v = parseFloat(v);
+			v = v.toFixed(2);
+			v = v.toString();
+			desimal = v.split('.')[1];
+			v = v.split('.')[0];
+		}
+
+
+		v = v.toString();
+		var res = v.split('');
+		res = res.reverse().join('');
+		currStr = v;
+		if(res.length > 3) {
+			var currPtr = /(\w{3})/g;
+			var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
+		}
+
+
+		currStr += desimal != '' ? ',' + desimal : '';
+		return currStr;
+	}
+
+	return v;
+}
+
+	</script>
 	<script type="text/javascript">
 		function onDeviceReady(){
 			/**
@@ -227,6 +269,18 @@
 					if (get_m_comp_id) {
 						console.log('statement if is true');
 						$('#select_comp').val(parseInt(get_m_comp_id));
+					} else {
+						var idx = $('#select_comp').val();
+
+						var pengulangan, sama;
+						for (var i = 0; i < m_mem_global.length; i++) {
+							pengulangan = m_mem_global[i];
+							if (pengulangan.c_id === parseInt(idx)) {
+								sama = pengulangan;
+							}
+						}
+
+						localStorage.setItem('m_comp_code', sama.c_code);
 					}
 					console.log(get_m_comp_id);
 					console.log(get_m_comp_name);
@@ -251,21 +305,14 @@
 			
 		}
 
-	if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-	  document.addEventListener("deviceready", onDeviceReady, false);
-	} else {
-		$(document).ready(function(){
+		if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+		  document.addEventListener("deviceready", onDeviceReady, false);
+		} else {
+			$(document).ready(function(){
 
-		  onDeviceReady(); //this is the browser
-		});
-	}
-	</script>
-	<script type="text/javascript">
-		
-			
-
-		
-
+			  onDeviceReady(); //this is the browser
+			});
+		}
 	</script>
 </body>
 </html>
