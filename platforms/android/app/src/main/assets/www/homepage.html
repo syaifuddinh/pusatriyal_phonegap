@@ -59,23 +59,30 @@
 	<div class="bg-top"></div>
 	<div class="bg-bottom"></div>
 	<section class="sidebar">
-				<div class="sidebar-header">
-					<a href="#">
-						<img src="asset/img/logo-pusat-riyal.png" width="170px" height="auto">
-					</a>
-				</div>
-				<ul>
-					<li>
-						<a href="#">Profile</a>
-					</li>
-					<li>
-						<a href="#">Credit</a>
-					</li>
-					<li>
-						<a href="#" id="btn-logout">Logout</a>
-					</li>
-				</ul>
-			</section>
+		<div class="sidebar-header">
+			<a href="#">
+				<img src="asset/img/logo-pusat-riyal.png" width="170px" height="auto">
+			</a>
+		</div>
+		<ul>
+			<li class="pt-3 pr-3 pl-3">
+				<select class="form-control form-control-sm" id="select_comp"></select>
+			</li>
+			<li>
+				<a href="#">Profile</a>
+			</li>
+			<li>
+				<a href="#">Credit</a>
+			</li>
+		</ul>
+		<div class="sidebar-footer">
+			<ul class="sidebar-logout">
+				<li>
+					<a href="#" id="btn-logout">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</section>
 	<div class="sidebar-menu-off"></div>
 	<section class="menu-header" style="background: #007139;position:fixed;width: 100%;top: 0;left: 0">
 		<button type="button" class="btn text-alamraya" id="btn-menu">
@@ -187,6 +194,125 @@
 	return v;
 }
 
+	</script>
+	<script type="text/javascript">
+		function onDeviceReady(){
+			/**
+			 * Determine whether the file loaded from PhoneGap or not
+			 */
+			function isPhoneGap() {
+			    return (window.cordova || window.PhoneGap || window.phonegap) 
+			    && /^file:\/{3}[^\/]/i.test(window.location.href) 
+			    && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
+			}
+
+			if ( isPhoneGap() ) {
+			    cordova.plugins.diagnostic.isLocationAvailable(function(available){
+				    console.log("Location is " + (available ? "available" : "not available"));
+				    if (!available) {
+				    	var confirmation = confirm('GPS tidak aktif!\n'+
+				    		'Ingin masuk ke pengaturan GPS?');
+
+				    	if (confirmation) {
+				    		cordova.plugins.diagnostic.switchToLocationSettings();
+				    	}
+				    }
+				}, function(error){
+				    console.error("The following error occurred: "+error);
+				});	
+
+			    console.log('Running on phonegap');
+
+			} else {
+			    console.log("Not running on PhoneGap!");
+			}
+				
+			
+
+			$.ajax({
+				url:url('api/get_Mmember'),
+				dataType:'json',
+				type:'get',
+				success:function(res){
+					m_mem_global = res.data;
+					console.log(m_mem_global);
+					var datay;
+					for(var d = 0;d<m_mem_global.length; d++){
+						datay = m_mem_global[d];
+
+							var appendx = '<option value="'+ datay.c_id +'">'+datay.c_name+'</option>'
+
+						$('#select_comp').append(appendx);
+					}
+				},
+				error: function(jqXHR, exception) {
+					if (jqXHR.status === 0) {
+					    alert('Not connect.\n Verify Network.');
+					} else if (jqXHR.status == 404) {
+					    alert('Requested page not found. [404]');
+					} else if (jqXHR.status == 500) {
+					    alert('Internal Server Error [500].');
+					} else if (exception === 'parsererror') {
+					    alert('Requested JSON parse failed.');
+					} else if (exception === 'timeout') {
+					    alert('Time out error.');
+					} else if (exception === 'abort') {
+					    alert('Ajax request aborted.');
+					} else {
+					    alert('Uncaught Error.\n' + jqXHR.responseText);
+					}
+				},
+				complete:function(){
+					var get_m_comp_id = localStorage.getItem('m_comp_id');
+					var get_m_comp_name = localStorage.getItem('m_comp_name');
+					var get_m_comp_code = localStorage.getItem('m_comp_code');
+					if (get_m_comp_id) {
+						console.log('statement if is true');
+						$('#select_comp').val(parseInt(get_m_comp_id));
+					} else {
+						var idx = $('#select_comp').val();
+
+						var pengulangan, sama;
+						for (var i = 0; i < m_mem_global.length; i++) {
+							pengulangan = m_mem_global[i];
+							if (pengulangan.c_id === parseInt(idx)) {
+								sama = pengulangan;
+							}
+						}
+
+						localStorage.setItem('m_comp_code', sama.c_code);
+					}
+					console.log(get_m_comp_id);
+					console.log(get_m_comp_name);
+					console.log(get_m_comp_code);
+				}
+			})
+
+			$('#select_comp').change(function(){
+				var idx = $(this).val();
+				localStorage.setItem('m_comp_id', idx);
+				localStorage.setItem('m_comp_name', $('option:selected',this).text());
+				var pengulangan, sama;
+				for (var i = 0; i < m_mem_global.length; i++) {
+					pengulangan = m_mem_global[i];
+					if (pengulangan.c_id === parseInt(idx)) {
+						sama = pengulangan;
+					}
+				}
+
+				localStorage.setItem('m_comp_code', sama.c_code);
+			});
+			
+		}
+
+		if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+		  document.addEventListener("deviceready", onDeviceReady, false);
+		} else {
+			$(document).ready(function(){
+
+			  onDeviceReady(); //this is the browser
+			});
+		}
 	</script>
 </body>
 </html>
