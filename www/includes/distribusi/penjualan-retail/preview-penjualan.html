@@ -184,7 +184,7 @@
       var html = "";
       $.ajax({
         type: 'get',
-        data: {id:$('#sr_id').val(), user_comp:1},
+        data: {id:$('#sr_id').val(), user_comp:localStorage.getItem('m_comp_id')},
         dataType: 'JSON',
         url: url('api/riyal/distribusi/retail/penjualan/modaltransaksi'),
         success : function(response){
