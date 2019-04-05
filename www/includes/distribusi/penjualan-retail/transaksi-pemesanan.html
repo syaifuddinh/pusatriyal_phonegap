@@ -287,22 +287,22 @@
     });
   }
 
-  function preview_penjualan_func(dom){
+  function preview_pemesanan_func(dom){
   	var el = $(dom);
 
   	var id = el.find('[name="sr_id"]').val();
 
   	var tes;
-  	for (var i = 0; i < units.length; i++) {
-  		tes = units[i];
+  	for (var i = 0; i < units.data.length; i++) {
+  		tes = units.data[i];
   		if (tes.sr_id === parseInt(id)) {
   			customer_json = tes;
-  			preview_penjualan_json(customer_json);
+  			preview_pemesanan_json(customer_json);
   		}
   	}
   }
 
-  function preview_penjualan_json(json){
+  function preview_pemesanan_json(json){
   	$('#sr_id').val(json.sr_id);
     $('#nota').text(json.sr_code);
     $('#tanggal').val(moment(json.sr_date).format('DD-MM-YYYY'));
@@ -311,14 +311,6 @@
     $('#customer').val(json.kodecustomer + '-' + json.namacustomer);
 
     $('#netto').val(get_currency(json.sr_net));
-
-    if (json.sr_status == "SELESAI") {
-      $('#btn-edit').css('display', 'none');
-      $('#btn-hapus').css('display', 'none');
-    } else {
-      $('#btn-edit').css('display', '');
-      $('#btn-hapus').css('display', '');
-    }
   }
   </script>
 </div>
