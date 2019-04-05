@@ -8,7 +8,7 @@ $('#btn-update').click(function(){
 	    id: 'question',
 	    zindex: 999,
 	    title: 'Konfirmasi!',
-	    message: 'Apa anda yakin mau menyimapn data ini?',
+	    message: 'Apa anda yakin mau menyimpan data ini?',
 	    position: 'center',
 	    buttons: [
 	        ['<button class="w-100 mt-3"><b>YES</b></button>', function (instance, toast) {
@@ -49,15 +49,15 @@ $('#btn-update').click(function(){
 					}
 				});
 	            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-	 
+
 	        }, true],
 	        ['<button class="w-100 mt-3">NO</button>', function (instance, toast) {
-	 
+
 	            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-	 
+
 	        }],
 	    ]
-	});	
+	});
 })
 
 $(document).ready(function(){

@@ -1,0 +1,312 @@
+<div class="subcontent" style="">
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .title-edit
+    {
+        margin-top: 60px;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        width: 70%;
+        border: none;
+        color: #14c56d;
+    }
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    .listx
+    {
+      font-weight: bold;
+    }
+
+    .card-body {
+      border-bottom:1px solid #e7e7e7;
+    }/*
+    .card {
+      margin-left: 4mm;
+      margin-right: 4mm;
+      margin-bottom: 10mm;
+    }
+    */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    #login .container #login-row #login-column #login-box {
+      margin-top: 60px;
+      max-width: 600px;
+      height: 320px;
+    }
+    #login .container #login-row #login-column #login-box #login-form {
+      padding: 26px;
+      margin-bottom: 35mm;
+    }
+    #login .container #login-row #login-column #login-box #login-form #register-link {
+      margin-top: -85px;
+    }
+
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    form {
+      padding-left: 5mm;
+      padding-right: 5mm;
+    }
+</style>
+
+<div class="pusatriyal-submit btn-group">
+
+    <button class="btn btn-warning" id="btn-edit"
+    pusatriyal-role="routing"
+    pusatriyal-target="includes/distribusi/pencatatan-agen/edit-agen.html"
+    pusatriyal-callback="edit_agen_func"
+    >
+    <i class="fa fa-pencil"></i>
+  </button>
+  <button class="btn btn-danger" id="btn-hapus" onclick="hapus()">
+    <i class="fa fa-trash-o"></i>
+  </button>
+</div>
+<div class="breadcrumb-pusatriyal">
+  <span class="active">Preview Pemesanan</span>
+</div>
+<form id="opname-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
+<input type="hidden" name="_token" id="_token">
+<input type="hidden" name="sr_id" id="sr_id">
+    <div class="w-100 text-center mb-3">
+      <h3>Nota</h3>
+      <h5 id="nota">
+          ?
+      </h5>
+    </div>
+    <div class="form-group">
+        <label class="label-for" for="cabang" >Cabang</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="cabang" id="cabang" class="form-control-plaintext" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="label-for" for="tanggal" >Tanggal</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="tanggal" id="tanggal" class="form-control-plaintext" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="keterangan" class="label-for">Keterangan</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="keterangan" id="keterangan" class="form-control-plaintext" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="customer" class="label-for">Customer</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="customer" id="customer" class="form-control-plaintext" >
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label for="marketing" class="label-for">Marketing</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="marketing" id="marketing" class="form-control-plaintext" >
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label for="pengirim" class="label-for">Petugas pengirim</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="pengirim" id="pengirim" class="form-control-plaintext" >
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label for="netto" class="label-for">Netto</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="netto" id="netto" class="form-control-plaintext" >
+        </div>
+    </div>
+    <div id="list-item">
+
+    </div>
+    </div>
+
+</form>
+
+    <script type="text/javascript" src="includes/stock/opname_stock/js/preview-opname-commander.js"></script>
+  <script type="text/javascript">
+    // preview_coporate_json(json);
+
+    $(document).ready(function(){
+      var html = "";
+      $.ajax({
+        type: 'get',
+        data: {id:$('#sr_id').val(), user_comp:1},
+        dataType: 'JSON',
+        url: url('api/riyal/distribusi/retail/penjualan/modaltransaksi'),
+        success : function(response){
+          console.log(response);
+          $('#marketing').val(response.penjualan[0].nama_marketing);
+          if(response.penjualan[0].sr_officer_send == null){
+						$('#pengirim').val('Tidak Ada Petugas');
+					}
+					else {
+						$('#pengirim').val(response.penjualan[0].nama_petugas_pengirim);
+					}
+
+          for (var i = 0; i < response.penjualan_dt.length; i++) {
+
+						valueqty = parseFloat(response.penjualan_dt[i].srdt_qty) * parseFloat(response.penjualan_dt[i].ir_nilaitoreal);
+
+            html += '<div class="accordion">'+
+              '<div class="card">'+
+                '<div class="card-header bg-success header-collapse p-0" id="headingOne">'+
+                  '<h5 class="mb-0">'+
+                    '<button class="btn btn-link btn-block btn-header text-white" type="button" data-toggle="collapse" data-target="#collapse'+i+'" aria-expanded="true" aria-controls="collapseOne">'+
+                      response.penjualan_dt[i].ir_name+
+                    '</button>'+
+                  '</h5>'+
+                '</div>'+
+                ''+
+                '<div id="collapse'+i+'" class="collapse datalist-collapse" aria-labelledby="headingOne" data-parent="#list-item">'+
+                  '<div class="card">'+
+                    '<div class="card-body card-forlist p-3">'+
+                      ''+
+                      '<span>'+
+                        '<small class="font-weight-bold">Stock</small> <small id="stock">'+response.penjualan_dt[i].sr_qty+'</small>'+
+                      '</span>'+
+                      '<br>'+
+                      '<span>'+
+                        '<small class="font-weight-bold">Qty</small> <small id="qty">'+response.penjualan_dt[i].srdt_qty+'</small>'+
+                      '</span>'+
+                      '<br>'+
+                      '<span>'+
+                        '<small class="font-weight-bold">Qty</small> <small id="qty">'+valueqty+'</small>'+
+                      '</span>'+
+                      '<br>'+
+                      '<span>'+
+                        '<small class="font-weight-bold">Price</small> <small id="price">'+get_currency(response.penjualan_dt[i].srdt_price)+'</small>'+
+                      '</span>'+
+                    '</div>'+
+                    '<div class="card-footer">'+
+                      '<span>'+
+                        '<span class="font-weight-bold">Total</span> <span id="status">'+get_currency(response.penjualan_dt[i].srdt_total)+'</span>'+
+                      '</span>'+
+                    '</div>'+
+                    ''+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+            '</div>';
+          }
+          $('#list-item').html(html);
+        }
+      });
+    });
+
+    function hapus(){
+      iziToast.question({
+        timeout:false,
+          close: false,
+          overlayClose:true,
+          overlay: true,
+          displayMode: 'once',
+          id: 'question',
+          zindex: 999,
+          title: 'Konfirmasi!',
+          message: 'Apa anda yakin mau menghapus data ini?',
+          position: 'center',
+          buttons: [
+              ['<button><b>YES</b></button>', function (instance, toast) {
+            $.ajax({
+              url:url('api/riyal/distribusi/corporate/agen/hapus'),
+              data:{data_td:$('#sr_id').val()},
+              type:'get',
+              success:function(res){
+                if (res.status === "berhasil") {
+                  iziToast.success({
+                    title:'Sukses!',
+                    message:'Data berhasil dihapus!'
+                  });
+                Routing.load_page('includes/distribusi/penjualan-retail/penjualan-corporate.html');
+                } else if(res.status === 'gagal'){
+                  iziToast.error({
+                    title:'Gagal!',
+                    message:'Data gagal dihapus!'
+                  });
+                }
+              },
+              error: function(jqXHR, exception) {
+                if (jqXHR.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXHR.status == 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXHR.status == 500) {
+                    alert('Internal Server Error [500].');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (exception === 'timeout') {
+                    alert('Time out error.');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error.\n' + jqXHR.responseText);
+                }
+              }
+            });
+                  instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+              }, true],
+              ['<button>NO</button>', function (instance, toast) {
+
+                  instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+              }],
+          ]
+      });
+    }
+  </script>
+</div>
