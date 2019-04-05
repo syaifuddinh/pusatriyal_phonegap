@@ -96,6 +96,7 @@
 		</button>
 	</section>
 	<content></content>
+	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
@@ -281,10 +282,12 @@
 						}
 
 						localStorage.setItem('m_comp_code', sama.c_code);
+						localStorage.setItem('m_comp_id', $('#select_comp').val());
+						localStorage.setItem('m_comp_name', $('#select_comp option:selected').text());
 					}
-					console.log(get_m_comp_id);
-					console.log(get_m_comp_name);
-					console.log(get_m_comp_code);
+					console.log(localStorage.getItem('m_comp_id'));
+					console.log(localStorage.getItem('m_comp_name'));
+					console.log(localStorage.getItem('m_comp_code'));
 				}
 			})
 
