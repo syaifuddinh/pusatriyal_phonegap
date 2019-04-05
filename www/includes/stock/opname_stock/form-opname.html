@@ -118,35 +118,28 @@
 <!-- <input type="hidden" name="sm_id" id="sm_id"> -->
     <div class="form-group">
         <label for="id" class="label-for">Kode Opname</label>
-        <input type="text" readonly="" name="id" id="kode_opname" class="form-control text-right">
+        <input type="text" readonly="" name="id" id="kode_opname" class="form-control">
     </div>
     <div class="form-group">
         <label class="label-for" for="tgl_opname" >Tanggal Opname</label><br>
         <div class="border-bottom border-bottom-1">
-          <input type="text" name="tgl_opname" id="tgl_opname" class="form-control-plaintext" >
+          <input type="text" name="tgl_opname" id="tgl" class="form-control-plaintext" >
         </div>
     </div>
     <div class="form-group">
         <label for="pilih_gudang" class="label-for">Posisi Item</label><br>
         <div class="border-bottom border-bottom-1">
           <select class="form-control-plaintext" id="pilih_gudang" name="pilih_gudang" tabindex="-1" title="">
-            <option value="">---Pilih Gudang---</option>
-            <option value="14">GOOD IN TRANSIT</option>
-            <option value="15">GUDANG RIYAL</option>
-            <option value="17">PETUGAS PENGIRIMAN</option>
-            <option value="18">SUPPLIER</option>
-            <option value="19">PROSES GOOD IN TRANSIT</option>
-            <option value="20">Pecahan Pada Pusat</option>
-            <option value="21">Pecahan Pada Petugas</option>
-            <option value="22">Pecahan Pada Outlet</option>
-            <option value="23">Pecahan Dalam Pengiriman</option>
-            <option value="24">Pecahan Dalam Titip Dana</option>
+            
           </select>
+
+          <input type="hidden" id="gudang" name="gudang">
+
         </div>
     </div>
     <div class="form-group">
-        <label for="alamat" class="label-for">Staff</label>
-        <input type="text" readonly="" name="alamat" id="alamat" class="form-control" >
+        <label for="staff" class="label-for">Staff</label>
+        <input type="text" readonly="" name="staff" id="staff" class="form-control" >
 
     </div>
 
@@ -155,28 +148,30 @@
       <div class="form-group">
         <label>Item</label>
         <div class="border-bottom border-bottom-1">
-          <select class="form-control-plaintext">
+          <select class="form-control-plaintext" id="item">
             
           </select>
+
+          <input type="hidden" id="opname_detail">
+          <input type="hidden" id="name_satuan">
+          <input type="hidden" id="nama_item">
         </div>
       </div>
       
       <div class="form-group">
         <label>Qty Sistem</label>
-        <div class="border-bottom border-bottom-1">
-          <div class="input-group">
-            <input type="number" readonly="" class="form-control-plaintext" name="">
-            <div class="input-group-append">
-              <span class="input-group-text">Lembar</span>
-            </div>
+        <div class="input-group">
+          <input type="number" readonly="" class="form-control" name="" id="qty_sistem">
+          <div class="input-group-append">
+            <span class="input-group-text">Lembar</span>
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label>Item</label>
+        <label>Qty Real</label>
         <div class="border-bottom border-bottom-1">
           <div class="input-group">
-            <input type="number" class="form-control-plaintext" name="">
+            <input type="number" class="form-control-plaintext" name="" id="qty_real">
             <div class="input-group-append">
               <span class="input-group-text">Lembar</span>
             </div>
@@ -188,64 +183,6 @@
       </div>
     </fieldset>
     <div id="form-list-item">
-      <div class="accordion">
-        <div class="card">
-          <div class="card-header bg-success header-collapse p-0" id="headingOne">
-            <h5 class="mb-0">
-              <button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                BRG/0001 - 10 Riyal
-              </button>
-            </h5>
-          </div>
-
-          <div id="collapseOne" class="collapse datalist-collapse" aria-labelledby="headingOne" data-parent="#form-list-item">
-            <div class="card">
-              <div class="card-body card-forlist p-3">
-
-                <table class="w-100 table-accordion">
-                  <tr>
-                    <th>Qty Sistem</th>
-                    <td>
-                      <div class="input-group">
-                        <input type="text" readonly="" class="form-control" name="">
-                        <div class="input-group-append">
-                          <span class="input-group-text">Lembar</span>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Satuan</th>
-                    <td><input type="text" readonly="" class="form-control" name=""></td>
-                  </tr>
-                  <tr>
-                    <th>Qty Real</th>
-                    <td>
-                      <div class="input-group">
-                        <input type="number" class="form-control" name="">
-                        <div class="input-group-append">
-                          <span class="input-group-text">Lembar</span>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-
-              </div>
-              <div class="card-footer">
-                <small for="opname_dt[]">Opname</small>
-                <select class="" id="opname_dt" name="opname_dt[]">
-                  <option selected="" value="N">-</option>
-                  <option value="H">Hilang</option>
-                  <option value="R">Rusak</option>
-                </select>
-                <button class="btn btn-danger btn-sm btn-hapus pull-right btn-hapus-accordion" type="button"><i class="fa fa-trash-o"></i> Hapus</button>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 </form>
 

@@ -155,9 +155,17 @@
 
 	<script type="text/javascript">
 		function onDeviceReady(){
-			if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-			
-				cordova.plugins.diagnostic.isLocationAvailable(function(available){
+			/**
+			 * Determine whether the file loaded from PhoneGap or not
+			 */
+			function isPhoneGap() {
+			    return (window.cordova || window.PhoneGap || window.phonegap) 
+			    && /^file:\/{3}[^\/]/i.test(window.location.href) 
+			    && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
+			}
+
+			if ( isPhoneGap() ) {
+			    cordova.plugins.diagnostic.isLocationAvailable(function(available){
 				    console.log("Location is " + (available ? "available" : "not available"));
 				    if (!available) {
 				    	var confirmation = confirm('GPS tidak aktif!\n'+
@@ -170,7 +178,14 @@
 				}, function(error){
 				    console.error("The following error occurred: "+error);
 				});	
+
+			    console.log('Running on phonegap');
+
+			} else {
+			    console.log("Not running on PhoneGap!");
 			}
+				
+			
 
 			$.ajax({
 				url:url('api/get_Mmember'),
