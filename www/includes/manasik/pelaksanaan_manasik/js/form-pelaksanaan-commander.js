@@ -199,6 +199,7 @@ $('#btn-simpan').click(function(){
 					
 				});
 				
+				Routing.load_routing('includes/manasik/pelaksanaan_manasik/tab_pelaksanaan_manasik/index-tab-pelaksanaan.html');
 			} else {
 				iziToast.error({
 					title : "Gagal!",

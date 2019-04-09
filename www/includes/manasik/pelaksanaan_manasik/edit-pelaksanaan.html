@@ -105,7 +105,7 @@
 
 <div class="pusatriyal-submit btn-group">
   
-  <button class="btn btn-primary rounded-btn" id="btn-simpan" >
+  <button class="btn btn-primary rounded-btn" id="btn-update" >
     <i class="fa fa-check"></i>
   </button>
 </div>
@@ -115,7 +115,14 @@
 
 <form id="pelaksanaan-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
     <input type="hidden" name="_token" id="_token">
-    <input type="hidden" name="id" id="id">
+    <input type="hidden" name="id" id="me_id">
+
+    <div class="form-group">
+      <label class="label-for" >Kode Pelaksanaaan</label><br>
+      <div class="border-bottom border-bottom-1">
+        <input type="text" class="form-control-plaintext" id="kode" name="" readonly="">
+      </div>
+    </div>
 
     <div class="form-group">
       <label class="label-for" >Petugas Kegiatan</label><br>
@@ -177,7 +184,7 @@
                   BRG/0001 - 10 Riyal
                 </button>
                 <input type="hidden" name="iditem[]">
-                <input type="hidden" name="stok[]">
+                <!-- <input type="hidden" name="stok[]"> -->
               </h5>
             </div>
 
@@ -210,6 +217,6 @@
 
     <script type="text/javascript" src="includes/manasik/pelaksanaan_manasik/js/edit-pelaksanaan-commander.js"></script>
   <script type="text/javascript">
-    // display_pembayaran_json(global_pembayaran_json);
+    edit_pelaksanaan_json_func(json_edit_pelaksanaan);
   </script>
 </div>
