@@ -110,6 +110,7 @@
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="config/routing.js"></script>
 	<script type="text/javascript" src="js/features/logout.js"></script>
+	<script type="text/javascript" src="js/notification/SmartNotification.min.js"></script>
 
 	<script type="text/javascript">
 		loading_icon = $('#loading_icon');
@@ -202,8 +203,8 @@
 			 * Determine whether the file loaded from PhoneGap or not
 			 */
 			function isPhoneGap() {
-			    return (window.cordova || window.PhoneGap || window.phonegap) 
-			    && /^file:\/{3}[^\/]/i.test(window.location.href) 
+			    return (window.cordova || window.PhoneGap || window.phonegap)
+			    && /^file:\/{3}[^\/]/i.test(window.location.href)
 			    && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
 			}
 
@@ -220,15 +221,15 @@
 				    }
 				}, function(error){
 				    console.error("The following error occurred: "+error);
-				});	
+				});
 
 			    console.log('Running on phonegap');
 
 			} else {
 			    console.log("Not running on PhoneGap!");
 			}
-				
-			
+
+
 
 			$.ajax({
 				url:url('api/get_Mmember'),
@@ -305,7 +306,7 @@
 
 				localStorage.setItem('m_comp_code', sama.c_code);
 			});
-			
+
 		}
 
 		if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {

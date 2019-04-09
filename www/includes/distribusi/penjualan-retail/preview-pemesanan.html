@@ -294,66 +294,122 @@
     });
   });
 
-  function hapus(){
-    iziToast.question({
-      timeout:false,
-        close: false,
-        overlayClose:true,
-        overlay: true,
-        displayMode: 'once',
-        id: 'question',
-        zindex: 999,
-        title: 'Konfirmasi!',
-        message: 'Apa anda yakin mau menghapus data ini?',
-        position: 'center',
-        buttons: [
-            ['<button><b>YES</b></button>', function (instance, toast) {
-          $.ajax({
-            url:url('api/riyal/distribusi/corporate/agen/hapus'),
-            data:{data_td:$('#sr_id').val()},
-            type:'get',
-            success:function(res){
-              if (res.status === "berhasil") {
-                iziToast.success({
-                  title:'Sukses!',
-                  message:'Data berhasil dihapus!'
-                });
-              Routing.load_page('includes/distribusi/penjualan-retail/penjualan-corporate.html');
-              } else if(res.status === 'gagal'){
-                iziToast.error({
-                  title:'Gagal!',
-                  message:'Data gagal dihapus!'
-                });
-              }
-            },
-            error: function(jqXHR, exception) {
-              if (jqXHR.status === 0) {
-                  alert('Not connect.\n Verify Network.');
-              } else if (jqXHR.status == 404) {
-                  alert('Requested page not found. [404]');
-              } else if (jqXHR.status == 500) {
-                  alert('Internal Server Error [500].');
-              } else if (exception === 'parsererror') {
-                  alert('Requested JSON parse failed.');
-              } else if (exception === 'timeout') {
-                  alert('Time out error.');
-              } else if (exception === 'abort') {
-                  alert('Ajax request aborted.');
-              } else {
-                  alert('Uncaught Error.\n' + jqXHR.responseText);
-              }
-            }
-          });
-                instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+  function setujui() {
+		iziToast.show({
+			theme: 'dark',
+			icon: 'icon-person',
+			message: 'Apakah Anda yakin untuk meng-approve data ini ?',
+			progressBarColor: 'rgb(0, 255, 184)',
+			buttons: [
+			['<button>IYA </button>', function (instance, toast) {
+        var idtransaksi = $('#sr_id').val();
+        console.log(idtransaksi);
+				$.ajax({
+					data : {idtransaksi},
+					type : "get",
+					url : url('api/riyal/distribusi/retail/penjualan/selesai'),
+					dataType : 'json',
+					success : function (response){
+						iziToast.destroy();
+						if(response.status == 'sukses'){
+							iziToast.info({
+								message: 'Data Berhasil disimpan!',
+								position : 'topRight'
+							});
+							$('#setujui').attr('disabled' , true);
+							$('#tolak').attr('disabled' , true);
+              Routing.load_page('includes/distribusi/penjualan-retail/transaksi-pemesanan.html');
+						}
+						else {
+							iziToast.error({
+								message: 'Terjadi kesalahan!',
+								position : 'topRight'
+							});
 
-            }, true],
-            ['<button>NO</button>', function (instance, toast) {
+						}
+					},
+					error : function(){
+						iziToast.warning({
+							title: 'ERROR',
+							message: 'ERROR hubungi Developer',
+						});
+					}
+				})
+			}, true], // true to focus
+			['<button> TIDAK </button>', function (instance, toast) {
+				instance.hide({
+					transitionOut: 'fadeOutUp',
+					onClosing: function(instance, toast, closedBy){
+						console.info('closedBy: ' + closedBy); // The return will be: 'closedBy: buttonName'
+					}
+					}, toast, 'buttonName');
+					}]
+					],
+					onOpening: function(instance, toast){
+						console.info('callback abriu!');
+					},
+					onClosing: function(instance, toast, closedBy){
+					console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+					}
+		});
+	}
 
-                instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+	function tolak() {
+		iziToast.show({
+			theme: 'dark',
+			icon: 'icon-person',
+			message: 'Apakah Anda yakin untuk meng-approve data ini ?',
+			progressBarColor: 'rgb(0, 255, 184)',
+			buttons: [
+			['<button>IYA </button>', function (instance, toast) {
+				$.ajax({
+					data : {idtransaksi:$('#sr_id').val()},
+					type : "get",
+					url : url('api/riyal/distribusi/retail/penjualan/ditolak'),
+					dataType : 'json',
+					success : function (response){
+						iziToast.destroy();
+						if(response.status == 'sukses'){
+							iziToast.info({
+								message: 'Data Berhasil disimpan!',
+								position : 'topRight'
+							});
+							$('#setujui').attr('disabled' , true);
+							$('#tolak').attr('disabled' , true);
+              Routing.load_page('includes/distribusi/penjualan-retail/transaksi-pemesanan.html');
+						}
+						else {
+							iziToast.error({
+								message: 'Terjadi kesalahan!',
+								position : 'topRight'
+							});
 
-            }],
-        ]
-    });
-  }
+						}
+					},
+					error : function(){
+						iziToast.warning({
+							title: 'ERROR',
+							message: 'ERROR hubungi Developer',
+						});
+					}
+				})
+			}, true], // true to focus
+			['<button> TIDAK </button>', function (instance, toast) {
+				instance.hide({
+					transitionOut: 'fadeOutUp',
+					onClosing: function(instance, toast, closedBy){
+						console.info('closedBy: ' + closedBy); // The return will be: 'closedBy: buttonName'
+					}
+					}, toast, 'buttonName');
+					}]
+					],
+					onOpening: function(instance, toast){
+						console.info('callback abriu!');
+					},
+					onClosing: function(instance, toast, closedBy){
+					console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+					}
+		});
+	}
   </script>
 </div>

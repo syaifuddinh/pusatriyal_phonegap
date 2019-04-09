@@ -1,0 +1,794 @@
+<div class="subcontent" style="">
+<style>
+    .table-accordion{
+      font-size: 9pt;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .title-edit
+    {
+        margin-top: 60px;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        width: 70%;
+        border: none;
+        color: #14c56d;
+    }
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    .listx
+    {
+      font-weight: bold;
+    }
+
+    .card-body {
+      border-bottom:1px solid #e7e7e7;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    #login .container #login-row #login-column #login-box {
+      margin-top: 60px;
+      max-width: 600px;
+      height: 320px;
+    }
+    #login .container #login-row #login-column #login-box #login-form {
+      padding: 26px;
+      margin-bottom: 35mm;
+    }
+    #login .container #login-row #login-column #login-box #login-form #register-link {
+      margin-top: -85px;
+    }
+
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    form {
+      padding-left: 5mm;
+      padding-right: 5mm;
+    }
+    .iziToast-buttons{
+      width: 100%;
+    }
+    .rounded-btn{
+      bottom: 0;
+      right: 0;
+    }
+</style>
+
+<div class="pusatriyal-submit btn-group">
+
+  <button class="btn btn-primary rounded-btn" onclick="simpan()">
+    Draft
+  </button>
+  <button class="btn btn-primary rounded-btn" onclick="final()">
+    Final
+  </button>
+</div>
+<div class="breadcrumb-pusatriyal">
+  <span class="active">Form Penjualan</span>
+</div>
+<form id="formsimpan" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
+<input type="hidden" name="_token" id="_token">
+<!-- <input type="hidden" name="sm_id" id="sm_id"> -->
+    <div class="form-group">
+        <label for="customer" class="label-for">Customer</label>
+        <div class="border-bottom border-bottom-1">
+        <select class="form-control" name="customer" id="customer" onchange="getcustomer()">
+
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="label-for" for="address" >Alamat</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" class="form-control" readonly="" id="address" name="address">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="cara_pembayaran" class="label-for">Cara Pembayaran</label><br>
+        <div class="border-bottom border-bottom-1">
+          <select class="form-control-plaintext" id="cara_pembayaran" name="cara_pembayaran" onchange="carapembayaran()">
+            <option value="">--Pilih Cara Pembayaran--</option>
+						<option value="tunai">Tunai</option>
+						<option value="tempo">Tempo</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-group input-daterange">
+      <label for="cara_pembayaran" class="label-for">Tanggal Faktur</label><br>
+      <div class="border-bottom border-bottom-1">
+      <input type="text" class="form-control" value="" id="tanggal_faktur" name="tanggalfaktur" readonly="">
+      </div>
+    </div>
+    <div class="form-group input-daterange" id="divjatuhtempo" style="display:none;">
+      <label for="jatuh_tempo" class="label-for">Jatuh Tempo</label><br>
+      <div class="border-bottom border-bottom-1">
+      <input type="text" class="form-control" value="" id="jatuh_tempo" name="jatuh_tempo" readonly="">
+      </div>
+    </div>
+
+    <fieldset class="mb-3">
+
+      <div class="form-group">
+        <label>Barang</label>
+        <div class="border-bottom border-bottom-1">
+          <select class="form-control-plaintext" name="barang" id="searchitem" onchange="getdata()">
+
+          </select>
+					<input type="hidden" class="form-control" id="unit" name="unit">
+					<input type="hidden" class="form-control" id="idunit" name="idunit">
+					<input type="hidden" class="form-control" id="hargaitem" name="hargaitem">
+					<input type="hidden" class="form-control" id="editable" name="editable">
+					<input type="hidden" class="form-control" id="totalnet" name="totalnet">
+					<input type="hidden" class="form-control" id="totalgross" name="totalgross">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Stock</label>
+        <div class="input-group">
+          <input readonly="" type="number" min="1" id="stok" class="form-control" name="stok">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Qty</label>
+        <div class="border-bottom border-bottom-1">
+          <div class="input-group">
+            <input type="number" min="1" class="form-control" min="1" id="qty" name="qty">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" type="button" id="btn-append">Tambah ke list</button>
+      </div>
+    </fieldset>
+    <div id="form-list-item">
+
+    </div>
+</form>
+
+  <script type="text/javascript">
+  var user_comp = localStorage.getItem('m_comp_id');
+  $(document).ready(function(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = dd + '-' + mm + '-' + yyyy;
+    $('#tanggal_faktur').val(today);
+    $('#jatuh_tempo').val(today);
+
+    $.ajax({
+      type: 'get',
+      dataType: 'json',
+      url: url('api/produk/penjualan/pos_penjualan/tambahapi'),
+      success : function(response){
+        var html = '<option value="">--Pilih Customer--</option>';
+        for (var i = 0; i < response.customer.length; i++) {
+          html += '<option value="'+response.customer[i].c_id+'">'+response.customer[i].c_name+'</option>';
+        }
+        $('#customer').html(html);
+        $('#customer').select2();
+        var html = '<option value="">--Pilih Item--</option>';
+        for (var i = 0; i < response.item.length; i++) {
+          html += '<option value="'+response.item[i].i_id+'">'+response.item[i].i_code+' - '+response.item[i].i_name+'</option>';
+        }
+        $('#searchitem').html(html);
+        $('#searchitem').select2();
+
+      }
+    });
+  });
+
+  var counter_strike__battefield = 0;
+
+  $('#item').html('');
+
+  $('#btn-append').click(function(){
+    var item = $('#searchitem').val();
+    var itemx = $('[name="iditem[]"]');
+    var harga = $('#hargaitem').val();
+    var iditem = $('#searchitem').val();
+    var total = harga * $('#qty').val();
+    var qty = $('#qty');
+    if (item == "" || item == undefined) {
+      iziToast.error({
+        title:'Gagal!',
+        message:'Item belum dipilih!'
+      });
+    } else {
+      if (qty.val() != 0 || qty.val() != '') {
+          if (qty.val() > parseInt($('#stok').val())) {
+            iziToast.error({
+              title:'Gagal!',
+              message:'Qty lebih dari qty stock!!'
+            });
+          } else {
+            var editable = $('#editable').val();
+            if (editable == 'Y') {
+              var readonly = '';
+            } else if (editable == 'N') {
+              var readonly = 'readonly';
+            }
+            if ($('#iditem'+iditem).val() == iditem) {
+              var tmp = $('#qtyinput'+iditem).val();
+              var tmp1 = qty.val();
+              var hasil = parseInt(tmp1) + parseInt(tmp);
+              var totalinput = harga * hasil;
+
+              $('#qtyinput'+iditem).val(hasil);
+              $('#totalinput'+iditem).val(get_currency(totalinput))
+
+            } else {
+
+              $('#form-list-item').append(
+                    '<div class="accordion">'+
+                          '<div class="card">'+
+                            '<div class="card-header bg-success header-collapse p-0" id="header-'+ counter_strike__battefield +'">'+
+                              '<h5 class="mb-0">'+
+                                '<button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapse-'+ counter_strike__battefield +'" aria-expanded="true" aria-controls="collapse-'+ counter_strike__battefield +'">'+
+                                  $('#searchitem option:selected').text() +
+                                  '<input type="hidden" name="iditem[]" id="iditem'+$('#searchitem').val()+'" value="'+ $('#searchitem').val() +'" readonly>'+
+                                '</button>'+
+                              '</h5>'+
+                            '</div>'+
+
+                            '<div id="collapse-'+ counter_strike__battefield +'" class="collapse datalist-collapse" aria-labelledby="header-'+ counter_strike__battefield +'" data-parent="#form-list-item">'+
+                              '<div class="card">'+
+                                '<div class="card-body card-forlist p-3">'+
+
+                                  '<table class="w-100 table-accordion">'+
+                                    '<tr>'+
+                                      '<th>Qty</th>'+
+                                      '<td>'+
+                                        '<div class="input-group">'+
+                                          '<input type="text" onkeyup="qtyinput('+$('#searchitem').val()+')" id="qtyinput'+$('#searchitem').val()+'" class="form-control lib_qty_list" name="qty[]" value="'+ $('#qty').val() +'">'+
+                                        '</div>'+
+                                      '</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                      '<th>Satuan</th>'+
+                                      '<td><input type="text" readonly="" class="form-control" name="satuan[]" value="'+ $('#unit').val() +'"></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                      '<th>Harga</th>'+
+                                      '<td>'+
+                                        '<div class="input-group">'+
+                                          '<input type="text" class="form-control lib_harga_list" onkeyup="hargainput('+$('#searchitem').val()+')" id="hargainput'+$('#searchitem').val()+'" onkeyup="hargainput('+$('#searchitem').val()+')" name="harga[]" value="'+ get_currency(parseInt(harga)) +'"">'+
+                                        '</div>'+
+                                      '</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                      '<th>Disc Percent</th>'+
+                                      '<td>'+
+                                        '<div class="input-group">'+
+                                          '<input type="number" onkeyup="discpercent('+$('#searchitem').val()+')" class="form-control disc_percent" id="discpercent'+$('#searchitem').val()+'" name="disc_percent[]" value="">'+
+                                          '<input type="hidden" class="form-control" id="sd_disc_percent_value'+$('#searchitem').val()+'" name="sd_disc_percent_value[]">'+
+                                        '</div>'+
+                                      '</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                      '<th>Disc Value</th>'+
+                                      '<td>'+
+                                        '<div class="input-group">'+
+                                          '<input type="number" onkeyup="discvalue('+$('#searchitem').val()+')" id="discvalue'+$('#searchitem').val()+'" class="form-control disc_value" name="disc_value[]" value="">'+
+                                        '</div>'+
+                                      '</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                      '<th>Total</th>'+
+                                      '<td>'+
+                                        '<div class="input-group">'+
+                                          '<input type="text" class="form-control total" id="totalinput'+$('#searchitem').val()+'" name="total[]" value="'+ get_currency(total) +'">'+
+                                        '</div>'+
+                                      '</td>'+
+                                    '</tr>'+
+                                  '</table>'+
+
+                                '</div>'+
+                                '<div class="card-footer">'+
+                                  '<button class="btn btn-danger btn-sm btn-hapus pull-right btn-hapus-accordion" type="button"><i class="fa fa-trash-o"></i> Hapus</button>'+
+                                '</div>'+
+                                ''+
+                              '</div>'+
+                            '</div>'+
+                          '</div>'+
+                      '</div>'
+                    );
+
+              counter_strike__battefield++;
+
+              $('#searchitem').prop('selectedIndex', 0).trigger('change');
+              $('#qty').val('');
+              $('#stok').val('');
+              $('#searchitem').select2('open');
+            }
+          }
+        }
+    }
+  });
+
+  function getcustomer(){
+    var customer = $('#customer').val();
+		$.ajax({
+			type: 'get',
+			data: {customer},
+			dataType: 'json',
+			url: url('api/produk/penjualan/pos_penjualan/getcustomer'),
+			success : function(response){
+				$("input[name='address']").val(response.c_address);
+			}
+		});
+  }
+
+  function carapembayaran(){
+			var cara = $('#cara_pembayaran').val();
+
+			if(cara == 'tempo'){
+				$('#divjatuhtempo').css('display', '');
+			} else {
+				$('#divjatuhtempo').css('display', 'none');
+			}
+		}
+
+    function getdata(){
+      var id = $('#searchitem').val();
+			var customer = $('#customer').val();
+			$.ajax({
+				type: 'get',
+				data: {id:id, customer:customer, user_comp:user_comp},
+				dataType: 'json',
+				url: url('api/produk/penjualan/pos_penjualan/getdetailbarang'),
+				success : function(response){
+					$('#hargaitem').val(response[0].i_sell);
+					$('#iditem').val(response[0].i_id);
+					$('#unit').val(response[0].u_unit);
+					$('#idunit').val(response[0].i_unit);
+					$('#stok').val(parseInt(response[0].s_qty));
+					$('#editable').val(response[0].i_buy);
+
+					$('#qty').focus();
+					$('#qty').val(1);
+
+				}
+			});
+		}
+
+  $('#form-list-item').on('click', '.btn-hapus-accordion', function(){
+    $(this).parents('.accordion').remove();
+  });
+
+  $('.input-daterange').datepicker({
+    format:'dd-mm-yyyy'
+  });
+
+  function discpercent(id){
+
+			var discpercent = $('#discpercent'+id).val();
+
+      if (discpercent == "") {
+        discpercent = 0;
+      }
+
+			if (discpercent > 100) {
+				$('#discpercent'+id).val(100);
+
+				discpercent = $('#discpercent'+id).val();
+
+				var harga = $('#hargainput'+id).val();
+				harga = harga.replace(/[^0-9\-]+/g,"");
+
+				var qty = $('#qtyinput'+id).val();
+
+				var total = harga * qty;
+
+				var totaldisc = discpercent / 100 * total;
+
+				var hasil = total - totaldisc;
+
+			} else {
+				var harga = $('#hargainput'+id).val();
+				harga = harga.replace(/[^0-9\-]+/g,"");
+
+				var qty = $('#qtyinput'+id).val();
+
+				var total = harga * qty;
+
+				var totaldisc = discpercent / 100 * total;
+
+				var hasil = total - totaldisc;
+
+			}
+			$('#sd_disc_percent_value'+id).val(totaldisc);
+			$('#totalinput'+id).val(get_currency(hasil));
+		}
+
+		function qtyinput(id){
+			var qty = $('#qtyinput'+id).val();
+
+			if (qty > parseInt($('#stok').val())) {
+				$('#qtyinput'+id).val(parseInt($('#stok').val()));
+
+				var qty = $('#qtyinput'+id).val();
+
+				var harga = $('#hargainput'+id).val();
+				harga = harga.replace(/[^0-9\-]+/g,"");
+
+				var discpercent = $('#discpercent'+id).val();
+
+				var discvalue = $('#discvalue'+id).val();
+				discvalue = discvalue.replace(/[^0-9\-]+/g,"");
+
+				if (discvalue != "") {
+					var total = (harga * qty) - discvalue;
+				} else if (discpercent != "") {
+					var total = harga * qty;
+
+					var totaldisc = discpercent / 100 * total;
+
+					var total = total - totaldisc;
+				} else {
+					var total = harga * qty;
+				}
+
+				$('#totalinput'+id).val(get_currency(total));
+			} else {
+							var qty = $('#qtyinput'+id).val();
+
+							var harga = $('#hargainput'+id).val();
+							harga = harga.replace(/[^0-9\-]+/g,"");
+
+							var discpercent = $('#discpercent'+id).val();
+
+							var discvalue = $('#discvalue'+id).val();
+
+							if (discvalue != "") {
+								var total = (harga * qty) - discvalue;
+							} else if (discpercent != "") {
+								var total = harga * qty;
+
+								var totaldisc = discpercent / 100 * total;
+
+								var total = total - totaldisc;
+							} else {
+								var total = harga * qty;
+							}
+
+							$('#totalinput'+id).val(get_currency(total));
+			}
+		}
+
+		function discvalue(id){
+			var qty = $('#qtyinput'+id).val();
+			var harga = $('#hargainput'+id).val();
+			harga = harga.replace(/[^0-9\-]+/g,"");
+
+			var total = parseInt(qty) * parseInt(harga);
+
+			var discvalue = $('#discvalue'+id).val();
+      if (discvalue == "") {
+        discvalue = 0;
+      } else {
+        discvalue = discvalue.replace(/[^0-9\-]+/g,"");
+      }
+
+			if (parseInt(discvalue) > parseInt(total)) {
+				$('#discvalue'+id).val(get_currency(total));
+
+				var discvalue = $('#discvalue'+id).val();
+				discvalue = discvalue.replace(/[^0-9\-]+/g,"");
+
+				var hasil = parseInt(total) - parseInt(discvalue);
+
+				$('#totalinput'+id).val(get_currency(hasil));
+			} else {
+				var hasil = parseInt(total) - parseInt(discvalue);
+
+				$('#totalinput'+id).val(get_currency(hasil));
+			}
+		}
+
+		function hargainput(id){
+			var harga = $('#hargainput'+id).val();
+			harga = harga.replace(/[^0-9\-]+/g,"");
+
+			var qty = $('#qtyinput'+id).val();
+
+			var discpercent = $('#discpercent'+id).val();
+
+			var discvalue = $('#discvalue'+id).val();
+			discvalue = discvalue.replace(/[^0-9\-]+/g,"");
+
+			if (discvalue != "") {
+				var total = (harga * qty) - discvalue;
+			} else if (discpercent != "") {
+				var total = harga * qty;
+
+				var totaldisc = discpercent / 100 * total;
+
+				var total = total - totaldisc;
+			} else {
+				var total = harga * qty;
+			}
+
+			$('#totalinput'+id).val(get_currency(total));
+		}
+
+    function simpan(){
+    var total = [];
+    var selectedVal;
+    $(".total").each(function(i, sel){
+        selectedVal = $(sel).val();
+        selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+        total.push(selectedVal);
+    });
+
+    var jumlah = total.reduce(getSum);
+
+    var qty = [];
+    var selectedVal;
+    $(".lib_qty_list").each(function(i, sel){
+        selectedVal = $(sel).val();
+        qty.push(selectedVal);
+    });
+
+    var harga = [];
+    var selectedVal;
+    $(".lib_harga_list").each(function(i, sel){
+        selectedVal = $(sel).val();
+        selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+        harga.push(selectedVal);
+    });
+
+    var discpercent = [];
+    var selectedVal;
+    $(".disc_percent").each(function(i, sel){
+        selectedVal = $(sel).val();
+        selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+        discpercent.push(selectedVal);
+    });
+
+    var discvalue = [];
+    var selectedVal;
+    $(".disc_value").each(function(i, sel){
+        selectedVal = $(sel).val();
+        selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+        discvalue.push(selectedVal);
+    });
+
+    var totaldiscvalue = discvalue.reduce(getSum);
+
+    var jumlahgross = [];
+    for (var i = 0; i < qty.length; i++) {
+      var tmp = qty[i] * harga[i];
+      jumlahgross.push(tmp);
+    }
+
+    var totalgross = jumlahgross.reduce(getSum);
+
+    var discpercent1 = [];
+    for (var i = 0; i < harga.length; i++) {
+        var tmp = (harga[i] / totalgross) * discpercent[i];
+        discpercent1.push(tmp);
+    }
+
+    var totaldiscpercent = discpercent1.reduce(getdisc);
+
+    $('#totalnet').val(jumlah);
+    $('#totalgross').val(totalgross);
+
+    $.ajax({
+      type: 'get',
+      data: $('#formsimpan').serialize()+'&user_comp='+user_comp+'&customer='+$('#customer').val()+'&totaldiscpercent='+totaldiscpercent+'&totaldiscvalue='+totaldiscvalue,
+      dataType: 'JSON',
+      url: url('api/produk/penjualan/pos_penjualan/simpan'),
+      success : function(response){
+        if (response.status == 'berhasil') {
+          iziToast.success({
+            title:'Sukses!',
+            message:'Berhasil disimpan!'
+          });
+          Routing.load_page('includes/penjualan/pos_penjualan/index-penjualan.html');
+        } else {
+          iziToast.error({
+            title:'Gagal!',
+            message:'Data gagal disimpan!'
+          });
+        }
+      }
+    });
+  }
+
+function final(){
+  	iziToast.question({
+  		timeout:false,
+  	    close: false,
+  	    overlayClose:true,
+  	    overlay: true,
+  	    displayMode: 'once',
+  	    id: 'question',
+  	    zindex: 999,
+  	    title: 'Konfirmasi!',
+  	    message: 'Apa anda yakin mau final data ini?',
+  	    position: 'center',
+  	    buttons: [
+  	        ['<button class="w-100 mt-3"><b>YES</b></button>', function (instance, toast) {
+              var total = [];
+              var selectedVal;
+              $(".total").each(function(i, sel){
+                  selectedVal = $(sel).val();
+                  selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+                  total.push(selectedVal);
+              });
+
+              var jumlah = total.reduce(getSum);
+
+              var qty = [];
+              var selectedVal;
+              $(".lib_qty_list").each(function(i, sel){
+                  selectedVal = $(sel).val();
+                  qty.push(selectedVal);
+              });
+
+              var harga = [];
+              var selectedVal;
+              $(".lib_harga_list").each(function(i, sel){
+                  selectedVal = $(sel).val();
+                  selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+                  harga.push(selectedVal);
+              });
+
+              var discpercent = [];
+              var selectedVal;
+              $(".disc_percent").each(function(i, sel){
+                  selectedVal = $(sel).val();
+                  selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+                  discpercent.push(selectedVal);
+              });
+
+              var discvalue = [];
+              var selectedVal;
+              $(".disc_value").each(function(i, sel){
+                  selectedVal = $(sel).val();
+                  selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+                  discvalue.push(selectedVal);
+              });
+
+              var totaldiscvalue = discvalue.reduce(getSum);
+
+              var jumlahgross = [];
+              for (var i = 0; i < qty.length; i++) {
+                var tmp = qty[i] * harga[i];
+                jumlahgross.push(tmp);
+              }
+
+              var totalgross = jumlahgross.reduce(getSum);
+
+              var discpercent1 = [];
+              for (var i = 0; i < harga.length; i++) {
+                  var tmp = (harga[i] / totalgross) * discpercent[i];
+                  discpercent1.push(tmp);
+              }
+
+              var totaldiscpercent = discpercent1.reduce(getdisc);
+
+              $('#totalnet').val(jumlah);
+              $('#totalgross').val(totalgross);
+
+              $.ajax({
+                type: 'get',
+                data: $('#formsimpan').serialize()+'&user_comp='+user_comp+'&customer='+$('#customer').val()+'&totaldiscpercent='+totaldiscpercent+'&totaldiscvalue='+totaldiscvalue,
+                dataType: 'JSON',
+                url: url('api/produk/penjualan/pos_penjualan/final'),
+                success : function(response){
+                  if (response.status == 'berhasil') {
+                    iziToast.success({
+                      title:'Sukses!',
+                      message:'Berhasil disimpan!'
+                    });
+                    Routing.load_page('includes/penjualan/pos_penjualan/index-penjualan.html');
+                  } else {
+                    iziToast.error({
+                      title:'Gagal!',
+                      message:'Data gagal disimpan!'
+                    });
+                  }
+                }
+              });
+  	            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+  	        }, true],
+  	        ['<button class="w-100 mt-3">NO</button>', function (instance, toast) {
+
+  	            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+  	        }],
+  	    ]
+  	});
+}
+
+  function getSum(total, num) {
+    return parseInt(total) + parseInt(num);
+  }
+
+  function getdisc(total, sum){
+    return total + sum;
+  }
+
+  function hargainput(id){
+			var harga = $('#hargainput'+id).val();
+			harga = harga.replace(/[^0-9\-]+/g,"");
+      $('#hargainput'+id).val(get_currency(harga));
+
+			var qty = $('#qtyinput'+id).val();
+
+			var discpercent = $('#discpercent'+id).val();
+
+			var discvalue = $('#discvalue'+id).val();
+			discvalue = discvalue.replace(/[^0-9\-]+/g,"");
+
+			if (discvalue != "") {
+				var total = (harga * qty) - discvalue;
+			} else if (discpercent != "") {
+				var total = harga * qty;
+
+				var totaldisc = discpercent / 100 * total;
+
+				var total = total - totaldisc;
+			} else {
+				var total = harga * qty;
+			}
+			$('#totalinput'+id).val(get_currency(total));
+		}
+  </script>
+</div>
