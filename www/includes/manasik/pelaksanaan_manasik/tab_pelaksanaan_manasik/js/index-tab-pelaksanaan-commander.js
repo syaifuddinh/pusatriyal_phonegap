@@ -134,7 +134,7 @@ $(document).ready(function(){
 					content = $(rawcontent);
 					// Set-up routing untuk menampilkan preview
 					content.attr('pusatriyal-role', 'routing');
-					content.attr('pusatriyal-target', 'includes/manasik/pelaksanaan_manasik/tab_pelaksanaan_manasik/preview-tab-pelaksanaan.html');
+					content.attr('pusatriyal-target', 'includes/manasik/pelaksanaan_manasik/preview-pelaksanaan.html');
 					content.attr('pusatriyal-callback', 'preview_pelaksanaan_func');
 					content.append(
 						'<input type="hidden" name="me_id" value="' + unit.me_id + '">'
