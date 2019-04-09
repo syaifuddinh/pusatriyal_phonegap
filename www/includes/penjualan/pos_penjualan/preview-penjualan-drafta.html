@@ -114,7 +114,7 @@
   </button>
 </div>
 <div class="breadcrumb-pusatriyal">
-  <span class="active">Form Penjualan</span>
+  <span class="active">Edit Penjualan</span>
 </div>
 <form id="formsimpan" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
 <input type="hidden" name="_token" id="_token">
@@ -265,25 +265,10 @@
               var tmp1 = qty.val();
               var hasil = parseInt(tmp1) + parseInt(tmp);
               var totalinput = harga * hasil;
-              if (parseInt(hasil) > parseInt($('#stok').val())) {
-                iziToast.error({
-                  title:'Gagal!',
-                  message:'Qty lebih dari qty stock!!'
-                });
-              } else {
-                $('#qtyinput'+iditem).val(hasil);
-                $('#totalinput'+iditem).val(get_currency(totalinput))
-              }
-              $('#searchitem').prop('selectedIndex', 0).trigger('change');
-              $('#qty').val('');
-              $('#stok').val('');
-              $('#searchitem').select2('open');
-              $('#hargaitem').val('');
-              $('#iditem').val('');
-              $('#unit').val('');
-              $('#idunit').val('');
-              $('#stok').val('');
-              $('#editable').val('');
+
+              $('#qtyinput'+iditem).val(hasil);
+              $('#totalinput'+iditem).val(get_currency(totalinput))
+
             } else {
 
               $('#form-list-item').append(
@@ -293,7 +278,7 @@
                               '<h5 class="mb-0">'+
                                 '<button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapse-'+ counter_strike__battefield +'" aria-expanded="true" aria-controls="collapse-'+ counter_strike__battefield +'">'+
                                   $('#searchitem option:selected').text() +
-                                  '<input type="hidden" name="iditem[]" id="iditem'+$('#searchitem').val()+'" value="'+ $('#searchitem').val() +'" '+readonly+'>'+
+                                  '<input type="hidden" name="iditem[]" id="iditem'+$('#searchitem').val()+'" value="'+ $('#searchitem').val() +'" readonly>'+
                                 '</button>'+
                               '</h5>'+
                             '</div>'+
@@ -307,7 +292,7 @@
                                       '<th>Qty</th>'+
                                       '<td>'+
                                         '<div class="input-group">'+
-                                          '<input type="text" readonly onkeyup="qtyinput('+$('#searchitem').val()+')" id="qtyinput'+$('#searchitem').val()+'" class="form-control lib_qty_list" name="qty[]" value="'+ $('#qty').val() +'">'+
+                                          '<input type="text" onkeyup="qtyinput('+$('#searchitem').val()+')" id="qtyinput'+$('#searchitem').val()+'" class="form-control lib_qty_list" name="qty[]" value="'+ $('#qty').val() +'">'+
                                         '</div>'+
                                       '</td>'+
                                     '</tr>'+
@@ -344,7 +329,7 @@
                                       '<th>Total</th>'+
                                       '<td>'+
                                         '<div class="input-group">'+
-                                          '<input type="text" readonly class="form-control total" id="totalinput'+$('#searchitem').val()+'" name="total[]" value="'+ get_currency(total) +'">'+
+                                          '<input type="text" class="form-control total" id="totalinput'+$('#searchitem').val()+'" name="total[]" value="'+ get_currency(total) +'">'+
                                         '</div>'+
                                       '</td>'+
                                     '</tr>'+
@@ -367,12 +352,6 @@
               $('#qty').val('');
               $('#stok').val('');
               $('#searchitem').select2('open');
-              $('#hargaitem').val('');
-              $('#iditem').val('');
-              $('#unit').val('');
-              $('#idunit').val('');
-              $('#stok').val('');
-              $('#editable').val('');
             }
           }
         }
