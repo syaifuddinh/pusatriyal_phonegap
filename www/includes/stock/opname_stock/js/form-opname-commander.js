@@ -176,7 +176,7 @@ $('#pilih_gudang').change(function(){
 		url: url('api/riyal/stock/opname_stock/get_items/' + $('#pilih_gudang').val()),
 		success: function(data) {
 			$('#item').empty();
-			
+			$("#item").append('<option value="" selected="">-- Pilih Item --</option>');
 			$.each(data.items, function(key, val) {
 				$("#item").append('<option value="'+ val.ir_id +'" data-nama_item="'+ val.ir_name +'"  data-qty_sistem="'+ val.sr_qty +'" data-name_satuan="'+ val.s_name +'">'+ val.ir_name +'</option>');
 			});
