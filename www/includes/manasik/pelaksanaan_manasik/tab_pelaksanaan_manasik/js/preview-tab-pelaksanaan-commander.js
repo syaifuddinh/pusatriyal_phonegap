@@ -104,9 +104,9 @@ $('#btn-hapus').click(function(){
 function edit_pelaksanaan_view(dom){
 	var el = $(dom);
 
-	var id = el.find('#me_id').val();
+	var id = el.find('#pelaksanaan_id').val();
 
-	var datas
+	var datas;
 	for(var i = 0; i< units.length; i++){
 		var datas = units[i];
 		if (datas.me_id === parseInt(id)) {
@@ -116,4 +116,6 @@ function edit_pelaksanaan_view(dom){
 
 	}
 	console.log(edit_pelaksanaan_json);
+	$('#id').val(edit_pelaksanaan_json.me_id);
+	
 }

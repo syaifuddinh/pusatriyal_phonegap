@@ -69,36 +69,33 @@ $.ajax({
 	}
 });
 
-$('#idplan').change(function(){
-	$('#produk').html('');
+$.ajax({
+	url:url('api/kode_pelaksanaan_terpilih'),
+	type:'get',
+	dataType:'json',
+	data:{
+		id:$('#id').val()
+	},
+	success:function(res){
+		$('#produk').html('');
+		console.log(res);
+		data = res.data;
+		item = res.item;
+		petugas = res.petugas
 
-	$.ajax({
-		url:url('api/kode_pelaksanaan_terpilih'),
-		type:'get',
-		dataType:'json',
-		data:{
-			id:$(this).val()
-		},
-		success:function(res){
-			console.log(res);
-			data = res.data;
-			item = res.item;
-			petugas = res.petugas
-
-			$('#employe1').val(data.mp_employe1).trigger('change');
-			$('#employe2').val(data.mp_employe2).trigger('change');
-			$('#employe3').val(data.mp_employe3).trigger('change');
+		$('#employe1').val(data.mp_employe1).trigger('change');
+		$('#employe2').val(data.mp_employe2).trigger('change');
+		$('#employe3').val(data.mp_employe3).trigger('change');
 
 
-			for(var b = 0;b<item.length;b++){
-				var barang = item[b];
-				var appendx = '<option value="'+ barang.ir_id +'">'+ barang.ir_code +' - '+ barang.ir_name +'</option>';
-				$('#produk').append(appendx);
-			}
-
-			cekstok();
+		for(var b = 0;b<item.length;b++){
+			var barang = item[b];
+			var appendx = '<option value="'+ barang.ir_id +'">'+ barang.ir_code +' - '+ barang.ir_name +'</option>';
+			$('#produk').append(appendx);
 		}
-	})
+
+		cekstok();
+	}
 });
 
 $('#produk').change(function(){
