@@ -52,11 +52,16 @@ function preview_pelaksanaan_json(json){
 			$('#tempat').val(json.me_place);
 			$('#pic').val(json.m_name);
 			if(json.me_status === 'Y'){
-				$('.badge-status').addClass('badge-primary').text('Status : Final');
+				$('.badge-status').addClass('badge-primary').text('Status : Final').removeClass('badge-warning');
 				$('.pusatriyal-submit').find('#status-final').removeClass('d-none');
 				$('.pusatriyal-submit').find('#status-waiting').addClass('d-none');
+				$('#btn-tambahstok').attr('pusatriyal-callback', 'tambahstok_pelaksanaan_view');
+				$('#btn-tambahstok').attr('pusatriyal-role', 'routing');
+				$('#btn-tambahstok').attr('pusatriyal-target', 'includes/manasik/pelaksanaan_manasik/tambahstok-pelaksanaan.html');
+				$('#btn-tambahstok').append('<input type="hidden" id="pelaksanaan_id" name="pelaksanaan_id" value="'+ json.me_id +'">');
+				Routing.load_routing();
 			} else if(json.me_status === 'N'){
-				$('.badge-status').addClass('badge-warning').text('Status : Waiting');
+				$('.badge-status').addClass('badge-warning').text('Status : Waiting').removeClass('badge-primary');
 				$('.pusatriyal-submit').find('#status-final').addClass('d-none');
 				$('.pusatriyal-submit').find('#status-waiting').removeClass('d-none');
 				$('#btn-edit').attr('pusatriyal-callback', 'edit_pelaksanaan_view');

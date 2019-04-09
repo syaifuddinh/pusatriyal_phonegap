@@ -132,14 +132,14 @@ function appendlist(){
 		return false;
 	}
 
-	if($('#stockenter').val() === 0 || $('#stockenter').val() < $('#qtyenter').val()){
-		if ($('#stockenter').val() < $('#qtyenter').val()) {
+	if(parseInt($('#stockenter').val()) === 0 || parseInt($('#stockenter').val()) < $('#qtyenter').val()){
+		if (parseInt($('#stockenter').val()) < $('#qtyenter').val()) {
 			iziToast.warning({
 				title:'Peringatan!',
 				message:'Stok tidak mencukupi!'
 			})
 		}
-		if ($('#stockenter').val() === 0) {
+		else if (parseInt($('#stockenter').val()) === 0) {
 			iziToast.warning({
 				title:'Peringatan!',
 				message:'Stok kosong!'
@@ -170,7 +170,7 @@ function appendlist(){
 	el.find('.btn-header').text(textitem);
 	el.find('.datalist-collapse').attr('id', 'collapse-'+counter_strike__battlefield);
 
-	// el.find('[name="qty[]"]').val(qty);
+	el.find('[name="qty[]"]').val(qty);
 	el.find('[name="stok[]"]').val(stok);
 	el.find('[name="iditem[]"]').val(iditem);
 
