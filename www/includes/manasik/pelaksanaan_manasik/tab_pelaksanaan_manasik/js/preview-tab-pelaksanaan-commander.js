@@ -104,17 +104,18 @@ $('#btn-hapus').click(function(){
 function edit_pelaksanaan_view(dom){
 	var el = $(dom);
 
-	var idx = el.find('#pelaksanaan_id').val();
-	console.log(idx);
-	for(var i =0;i<units.length;i++){
-		var tes = units[i];
-		if (tes.me_id === parseInt(idx)) {
-			json_edit_pelaksanaan = tes;
-			edit_pelaksanaan_json_func(json_edit_pelaksanaan);
+	var id = el.find('#pelaksanaan_id').val();
+
+	var datas;
+	for(var i = 0; i< units.length; i++){
+		var datas = units[i];
+		if (datas.me_id === parseInt(id)) {
+			edit_pelaksanaan_json = datas;
+			console.log('statement if is true');
 		}
+
 	}
+	console.log(edit_pelaksanaan_json);
+	$('#id').val(edit_pelaksanaan_json.me_id);
 	
-}
-function edit_pelaksanaan_json_func(json){
-	$('#me_id').val(json.me_id);
 }

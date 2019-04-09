@@ -6,7 +6,7 @@ function preview_pelaksanaan_func(dom){
 	for(var i =0; i<units.length; i++){
 		dataz = units[i];
 		if(dataz.me_id === parseInt(id)){
-			json_pelaksanaan = dataz;
+			json_pelaksanaan = dataz
 			console.log('statement if is true');
 			preview_pelaksanaan_json(json_pelaksanaan);
 		}
@@ -59,7 +59,7 @@ function preview_pelaksanaan_json(json){
 				$('.badge-status').addClass('badge-warning').text('Status : Waiting');
 				$('.pusatriyal-submit').find('#status-final').addClass('d-none');
 				$('.pusatriyal-submit').find('#status-waiting').removeClass('d-none');
-				$('#btn-edit').attr('pusatriyal-callback', 'edit_pelaksanaan_view');
+				$('#btn-edit').attr('pusatriyal-callback', 'edit_pusatriyal_view');
 				$('#btn-edit').attr('pusatriyal-role', 'routing');
 				$('#btn-edit').attr('pusatriyal-target', 'includes/manasik/pelaksanaan_manasik/edit-pelaksanaan.html');
 				$('#btn-edit').append('<input type="hidden" id="pelaksanaan_id" name="pelaksanaan_id" value="'+ json.me_id +'">');
@@ -78,7 +78,6 @@ function preview_pelaksanaan_json(json){
 			id:json.me_id
 		},
 		success:function(res){
-			$('#div-produk-dibawa').html('');
 			console.log(res);
 			dom = $('rawcontent').html();
 			var data;

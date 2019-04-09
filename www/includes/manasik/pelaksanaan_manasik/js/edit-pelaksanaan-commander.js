@@ -11,8 +11,6 @@ $.ajax({
 	        $('#employe2').append('<option value="'+res[a].m_id+'">'+res[a].m_name+'</option>')
 	        $('#employe3').append('<option value="'+res[a].m_id+'">'+res[a].m_name+'</option>')
 		}
-
-
     },
     error: function(jqXHR, exception) {
 		if (jqXHR.status === 0) {
@@ -30,9 +28,6 @@ $.ajax({
 		} else {
 		  	alert('Uncaught Error.\n' + jqXHR.responseText);
 		}
-    },
-    complete:function(){
-    	get_edit();
     }
 
 });
@@ -41,40 +36,67 @@ $.ajax({
   $('#employe2').select2();
   $('#employe3').select2();
 
-// $.ajax({
-//   	url:url('api/marketing/manasik/pelaksanaan_kegiatan/getcode'),
-//   	type:'get',
-//   	dataType:'json',
-//   	success:function(res){
-// 		$('#idplan').html('');  
-// 		$('#idplan').append('<option value="">--Pilih Kode Pelaksanaan--</option>');
+$.ajax({
+  	url:url('api/marketing/manasik/pelaksanaan_kegiatan/getcode'),
+  	type:'get',
+  	dataType:'json',
+  	success:function(res){
+		$('#idplan').html('');  
+		$('#idplan').append('<option value="">--Pilih Kode Pelaksanaan--</option>');
   		
-//   		var data;
-//   		for(var a = 0; a<res.length; a++){
-//   			data = res[a];
-// 			$('#idplan').append('<option value="'+ data.mp_id +'">'+ data.mp_code +'</option>');
-//   		}
-//   	},
-// 	error: function(jqXHR, exception) {
-// 		if (jqXHR.status === 0) {
-// 		    alert('Not connect.\n Verify Network.');
-// 		} else if (jqXHR.status == 404) {
-// 		    alert('Requested page not found. [404]');
-// 		} else if (jqXHR.status == 500) {
-// 		    alert('Internal Server Error [500].');
-// 		} else if (exception === 'parsererror') {
-// 		    alert('Requested JSON parse failed.');
-// 		} else if (exception === 'timeout') {
-// 		    alert('Time out error.');
-// 		} else if (exception === 'abort') {
-// 		    alert('Ajax request aborted.');
-// 		} else {
-// 		    alert('Uncaught Error.\n' + jqXHR.responseText);
-// 		}
-// 	}
-// });
+  		var data;
+  		for(var a = 0; a<res.length; a++){
+  			data = res[a];
+			$('#idplan').append('<option value="'+ data.mp_id +'">'+ data.mp_code +'</option>');
+  		}
+  	},
+	error: function(jqXHR, exception) {
+		if (jqXHR.status === 0) {
+		    alert('Not connect.\n Verify Network.');
+		} else if (jqXHR.status == 404) {
+		    alert('Requested page not found. [404]');
+		} else if (jqXHR.status == 500) {
+		    alert('Internal Server Error [500].');
+		} else if (exception === 'parsererror') {
+		    alert('Requested JSON parse failed.');
+		} else if (exception === 'timeout') {
+		    alert('Time out error.');
+		} else if (exception === 'abort') {
+		    alert('Ajax request aborted.');
+		} else {
+		    alert('Uncaught Error.\n' + jqXHR.responseText);
+		}
+	}
+});
+
+$.ajax({
+	url:url('api/kode_pelaksanaan_terpilih'),
+	type:'get',
+	dataType:'json',
+	data:{
+		id:$('#id').val()
+	},
+	success:function(res){
+		$('#produk').html('');
+		console.log(res);
+		data = res.data;
+		item = res.item;
+		petugas = res.petugas
+
+		$('#employe1').val(data.mp_employe1).trigger('change');
+		$('#employe2').val(data.mp_employe2).trigger('change');
+		$('#employe3').val(data.mp_employe3).trigger('change');
 
 
+		for(var b = 0;b<item.length;b++){
+			var barang = item[b];
+			var appendx = '<option value="'+ barang.ir_id +'">'+ barang.ir_code +' - '+ barang.ir_name +'</option>';
+			$('#produk').append(appendx);
+		}
+
+		cekstok();
+	}
+});
 
 $('#produk').change(function(){
 	cekstok();
@@ -124,42 +146,12 @@ function appendlist(){
 
 	iditemlist = $('[name="iditem[]"]');
 
-	if($('#qtyenter').val().length === 0 || $('#qtyenter').val() === 0){
-		iziToast.warning({
-			title:'Peringatan!',
-			message:'Qty tidak boleh kosong!'
-		});
-		return false;
-	}
-
-	if($('#stockenter').val() === 0 || $('#stockenter').val() < $('#qtyenter').val()){
-		if ($('#stockenter').val() < $('#qtyenter').val()) {
-			iziToast.warning({
-				title:'Peringatan!',
-				message:'Stok tidak mencukupi!'
-			})
-		}
-		if ($('#stockenter').val() === 0) {
-			iziToast.warning({
-				title:'Peringatan!',
-				message:'Stok kosong!'
-			})	
-		}
-		return false;
-	}
-
 	for(var i =0; i<iditemlist.length;i++){
 		if(iditem === iditemlist.eq(i).val()){
-
-			var tambah = parseInt(iditemlist.eq(i).parents('.accordion').find('[name="qty[]"]').val()) + parseInt($('#qtyenter').val());
-			
-			iditemlist.parents('.accordion').find('[name="qty[]"]').eq(i).val(tambah);
-
-			$('#produk').prop('selectedIndex', 0).trigger('change');
-			$('#qtyenter').val(0);
-			cekstok();
-			$('#produk').select2('open');
-
+			iziToast.error({
+				title:'Gagal!',
+				message:'Barang sudah ada di list!'
+			})
 			return false;
 		}
 	}
@@ -167,10 +159,10 @@ function appendlist(){
 	el = $(dom);
 	el.find('.btn-header').attr('data-target', '#collapse-'+counter_strike__battlefield);
 	el.find('.btn-header').attr('aria-controls', 'collapse-'+counter_strike__battlefield);
-	el.find('.btn-header').text(textitem);
+	el.find('.btn-header').text(iditem+ ' - ' + textitem);
 	el.find('.datalist-collapse').attr('id', 'collapse-'+counter_strike__battlefield);
 
-	// el.find('[name="qty[]"]').val(qty);
+	el.find('[name="qty[]"]').val(qty);
 	el.find('[name="stok[]"]').val(stok);
 	el.find('[name="iditem[]"]').val(iditem);
 
@@ -213,122 +205,4 @@ $('#btn-simpan').click(function(){
 			}
 		}
 	});
-});
-function get_edit(){
-	$.ajax({
-		url:url('api/marketing/manasik/pelaksanaan_kegiatan/edit_pelaksanaan_kegiatan'),
-		data:{
-			id: $('#me_id').val()
-		},
-		type:'get',
-		dataType:'json',
-		success:function(res){
-			console.log(res);
-			var data = res.data;
-			var datadt = res.datadt;
-			var item = res.item;
-			var petugas = res.petugas;
-
-			$('#kode').val(data.me_code);
-			$('#employe3').val(data.me_employe3).trigger('change');
-			$('#employe2').val(data.me_employe2).trigger('change');
-			$('#employe1').val(data.me_employe1).trigger('change');
-
-			for(var b = 0;b<item.length;b++){
-				var barang = item[b];
-				var appendx = '<option value="'+ barang.ir_id +'">'+ barang.ir_code +' - '+ barang.ir_name +'</option>';
-				$('#produk').append(appendx);
-			}
-
-			cekstok();
-
-			$('#div-produk-dibawa').html('');
-
-			dom = $('rawcontent').html();
-			var datai;
-			for(var i = 0; i <datadt.length; i++){
-				datai = datadt[i];
-
-				el = $(dom);
-				el.find('.btn-header').attr('data-target', '#collapse-'+counter_strike__battlefield);
-				el.find('.btn-header').attr('aria-controls', 'collapse-'+counter_strike__battlefield);
-				el.find('.btn-header').text(datai.ir_code+ ' - ' + datai.ir_name);
-				el.find('.datalist-collapse').attr('id', 'collapse-'+counter_strike__battlefield);
-
-				el.find('[name="qty[]"]').val(parseInt(datai.mdt_qty));
-				// el.find('[name="stok[]"]').val(stok);
-				el.find('[name="iditem[]"]').val(datai.ir_id);
-				el.find('.card-footer').remove();
-
-				$('#div-produk-dibawa').append(el);
-
-				counter_strike__battlefield++;
-			}
-
-	
-		},
-		error: function(jqXHR, exception) {
-			if (jqXHR.status === 0) {
-			    alert('Not connect.\n Verify Network.');
-			} else if (jqXHR.status == 404) {
-			    alert('Requested page not found. [404]');
-			} else if (jqXHR.status == 500) {
-			    alert('Internal Server Error [500].');
-			} else if (exception === 'parsererror') {
-			    alert('Requested JSON parse failed.');
-			} else if (exception === 'timeout') {
-			    alert('Time out error.');
-			} else if (exception === 'abort') {
-			    alert('Ajax request aborted.');
-			} else {
-			    alert('Uncaught Error.\n' + jqXHR.responseText);
-			}
-		}
-
-	});
-
-}
-
-$('#btn-update').click(function(){
-	$.ajax({
-		url:url('api/marketing/manasik/pelaksanaan_kegiatan/update'),
-		type:'get',
-		dataType:'json',
-		data:$('#pelaksanaan-form').serialize() + '&' + $('#list-pelaksanaan-form').serialize(),
-		success : function(response){
-			if (response.status == 'berhasil') {
-				iziToast.success({
-					title : "Sukses!",
-					message : "<i class='fa fa-clock-o'></i> <i>Berhasil Disimpan!</i>"
-					
-				});
-				
-				Routing.load_routing('includes/manasik/pelaksanaan_manasik/tab_pelaksanaan_manasik/index-tab-pelaksanaan.html');
-			} else {
-				iziToast.error({
-					title : "Gagal!",
-					message : "<i class='fa fa-clock-o'></i> <i>Gagal Disimpan</i>"
-					
-				});
-			}
-
-		},
-		error: function(jqXHR, exception) {
-			if (jqXHR.status === 0) {
-			    alert('Not connect.\n Verify Network.');
-			} else if (jqXHR.status == 404) {
-			    alert('Requested page not found. [404]');
-			} else if (jqXHR.status == 500) {
-			    alert('Internal Server Error [500].');
-			} else if (exception === 'parsererror') {
-			    alert('Requested JSON parse failed.');
-			} else if (exception === 'timeout') {
-			    alert('Time out error.');
-			} else if (exception === 'abort') {
-			    alert('Ajax request aborted.');
-			} else {
-			    alert('Uncaught Error.\n' + jqXHR.responseText);
-			}
-		}
-	})
 })
