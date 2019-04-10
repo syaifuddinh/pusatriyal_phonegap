@@ -1,15 +1,18 @@
 $('#btn-simpan-status').click(function(){
 	var idx = $('#me_id').val();
 	var statusx = $('#status').val();
+	var m_comp_idx = localStorage.getItem('m_comp_id');
 	$.ajax({
-		url:url('api/marketing/manasik/pelaksanaan_kegiatan/gantistatus'),
+		url:url('api/marketing/manasik/pelaksanaan_kegiatan/gantistatus_android'),
 		type:'get',
 		dataType:'json',
 		data:{
 			id:idx,
-			status:statusx
+			status:statusx,
+			m_comp_id:m_comp_idx
 		},
 		success:function(res){
+			$('#modal-status').modal('hide');
 			if (res.status == 'berhasil') {
 				iziToast.success({
 					title:'Sukses!',

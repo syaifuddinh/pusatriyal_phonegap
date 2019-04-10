@@ -316,7 +316,10 @@ $(document).ready(function(){
     });        	
 
     $.ajax({
-    	url:url('api/marketing/manasik/GetMaxNota'),
+    	url:url('api/marketing/manasik/GetMaxNota_Android'),
+      data:{
+        m_comp_id:localStorage.getItem('m_comp_id')
+      },
     	type:'get',
     	success:function(res){
     		// console.log(res);
