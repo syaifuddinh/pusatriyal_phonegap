@@ -114,7 +114,7 @@
 </div>
 
 
-<form id="pelaksanaan-form" class="form" action="" method="post" autocomplete="off">
+<form id="penjualan-form" class="form" action="" method="post" autocomplete="off">
     <input type="hidden" name="_token" id="_token">
     <input type="hidden" name="session" id="session">
     <input type="hidden" name="marketing" id="marketing">
@@ -170,7 +170,7 @@
       <div class="form-group">
         <label>Harga Barang</label>
         
-        <input type="text" class="form-control" name="" id="hargaenter" readonly="">
+        <input type="text" class="form-control" name="" id="harga" readonly="">
         
       </div>
 
@@ -178,14 +178,14 @@
       <div class="form-group">
         <label>Stok Barang</label>
         
-        <input type="text" class="form-control" name="" id="stockenter" readonly="">
+        <input type="text" class="form-control" name="" id="stok" readonly="">
         
       </div>
 
       <div class="form-group">
         <label>Stok Antri</label>
         
-        <input type="text" class="form-control" name="" id="antrienter" readonly="">
+        <input type="text" class="form-control" name="" id="stokantri" readonly="">
         
       </div>
 
@@ -199,8 +199,13 @@
       <button class="btn btn-primary btn-block" type="button" id="btn-tambah">Tambah dilist</button>
 
     </fieldset>
-<form id="list-pelaksanaan-form" style="margin-bottom: 25mm">
-    <div id="div-produk-dibawa">
+<form id="list-penjualan-form">
+    <div class="form-group form-tagihan">
+        <label for="tagihan" class="label-for">Total Harga</label>
+        <input type="text" readonly="" name="" id="total_harga" class="form-control text-right">
+        <input type="hidden" name="sm_net">
+    </div>
+    <div id="div-produk-dibawa" style="margin-bottom: 25mm">
 
     </div>
 </form>     
@@ -214,7 +219,9 @@
                   BRG/0001 - 10 Riyal
                 </button>
                 <input type="hidden" name="iditem[]">
-                <input type="hidden" name="stok[]">
+                <input type="hidden" name="item[]">
+                <input type="hidden" class="nilairiyal" name="">
+
               </h5>
             </div>
 
@@ -224,16 +231,42 @@
                   <table class="w-100">
                     <tr>
                       <th>
+                        <small>Harga</small>
+                      </th>
+                      <td>
+                        <input type="text" readonly="" class="form-control form-control-sm harga">
+                        <input type="hidden" name="harga[]">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
                         <small>Qty</small>
                       </th>
                       <td>
                         <input type="number" class="form-control form-control-sm" name="qty[]">
                       </td>
                     </tr>
+                    <tr>
+                      <th>
+                        <small>Jumlah Harga</small>
+                      </th>
+                      <td>
+                        <input type="text" class="form-control form-control-sm total" readonly="" >
+                        <input type="hidden" name="total[]">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <small>Stok</small>
+                      </th>
+                      <td>
+                        <input type="number" class="form-control form-control-sm" readonly="" name="stok[]">
+                      </td>
+                    </tr>
                   </table>
                 </div>
                 <div class="card-footer text-right">
-                  <button class="btn btn-danger btn-sm btn-hapus-accordion"><i class="fa fa-trash-o"></i> Hapus</button>
+                  <button class="btn btn-danger btn-sm btn-hapus-accordion"><i class="fa fa-trash-o" type="button"></i> Hapus</button>
                 </div>
                 
               </div>
@@ -244,6 +277,28 @@
       
     
 </form>
+
+<div class="modal fade" id="modal-antrian" tabindex="-1" role="dialog" aria-labelledby="status-title" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="status-title">Nomor Antrian</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+
+
+        <label class="badge-antrian"></label>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script type="text/javascript" src="includes/manasik/penjualan_manasik/js/form-penjualan-manasik-commander.js"></script>
   <script type="text/javascript">

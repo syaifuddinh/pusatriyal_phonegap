@@ -2,6 +2,83 @@ $('#btn-simpan-status').click(function(){
 	var idx = $('#me_id').val();
 	var statusx = $('#status').val();
 	var m_comp_idx = localStorage.getItem('m_comp_id');
+	$('#modal-status').modal('hide');
+
+	if (statusx === 'Y') {
+
+		iziToast.question({
+		    timeout: 20000,
+		    close: false,
+		    overlay: true,
+		    displayMode: 'once',
+		    id: 'question',
+		    zindex: 999,
+		    title: 'Peringatan',
+		    message: 'Apa anda yakin mau mengganti status Waiting menjadi Final?',
+		    position: 'center',
+		    buttons: [
+		        ['<button class="w-100"><b>YES</b></button>', function (instance, toast) {
+		 			instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+		 			$.ajax({
+						url:url('api/marketing/manasik/pelaksanaan_kegiatan/gantistatus_android'),
+						type:'get',
+						dataType:'json',
+						data:{
+							id:idx,
+							status:statusx,
+							m_comp_id:m_comp_idx
+						},
+						success:function(res){
+							if (res.status == 'berhasil') {
+								iziToast.success({
+									title:'Sukses!',
+									message:'<i class="fa fa-clock-o"></i> Status berhasil diganti!'
+								});
+								Routing.load_page('includes/manasik/pelaksanaan_manasik/tab_pelaksanaan_manasik/index-tab-pelaksanaan.html');
+							} else if (res.status == 'stock kurang') {
+								iziToast.info({
+									title:'Info!',
+									message:'<i class="fa fa-clock-o"></i> Stok kurang!'
+								});
+							} else {
+								iziToast.error({
+									title:'Gagal!',
+									message:'<i class="fa fa-clock-o"></i> Status gagal diubah!'
+								});
+							}
+						},
+						error: function(jqXHR, exception) {
+							if (jqXHR.status === 0) {
+							    alert('Not connect.\n Verify Network.');
+							} else if (jqXHR.status == 404) {
+							    alert('Requested page not found. [404]');
+							} else if (jqXHR.status == 500) {
+							    alert('Internal Server Error [500].');
+							} else if (exception === 'parsererror') {
+							    alert('Requested JSON parse failed.');
+							} else if (exception === 'timeout') {
+							    alert('Time out error.');
+							} else if (exception === 'abort') {
+							    alert('Ajax request aborted.');
+							} else {
+							    alert('Uncaught Error.\n' + jqXHR.responseText);
+							}
+						}
+					})
+		            
+		        }, true],
+		        ['<button class="w-100">NO</button>', function (instance, toast) {
+		 
+		            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+		 
+		        }],
+		    ]
+		});
+
+		return false;
+	}
+
 	$.ajax({
 		url:url('api/marketing/manasik/pelaksanaan_kegiatan/gantistatus_android'),
 		type:'get',
@@ -12,17 +89,16 @@ $('#btn-simpan-status').click(function(){
 			m_comp_id:m_comp_idx
 		},
 		success:function(res){
-			$('#modal-status').modal('hide');
 			if (res.status == 'berhasil') {
 				iziToast.success({
 					title:'Sukses!',
-					message:'<i class="fa fa-clock-o"></i> Data Berhasil disimpan!'
+					message:'<i class="fa fa-clock-o"></i> Status berhasil diganti!'
 				});
 				Routing.load_page('includes/manasik/pelaksanaan_manasik/tab_pelaksanaan_manasik/index-tab-pelaksanaan.html');
 			} else if (res.status == 'stock kurang') {
 				iziToast.info({
 					title:'Info!',
-					message:'<i class="fa fa-clock-o"></i> Stok Kurang!'
+					message:'<i class="fa fa-clock-o"></i> Stok kurang!'
 				});
 			} else {
 				iziToast.error({
@@ -49,6 +125,8 @@ $('#btn-simpan-status').click(function(){
 			}
 		}
 	})
+
+		
 });
 
 $('#btn-hapus').click(function(){

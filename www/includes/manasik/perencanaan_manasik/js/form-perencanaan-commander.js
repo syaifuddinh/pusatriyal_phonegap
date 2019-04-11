@@ -318,7 +318,7 @@ $(document).ready(function(){
     $.ajax({
     	url:url('api/marketing/manasik/GetMaxNota_Android'),
       data:{
-        m_comp_id:localStorage.getItem('m_comp_id')
+        m_comp_code:localStorage.getItem('m_comp_code')
       },
     	type:'get',
     	success:function(res){
