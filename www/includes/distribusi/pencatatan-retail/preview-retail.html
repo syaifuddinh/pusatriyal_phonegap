@@ -214,7 +214,8 @@
       data: {id:$('#sr_id').val(), user_comp:localStorage.getItem('m_comp_id')},
       dataType: 'JSON',
       url: url('api/riyal/distribusi/retail/penjualan/detailapi'),
-      success : function(response){        ;
+      success : function(response){
+        unit = response.penjualan;
         $('#marketing').val(response.penjualan.marketing_name);
         if(response.penjualan.officer_name == null || response.penjualan.officer_name == ""){
           $('#pengirim').val('Tidak Ada Petugas');

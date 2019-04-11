@@ -54,9 +54,6 @@
 
 </style>
 
-<button class="btn btn-primary rounded-btn" pusatriyal-role='routing' pusatriyal-target='includes/distribusi/pencatatan-agen/tambah-agen.html' pusatriyal-callback="customer_form" id="btn-tambah">
-  <i class="fa fa-plus"></i>
-</button>
 <div class="breadcrumb-pusatriyal">
   <span class="active">Pencatatan Retail</span>
 </div>
@@ -90,6 +87,7 @@
       type    : 'get',
       dataType : 'json',
       success : function(resp){
+        console.log(resp);
         var card = $('.card');
         units = resp;
         var unit, rawcontent, content;
@@ -152,7 +150,7 @@
               'Pengiriman : '+
               textp
             );
-
+            console.log(content);
             $('.card').append(content);
               }
             }
@@ -195,7 +193,6 @@
       dataType : 'json',
       success : function(resp){
         $('#list-for-filter').html("");
-        console.log(resp);
         var card = $('.card');
         units = resp;
         var unit, rawcontent, content;
@@ -315,6 +312,11 @@
     $('#customer').val(json.kodecustomer + '-' + json.namacustomer);
 
     $('#netto').val(get_currency(json.sr_net));
+
+    petugas = localStorage.getItem('m_id') == undefined ? localStorage.getItem('m_id') : 1;
+    if (json.sr_officer_send != petugas) {
+      $('#antar').css('display', 'none');
+    }
   }
   </script>
 </div>

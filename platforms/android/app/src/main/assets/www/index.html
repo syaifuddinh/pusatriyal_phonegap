@@ -161,8 +161,7 @@ $(window).error(function(e){
         type    : 'post',
         data    :  form + '&grant_type=' + grant_type + '&client_secret=' + client_secret + '&client_id=' + client_id,
         dataType: 'json',
-        success : function(response){;
-          console.log(response);
+        success : function(response){
             if(response.access_token != undefined) {
               console.log(response);
               username = $('#username').val();
