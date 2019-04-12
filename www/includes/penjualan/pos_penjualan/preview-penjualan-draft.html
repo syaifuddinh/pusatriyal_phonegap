@@ -100,8 +100,8 @@
 </style>
 
 <div class="pusatriyal-submit btn-group">
-  
-  <button class="btn btn-warning" id="btn-edit" >
+
+  <button class="btn btn-warning" pusatriyal-target="includes/penjualan/pos_penjualan/edit-penjualan.html" pusatriyal-role="routing" pusatriyal-callback="edit_penjualan_func" id="btn-edit" >
     <i class="fa fa-pencil"></i>
   </button>
   <button class="btn btn-danger" id="btn-hapus">
@@ -121,33 +121,37 @@
       </h5>
     </div>
     <div class="form-group">
-        <label class="label-for" for="tgl_nota" >Tanggal Faktur</label><br>
+        <label for="customer" class="label-for">Customer</label>
         <div class="border-bottom border-bottom-1">
-          <input type="text" readonly="" name="tgl_opname" id="tgl_opname" class="form-control-plaintext" >
+        <input type="text" class="form-control" name="customer" id="customer" readonly value="">
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="label-for" for="address" >Alamat</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" class="form-control" readonly="" id="address" name="address">
         </div>
     </div>
     <div class="form-group">
-        <label for="customer" class="label-for">Customer</label><br>
+        <label for="cara_pembayaran" class="label-for">Cara Pembayaran</label><br>
         <div class="border-bottom border-bottom-1">
-          <input type="text" readonly="" name="customer" id="customer" class="form-control-plaintext" >
+        <input type="text" class="form-control" name="cara_pembayaran" id="cara_pembayaran" readonly value="">
         </div>
     </div>
-    <div class="form-group">
-        <label for="customer" class="label-for">Alamat</label><br>
-        <div class="border-bottom border-bottom-1">
-          <textarea readonly="" name="customer" id="customer" class="form-control-plaintext" ></textarea>
-        </div>
+    <div class="form-group input-daterange">
+      <label for="cara_pembayaran" class="label-for">Tanggal Faktur</label><br>
+      <div class="border-bottom border-bottom-1">
+      <input type="text" class="form-control" value="" id="tanggal_faktur" readonly name="tanggalfaktur" readonly="">
+      </div>
     </div>
-    <div class="form-group">
-        <label for="pembayaran" class="label-for">Cara Pembayaran</label><br>
-        <div class="border-bottom border-bottom-1">
-          <input type="text" readonly="" name="pembayaran" id="pembayaran" class="form-control-plaintext" >
-        </div>
+    <div class="form-group input-daterange" id="divjatuhtempo" style="display:none;">
+      <label for="jatuh_tempo" class="label-for">Jatuh Tempo</label><br>
+      <div class="border-bottom border-bottom-1">
+      <input type="text" class="form-control" value="" id="jatuh_tempo" name="jatuh_tempo" readonly="">
+      </div>
+    </div>
+    <div id="form-list-item">
 
-    </div>
-    <div id="list-item">
-
-    </div>     
     </div>
 <rawcontent class="datalist">
   <div class="accordion">
@@ -164,31 +168,187 @@
         <div class="card">
           <div class="card-body card-forlist p-3">
 
-            <span> 
+            <span>
               <small class="font-weight-bold">Qty Sistem</small> <small id="qty_sistem">10</small>
             </span>
             <br>
-            <span> 
+            <span>
               <small class="font-weight-bold">Qty Real</small> <small id="qty_real">10</small>
             </span>
           </div>
           <div class="card-footer">
-            <span> 
+            <span>
               <span class="font-weight-bold">Status</span> <span id="status">Hilang</span>
             </span>
           </div>
-          
+
         </div>
       </div>
     </div>
   </div>
 </rawcontent>
-      
-    
+
+
 </form>
 
     <script type="text/javascript" src="includes/penjualan/pos_penjualan/js/preview-penjualan-draft-commander.js"></script>
-  <script type="text/javascript">
-    // display_pembayaran_json(global_pembayaran_json);
-  </script>
+    <script type="text/javascript">
+    $('#btn-hapus').click(function(){
+      iziToast.question({
+        timeout:false,
+          close: false,
+          overlayClose:true,
+          overlay: true,
+          displayMode: 'once',
+          id: 'question',
+          zindex: 999,
+          title: 'Konfirmasi!',
+          message: 'Apa anda yakin mau menghapus data ini?',
+          position: 'center',
+          buttons: [
+              ['<button class="w-100 mt-3"><b>YES</b></button>', function (instance, toast) {
+            $.ajax({
+              url:url('api/produk/penjualan/pos_penjualan/hapus'),
+              data:{id:$('#s_id').val()},
+              type:'get',
+              success:function(res){
+                if (res.status === "berhasil") {
+                  iziToast.success({
+                    title:'Sukses!',
+                    message:'Data berhasil dihapus!'
+                  });
+                Routing.load_page('includes/penjualan/pos_penjualan/index-penjualan.html');
+                } else if(res.status === 'gagal'){
+                  iziToast.error({
+                    title:'Gagal!',
+                    message:'Data gagal dihapus!'
+                  });
+                }
+              },
+              error: function(jqXHR, exception) {
+                if (jqXHR.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXHR.status == 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXHR.status == 500) {
+                    alert('Internal Server Error [500].');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (exception === 'timeout') {
+                    alert('Time out error.');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error.\n' + jqXHR.responseText);
+                }
+              }
+            });
+                  instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+              }, true],
+              ['<button class="w-100 mt-3">NO</button>', function (instance, toast) {
+
+                  instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+              }],
+          ]
+      });
+    });
+
+    function edit_penjualan_func(){
+      $('#jumlahdt').val(jumlahdt);
+      $('#nota').text(unit.data.s_code);
+      $('#s_id').val(unit.data.s_id);
+      $('#address').val(unit.data.c_address);
+      $('#cara_pembayaran').val(unit.data.s_jenis_bayar.toUpperCase());
+      if (unit.data.s_jenis_bayar != 'tunai') {
+        $('#divjatuhtempo').css('display', '');
+        $('#jatuh_tempo').val(moment(unit.data.s_duedate).format('DD-MM-YYYY'));
+      }
+      $('#tanggal_faktur').val(moment(unit.data.s_date).format('DD-MM-YYYY'));
+
+      var html = "";
+      for (var i = 0; i < unit.datadt.length; i++) {
+        if (unit.kemplo[i].i_buy == 'Y') {
+          var readonly = '';
+        } else if (unit.kemplo[i].i_buy == 'N') {
+          var readonly = 'readonly';
+        }
+
+        html += '<div class="accordion">'+
+              '<div class="card">'+
+                '<div class="card-header bg-success header-collapse p-0" id="header-'+ i +'">'+
+                  '<h5 class="mb-0">'+
+                    '<button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapse-'+ i +'" aria-expanded="true" aria-controls="collapse-'+ i +'">'+
+                      unit.datadt[i].i_code + ' - ' + unit.datadt[i].i_name +
+                      '<input type="hidden" name="iditem[]" id="iditem'+unit.datadt[i].i_id+'" value="'+unit.datadt[i].i_id+'" '+readonly+'>'+
+                    '</button>'+
+                  '</h5>'+
+                '</div>'+
+                ''+
+                '<div id="collapse-'+ i +'" class="collapse datalist-collapse" aria-labelledby="header-'+ i +'" data-parent="#form-list-item">'+
+                  '<div class="card">'+
+                    '<div class="card-body card-forlist p-3">'+
+                    ''+
+                      '<table class="w-100 table-accordion">'+
+                        '<tr>'+
+                          '<th>Qty</th>'+
+                          '<td>'+
+                            '<div class="input-group">'+
+                              '<input type="text" readonly onkeyup="qtyinput('+unit.datadt[i].i_id+')" id="qtyinput'+unit.datadt[i].i_id+'" class="form-control lib_qty_list" name="qty[]" value="'+ unit.datadt[i].sd_qty +'">'+
+                            '</div>'+
+                          '</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                          '<th>Satuan</th>'+
+                          '<td><input type="text" readonly="" class="form-control" name="satuan[]" value="'+ unit.datadt[i].u_unit +'"></td>'+
+                        '</tr>'+
+                        '<tr>'+
+                          '<th>Harga</th>'+
+                          '<td>'+
+                            '<div class="input-group">'+
+                              '<input type="text" '+readonly+' class="form-control lib_harga_list" onkeyup="hargainput('+unit.datadt[i].i_id+')" id="hargainput'+unit.datadt[i].i_id+'" onkeyup="hargainput('+unit.datadt[i].i_id+')" name="harga[]" value="'+ get_currency(parseInt(unit.datadt[i].sd_price)) +'"">'+
+                            '</div>'+
+                          '</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                          '<th>Disc Percent</th>'+
+                          '<td>'+
+                            '<div class="input-group">'+
+                              '<input type="number" onkeyup="discpercent('+unit.datadt[i].i_id+')" class="form-control disc_percent" id="discpercent'+unit.datadt[i].i_id+'" name="disc_percent[]" value="">'+
+                              '<input type="hidden" class="form-control" id="sd_disc_percent_value'+unit.datadt[i].i_id+'" name="sd_disc_percent_value[]">'+
+                            '</div>'+
+                          '</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                          '<th>Disc Value</th>'+
+                          '<td>'+
+                            '<div class="input-group">'+
+                              '<input type="number" onkeyup="discvalue('+unit.datadt[i].i_id+')" id="discvalue'+unit.datadt[i].i_id+'" class="form-control disc_value" name="disc_value[]" value="">'+
+                            '</div>'+
+                          '</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                          '<th>Total</th>'+
+                          '<td>'+
+                            '<div class="input-group">'+
+                              '<input type="text" readonly class="form-control total" id="totalinput'+unit.datadt[i].i_id+'" name="total[]" value="'+ get_currency(parseInt(unit.datadt[i].sd_total)) +'">'+
+                            '</div>'+
+                          '</td>'+
+                        '</tr>'+
+                      '</table>'+
+                      ''+
+                    '</div>'+
+                    '<div class="card-footer">'+
+                      '<button class="btn btn-danger btn-sm btn-hapus pull-right btn-hapus-accordion" type="button"><i class="fa fa-trash-o"></i> Hapus</button>'+
+                    '</div>'+
+                    ''+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+          '</div>';
+      }
+      $('#form-list-item').html(html);
+    }
+    </script>
 </div>

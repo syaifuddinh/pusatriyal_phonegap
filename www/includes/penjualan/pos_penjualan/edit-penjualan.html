@@ -107,17 +107,22 @@
 <div class="pusatriyal-submit btn-group">
 
   <button class="btn btn-primary rounded-btn" onclick="simpan()">
-    Draft
-  </button>
-  <button class="btn btn-primary rounded-btn" onclick="final()">
-    Final
+    <em class="fa fa-check"></em>
   </button>
 </div>
 <div class="breadcrumb-pusatriyal">
-  <span class="active">Form Penjualan</span>
+  <span class="active">Edit Penjualan</span>
 </div>
 <form id="formsimpan" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
 <input type="hidden" name="_token" id="_token">
+<input type="text" name="jumlahdt" id="jumlahdt">
+<input type="text" name="s_id" id="s_id">
+    <div class="w-100 text-center mb-3">
+      <h3>Nota</h3>
+      <h5 id="nota">
+          ?
+      </h5>
+    </div>
 <!-- <input type="hidden" name="sm_id" id="sm_id"> -->
     <div class="form-group">
         <label for="customer" class="label-for">Customer</label>
@@ -226,11 +231,17 @@
         $('#searchitem').html(html);
         $('#searchitem').select2();
 
+        $('#customer').find('[value='+unit.data.c_id+']').attr('selected', 'selected');
+        $('#customer').trigger('change');
+
+        $('#cara_pembayaran').find('[value='+unit.data.s_jenis_bayar+']').attr('selected', 'selected');
+        $('#cara_pembayaran').trigger('change');
       }
     });
+
   });
 
-  var counter_strike__battefield = 0;
+  var counter_strike__battefield = $('#jumlahdt').val();
 
   $('#item').html('');
 
@@ -265,6 +276,7 @@
               var tmp1 = qty.val();
               var hasil = parseInt(tmp1) + parseInt(tmp);
               var totalinput = harga * hasil;
+
               if (parseInt(hasil) > parseInt($('#stok').val())) {
                 iziToast.error({
                   title:'Gagal!',
@@ -344,7 +356,7 @@
                                       '<th>Total</th>'+
                                       '<td>'+
                                         '<div class="input-group">'+
-                                          '<input type="text" readonly class="form-control total" id="totalinput'+$('#searchitem').val()+'" name="total[]" value="'+ get_currency(total) +'">'+
+                                          '<input type="text" class="form-control total" id="totalinput'+$('#searchitem').val()+'" name="total[]" value="'+ get_currency(total) +'">'+
                                         '</div>'+
                                       '</td>'+
                                     '</tr>'+
@@ -405,13 +417,23 @@
     function getdata(){
       var id = $('#searchitem').val();
 			var customer = $('#customer').val();
+      $('#hargaitem').val('');
+      $('#iditem').val('');
+      $('#unit').val('');
+      $('#idunit').val('');
+      $('#stok').val('');
+      $('#editable').val('');
+
+      $('#qty').val('');
 			$.ajax({
 				type: 'get',
 				data: {id:id, customer:customer, user_comp:user_comp},
 				dataType: 'json',
 				url: url('api/produk/penjualan/pos_penjualan/getdetailbarang'),
 				success : function(response){
-					$('#hargaitem').val(response[0].i_sell);
+
+
+          $('#hargaitem').val(response[0].i_sell);
 					$('#iditem').val(response[0].i_id);
 					$('#unit').val(response[0].u_unit);
 					$('#idunit').val(response[0].i_unit);
@@ -811,5 +833,113 @@ function final(){
 			}
 			$('#totalinput'+id).val(get_currency(total));
 		}
+
+    function simpan(){
+      	iziToast.question({
+      		timeout:false,
+      	    close: false,
+      	    overlayClose:true,
+      	    overlay: true,
+      	    displayMode: 'once',
+      	    id: 'question',
+      	    zindex: 999,
+      	    title: 'Konfirmasi!',
+      	    message: 'Apa anda yakin mau final data ini?',
+      	    position: 'center',
+      	    buttons: [
+      	        ['<button class="w-100 mt-3"><b>YES</b></button>', function (instance, toast) {
+                  var total = [];
+                  var selectedVal;
+                  $(".total").each(function(i, sel){
+                      selectedVal = $(sel).val();
+                      selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+                      total.push(selectedVal);
+                  });
+
+                  var jumlah = total.reduce(getSum);
+
+                  var qty = [];
+                  var selectedVal;
+                  $(".lib_qty_list").each(function(i, sel){
+                      selectedVal = $(sel).val();
+                      qty.push(selectedVal);
+                  });
+
+                  var harga = [];
+                  var selectedVal;
+                  $(".lib_harga_list").each(function(i, sel){
+                      selectedVal = $(sel).val();
+                      selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+                      harga.push(selectedVal);
+                  });
+
+                  var discpercent = [];
+                  var selectedVal;
+                  $(".disc_percent").each(function(i, sel){
+                      selectedVal = $(sel).val();
+                      selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+                      discpercent.push(selectedVal);
+                  });
+
+                  var discvalue = [];
+                  var selectedVal;
+                  $(".disc_value").each(function(i, sel){
+                      selectedVal = $(sel).val();
+                      selectedVal = selectedVal.replace(/[^0-9\-]+/g,"");
+                      discvalue.push(selectedVal);
+                  });
+
+                  var totaldiscvalue = discvalue.reduce(getSum);
+
+                  var jumlahgross = [];
+                  for (var i = 0; i < qty.length; i++) {
+                    var tmp = qty[i] * harga[i];
+                    jumlahgross.push(tmp);
+                  }
+
+                  var totalgross = jumlahgross.reduce(getSum);
+
+                  var discpercent1 = [];
+                  for (var i = 0; i < harga.length; i++) {
+                      var tmp = (harga[i] / totalgross) * discpercent[i];
+                      discpercent1.push(tmp);
+                  }
+
+                  var totaldiscpercent = discpercent1.reduce(getdisc);
+
+                  $('#totalnet').val(jumlah);
+                  $('#totalgross').val(totalgross);
+
+                  $.ajax({
+                    type: 'get',
+                    data: $('#formsimpan').serialize()+'&id='+$('#s_id').val()+'&user_comp='+user_comp+'&customer='+$('#customer').val()+'&totaldiscpercent='+totaldiscpercent+'&totaldiscvalue='+totaldiscvalue,
+                    dataType: 'JSON',
+                    url: url('api/produk/penjualan/pos_penjualan/editfinal'),
+                    success : function(response){
+                      if (response.status == 'berhasil') {
+                        iziToast.success({
+                          title:'Sukses!',
+                          message:'Berhasil disimpan!'
+                        });
+                        Routing.load_page('includes/penjualan/pos_penjualan/index-penjualan.html');
+                      } else {
+                        iziToast.error({
+                          title:'Gagal!',
+                          message:'Data gagal disimpan!'
+                        });
+                      }
+                    }
+                  });
+      	            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+      	        }, true],
+      	        ['<button class="w-100 mt-3">NO</button>', function (instance, toast) {
+
+      	            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+      	        }],
+      	    ]
+      	});
+    }
   </script>
 </div>
