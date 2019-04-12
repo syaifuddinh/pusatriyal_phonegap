@@ -36,7 +36,7 @@ function cekdata(){
 function getdata(){
   $.ajax({
     type: 'get',
-    data: {sr_id, petugas, type:'R'},
+    data: {sr_id, petugas, type:'C'},
     dataType: 'json',
     url: url('api/getmap'),
     success : function(response){
@@ -55,7 +55,7 @@ function getdata(){
 }
 
 function getmap(response, count){
-  var map = L.map('mapid').setView([response[count - 1].rdt_latitude, response[count - 1].rdt_longitude], 13);
+  var map = L.map('mapid').setView([response[count - 1].cdt_latitude, response[count - 1].cdt_longitude], 13);
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
@@ -64,7 +64,7 @@ function getmap(response, count){
   // var polyline = L.polyline(polylinepoint, {color: 'red'}).addTo(map);
   //
   // map.fitBounds(polyline.getBounds());
-  var marker = L.marker([response[0].rdt_latitude, response[0].rdt_longitude],
+  var marker = L.marker([response[0].cdt_latitude, response[0].cdt_longitude],
        {
          title: 'Lokasi Awal'}            // Adjust the opacity
        )
@@ -73,7 +73,7 @@ function getmap(response, count){
   marker.bindPopup("Lokasi Awal").openPopup();
   // L.marker(response[count - 1].rdt_latitude, response[count - 1].rdt_longitude).addTo(map);
 
-  var stuSplit = L.latLng(response[count - 1].rdt_latitude, response[count - 1].rdt_longitude);
+  var stuSplit = L.latLng(response[count - 1].cdt_latitude, response[count - 1].cdt_longitude);
   var myMarker = L.circleMarker(stuSplit,
     { title: 'unselected' })
         .addTo(map);
@@ -82,7 +82,7 @@ function getmap(response, count){
 function selesai(){
   stop(sr_id);
   clearInterval(interval);
-  Routing.load_page('includes/distribusi/pencatatan-retail/pencatatan-retail.html');
+  Routing.load_page('includes/distribusi/jadwal-pengantaran-corporate/index.html');
 }
 
 </script>
