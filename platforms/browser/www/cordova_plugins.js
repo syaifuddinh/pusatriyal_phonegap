@@ -404,6 +404,30 @@ module.exports = [
             "navigator.notification",
             "navigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-printer/www/printer.js",
+        "id": "cordova-plugin-printer.Printer",
+        "pluginId": "cordova-plugin-printer",
+        "clobbers": [
+            "cordova.plugins.printer"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-printer/src/browser/PrinterProxy.js",
+        "id": "cordova-plugin-printer.Printer.Proxy",
+        "pluginId": "cordova-plugin-printer",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-pdf-generator/www/pdf.js",
+        "id": "cordova-pdf-generator.pdf",
+        "pluginId": "cordova-pdf-generator",
+        "clobbers": [
+            "cordova.plugins.pdf",
+            "pugin.pdf",
+            "pdf"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -423,7 +447,9 @@ module.exports.metadata =
     "cordova-plugin-vibration": "2.1.6",
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-android-support-gradle-release": "2.1.0",
-    "cordova.plugins.diagnostic": "4.0.12"
+    "cordova.plugins.diagnostic": "4.0.12",
+    "cordova-plugin-printer": "0.8.0",
+    "cordova-pdf-generator": "2.0.8"
 }
 // BOTTOM OF METADATA
 });

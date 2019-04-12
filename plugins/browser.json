@@ -45,6 +45,12 @@
     },
     "cordova.plugins.diagnostic": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
+    },
+    "cordova-pdf-generator": {
+      "PACKAGE_NAME": "com.phonegap.helloworld"
+    },
+    "cordova-plugin-printer": {
+      "PACKAGE_NAME": "com.phonegap.helloworld"
     }
   },
   "dependent_plugins": {

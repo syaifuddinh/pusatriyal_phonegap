@@ -459,11 +459,21 @@ module.exports = [
     ]
   },
   {
-    "id": "cordova-plugin-geolocation-android-activator.geolocation-activator",
-    "file": "plugins/cordova-plugin-geolocation-android-activator/www/geolocation-activator.js",
-    "pluginId": "cordova-plugin-geolocation-android-activator",
+    "id": "cordova-pdf-generator.pdf",
+    "file": "plugins/cordova-pdf-generator/www/pdf.js",
+    "pluginId": "cordova-pdf-generator",
     "clobbers": [
-      "navigator.geolocation.activator"
+      "cordova.plugins.pdf",
+      "pugin.pdf",
+      "pdf"
+    ]
+  },
+  {
+    "id": "cordova-plugin-printer.Printer",
+    "file": "plugins/cordova-plugin-printer/www/printer.js",
+    "pluginId": "cordova-plugin-printer",
+    "clobbers": [
+      "cordova.plugins.printer"
     ]
   }
 ];
@@ -484,7 +494,8 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-android-support-gradle-release": "2.1.0",
   "cordova.plugins.diagnostic": "4.0.12",
-  "cordova-plugin-geolocation-android-activator": "1.1.2"
+  "cordova-pdf-generator": "2.0.8",
+  "cordova-plugin-printer": "0.8.0"
 };
 // BOTTOM OF METADATA
 });

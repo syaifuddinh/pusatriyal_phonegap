@@ -122,5 +122,23 @@
     "variables": {
       "ANDROID_SUPPORT_VERSION": "27.+"
     }
+  },
+  "cordova-pdf-generator": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-pdf-generator@^2.0.8"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-printer": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-printer@^0.8.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ANDROID_SUPPORT_V4_VERSION": "28.+"
+    }
   }
 }

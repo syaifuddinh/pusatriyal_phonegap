@@ -39,6 +39,12 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="PDFService">
+        <param name="android-package" value="com.pdf.generator.PDFGenerator" />
+    </feature>
+    <feature name="Printer">
+        <param name="android-package" value="de.appplant.cordova.plugin.printer.Printer" />
+    </feature>
     <feature name="Diagnostic">
         <param name="android-package" value="cordova.plugins.Diagnostic" />
         <param name="onload" value="true" />

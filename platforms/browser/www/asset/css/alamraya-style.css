@@ -298,3 +298,19 @@ fieldset{
 .sidebar-logout{
 	border-top:1px solid #5e626b;
 }
+.div-antrian-pdf{
+	width: 200px;
+	height: 200px;
+
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	margin: auto;
+	font-size: 350pt;
+}
+.div-antrian-pdf .badge-antrian{
+	font-size: 200pt;
+}
