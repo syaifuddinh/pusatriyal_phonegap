@@ -146,6 +146,32 @@ function appendlist(){
 
 	iditemlist = $('[name="iditem[]"]');
 
+
+	if($('#qtyenter').val().length === 0 || $('#qtyenter').val() === 0){
+		iziToast.warning({
+			title:'Peringatan!',
+			message:'Qty tidak boleh kosong!'
+		});
+		return false;
+	}
+
+	if(parseInt($('#stockenter').val()) === 0 || parseInt($('#stockenter').val()) < $('#qtyenter').val()){
+		if (parseInt($('#stockenter').val()) < $('#qtyenter').val()) {
+			iziToast.warning({
+				title:'Peringatan!',
+				message:'Stok tidak mencukupi!'
+			})
+		}
+		else if (parseInt($('#stockenter').val()) === 0) {
+			iziToast.warning({
+				title:'Peringatan!',
+				message:'Stok kosong!'
+			})	
+		}
+		return false;
+	}
+
+
 	for(var i =0; i<iditemlist.length;i++){
 		if(iditem === iditemlist.eq(i).val()){
 			iziToast.error({

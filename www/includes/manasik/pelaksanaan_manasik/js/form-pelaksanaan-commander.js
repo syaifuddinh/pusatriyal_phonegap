@@ -1,4 +1,6 @@
 $('#produk').select2();
+$('#m_comp_id').val(localStorage.getItem('m_comp_id'));
+
 $.ajax({
     url:url('api/find_m_mem'),
     type:'get',
@@ -190,7 +192,7 @@ $('#btn-simpan').click(function(){
 		type: 'get',
 		data: $('#pelaksanaan-form').serialize()+'&'+$('#list-pelaksanaan-form').serialize(),
 		dataType: 'json',
-		url: url('api/marketing/manasik/pelaksanaan_kegiatan/simpan'),
+		url: url('api/marketing/manasik/pelaksanaan_kegiatan/simpan_pelaksanaan_android'),
 		success : function(response){
 			if (response.status == 'berhasil') {
 				iziToast.success({

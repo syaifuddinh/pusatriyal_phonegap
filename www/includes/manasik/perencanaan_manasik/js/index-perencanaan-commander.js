@@ -8,7 +8,12 @@ function display_manasik_plan(obj) {
 	$('#pet_2').val(obj.emp_2.m_name);
 	$('#pet_3').val(obj.emp_3.m_name);
 	$('#mp_id').val(obj.mp_id);
-	$('#btn-edit').append('<input type="hidden" name="mp_id" id="mp_id" value="'+ obj.mp_id +'">')
+	if(obj.mp_status === 'N'){
+		$('#btn-edit').append('<input type="hidden" name="mp_id" id="mp_id" value="'+ obj.mp_id +'">')
+		$('#btn-edit').parents('.pusatriyal-submit').removeClass('d-none');
+	} else if (obj.mp_status === 'Y'){
+		$('#btn-edit').parents('.pusatriyal-submit').addClass('d-none');
+	}
 }
 
 function preview_manasik_plan(dom) {
