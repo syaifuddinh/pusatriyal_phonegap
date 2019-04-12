@@ -55,7 +55,7 @@
 </style>
 
 <div class="breadcrumb-pusatriyal">
-  <span class="active">History Pengantaran</span>
+  <span class="active">Jadwal Pengantaran Corporate</span>
 </div>
 
 <div class="form-group m-3" id="div-filter">
@@ -82,6 +82,7 @@
   </rawcontent>
   <script type="text/javascript">
   $(document).ready(function(){
+    var request = [];
     $.ajax({
       url: url('api/riyal/distribusi/corporate/penjualan/find_d_sales_real'),
       type    : 'get',
@@ -95,7 +96,7 @@
           rawcontent = $('rawcontent.datalist').html();
           for(x = 0;x < units.data.length;x++) {
             unit = units.data[x];
-            if (unit.sr_jenis == 'PEMESANAN') {
+            if (unit.sr_jenis == 'PEMESANAN' && unit.sr_type == 'C') {
             content = $(rawcontent);
             var classnameb = unit.sr_status_pembayaran == 1 ? 'badge badge-success card-info-second' : 'badge badge-danger card-info-second';
             var textb = unit.sr_status_pembayaran == 1 ? 'Terbayar' : 'Belum Terbayar';
@@ -104,7 +105,7 @@
             if (unit.sr_status == "SELESAI" && textp == "Terkirim") {
             // Set-up routing untuk menampilkan preview
             content.attr('pusatriyal-role', 'routing');
-            content.attr('pusatriyal-target', 'includes/distribusi/history-pengantaran/preview.html');
+            content.attr('pusatriyal-target', 'includes/distribusi/history-pengantaran-corporate/preview.html');
             content.attr('pusatriyal-callback', 'preview_pemesanan_func');
             content.append(
               '<input type="hidden" name="sr_id" value="' + unit.sr_id + '">'
@@ -200,7 +201,7 @@
           rawcontent = $('rawcontent.datalist').html();
           for(x = 0;x < units.data.length;x++) {
             unit = units.data[x];
-            if (unit.sr_jenis == 'PEMESANAN' && unit.sr_type == 'R') {
+            if (unit.sr_jenis == 'PEMESANAN' && unit.sr_type == 'C') {
             content = $(rawcontent);
             var classnameb = unit.sr_status_pembayaran == 1 ? 'badge badge-success card-info-second' : 'badge badge-danger card-info-second';
             var textb = unit.sr_status_pembayaran == 1 ? 'Terbayar' : 'Belum Terbayar';
@@ -209,7 +210,7 @@
             if (unit.sr_status == "SELESAI" && textp == "Terkirim") {
             // Set-up routing untuk menampilkan preview
             content.attr('pusatriyal-role', 'routing');
-            content.attr('pusatriyal-target', 'includes/distribusi/history-pengantaran/preview.html');
+            content.attr('pusatriyal-target', 'includes/distribusi/history-pengantaran-corporate/preview.html');
             content.attr('pusatriyal-callback', 'preview_pemesanan_func');
             content.append(
               '<input type="hidden" name="sr_id" value="' + unit.sr_id + '">'
@@ -312,7 +313,14 @@
     $('#customer').val(json.kodecustomer + '-' + json.namacustomer);
 
     $('#netto').val(get_currency(json.sr_net));
-
+    if (localStorage.getItem('m_id') == 'undefined') {
+      petugas = 1;
+    } else {
+      petugas = localStorage.getItem('m_id');
+    }
+    if (parseInt(json.sr_officer_send) != parseInt(petugas)) {
+      $('#antar').css('display', 'none');
+    }
   }
   </script>
 </div>
