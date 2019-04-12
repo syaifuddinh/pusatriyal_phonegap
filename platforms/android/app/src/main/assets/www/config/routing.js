@@ -3,7 +3,15 @@ var Routing = {
 	el : null,
 	history : ['dashboard_menu.html'],
 	history_push : function(path) {
-		this.history.push(path)
+		var x = this.history.indexOf(path);
+		if(x == - 1) {
+			this.history.push(path);
+		}
+		else {
+			var length = this.history.length;
+			x += 1;
+			this.history.splice(x, length);
+		}
 		$('#btn-menu').css('display', 'none');
 		$('#btn-backward').css('display', 'block');
 	},	
@@ -31,7 +39,8 @@ var Routing = {
 	load_page : function(path, option = {} ) {
 		var el = this.el;
 		var self = this;
-		var path = path.replace(/$\/(.*)/, '$1');	
+		var path = path.replace(/$\/(.*)/, '$1');
+		self.history_push(path);	
 		$.ajax({
 	      url: path,
 	      type    : 'get',
@@ -77,8 +86,8 @@ var Routing = {
 					var construct = {
 						'dom' : dom,
 						'callback' : window[callback],
-					}
-					self.history_push(target);
+					};
+					
 					self.load_page(target, construct);
 
 				});
@@ -87,3 +96,10 @@ var Routing = {
 		}
 	}
 }
+
+document.addEventListener('backbutton', Routing.backward, false);
+document.addEventListener('menubutton', function() {
+	$('#btn-menu').trigger('click');
+});
+
+

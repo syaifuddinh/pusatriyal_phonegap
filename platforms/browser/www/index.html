@@ -1,3 +1,11 @@
+<script>
+  var store = window.localStorage;
+ var access_token = store.getItem('access_token');
+ if( access_token != null ) {
+    window.location = 'homepage.html';
+ }
+</script>
+
 <!DOCTYPE html>
 <!--
     Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
@@ -143,11 +151,7 @@ $(window).error(function(e){
   }
 
   $(document).ready(function() {
-     var store = window.localStorage;
-     var access_token = store.getItem('access_token');
-     if( access_token != null ) {
-        window.location = 'homepage.html';
-     }
+     
 
     $('#login-btn').on('click', function() {
       loginUser();
@@ -156,7 +160,7 @@ $(window).error(function(e){
     {
       form = $('#login-form').serialize();
       $.ajax({
-        url: host + 'oauth/token',
+        url: url('oauth/token'),
 
         type    : 'post',
         data    :  form + '&grant_type=' + grant_type + '&client_secret=' + client_secret + '&client_id=' + client_id,
