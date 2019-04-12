@@ -459,11 +459,11 @@ module.exports = [
     ]
   },
   {
-    "id": "cordova-plugin-geolocation-android-activator.geolocation-activator",
-    "file": "plugins/cordova-plugin-geolocation-android-activator/www/geolocation-activator.js",
-    "pluginId": "cordova-plugin-geolocation-android-activator",
+    "id": "phonegap-plugin-push.PushNotification",
+    "file": "plugins/phonegap-plugin-push/www/push.js",
+    "pluginId": "phonegap-plugin-push",
     "clobbers": [
-      "navigator.geolocation.activator"
+      "PushNotification"
     ]
   }
 ];
@@ -484,7 +484,9 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-android-support-gradle-release": "2.1.0",
   "cordova.plugins.diagnostic": "4.0.12",
-  "cordova-plugin-geolocation-android-activator": "1.1.2"
+  "cordova-support-google-services": "1.1.0",
+  "phonegap-plugin-multidex": "1.0.0",
+  "phonegap-plugin-push": "2.2.3"
 };
 // BOTTOM OF METADATA
 });

@@ -4,8 +4,8 @@ client_id = 2;
 grant_type = 'password';
 
 url = function(pathname) {
-	var pathname = pathname.replace(/$\/(.*)/);
-	var outp = host + pathname;
+    var pathname = pathname.replace(/$\/(.*)/);
+    var outp = host + pathname;
 
-	return outp;
+    return outp;
 }
