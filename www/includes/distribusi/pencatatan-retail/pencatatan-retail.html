@@ -313,7 +313,7 @@
 
     $('#netto').val(get_currency(json.sr_net));
 
-    petugas = localStorage.getItem('m_id') == undefined ? localStorage.getItem('m_id') : 1;
+    petugas = parseInt(localStorage.getItem('m_id')) == undefined ? parseInt(localStorage.getItem('m_id')) : 1;
     if (json.sr_officer_send != petugas) {
       $('#antar').css('display', 'none');
     }
