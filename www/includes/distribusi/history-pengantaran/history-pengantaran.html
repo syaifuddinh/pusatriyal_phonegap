@@ -55,7 +55,7 @@
 </style>
 
 <div class="breadcrumb-pusatriyal">
-  <span class="active">Pencatatan Retail</span>
+  <span class="active">History Pengantaran</span>
 </div>
 
 <div class="form-group m-3" id="div-filter">
@@ -83,7 +83,7 @@
   <script type="text/javascript">
   $(document).ready(function(){
     $.ajax({
-      url: url('api/riyal/distribusi/retail/penjualan/find_d_sales_real'),
+      url: url('api/riyal/distribusi/corporate/penjualan/find_d_sales_real'),
       type    : 'get',
       dataType : 'json',
       success : function(resp){
@@ -101,7 +101,7 @@
             var textb = unit.sr_status_pembayaran == 1 ? 'Terbayar' : 'Belum Terbayar';
             var classnamep = unit.sr_status_pengiriman == 1 ? 'badge badge-success card-info-third' : 'badge badge-danger card-info-third';
 				    var textp = unit.sr_status_pengiriman == 1 ? 'Terkirim' : 'Belum Terkirim';
-            if (unit.sr_status == "PROSES" && textp == "Belum Terkirim") {
+            if (unit.sr_status == "SELESAI" && textp == "Terkirim") {
             // Set-up routing untuk menampilkan preview
             content.attr('pusatriyal-role', 'routing');
             content.attr('pusatriyal-target', 'includes/distribusi/pencatatan-retail/preview-retail.html');
@@ -206,7 +206,7 @@
             var textb = unit.sr_status_pembayaran == 1 ? 'Terbayar' : 'Belum Terbayar';
             var classnamep = unit.sr_status_pengiriman == 1 ? 'badge badge-success card-info-third' : 'badge badge-danger card-info-third';
             var textp = unit.sr_status_pengiriman == 1 ? 'Terkirim' : 'Belum Terkirim';
-            if (unit.sr_status == "PROSES" && textp == "Belum Terkirim") {
+            if (unit.sr_status == "SELESAI" && textp == "Terkirim") {
             // Set-up routing untuk menampilkan preview
             content.attr('pusatriyal-role', 'routing');
             content.attr('pusatriyal-target', 'includes/distribusi/pencatatan-retail/preview-retail.html');
@@ -302,7 +302,7 @@
   		}
   	}
   }
-
+ 
   function preview_pemesanan_json(json){
   	$('#sr_id').val(json.sr_id);
     $('#nota').text(json.sr_code);
@@ -313,13 +313,8 @@
 
     $('#netto').val(get_currency(json.sr_net));
 
-    petugas = parseInt(localStorage.getItem('m_id')) == undefined ? parseInt(localStorage.getItem('m_id')) : 1;
-    if (localStorage.getItem('m_id') == undefined) {
-      petugas = 1;
-    } else {
-      petugas = localStorage.getItem('m_id');
-    }
-    if (parseInt(json.sr_officer_send) != parseInt(petugas)) {
+    petugas = localStorage.getItem('m_id') == undefined ? localStorage.getItem('m_id') : 1;
+    if (json.sr_officer_send != petugas) {
       $('#antar').css('display', 'none');
     }
   }
