@@ -1,6 +1,16 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
   {
+    "id": "cordova-pdf-generator.pdf",
+    "file": "plugins/cordova-pdf-generator/www/pdf.js",
+    "pluginId": "cordova-pdf-generator",
+    "clobbers": [
+      "cordova.plugins.pdf",
+      "pugin.pdf",
+      "pdf"
+    ]
+  },
+  {
     "id": "cordova-plugin-battery-status.battery",
     "file": "plugins/cordova-plugin-battery-status/www/battery.js",
     "pluginId": "cordova-plugin-battery-status",
@@ -362,6 +372,14 @@ module.exports = [
     ]
   },
   {
+    "id": "cordova-plugin-printer.Printer",
+    "file": "plugins/cordova-plugin-printer/www/printer.js",
+    "pluginId": "cordova-plugin-printer",
+    "clobbers": [
+      "cordova.plugins.printer"
+    ]
+  },
+  {
     "id": "cordova-plugin-vibration.notification",
     "file": "plugins/cordova-plugin-vibration/www/vibration.js",
     "pluginId": "cordova-plugin-vibration",
@@ -457,29 +475,13 @@ module.exports = [
     "merges": [
       "cordova.plugins.diagnostic.external_storage"
     ]
-  },
-  {
-    "id": "cordova-pdf-generator.pdf",
-    "file": "plugins/cordova-pdf-generator/www/pdf.js",
-    "pluginId": "cordova-pdf-generator",
-    "clobbers": [
-      "cordova.plugins.pdf",
-      "pugin.pdf",
-      "pdf"
-    ]
-  },
-  {
-    "id": "cordova-plugin-printer.Printer",
-    "file": "plugins/cordova-plugin-printer/www/printer.js",
-    "pluginId": "cordova-plugin-printer",
-    "clobbers": [
-      "cordova.plugins.printer"
-    ]
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+  "cordova-android-support-gradle-release": "2.1.0",
+  "cordova-pdf-generator": "2.0.8",
   "cordova-plugin-battery-status": "1.2.5",
   "cordova-plugin-camera": "2.4.1",
   "cordova-plugin-device": "1.1.7",
@@ -490,12 +492,10 @@ module.exports.metadata =
   "cordova-plugin-inappbrowser": "1.7.2",
   "cordova-plugin-media-capture": "1.4.3",
   "cordova-plugin-network-information": "1.3.4",
+  "cordova-plugin-printer": "0.8.0",
   "cordova-plugin-vibration": "2.1.6",
   "cordova-plugin-whitelist": "1.3.3",
-  "cordova-android-support-gradle-release": "2.1.0",
-  "cordova.plugins.diagnostic": "4.0.12",
-  "cordova-pdf-generator": "2.0.8",
-  "cordova-plugin-printer": "0.8.0"
+  "cordova.plugins.diagnostic": "4.0.12"
 };
 // BOTTOM OF METADATA
 });

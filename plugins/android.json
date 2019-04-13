@@ -7,6 +7,13 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "25.+",
+      "PACKAGE_NAME": "com.phonegap.helloworld"
+    },
+    "cordova-pdf-generator": {
+      "PACKAGE_NAME": "com.phonegap.helloworld"
+    },
     "cordova-plugin-battery-status": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
@@ -34,25 +41,18 @@
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
+    "cordova-plugin-printer": {
+      "ANDROID_SUPPORT_V4_VERSION": "28.+",
+      "PACKAGE_NAME": "com.phonegap.helloworld"
+    },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-android-support-gradle-release": {
-      "ANDROID_SUPPORT_VERSION": "25.+",
-      "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
     "cordova.plugins.diagnostic": {
       "ANDROID_SUPPORT_VERSION": "27.+",
-      "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
-    "cordova-pdf-generator": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
-    "cordova-plugin-printer": {
-      "ANDROID_SUPPORT_V4_VERSION": "28.+",
       "PACKAGE_NAME": "com.phonegap.helloworld"
     }
   },

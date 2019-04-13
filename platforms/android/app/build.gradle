@@ -92,7 +92,6 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "../cordova-android-support-gradle-release/helloworld-cordova-android-support-gradle-release.gradle"
-apply from: "../cordova-plugin-geolocation-android-activator/helloworld-LocationActivation.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -269,8 +268,8 @@ dependencies {
     implementation(project(path: ":CordovaLib"))
     compile "com.android.support:support-v4:25.+"
     compile "com.android.support:support-v4:25.+"
-    compile "com.android.support:appcompat-v7:25.+"
     compile "com.android.support:support-v4:25.+"
+    compile "com.android.support:appcompat-v7:25.+"
     // SUB-PROJECT DEPENDENCIES END
 }
 
