@@ -66,7 +66,7 @@
   "cordova-plugin-globalization": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-globalization@^1.0.9"
+      "id": "cordova-plugin-globalization@^1.11.0"
     },
     "is_top_level": true,
     "variables": {}
@@ -140,5 +140,21 @@
     "variables": {
       "ANDROID_SUPPORT_V4_VERSION": "28.+"
     }
+  },
+  "cordova-plugin-badge": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-badge@>=0.8.5"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-background-mode": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-background-mode@^0.7.2"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
