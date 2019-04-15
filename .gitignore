@@ -1,10 +1,10 @@
 
 *.xml
 *.json
-/platforms
-/node_modules
+platforms
+node_modules
+plugins
 www/config/config.js
-/platform
 
 platforms/android/android.json
 platforms/android/app/src/main/assets/www/config/config.js

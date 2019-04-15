@@ -1,5 +1,5 @@
 {
-  "_from": "cordova-plugin-battery-status@~1.2.4",
+  "_from": "cordova-plugin-battery-status@^1.2.5",
   "_id": "cordova-plugin-battery-status@1.2.5",
   "_inBundle": false,
   "_integrity": "sha1-bGSPmzz1qwNLlcXP/lhPVXbULKk=",
@@ -8,12 +8,12 @@
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-battery-status@~1.2.4",
+    "raw": "cordova-plugin-battery-status@^1.2.5",
     "name": "cordova-plugin-battery-status",
     "escapedName": "cordova-plugin-battery-status",
-    "rawSpec": "~1.2.4",
+    "rawSpec": "^1.2.5",
     "saveSpec": null,
-    "fetchSpec": "~1.2.4"
+    "fetchSpec": "^1.2.5"
   },
   "_requiredBy": [
     "#USER",
@@ -21,8 +21,8 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-battery-status/-/cordova-plugin-battery-status-1.2.5.tgz",
   "_shasum": "6c648f9b3cf5ab034b95c5cffe584f5576d42ca9",
-  "_spec": "cordova-plugin-battery-status@~1.2.4",
-  "_where": "D:\\Android\\pusatriyal_phonegap",
+  "_spec": "cordova-plugin-battery-status@^1.2.5",
+  "_where": "D:\\Android\\cordova\\pusatriyal_phonegap",
   "author": {
     "name": "Apache Software Foundation"
   },

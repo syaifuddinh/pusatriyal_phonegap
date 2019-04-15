@@ -1,5 +1,5 @@
 {
-  "_from": "cordova-plugin-geolocation@~2.4.3",
+  "_from": "cordova-plugin-geolocation@^2.4.3",
   "_id": "cordova-plugin-geolocation@2.4.3",
   "_inBundle": false,
   "_integrity": "sha1-HdAAI9Hxos4zD4dn7Qj3tzj+cYQ=",
@@ -8,12 +8,12 @@
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-geolocation@~2.4.3",
+    "raw": "cordova-plugin-geolocation@^2.4.3",
     "name": "cordova-plugin-geolocation",
     "escapedName": "cordova-plugin-geolocation",
-    "rawSpec": "~2.4.3",
+    "rawSpec": "^2.4.3",
     "saveSpec": null,
-    "fetchSpec": "~2.4.3"
+    "fetchSpec": "^2.4.3"
   },
   "_requiredBy": [
     "#USER",
@@ -21,8 +21,8 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-geolocation/-/cordova-plugin-geolocation-2.4.3.tgz",
   "_shasum": "1dd00023d1f1a2ce330f8767ed08f7b738fe7184",
-  "_spec": "cordova-plugin-geolocation@~2.4.3",
-  "_where": "D:\\Android\\pusatriyal_phonegap",
+  "_spec": "cordova-plugin-geolocation@^2.4.3",
+  "_where": "D:\\Android\\cordova\\pusatriyal_phonegap",
   "author": {
     "name": "Apache Software Foundation"
   },

@@ -1,5 +1,5 @@
 {
-  "_from": "cordova-plugin-camera@~2.4.1",
+  "_from": "cordova-plugin-camera@^2.4.1",
   "_id": "cordova-plugin-camera@2.4.1",
   "_inBundle": false,
   "_integrity": "sha1-GV404S22TxxJ52T31OPyYao9lME=",
@@ -8,12 +8,12 @@
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-camera@~2.4.1",
+    "raw": "cordova-plugin-camera@^2.4.1",
     "name": "cordova-plugin-camera",
     "escapedName": "cordova-plugin-camera",
-    "rawSpec": "~2.4.1",
+    "rawSpec": "^2.4.1",
     "saveSpec": null,
-    "fetchSpec": "~2.4.1"
+    "fetchSpec": "^2.4.1"
   },
   "_requiredBy": [
     "#USER",
@@ -21,8 +21,8 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-camera/-/cordova-plugin-camera-2.4.1.tgz",
   "_shasum": "195e34e12db64f1c49e764f7d4e3f261aa3d94c1",
-  "_spec": "cordova-plugin-camera@~2.4.1",
-  "_where": "D:\\Android\\pusatriyal_phonegap",
+  "_spec": "cordova-plugin-camera@^2.4.1",
+  "_where": "D:\\Android\\cordova\\pusatriyal_phonegap",
   "author": {
     "name": "Apache Software Foundation"
   },
