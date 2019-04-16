@@ -141,14 +141,6 @@
       "ANDROID_SUPPORT_V4_VERSION": "28.+"
     }
   },
-  "cordova-plugin-badge": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-badge@>=0.8.5"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
   "cordova-plugin-background-mode": {
     "source": {
       "type": "registry",
@@ -156,5 +148,25 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-android-firebase-gradle-release": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-android-firebase-gradle-release@^3.0.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "FIREBASE_VERSION": "15.+"
+    }
+  },
+  "cordova-android-play-services-gradle-release": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-android-play-services-gradle-release@^3.0.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "PLAY_SERVICES_VERSION": "15.+"
+    }
   }
 }

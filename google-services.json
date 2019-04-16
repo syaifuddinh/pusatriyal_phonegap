@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "458093057695",
+    "firebase_url": "https://alamrayasite-pusatriyal.firebaseio.com",
+    "project_id": "alamrayasite-pusatriyal",
+    "storage_bucket": "alamrayasite-pusatriyal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458093057695:android:b207386bf0c8aa06",
+        "android_client_info": {
+          "package_name": "com.phonegap.pusatriyal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458093057695-7iapm9e0qgdcaffg1orj03njc77av14g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa1sQNMM-C0m6xvZ4sXh_VtMZSGe9chDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458093057695-7iapm9e0qgdcaffg1orj03njc77av14g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

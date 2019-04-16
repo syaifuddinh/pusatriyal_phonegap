@@ -1,49 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
   {
-    "id": "cordova-pdf-generator.pdf",
-    "file": "plugins/cordova-pdf-generator/www/pdf.js",
-    "pluginId": "cordova-pdf-generator",
-    "clobbers": [
-      "cordova.plugins.pdf",
-      "pugin.pdf",
-      "pdf"
-    ]
-  },
-  {
-    "id": "cordova-plugin-background-app.backgroundapp",
-    "file": "plugins/cordova-plugin-background-app/backgroundapp.js",
-    "pluginId": "cordova-plugin-background-app",
-    "clobbers": [
-      "cordova.backgroundapp"
-    ]
-  },
-  {
-    "id": "cordova-plugin-device.device",
-    "file": "plugins/cordova-plugin-device/www/device.js",
-    "pluginId": "cordova-plugin-device",
-    "clobbers": [
-      "device"
-    ]
-  },
-  {
-    "id": "cordova-plugin-background-mode.BackgroundMode",
-    "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
-    "pluginId": "cordova-plugin-background-mode",
-    "clobbers": [
-      "cordova.plugins.backgroundMode",
-      "plugin.backgroundMode"
-    ]
-  },
-  {
-    "id": "cordova-plugin-badge.Badge",
-    "file": "plugins/cordova-plugin-badge/www/badge.js",
-    "pluginId": "cordova-plugin-badge",
-    "clobbers": [
-      "cordova.plugins.notification.badge"
-    ]
-  },
-  {
     "id": "cordova-plugin-battery-status.battery",
     "file": "plugins/cordova-plugin-battery-status/www/battery.js",
     "pluginId": "cordova-plugin-battery-status",
@@ -81,22 +38,6 @@ module.exports = [
     "pluginId": "cordova-plugin-camera",
     "clobbers": [
       "CameraPopoverHandle"
-    ]
-  },
-  {
-    "id": "cordova-plugin-dialogs.notification",
-    "file": "plugins/cordova-plugin-dialogs/www/notification.js",
-    "pluginId": "cordova-plugin-dialogs",
-    "merges": [
-      "navigator.notification"
-    ]
-  },
-  {
-    "id": "cordova-plugin-dialogs.notification_android",
-    "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
-    "pluginId": "cordova-plugin-dialogs",
-    "merges": [
-      "navigator.notification"
     ]
   },
   {
@@ -273,71 +214,6 @@ module.exports = [
     "runs": true
   },
   {
-    "id": "cordova-plugin-geolocation.geolocation",
-    "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
-    "pluginId": "cordova-plugin-geolocation",
-    "clobbers": [
-      "navigator.geolocation"
-    ]
-  },
-  {
-    "id": "cordova-plugin-geolocation.PositionError",
-    "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
-    "pluginId": "cordova-plugin-geolocation",
-    "runs": true
-  },
-  {
-    "id": "cordova-plugin-globalization.GlobalizationError",
-    "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
-    "pluginId": "cordova-plugin-globalization",
-    "clobbers": [
-      "window.GlobalizationError"
-    ]
-  },
-  {
-    "id": "cordova-plugin-globalization.globalization",
-    "file": "plugins/cordova-plugin-globalization/www/globalization.js",
-    "pluginId": "cordova-plugin-globalization",
-    "clobbers": [
-      "navigator.globalization"
-    ]
-  },
-  {
-    "id": "cordova-plugin-inappbrowser.inappbrowser",
-    "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-    "pluginId": "cordova-plugin-inappbrowser",
-    "clobbers": [
-      "cordova.InAppBrowser.open",
-      "window.open"
-    ]
-  },
-  {
-    "id": "cordova-plugin-local-notification.LocalNotification",
-    "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
-    "pluginId": "cordova-plugin-local-notification",
-    "clobbers": [
-      "cordova.plugins.notification.local"
-    ]
-  },
-  {
-    "id": "cordova-plugin-local-notification.LocalNotification.Core",
-    "file": "plugins/cordova-plugin-local-notification/www/local-notification-core.js",
-    "pluginId": "cordova-plugin-local-notification",
-    "clobbers": [
-      "cordova.plugins.notification.local.core",
-      "plugin.notification.local.core"
-    ]
-  },
-  {
-    "id": "cordova-plugin-local-notification.LocalNotification.Util",
-    "file": "plugins/cordova-plugin-local-notification/www/local-notification-util.js",
-    "pluginId": "cordova-plugin-local-notification",
-    "merges": [
-      "cordova.plugins.notification.local.core",
-      "plugin.notification.local.core"
-    ]
-  },
-  {
     "id": "cordova-plugin-media-capture.CaptureAudioOptions",
     "file": "plugins/cordova-plugin-media-capture/www/CaptureAudioOptions.js",
     "pluginId": "cordova-plugin-media-capture",
@@ -406,6 +282,69 @@ module.exports = [
     "runs": true
   },
   {
+    "id": "cordova-plugin-device.device",
+    "file": "plugins/cordova-plugin-device/www/device.js",
+    "pluginId": "cordova-plugin-device",
+    "clobbers": [
+      "device"
+    ]
+  },
+  {
+    "id": "cordova-plugin-dialogs.notification",
+    "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+    "pluginId": "cordova-plugin-dialogs",
+    "merges": [
+      "navigator.notification"
+    ]
+  },
+  {
+    "id": "cordova-plugin-dialogs.notification_android",
+    "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+    "pluginId": "cordova-plugin-dialogs",
+    "merges": [
+      "navigator.notification"
+    ]
+  },
+  {
+    "id": "cordova-plugin-geolocation.geolocation",
+    "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+    "pluginId": "cordova-plugin-geolocation",
+    "clobbers": [
+      "navigator.geolocation"
+    ]
+  },
+  {
+    "id": "cordova-plugin-geolocation.PositionError",
+    "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+    "pluginId": "cordova-plugin-geolocation",
+    "runs": true
+  },
+  {
+    "id": "cordova-plugin-globalization.GlobalizationError",
+    "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+    "pluginId": "cordova-plugin-globalization",
+    "clobbers": [
+      "window.GlobalizationError"
+    ]
+  },
+  {
+    "id": "cordova-plugin-globalization.globalization",
+    "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+    "pluginId": "cordova-plugin-globalization",
+    "clobbers": [
+      "navigator.globalization"
+    ]
+  },
+  {
+    "id": "cordova-plugin-inappbrowser.inappbrowser",
+    "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+    "pluginId": "cordova-plugin-inappbrowser",
+    "clobbers": [
+      "cordova.InAppBrowser.open",
+      "window.open"
+    ]
+  },
+  {
     "id": "cordova-plugin-network-information.network",
     "file": "plugins/cordova-plugin-network-information/www/network.js",
     "pluginId": "cordova-plugin-network-information",
@@ -420,14 +359,6 @@ module.exports = [
     "pluginId": "cordova-plugin-network-information",
     "clobbers": [
       "Connection"
-    ]
-  },
-  {
-    "id": "cordova-plugin-printer.Printer",
-    "file": "plugins/cordova-plugin-printer/www/printer.js",
-    "pluginId": "cordova-plugin-printer",
-    "clobbers": [
-      "cordova.plugins.printer"
     ]
   },
   {
@@ -526,31 +457,57 @@ module.exports = [
     "merges": [
       "cordova.plugins.diagnostic.external_storage"
     ]
+  },
+  {
+    "id": "cordova-pdf-generator.pdf",
+    "file": "plugins/cordova-pdf-generator/www/pdf.js",
+    "pluginId": "cordova-pdf-generator",
+    "clobbers": [
+      "cordova.plugins.pdf",
+      "pugin.pdf",
+      "pdf"
+    ]
+  },
+  {
+    "id": "cordova-plugin-printer.Printer",
+    "file": "plugins/cordova-plugin-printer/www/printer.js",
+    "pluginId": "cordova-plugin-printer",
+    "clobbers": [
+      "cordova.plugins.printer"
+    ]
+  },
+  {
+    "id": "cordova-plugin-background-mode.BackgroundMode",
+    "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+    "pluginId": "cordova-plugin-background-mode",
+    "clobbers": [
+      "cordova.plugins.backgroundMode",
+      "plugin.backgroundMode"
+    ]
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-  "cordova-android-support-gradle-release": "2.1.0",
-  "cordova-pdf-generator": "2.0.8",
-  "cordova-plugin-background-app": "2.0.2",
-  "cordova-plugin-device": "1.1.7",
-  "cordova-plugin-background-mode": "0.7.2",
-  "cordova-plugin-badge": "0.8.8",
   "cordova-plugin-battery-status": "1.2.5",
   "cordova-plugin-camera": "2.4.1",
-  "cordova-plugin-dialogs": "1.3.4",
   "cordova-plugin-file": "4.3.3",
+  "cordova-plugin-media-capture": "1.4.3",
+  "cordova-plugin-device": "1.1.7",
+  "cordova-plugin-dialogs": "1.3.4",
   "cordova-plugin-geolocation": "2.4.3",
   "cordova-plugin-globalization": "1.11.0",
   "cordova-plugin-inappbrowser": "1.7.2",
-  "cordova-plugin-local-notification": "0.9.0-beta.2",
-  "cordova-plugin-media-capture": "1.4.3",
   "cordova-plugin-network-information": "1.3.4",
-  "cordova-plugin-printer": "0.8.0",
   "cordova-plugin-vibration": "2.1.6",
   "cordova-plugin-whitelist": "1.3.3",
-  "cordova.plugins.diagnostic": "4.0.12"
+  "cordova-android-support-gradle-release": "2.1.0",
+  "cordova.plugins.diagnostic": "4.0.12",
+  "cordova-pdf-generator": "2.0.8",
+  "cordova-plugin-printer": "0.8.0",
+  "cordova-plugin-background-mode": "0.7.2",
+  "cordova-android-firebase-gradle-release": "3.0.0",
+  "cordova-android-play-services-gradle-release": "3.0.0"
 };
 // BOTTOM OF METADATA
 });
