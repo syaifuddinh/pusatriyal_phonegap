@@ -122,5 +122,4 @@
     </plugin>
     <plugin name="cordova-android-play-services-gradle-release" spec="^3.0.0">
     </plugin>
-    <engine name="android" spec="^7.1.4" />
 </widget>
