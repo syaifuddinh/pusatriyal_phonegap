@@ -443,22 +443,6 @@ module.exports = [
         "id": "cordova-plugin-background-mode.BackgroundMode.Proxy",
         "pluginId": "cordova-plugin-background-mode",
         "runs": true
-    },
-    {
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "id": "phonegap-plugin-push.PushNotification",
-        "pluginId": "phonegap-plugin-push",
-        "clobbers": [
-            "PushNotification"
-        ]
-    },
-    {
-        "file": "plugins/phonegap-plugin-push/www/browser/push.js",
-        "id": "phonegap-plugin-push.BrowserPush",
-        "pluginId": "phonegap-plugin-push",
-        "clobbers": [
-            "PushNotification"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -483,8 +467,7 @@ module.exports.metadata =
     "cordova-plugin-printer": "0.8.0",
     "cordova-plugin-background-mode": "0.7.2",
     "cordova-android-firebase-gradle-release": "3.0.0",
-    "cordova-android-play-services-gradle-release": "3.0.0",
-    "phonegap-plugin-push": "2.2.3"
+    "cordova-android-play-services-gradle-release": "3.0.0"
 }
 // BOTTOM OF METADATA
 });

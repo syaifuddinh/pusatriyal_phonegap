@@ -149,80 +149,81 @@
 	</script>
 	<script type="text/javascript">
 		cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
-		switch(status){
-		case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
-		console.log("Permission not requested");
-		break;
-		case cordova.plugins.diagnostic.permissionStatus.GRANTED:
-		console.log("Permission granted");
-		break;
-		case cordova.plugins.diagnostic.permissionStatus.DENIED:
-		console.log("Permission denied");
-		break;
-		case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
-		console.log("Permission permanently denied");
-		break;
-		}
+			switch(status){
+				case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+				console.log("Permission not requested");
+				break;
+				case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+				console.log("Permission granted");
+				break;
+				case cordova.plugins.diagnostic.permissionStatus.DENIED:
+				console.log("Permission denied");
+				break;
+				case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+				console.log("Permission permanently denied");
+				break;
+			}
 		}, function(error){
-		console.error(error);
+			console.error(error);
 		});
 		function get_currency(v) {
-	if( /^\d([0-9\.]+)$/.test(v) ) {
-		var desimal = '';
-		if( /\./.test(v) ==  true ) {
-			v = parseFloat(v);
-			v = v.toFixed(2);
+		if( /^\d([0-9\.]+)$/.test(v) ) {
+			var desimal = '';
+			if( /\./.test(v) ==  true ) {
+				v = parseFloat(v);
+				v = v.toFixed(2);
+				v = v.toString();
+				desimal = v.split('.')[1];
+				v = v.split('.')[0];
+			}
 			v = v.toString();
-			desimal = v.split('.')[1];
-			v = v.split('.')[0];
+			var res = v.split('');
+			res = res.reverse().join('');
+			currStr = v;
+			if(res.length > 3) {
+				var currPtr = /(\w{3})/g;
+				var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
+			}
+			currStr += desimal != '' ? ',' + desimal : '';
+			return currStr;
 		}
-		v = v.toString();
-		var res = v.split('');
-		res = res.reverse().join('');
-		currStr = v;
-		if(res.length > 3) {
-			var currPtr = /(\w{3})/g;
-			var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
+		return v;
 		}
-		currStr += desimal != '' ? ',' + desimal : '';
-		return currStr;
-	}
-	return v;
-	}
 	</script>
 	<script type="text/javascript">
-		function onDeviceReady() {
+		function onDeviceReady(){
 			/**
-			* Determine whether the file loaded from PhoneGap or not
-			*/
+			 * Determine whether the file loaded from PhoneGap or not
+			 */
 			function isPhoneGap() {
-			return (window.cordova || window.PhoneGap || window.phonegap)
-			&& /^file:\/{3}[^\/]/i.test(window.location.href)
-			&& /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
-			return (window.cordova || window.PhoneGap || window.phonegap)
-			&& /^file:\/{3}[^\/]/i.test(window.location.href)
-			&& /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
+			    return (window.cordova || window.PhoneGap || window.phonegap)
+			    && /^file:\/{3}[^\/]/i.test(window.location.href)
+			    && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
 			}
+
 			if ( isPhoneGap() ) {
-				cordova.plugins.diagnostic.isLocationAvailable(function(available){
-				console.log("Location is " + (available ? "available" : "not available"));
-				if (!available) {
-					var confirmation = confirm('GPS tidak aktif!\n'+
-						'Ingin masuk ke pengaturan GPS?');
-					if (confirmation) {
-						cordova.plugins.diagnostic.switchToLocationSettings();
-					}
-				}
+			    cordova.plugins.diagnostic.isLocationAvailable(function(available){
+				    console.log("Location is " + (available ? "available" : "not available"));
+				    if (!available) {
+				    	var confirmation = confirm('GPS tidak aktif!\n'+
+				    		'Ingin masuk ke pengaturan GPS?');
+
+				    	if (confirmation) {
+				    		cordova.plugins.diagnostic.switchToLocationSettings();
+				    	}
+				    }
 				}, function(error){
-				console.error("The following error occurred: "+error);
-					});
-				console.log('Running on phonegap');
-				console.error("The following error occurred: "+error);
-				}
-			console.log('Running on phonegap');
+				    console.error("The following error occurred: "+error);
+				});
+
+			    console.log('Running on phonegap');
+
 			} else {
-				console.log("Not running on PhoneGap!");
+			    console.log("Not running on PhoneGap!");
 			}
+
+
+
 			$.ajax({
 				url:url('api/get_Mmember'),
 				dataType:'json',
@@ -233,25 +234,27 @@
 					var datay;
 					for(var d = 0;d<m_mem_global.length; d++){
 						datay = m_mem_global[d];
+
 							var appendx = '<option value="'+ datay.c_id +'">'+datay.c_name+'</option>'
+
 						$('#select_comp').append(appendx);
 					}
 				},
 				error: function(jqXHR, exception) {
 					if (jqXHR.status === 0) {
-					alert('Not connect.\n Verify Network.');
+					    alert('Not connect.\n Verify Network.');
 					} else if (jqXHR.status == 404) {
-					alert('Requested page not found. [404]');
+					    alert('Requested page not found. [404]');
 					} else if (jqXHR.status == 500) {
-					alert('Internal Server Error [500].');
+					    alert('Internal Server Error [500].');
 					} else if (exception === 'parsererror') {
-					alert('Requested JSON parse failed.');
+					    alert('Requested JSON parse failed.');
 					} else if (exception === 'timeout') {
-					alert('Time out error.');
+					    alert('Time out error.');
 					} else if (exception === 'abort') {
-					alert('Ajax request aborted.');
+					    alert('Ajax request aborted.');
 					} else {
-					alert('Uncaught Error.\n' + jqXHR.responseText);
+					    alert('Uncaught Error.\n' + jqXHR.responseText);
 					}
 				},
 				complete:function(){
@@ -263,6 +266,7 @@
 						$('#select_comp').val(parseInt(get_m_comp_id));
 					} else {
 						var idx = $('#select_comp').val();
+
 						var pengulangan, sama;
 						for (var i = 0; i < m_mem_global.length; i++) {
 							pengulangan = m_mem_global[i];
@@ -270,6 +274,7 @@
 								sama = pengulangan;
 							}
 						}
+
 						localStorage.setItem('m_comp_code', sama.c_code);
 						localStorage.setItem('m_comp_id', $('#select_comp').val());
 						localStorage.setItem('m_comp_name', $('#select_comp option:selected').text());
@@ -279,6 +284,7 @@
 					console.log(localStorage.getItem('m_comp_code'));
 				}
 			})
+
 			$('#select_comp').change(function(){
 				var idx = $(this).val();
 				localStorage.setItem('m_comp_id', idx);
@@ -290,128 +296,132 @@
 						sama = pengulangan;
 					}
 				}
+
 				localStorage.setItem('m_comp_code', sama.c_code);
 			});
+
 		}
+
 		if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-		document.addEventListener("deviceready", onDeviceReady, false);
+		  document.addEventListener("deviceready", onDeviceReady, false);
 		} else {
 			$(document).ready(function(){
-			onDeviceReady(); //this is the browser
+
+			  onDeviceReady(); //this is the browser
 			});
 		}
 		var user_comp = localStorage.getItem('m_comp_id');
 		var interval;
 		var latitude;
 		var longitude;
-	function start(sr_id){
-		geo();
-		updatestatus(sr_id, 'start');
-		pushgps(sr_id);
-	};
-	function stop(sr_id){
-		stoppush(sr_id, 'stop');
-	}
-	function geo(){
-		var successHandler = function(position) {
-			latitude = position.coords.latitude;
-			longitude = position.coords.longitude;
-			};
-			var errorHandler = function (errorObj) {
-			alert(errorObj.code + ": " + errorObj.message);
-			};
-			navigator.geolocation.getCurrentPosition(
-			successHandler, errorHandler,
-			{enableHighAccuracy: true, maximumAge: 10000});
-	//   navigator.geolocation.getCurrentPosition(function(position) {
-	//   latitude = position.coords.latitude;
-	//   longitude = position.coords.longitude;
-	// });
-	}
-	function pushgps(sr_id){
+		function start(sr_id){
+			geo();
+			updatestatus(sr_id, 'start');
+			pushgps(sr_id);
+		};
+		function stop(sr_id){
+			stoppush(sr_id, 'stop');
+		}
+		function geo(){
+			var successHandler = function(position) {
+				latitude = position.coords.latitude;
+				longitude = position.coords.longitude;
+				};
+				var errorHandler = function (errorObj) {
+				alert(errorObj.code + ": " + errorObj.message);
+				};
+				navigator.geolocation.getCurrentPosition(
+				successHandler, errorHandler,
+				{enableHighAccuracy: true, maximumAge: 10000});
+		//   navigator.geolocation.getCurrentPosition(function(position) {
+		//   latitude = position.coords.latitude;
+		//   longitude = position.coords.longitude;
+		// });
+		}
+		function pushgps(sr_id){
+			interval = setInterval(function () {
+				$('#status').text('Sedang Berjalan . . . ');
+				$.ajax({
+					type: 'get',
+					url: url('/api/gpspush'),
+					dataType: 'json',
+					data: {id:sr_id, latitude, longitude},
+					success : function(response){
+					}
+				});
+			}, 5000);
+		}
+		function updatestatus(sr_id, status){
+			$.ajax({
+				type: 'get',
+				data: {sr_id, status},
+				url: url('/api/updatestatus'),
+				dataType: 'JSON',
+				success : function(response){
+				}
+			});
+		}
+		function stoppush(sr_id, status){
+			updatestatus(sr_id, status);
+			clearInterval(interval);
+			$('#status').text('DIberhentikan . . . ');
+		}
+			user_comp = localStorage.getItem('m_comp_id');
+			interval;
+		latitude;
+		longitude;
+		function start(sr_id, type){
+			geo();
+			updatestatus(sr_id, 'start');
+			pushgps(sr_id, type);
+		};
+		function stop(sr_id){
+			stoppush(sr_id, 'stop');
+		}
+		function geo(){
+			var successHandler = function(position) {
+				latitude = position.coords.latitude;
+				longitude = position.coords.longitude;
+				};
+				var errorHandler = function (errorObj) {
+				alert(errorObj.code + ": " + errorObj.message);
+				};
+				navigator.geolocation.getCurrentPosition(
+				successHandler, errorHandler,
+				{enableHighAccuracy: true, maximumAge: 10000});
+		//   navigator.geolocation.getCurrentPosition(function(position) {
+		//   latitude = position.coords.latitude;
+		//   longitude = position.coords.longitude;
+		// });
+		}
+		function pushgps(sr_id, type){
 		interval = setInterval(function () {
 			$('#status').text('Sedang Berjalan . . . ');
+				$.ajax({
+					type: 'get',
+					url: url('/api/gpspush'),
+					dataType: 'json',
+					data: {id:sr_id, type, latitude, longitude},
+					success : function(response){
+					}
+				});
+			}, 5000);
+		}
+		function updatestatus(sr_id, status){
 			$.ajax({
 				type: 'get',
-				url: url('/api/gpspush'),
-				dataType: 'json',
-				data: {id:sr_id, latitude, longitude},
+				data: {sr_id, status},
+				url: url('/api/updatestatus'),
+				dataType: 'JSON',
 				success : function(response){
 				}
 			});
-		}, 5000);
-	}
-	function updatestatus(sr_id, status){
-		$.ajax({
-			type: 'get',
-			data: {sr_id, status},
-			url: url('/api/updatestatus'),
-			dataType: 'JSON',
-			success : function(response){
-			}
-		});
-	}
-	function stoppush(sr_id, status){
-		updatestatus(sr_id, status);
-		clearInterval(interval);
-		$('#status').text('DIberhentikan . . . ');
-	}
-		user_comp = localStorage.getItem('m_comp_id');
-		interval;
-	latitude;
-	longitude;
-	function start(sr_id, type){
-		geo();
-		updatestatus(sr_id, 'start');
-		pushgps(sr_id, type);
-	};
-	function stop(sr_id){
-		stoppush(sr_id, 'stop');
-	}
-	function geo(){
-		var successHandler = function(position) {
-			latitude = position.coords.latitude;
-			longitude = position.coords.longitude;
-			};
-			var errorHandler = function (errorObj) {
-			alert(errorObj.code + ": " + errorObj.message);
-			};
-			navigator.geolocation.getCurrentPosition(
-			successHandler, errorHandler,
-			{enableHighAccuracy: true, maximumAge: 10000});
-	//   navigator.geolocation.getCurrentPosition(function(position) {
-	//   latitude = position.coords.latitude;
-	//   longitude = position.coords.longitude;
-	// });
-	}
-	function pushgps(sr_id, type){
-	interval = setInterval(function () {
-		$('#status').text('Sedang Berjalan . . . ');
-			$.ajax({
-				type: 'get',
-				url: url('/api/gpspush'),
-				dataType: 'json',
-				data: {id:sr_id, type, latitude, longitude},
-				success : function(response){
-				}
-			});
-		}, 5000);
-	}
-	function updatestatus(sr_id, status){
-		$.ajax({
-			type: 'get',
-			data: {sr_id, status},
-			url: url('/api/updatestatus'),
-			dataType: 'JSON',
-			success : function(response){
-			}
-		});
-	}
-	function stoppush(sr_id, status){
-		updatestatus(sr_id, status);
-		clearInterval(interval);
-		$('#status').text('DIberhentikan . . . ');
-	}
+		}
+		function stoppush(sr_id, status){
+			updatestatus(sr_id, status);
+			clearInterval(interval);
+			$('#status').text('DIberhentikan . . . ');
+		}
 	</script>
 	<script type="text/javascript">
 		PUSHER_APP_ID="691515"

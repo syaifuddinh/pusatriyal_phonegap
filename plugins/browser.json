@@ -60,9 +60,6 @@
     },
     "cordova-android-play-services-gradle-release": {
       "PACKAGE_NAME": "com.phonegap.pusatriyal"
-    },
-    "phonegap-plugin-push": {
-      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     }
   },
   "dependent_plugins": {
