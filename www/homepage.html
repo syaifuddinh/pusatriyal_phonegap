@@ -152,34 +152,34 @@
 
 
 		function get_currency(v) {
-	if( /^\d([0-9\.]+)$/.test(v) ) {
+			if( /^\d([0-9\.]+)$/.test(v) ) {
 
-		var desimal = '';
-		if( /\./.test(v) ==  true ) {
-			v = parseFloat(v);
-			v = v.toFixed(2);
-			v = v.toString();
-			desimal = v.split('.')[1];
-			v = v.split('.')[0];
+				var desimal = '';
+				if( /\./.test(v) ==  true ) {
+					v = parseFloat(v);
+					v = v.toFixed(2);
+					v = v.toString();
+					desimal = v.split('.')[1];
+					v = v.split('.')[0];
+				}
+
+
+				v = v.toString();
+				var res = v.split('');
+				res = res.reverse().join('');
+				currStr = v;
+				if(res.length > 3) {
+					var currPtr = /(\w{3})/g;
+					var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
+				}
+
+
+				currStr += desimal != '' ? ',' + desimal : '';
+				return currStr;
+			}
+
+			return v;
 		}
-
-
-		v = v.toString();
-		var res = v.split('');
-		res = res.reverse().join('');
-		currStr = v;
-		if(res.length > 3) {
-			var currPtr = /(\w{3})/g;
-			var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
-		}
-
-
-		currStr += desimal != '' ? ',' + desimal : '';
-		return currStr;
-	}
-
-	return v;
-}
 
 	</script>
 	<script type="text/javascript">
@@ -306,67 +306,67 @@
 		var user_comp = localStorage.getItem('m_comp_id');
 
 		var interval;
-  	var latitude;
-  	var longitude;
-  	function start(sr_id){
-  		geo();
-  		updatestatus(sr_id, 'start');
-  		pushgps(sr_id);
-  	};
+	  	var latitude;
+	  	var longitude;
+	  	function start(sr_id){
+	  		geo();
+	  		updatestatus(sr_id, 'start');
+	  		pushgps(sr_id);
+	  	};
 
-  	function stop(sr_id){
-  		stoppush(sr_id, 'stop');
-  	}
+	  	function stop(sr_id){
+	  		stoppush(sr_id, 'stop');
+	  	}
 
-  	function geo(){
-  		var successHandler = function(position) {
-  			latitude = position.coords.latitude;
-  			longitude = position.coords.longitude;
-  			};
+	  	function geo(){
+	  		var successHandler = function(position) {
+	  			latitude = position.coords.latitude;
+	  			longitude = position.coords.longitude;
+	  			};
 
-  			var errorHandler = function (errorObj) {
-  			alert(errorObj.code + ": " + errorObj.message);
-  			};
+	  			var errorHandler = function (errorObj) {
+	  			alert(errorObj.code + ": " + errorObj.message);
+	  			};
 
-  			navigator.geolocation.getCurrentPosition(
-  			successHandler, errorHandler,
-  			{enableHighAccuracy: true, maximumAge: 10000});
-  	//   navigator.geolocation.getCurrentPosition(function(position) {
-  	//   latitude = position.coords.latitude;
-  	//   longitude = position.coords.longitude;
-  	// });
-  	}
+	  			navigator.geolocation.getCurrentPosition(
+	  			successHandler, errorHandler,
+	  			{enableHighAccuracy: true, maximumAge: 10000});
+	  	//   navigator.geolocation.getCurrentPosition(function(position) {
+	  	//   latitude = position.coords.latitude;
+	  	//   longitude = position.coords.longitude;
+	  	// });
+	  	}
 
-  	function pushgps(sr_id){
-  	 interval = setInterval(function () {
-  		 $('#status').text('Sedang Berjalan . . . ');
-  			$.ajax({
-  				type: 'get',
-  				url: url('/api/gpspush'),
-  				dataType: 'json',
-  				data: {id:sr_id, latitude, longitude},
-  				success : function(response){
-  				}
-  			});
-  		}, 5000);
-  	}
+	  	function pushgps(sr_id){
+	  	 interval = setInterval(function () {
+	  		 $('#status').text('Sedang Berjalan . . . ');
+	  			$.ajax({
+	  				type: 'get',
+	  				url: url('/api/gpspush'),
+	  				dataType: 'json',
+	  				data: {id:sr_id, latitude, longitude},
+	  				success : function(response){
+	  				}
+	  			});
+	  		}, 5000);
+	  	}
 
-  	function updatestatus(sr_id, status){
-  		$.ajax({
-  			type: 'get',
-  			data: {sr_id, status},
-  			url: url('/api/updatestatus'),
-  			dataType: 'JSON',
-  			success : function(response){
-  			}
-  		});
-  	}
+	  	function updatestatus(sr_id, status){
+	  		$.ajax({
+	  			type: 'get',
+	  			data: {sr_id, status},
+	  			url: url('/api/updatestatus'),
+	  			dataType: 'JSON',
+	  			success : function(response){
+	  			}
+	  		});
+	  	}
 
-  	function stoppush(sr_id, status){
-  		updatestatus(sr_id, status);
-  		clearInterval(interval);
-  		$('#status').text('DIberhentikan . . . ');
-  	}
+	  	function stoppush(sr_id, status){
+	  		updatestatus(sr_id, status);
+	  		clearInterval(interval);
+	  		$('#status').text('DIberhentikan . . . ');
+	  	}
 
 	</script>
 	<script type="text/javascript">
