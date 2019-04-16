@@ -62,15 +62,15 @@
 			</div>
 			<ul>
 				<li class="pt-3 pr-3 pl-3">
-				<select class="form-control form-control-sm" id="select_comp"></select>
-			</li>
-			<li>
-				<a href="#">Profile</a>
-			</li>
-			<li>
-				<a href="#">Credit</a>
-			</li>
-		</ul>
+					<select class="form-control form-control-sm" id="select_comp"></select>
+				</li>
+				<li>
+					<a href="#">Profile</a>
+				</li>
+				<li>
+					<a href="#">Credit</a>
+				</li>
+			</ul>
 		<div class="sidebar-footer">
 			<ul class="sidebar-logout">
 				<li>
@@ -82,13 +82,13 @@
 	<div class="sidebar-menu-off"></div>
 	<section class="menu-header" style="background: #007139;position:fixed;width: 100%;top: 0;left: 0">
 		<button type="button" class="btn text-alamraya" id="btn-menu">
-		<i class="fa fa-bars"></i>
+			<i class="fa fa-bars"></i>
 		</button>
 		<button type="button" class="btn text-alamraya" id="btn-backward" style="display:none">
-		<i class="fa fa-chevron-left"></i>
+			<i class="fa fa-chevron-left"></i>
 		</button>
 		<button class="btn text-alamraya" type="button">
-		<i class="fa fa-bell-o"></i>
+			<i class="fa fa-bell-o"></i>
 		</button>
 	</section>
 	<content></content>
@@ -109,9 +109,10 @@
 	<script type="text/javascript" src="js/features/logout.js"></script>
 	<script type="text/javascript" src="js/notification/SmartNotification.min.js"></script>
 	<script type="text/javascript" src="js/pusher.min.js"></script>
+	<script type="text/javascript" src="js/firebase.js"></script>
 
 	<script type="text/javascript">	
-	$(document).ready(function(){
+	
 		loading_icon = $('#loading_icon');
 		iziToast.settings({
 			position:'topRight'//Where it will be shown. It can be bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
@@ -145,7 +146,7 @@
 			localStorage.removeItem('username');
 			window.location.href = 'index.html';
 		})
-	});
+	
 	</script>
 	<script type="text/javascript">
 		cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
@@ -471,5 +472,25 @@
 		});
 
 	</script>
+
+	<script>
+	$("body")
+        .on('mousedown touchstart', function (e) {
+            console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
+            xDown = e.touches[0].clientX;
+            yDown = e.touches[0].clientY;
+        })
+        .on('mouseup touchend',function (e) {
+        	var touchend = e.originalEvent.changedTouches[0];
+        	console.log('touchend :', touchend);
+            // console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
+            // xUp = e.touches[0].clientX;
+            // yUp = e.touches[0].clientY;
+            // if (xDown != xUp || yDown != yUp) {
+            //     alert('Swiped');   
+            // }
+        })	
+    </script>
+
 </body>
 </html>
