@@ -1,3 +1,44 @@
+function preview_jadwalpengambilan_func(dom){
+	var el = $(dom);
+
+	var id = el.find('[name="pr_id"]').val();
+	console.log(id);
+	for(var i = 0; i < units.length; i++){
+		var unit = units[i];
+		if(unit.pr_id === parseInt(id)){
+			jadwalpengambilan_data = unit;
+			jadwalpengambilan_dataglobal(jadwalpengambilan_data);
+			console.log('statement if is true');
+		}
+	}
+}
+
+function jadwalpengambilan_dataglobal(json){
+	$('#list-jadwalpengambilan').html('');
+
+	$('#nota').text(json.pr_code);
+	$('#cabang').val(json.c_name);
+	$('#tanggal').val(json.pr_date);
+	$('#petugas').val(json.m_name);
+	$('#suplier').val(json.s_name);
+	$('#total').val(accounting.formatNumber(json.pr_total_net));
+
+	var dom = $('rawcontent').html();
+	for(var i = 0;i<json.barang.length;i++){
+		var el 	= $(dom);
+		barangi = json.barang[i];
+		el.find('.btn-header').text(barangi.ir_code + ' - ' + barangi.ir_name);
+		el.find('.btn-header').attr('data-target', '#collapse-'+i).attr('aria-controls', 'collapse-'+i);
+		el.find('[name="qty[]"]').val(barangi.prdt_qty);
+		el.find('[name="satuan[]"]').val(barangi.s_name);
+		el.find('[name="nilai[]"]').val(barangi.prdt_valueqty);
+		el.find('[name="harga[]"]').val(accounting.formatNumber(barangi.prdt_price));
+		el.find('.total_harga').text(accounting.formatNumber(barangi.prdt_total));
+		el.find('.datalist-collapse').attr('id', 'collapse-'+i);
+
+		$('#list-jadwalpengambilan').append(el);
+	}
+}
 
 $.ajax({
 	url:url('api/riyal/kulakan/jadwal_pengambilan/get_jadwalpengambilan_android'),
