@@ -1,5 +1,5 @@
 host = 'http://192.168.100.16/git/pusatriyal/';
-client_secret = 'ara8OfuKd2Z3uTdQh3gj5RyrLAqB7JnwfNlcCisn';
+client_secret = 'HLyFA0xhYBtB1d7ULUX4Ta0guEnrPqLKr5mhSIat';
 client_id = 2;
 grant_type = 'password';
 

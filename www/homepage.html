@@ -401,7 +401,7 @@
 	    var channel = pusher.subscribe('my-channel');
 	    channel.bind('my-event', function(data) {
 	      
-	      navigator.notification.alert(data.message, alertCallback, ['Pusher Get'], ['Oke']);
+	      navigator.notification.alert(data.message, alertCallback, 'Pusher Get', 'Oke');
 	      function alertCallback(){
 	      	console.log(data);
 	      }
@@ -435,22 +435,22 @@
 	</script>
 
 	<script>
-	$("body")
-        .on('mousedown touchstart', function (e) {
-            console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
-            xDown = e.touches[0].clientX;
-            yDown = e.touches[0].clientY;
-        })
-        .on('mouseup touchend',function (e) {
-        	var touchend = e.originalEvent.changedTouches[0];
-        	console.log('touchend :', touchend);
-            // console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
-            // xUp = e.touches[0].clientX;
-            // yUp = e.touches[0].clientY;
-            // if (xDown != xUp || yDown != yUp) {
-            //     alert('Swiped');   
-            // }
-        })	
+	// $("body")
+ //        .on('mousedown touchstart', function (e) {
+ //            console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
+ //            xDown = e.touches[0].clientX;
+ //            yDown = e.touches[0].clientY;
+ //        })
+ //        .on('mouseup touchend',function (e) {
+ //        	var touchend = e.originalEvent.changedTouches[0];
+ //        	console.log('touchend :', touchend);
+ //            // console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
+ //            // xUp = e.touches[0].clientX;
+ //            // yUp = e.touches[0].clientY;
+ //            // if (xDown != xUp || yDown != yUp) {
+ //            //     alert('Swiped');   
+ //            // }
+ //        })	
     </script>
 
 </body>

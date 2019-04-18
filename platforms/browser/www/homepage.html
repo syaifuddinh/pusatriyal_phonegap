@@ -109,9 +109,10 @@
 	<script type="text/javascript" src="js/features/logout.js"></script>
 	<script type="text/javascript" src="js/notification/SmartNotification.min.js"></script>
 	<script type="text/javascript" src="js/pusher.min.js"></script>
+	<script type="text/javascript" src="js/firebase.js"></script>
 
 	<script type="text/javascript">	
-	$(document).ready(function(){
+	
 		loading_icon = $('#loading_icon');
 		iziToast.settings({
 			position:'topRight'//Where it will be shown. It can be bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
@@ -145,7 +146,7 @@
 			localStorage.removeItem('username');
 			window.location.href = 'index.html';
 		})
-	});
+	
 	</script>
 	<script type="text/javascript">
 		cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
@@ -167,28 +168,36 @@
 			console.error(error);
 		});
 		function get_currency(v) {
-		if( /^\d([0-9\.]+)$/.test(v) ) {
-			var desimal = '';
-			if( /\./.test(v) ==  true ) {
-				v = parseFloat(v);
-				v = v.toFixed(2);
+
+			if( /^\d([0-9\.]+)$/.test(v) ) {
+
+				var desimal = '';
+				if( /\./.test(v) ==  true ) {
+					v = parseFloat(v);
+					v = v.toFixed(2);
+					v = v.toString();
+					desimal = v.split('.')[1];
+					v = v.split('.')[0];
+				}
+
+
 				v = v.toString();
-				desimal = v.split('.')[1];
-				v = v.split('.')[0];
+				var res = v.split('');
+				res = res.reverse().join('');
+				currStr = v;
+				if(res.length > 3) {
+					var currPtr = /(\w{3})/g;
+					var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
+				}
+
+
+				currStr += desimal != '' ? ',' + desimal : '';
+				return currStr;
 			}
-			v = v.toString();
-			var res = v.split('');
-			res = res.reverse().join('');
-			currStr = v;
-			if(res.length > 3) {
-				var currPtr = /(\w{3})/g;
-				var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
-			}
-			currStr += desimal != '' ? ',' + desimal : '';
-			return currStr;
+
+			return v;
 		}
-		return v;
-		}
+
 	</script>
 	<script type="text/javascript">
 		function onDeviceReady(){
@@ -312,116 +321,69 @@
 		}
 		var user_comp = localStorage.getItem('m_comp_id');
 		var interval;
-		var latitude;
-		var longitude;
-		function start(sr_id){
-			geo();
-			updatestatus(sr_id, 'start');
-			pushgps(sr_id);
-		};
-		function stop(sr_id){
-			stoppush(sr_id, 'stop');
-		}
-		function geo(){
-			var successHandler = function(position) {
-				latitude = position.coords.latitude;
-				longitude = position.coords.longitude;
-				};
-				var errorHandler = function (errorObj) {
-				alert(errorObj.code + ": " + errorObj.message);
-				};
-				navigator.geolocation.getCurrentPosition(
-				successHandler, errorHandler,
-				{enableHighAccuracy: true, maximumAge: 10000});
-		//   navigator.geolocation.getCurrentPosition(function(position) {
-		//   latitude = position.coords.latitude;
-		//   longitude = position.coords.longitude;
-		// });
-		}
-		function pushgps(sr_id){
-			interval = setInterval(function () {
-				$('#status').text('Sedang Berjalan . . . ');
-				$.ajax({
-					type: 'get',
-					url: url('/api/gpspush'),
-					dataType: 'json',
-					data: {id:sr_id, latitude, longitude},
-					success : function(response){
-					}
-				});
-			}, 5000);
-		}
-		function updatestatus(sr_id, status){
-			$.ajax({
-				type: 'get',
-				data: {sr_id, status},
-				url: url('/api/updatestatus'),
-				dataType: 'JSON',
-				success : function(response){
-				}
-			});
-		}
-		function stoppush(sr_id, status){
-			updatestatus(sr_id, status);
-			clearInterval(interval);
-			$('#status').text('DIberhentikan . . . ');
-		}
-			user_comp = localStorage.getItem('m_comp_id');
-			interval;
-		latitude;
-		longitude;
-		function start(sr_id, type){
-			geo();
-			updatestatus(sr_id, 'start');
-			pushgps(sr_id, type);
-		};
-		function stop(sr_id){
-			stoppush(sr_id, 'stop');
-		}
-		function geo(){
-			var successHandler = function(position) {
-				latitude = position.coords.latitude;
-				longitude = position.coords.longitude;
-				};
-				var errorHandler = function (errorObj) {
-				alert(errorObj.code + ": " + errorObj.message);
-				};
-				navigator.geolocation.getCurrentPosition(
-				successHandler, errorHandler,
-				{enableHighAccuracy: true, maximumAge: 10000});
-		//   navigator.geolocation.getCurrentPosition(function(position) {
-		//   latitude = position.coords.latitude;
-		//   longitude = position.coords.longitude;
-		// });
-		}
-		function pushgps(sr_id, type){
-		interval = setInterval(function () {
-			$('#status').text('Sedang Berjalan . . . ');
-				$.ajax({
-					type: 'get',
-					url: url('/api/gpspush'),
-					dataType: 'json',
-					data: {id:sr_id, type, latitude, longitude},
-					success : function(response){
-					}
-				});
-			}, 5000);
-		}
-		function updatestatus(sr_id, status){
-			$.ajax({
-				type: 'get',
-				data: {sr_id, status},
-				url: url('/api/updatestatus'),
-				dataType: 'JSON',
-				success : function(response){
-				}
-			});
-		}
-		function stoppush(sr_id, status){
-			updatestatus(sr_id, status);
-			clearInterval(interval);
-			$('#status').text('DIberhentikan . . . ');
-		}
+	  	var latitude;
+	  	var longitude;
+	  	function start(sr_id){
+	  		geo();
+	  		updatestatus(sr_id, 'start');
+	  		pushgps(sr_id);
+	  	};
+
+	  	function stop(sr_id){
+	  		stoppush(sr_id, 'stop');
+	  	}
+
+	  	function geo(){
+	  		var successHandler = function(position) {
+	  			latitude = position.coords.latitude;
+	  			longitude = position.coords.longitude;
+	  			};
+
+	  			var errorHandler = function (errorObj) {
+	  			alert(errorObj.code + ": " + errorObj.message);
+	  			};
+
+	  			navigator.geolocation.getCurrentPosition(
+	  			successHandler, errorHandler,
+	  			{enableHighAccuracy: true, maximumAge: 10000});
+	  	//   navigator.geolocation.getCurrentPosition(function(position) {
+	  	//   latitude = position.coords.latitude;
+	  	//   longitude = position.coords.longitude;
+	  	// });
+	  	}
+
+	  	function pushgps(sr_id){
+	  	 interval = setInterval(function () {
+	  		 $('#status').text('Sedang Berjalan . . . ');
+	  			$.ajax({
+	  				type: 'get',
+	  				url: url('/api/gpspush'),
+	  				dataType: 'json',
+	  				data: {id:sr_id, latitude, longitude},
+	  				success : function(response){
+	  				}
+	  			});
+	  		}, 5000);
+	  	}
+
+	  	function updatestatus(sr_id, status){
+	  		$.ajax({
+	  			type: 'get',
+	  			data: {sr_id, status},
+	  			url: url('/api/updatestatus'),
+	  			dataType: 'JSON',
+	  			success : function(response){
+	  			}
+	  		});
+	  	}
+
+	  	function stoppush(sr_id, status){
+	  		updatestatus(sr_id, status);
+	  		clearInterval(interval);
+	  		$('#status').text('DIberhentikan . . . ');
+	  	}
+
+
 	</script>
 	<script type="text/javascript">
 		PUSHER_APP_ID="691515"
@@ -439,7 +401,7 @@
 	    var channel = pusher.subscribe('my-channel');
 	    channel.bind('my-event', function(data) {
 	      
-	      navigator.notification.alert(data.message, alertCallback, ['Pusher Get'], ['Oke']);
+	      navigator.notification.alert(data.message, alertCallback, 'Pusher Get', 'Oke');
 	      function alertCallback(){
 	      	console.log(data);
 	      }
@@ -471,5 +433,25 @@
 		});
 
 	</script>
+
+	<script>
+	// $("body")
+ //        .on('mousedown touchstart', function (e) {
+ //            console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
+ //            xDown = e.touches[0].clientX;
+ //            yDown = e.touches[0].clientY;
+ //        })
+ //        .on('mouseup touchend',function (e) {
+ //        	var touchend = e.originalEvent.changedTouches[0];
+ //        	console.log('touchend :', touchend);
+ //            // console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
+ //            // xUp = e.touches[0].clientX;
+ //            // yUp = e.touches[0].clientY;
+ //            // if (xDown != xUp || yDown != yUp) {
+ //            //     alert('Swiped');   
+ //            // }
+ //        })	
+    </script>
+
 </body>
 </html>
