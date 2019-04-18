@@ -65,11 +65,10 @@
     "cordova.plugins.diagnostic": {
       "ANDROID_SUPPORT_VERSION": "27.+",
       "PACKAGE_NAME": "com.phonegap.pusatriyal"
-    }
-  },
-  "dependent_plugins": {
+    },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.phonegap.pusatriyal"
     }
-  }
+  },
+  "dependent_plugins": {}
 }
