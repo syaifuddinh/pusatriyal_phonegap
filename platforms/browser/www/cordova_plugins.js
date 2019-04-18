@@ -406,20 +406,43 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "id": "phonegap-plugin-push.PushNotification",
-        "pluginId": "phonegap-plugin-push",
+        "file": "plugins/cordova-pdf-generator/www/pdf.js",
+        "id": "cordova-pdf-generator.pdf",
+        "pluginId": "cordova-pdf-generator",
         "clobbers": [
-            "PushNotification"
+            "cordova.plugins.pdf",
+            "pugin.pdf",
+            "pdf"
         ]
     },
     {
-        "file": "plugins/phonegap-plugin-push/www/browser/push.js",
-        "id": "phonegap-plugin-push.BrowserPush",
-        "pluginId": "phonegap-plugin-push",
+        "file": "plugins/cordova-plugin-printer/www/printer.js",
+        "id": "cordova-plugin-printer.Printer",
+        "pluginId": "cordova-plugin-printer",
         "clobbers": [
-            "PushNotification"
+            "cordova.plugins.printer"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-printer/src/browser/PrinterProxy.js",
+        "id": "cordova-plugin-printer.Printer.Proxy",
+        "pluginId": "cordova-plugin-printer",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+        "id": "cordova-plugin-background-mode.BackgroundMode",
+        "pluginId": "cordova-plugin-background-mode",
+        "clobbers": [
+            "cordova.plugins.backgroundMode",
+            "plugin.backgroundMode"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-background-mode/src/browser/BackgroundModeProxy.js",
+        "id": "cordova-plugin-background-mode.BackgroundMode.Proxy",
+        "pluginId": "cordova-plugin-background-mode",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -433,14 +456,18 @@ module.exports.metadata =
     "cordova-plugin-device": "1.1.7",
     "cordova-plugin-dialogs": "1.3.4",
     "cordova-plugin-geolocation": "2.4.3",
-    "cordova-plugin-globalization": "1.0.9",
+    "cordova-plugin-globalization": "1.11.0",
     "cordova-plugin-inappbrowser": "1.7.2",
     "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-vibration": "2.1.6",
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-android-support-gradle-release": "2.1.0",
     "cordova.plugins.diagnostic": "4.0.12",
-    "phonegap-plugin-push": "2.2.3"
+    "cordova-pdf-generator": "2.0.8",
+    "cordova-plugin-printer": "0.8.0",
+    "cordova-plugin-background-mode": "0.7.2",
+    "cordova-android-firebase-gradle-release": "3.0.0",
+    "cordova-android-play-services-gradle-release": "3.0.0"
 }
 // BOTTOM OF METADATA
 });

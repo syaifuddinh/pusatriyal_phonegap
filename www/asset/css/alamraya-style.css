@@ -103,8 +103,9 @@ rawcontent, .hidden {
 	overflow-y: auto;
 	z-index: 5;
 	top: 0;
-	left: -200px;
-	width: 200px;
+	/*left: -200px;*/
+	width: 0px;
+	max-width: 200px; 
 	height: 100%;
 	transition: .3s ease;
 	font-family: 'Arial';
@@ -115,7 +116,8 @@ rawcontent, .hidden {
 	overflow-y: hidden;
 }
 .sidebar-collapse .sidebar{
-	left: 0;
+	/*left: 0;*/
+	width: 200px;
 }
 .sidebar-collapse .sidebar-menu-off{
 	z-index: 4;
@@ -297,4 +299,20 @@ fieldset{
 }
 .sidebar-logout{
 	border-top:1px solid #5e626b;
+}
+.div-antrian-pdf{
+	width: 200px;
+	height: 200px;
+
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	margin: auto;
+	font-size: 350pt;
+}
+.div-antrian-pdf .badge-antrian{
+	font-size: 200pt;
 }

@@ -8,54 +8,66 @@
   },
   "installed_plugins": {
     "cordova-plugin-battery-status": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-media-capture": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-globalization": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-android-support-gradle-release": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova.plugins.diagnostic": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
-    "phonegap-plugin-push": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+    "cordova-pdf-generator": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
+    },
+    "cordova-plugin-printer": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
+    },
+    "cordova-plugin-background-mode": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
+    },
+    "cordova-android-firebase-gradle-release": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
+    },
+    "cordova-android-play-services-gradle-release": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-compat": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     },
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     }
   }
 }
