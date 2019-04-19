@@ -91,8 +91,9 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "../cordova-android-support-gradle-release/helloworld-cordova-android-support-gradle-release.gradle"
-apply from: "../cordova-plugin-geolocation-android-activator/helloworld-LocationActivation.gradle"
+apply from: "../cordova-android-firebase-gradle-release/pusatriyal-cordova-android-firebase-gradle-release.gradle"
+apply from: "../cordova-android-play-services-gradle-release/pusatriyal-cordova-android-play-services-gradle-release.gradle"
+apply from: "../cordova-android-support-gradle-release/pusatriyal-cordova-android-support-gradle-release.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -267,6 +268,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
+    compile "com.android.support:support-v4:25.+"
     compile "com.android.support:support-v4:25.+"
     compile "com.android.support:support-v4:25.+"
     compile "com.android.support:appcompat-v7:25.+"
