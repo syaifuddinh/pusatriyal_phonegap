@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.pusatriyal" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Pusat Riyal</name>
     <description>
         Sistem Informasi Pusat Riyal.
@@ -31,7 +31,6 @@
         <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
-        <resource-file src="google-services.json" target="app/google-services.json" />
     </platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
@@ -60,7 +59,6 @@
         <splash height="1024" platform="ios" src="www/res/screen/ios/Default-Portrait~ipad.png" width="768" />
         <splash height="960" platform="ios" src="www/res/screen/ios/Default@2x~iphone.png" width="640" />
         <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
-        <resource-file src="GoogleService-Info.plist" />
     </platform>
     <platform name="wp8">
         <icon height="99" platform="wp8" src="www/res/icon/wp8/ApplicationIcon.png" width="99" />
@@ -117,21 +115,5 @@
     <plugin name="cordova.plugins.diagnostic" spec="^4.0.12">
         <variable name="ANDROID_SUPPORT_VERSION" value="27.+" />
     </plugin>
-    <plugin name="phonegap-plugin-push" spec="2.2.3">
-        <variable name="ANDROID_SUPPORT_V13_VERSION" value="27.+" />
-        <variable name="FCM_VERSION" value="11.6.2" />
-    </plugin>
-    <plugin name="cordova-pdf-generator" spec="^2.0.8" />
-    <plugin name="cordova-plugin-printer" spec="^0.8.0">
-        <variable name="ANDROID_SUPPORT_V4_VERSION" value="28.+" />
-    </plugin>
-    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
-    <plugin name="cordova-android-firebase-gradle-release" spec="^3.0.0">
-        <variable name="FIREBASE_VERSION" value="15.+" />
-    </plugin>
-    <plugin name="cordova-android-play-services-gradle-release" spec="^3.0.0">
-        <variable name="PLAY_SERVICES_VERSION" value="15.+" />
-    </plugin>
     <engine name="android" spec="^8.0.0" />
-    <engine name="browser" spec="^5.0.4" />
 </widget>
