@@ -1,6 +1,6 @@
-host = 'http://192.168.100.16/git/pusatriyal/';
-client_secret = 'HLyFA0xhYBtB1d7ULUX4Ta0guEnrPqLKr5mhSIat';
-client_id = 2;
+host = 'http://192.168.100.15/git/pusatriyal/';
+client_secret = 'Lynx5fIXy6DbMVjF3nduq2rZAsytXBHZttB86xuL';
+client_id = 4;
 grant_type = 'password';
 
 url = function(pathname) {
@@ -18,4 +18,4 @@ var config = {
 	storageBucket: "alamrayasite-pusatriyal.appspot.com",
 	messagingSenderId: "458093057695"
 };
-firebase.initializeApp(config);
+// firebase.initializeApp(config);
