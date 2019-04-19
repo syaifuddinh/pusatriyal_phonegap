@@ -319,6 +319,7 @@
     } else {
       petugas = localStorage.getItem('m_id');
     }
+    alert(json.sr_officer_send);
     if (parseInt(json.sr_officer_send) != parseInt(petugas)) {
       $('#antar').css('display', 'none');
     }
