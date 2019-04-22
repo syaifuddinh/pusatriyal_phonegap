@@ -1,6 +1,6 @@
-host = 'http://192.168.100.15/git/pusatriyal/';
-client_secret = 'Lynx5fIXy6DbMVjF3nduq2rZAsytXBHZttB86xuL';
-client_id = 4;
+host = 'http://192.168.100.16/git/pusatriyal/';
+client_secret = '5eNF7RSv03L9jGL5RCrQorjLLgZ31fkqdHt2CBnP';
+client_id = 6;
 grant_type = 'password';
 
 url = function(pathname) {

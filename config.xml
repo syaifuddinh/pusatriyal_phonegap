@@ -128,9 +128,5 @@
     <plugin name="cordova-android-play-services-gradle-release" spec="^3.0.0">
         <variable name="PLAY_SERVICES_VERSION" value="15.+" />
     </plugin>
-    <plugin name="phonegap-plugin-push" spec="^2.2.3">
-        <variable name="ANDROID_SUPPORT_V13_VERSION" value="27.+" />
-        <variable name="FCM_VERSION" value="11.6.2" />
-    </plugin>
     <engine name="android" spec="^7.1.4" />
 </widget>

@@ -35,10 +35,6 @@
       },
       "cordova-android-play-services-gradle-release": {
         "PLAY_SERVICES_VERSION": "15.+"
-      },
-      "phonegap-plugin-push": {
-        "ANDROID_SUPPORT_V13_VERSION": "27.+",
-        "FCM_VERSION": "11.6.2"
       }
     }
   },
@@ -68,7 +64,6 @@
     "cordova-support-google-services": "^1.1.0",
     "cordova.plugins.diagnostic": "^4.0.12",
     "phonegap-plugin-multidex": "^1.0.0",
-    "phonegap-plugin-push": "^2.2.3",
     "select2": "^4.0.6-rc.1"
   }
 }
