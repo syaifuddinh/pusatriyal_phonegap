@@ -70,6 +70,9 @@
   "dependent_plugins": {
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.phonegap.pusatriyal"
+    },
+    "cordova-support-google-services": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     }
   }
 }
