@@ -4,7 +4,6 @@
   "displayName": "helloworld",
   "cordova": {
     "platforms": [
-      "android",
       "browser"
     ],
     "plugins": {
@@ -45,7 +44,7 @@
   },
   "dependencies": {
     "bootstrap-datepicker": "^1.8.0",
-    "cordova-android": "^8.0.0",
+    "cordova-android": "^7.1.4",
     "cordova-android-firebase-gradle-release": "^3.0.0",
     "cordova-android-play-services-gradle-release": "^3.0.0",
     "cordova-android-support-gradle-release": "^2.1.0",

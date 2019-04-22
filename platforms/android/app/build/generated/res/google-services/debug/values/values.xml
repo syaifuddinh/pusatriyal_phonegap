@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">458093057695-7iapm9e0qgdcaffg1orj03njc77av14g.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://alamrayasite-pusatriyal.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">458093057695</string>
+    <string name="google_api_key" translatable="false">AIzaSyDa1sQNMM-C0m6xvZ4sXh_VtMZSGe9chDw</string>
+    <string name="google_app_id" translatable="false">1:458093057695:android:b207386bf0c8aa06</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDa1sQNMM-C0m6xvZ4sXh_VtMZSGe9chDw</string>
+    <string name="google_storage_bucket" translatable="false">alamrayasite-pusatriyal.appspot.com</string>
+    <string name="project_id" translatable="false">alamrayasite-pusatriyal</string>
+</resources>

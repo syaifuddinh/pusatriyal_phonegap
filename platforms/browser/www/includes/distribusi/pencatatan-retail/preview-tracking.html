@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
+<style>
+
+#mapid { height: 100%; margin-top: 20px; }
+
+</style>
+
+</head>
+
+<body>
+<div class="pusatriyal-submit btn-group">
+  		<button type="button" class="btn btn-success" id="selesai" onclick="selesai()">Selesai</button>
+</div>
+<div id="mapid"></div>
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+<script>
+var interval;
+$(document).ready(function(){
+  getdata();
+});
+
+cekdata();
+
+function cekdata(){
+  interval = setInterval(function () {
+    getdata();
+  }, 5000);
+}
+
+function getdata(){
+  $.ajax({
+    type: 'get',
+    data: {sr_id, petugas, type:'R'},
+    dataType: 'json',
+    url: url('api/getmap'),
+    success : function(response){
+      count = response.length;
+
+      // polylinepoint = [];
+      //
+      // for (i = 0; i < response.length; i++) {
+      //    polylinepoint.push([response[i].rdt_latitude, response[i].rdt_longitude]);
+      // }
+      // console.log(polylinepoint.length);
+
+      getmap(response, count);
+    }
+  });
+}
+
+function getmap(response, count){
+  var map = L.map('mapid').setView([response[count - 1].rdt_latitude, response[count - 1].rdt_longitude], 13);
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // var polyline = L.polyline(polylinepoint).addTo(map);
+  // var polyline = L.polyline(polylinepoint, {color: 'red'}).addTo(map);
+  //
+  // map.fitBounds(polyline.getBounds());
+  var marker = L.marker([response[0].rdt_latitude, response[0].rdt_longitude],
+       {
+         title: 'Lokasi Awal'}            // Adjust the opacity
+       )
+       .addTo(map);
+
+  marker.bindPopup("Lokasi Awal").openPopup();
+  // L.marker(response[count - 1].rdt_latitude, response[count - 1].rdt_longitude).addTo(map);
+
+  var stuSplit = L.latLng(response[count - 1].rdt_latitude, response[count - 1].rdt_longitude);
+  var myMarker = L.circleMarker(stuSplit,
+    { title: 'unselected' })
+        .addTo(map);
+}
+
+function selesai(){
+  stop(sr_id);
+  clearInterval(interval);
+  Routing.load_page('includes/distribusi/pencatatan-retail/pencatatan-retail.html');
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+<div class="subcontent" style="">
+<style>
+    .table-accordion{
+      font-size: 9pt;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .title-edit
+    {
+        margin-top: 60px;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        width: 70%;
+        border: none;
+        color: #14c56d;
+    }
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    .listx
+    {
+      font-weight: bold;
+    }
+
+    .card-body {
+      border-bottom:1px solid #e7e7e7;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    #login .container #login-row #login-column #login-box {
+      margin-top: 60px;
+      max-width: 600px;
+      height: 320px;
+    }
+    #login .container #login-row #login-column #login-box #login-form {
+      padding: 26px;
+      margin-bottom: 35mm;
+    }
+    #login .container #login-row #login-column #login-box #login-form #register-link {
+      margin-top: -85px;
+    }
+
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    form {
+      padding-left: 5mm;
+      padding-right: 5mm;
+    }
+    .iziToast-buttons{
+      width: 100%;
+    }
+    .rounded-btn{
+      bottom: 0;
+      right: 0;
+    }
+</style>
+
+<div class="pusatriyal-submit btn-group">
+  
+  <button class="btn btn-primary rounded-btn" id="btn-simpan">
+    <i class="fa fa-check"></i>
+  </button>
+</div>
+<div class="breadcrumb-pusatriyal">
+  <span class="active">Form Opname Stock</span>
+</div>
+<form id="opname-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
+<input type="hidden" name="_token" id="_token">
+<!-- <input type="hidden" name="sm_id" id="sm_id"> -->
+    <div class="form-group">
+        <label for="id" class="label-for">Kode Opname</label>
+        <input type="text" readonly="" name="id" id="kode_opname" class="form-control">
+    </div>
+    <div class="form-group">
+        <label class="label-for" for="tgl_opname" >Tanggal Opname</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" name="tgl_opname" id="tgl" class="form-control-plaintext" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pilih_gudang" class="label-for">Posisi Item</label><br>
+        <div class="border-bottom border-bottom-1">
+          <select class="form-control-plaintext" id="pilih_gudang" name="pilih_gudang" tabindex="-1" title="">
+            
+          </select>
+
+          <input type="hidden" id="gudang" name="gudang">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="staff" class="label-for">Staff</label>
+        <input type="text" readonly="" name="staff" id="staff" class="form-control" >
+
+    </div>
+
+    <fieldset class="mb-3">
+      
+      <div class="form-group">
+        <label>Item</label>
+        <div class="border-bottom border-bottom-1">
+          <select class="form-control-plaintext" id="item">
+            
+          </select>
+
+          <input type="hidden" id="opname_detail">
+          <input type="hidden" id="name_satuan">
+          <input type="hidden" id="nama_item">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>Qty Sistem</label>
+        <div class="input-group">
+          <input type="number" readonly="" class="form-control" name="" id="qty_sistem">
+          <div class="input-group-append">
+            <span class="input-group-text">Lembar</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Qty Real</label>
+        <div class="border-bottom border-bottom-1">
+          <div class="input-group">
+            <input type="number" class="form-control-plaintext" name="" id="qty_real">
+            <div class="input-group-append">
+              <span class="input-group-text">Lembar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" type="button" id="btn-append">Tambah ke list</button>
+      </div>
+    </fieldset>
+    <div id="form-list-item">
+    </div>
+</form>
+
+    <script type="text/javascript" src="includes/stock/opname_stock/js/form-opname-commander.js"></script>
+  <script type="text/javascript">
+    // display_pembayaran_json(global_pembayaran_json);
+  </script>
+</div>
