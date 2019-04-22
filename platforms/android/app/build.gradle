@@ -95,6 +95,7 @@ apply from: "../cordova-android-firebase-gradle-release/pusatriyal-cordova-andro
 apply from: "../cordova-android-play-services-gradle-release/pusatriyal-cordova-android-play-services-gradle-release.gradle"
 apply from: "../cordova-android-support-gradle-release/pusatriyal-cordova-android-support-gradle-release.gradle"
 apply from: "../cordova-support-google-services/pusatriyal-build.gradle"
+apply from: "../phonegap-plugin-multidex/pusatriyal-multidex.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -273,6 +274,9 @@ dependencies {
     compile "com.android.support:support-v4:25.+"
     compile "com.android.support:support-v4:25.+"
     compile "com.android.support:appcompat-v7:25.+"
+    compile "com.android.support:support-v13:25.+"
+    compile "me.leolin:ShortcutBadger:1.1.17@aar"
+    compile15.+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

@@ -1,0 +1,36 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "phonegap-plugin-push": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "file": "plugins/phonegap-plugin-push/www/push.js",
+      "id": "phonegap-plugin-push.PushNotification",
+      "pluginId": "phonegap-plugin-push",
+      "clobbers": [
+        "PushNotification"
+      ]
+    },
+    {
+      "file": "plugins/phonegap-plugin-push/www/browser/push.js",
+      "id": "phonegap-plugin-push.BrowserPush",
+      "pluginId": "phonegap-plugin-push",
+      "clobbers": [
+        "PushNotification"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "phonegap-plugin-push": "2.2.3"
+  }
+}
