@@ -344,7 +344,7 @@
 				$('#status').text('Sedang Berjalan . . . ');
 				$.ajax({
 					type: 'get',
-					url: url('/api/gpspush'),
+					url: url('api/gpspush'),
 					dataType: 'json',
 					data: {id:sr_id, latitude, longitude},
 					success : function(response){
@@ -356,7 +356,7 @@
 			$.ajax({
 				type: 'get',
 				data: {sr_id, status},
-				url: url('/api/updatestatus'),
+				url: url('api/updatestatus'),
 				dataType: 'JSON',
 				success : function(response){
 				}
@@ -465,7 +465,7 @@
 		    resume: true,
 		    hidden: false,
 		    bigText: false
-		})
+		});
 
 		cordova.plugins.backgroundMode.on('activate', function() {
 		   cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
@@ -473,5 +473,10 @@
 
 	</script>
 
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> ferdy
 </body>
 </html>
