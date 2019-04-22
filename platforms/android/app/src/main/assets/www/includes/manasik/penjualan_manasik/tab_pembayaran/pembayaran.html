@@ -1,0 +1,139 @@
+<div class="subcontent" style="">
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .title-edit
+    {
+        margin-top: 60px;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        width: 70%;
+        border: none;
+        color: #14c56d;
+    }
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    .listx
+    {
+      font-weight: bold;
+    }
+
+    .card-body {
+      border-bottom:1px solid #e7e7e7;
+    }
+    .card {
+      margin-left: 4mm;
+      margin-right: 4mm;
+      margin-bottom: 10mm;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    #login .container #login-row #login-column #login-box {
+      margin-top: 60px;
+      max-width: 600px;
+      height: 320px;
+    }
+    #login .container #login-row #login-column #login-box #login-form {
+      padding: 26px;
+      margin-bottom: 35mm;
+    }
+    #login .container #login-row #login-column #login-box #login-form #register-link {
+      margin-top: -85px;
+    }
+
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    form {
+      padding-left: 5mm;
+      padding-right: 5mm;
+    }
+</style>
+
+<div class="pusatriyal-submit btn-group">
+  
+  <button class="btn btn-primary rounded-btn" id="btn-simpan" 
+   >
+    <i class="fa fa-check"></i>
+  </button>
+</div>
+<div class="breadcrumb-pusatriyal">
+  <span class="active">Pembayaran Penjualan Manasik</span>
+</div>
+<form id="pembayaran-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
+<input type="hidden" name="_token" id="_token">
+<input type="hidden" name="id" id="sm_id">
+    
+    <div class="form-group form-tagihan">
+        <label for="tagihan" class="label-for">Tagihan</label>
+        <input type="text" readonly="" id="tagihan" class="form-control text-right">
+        <input type="hidden"  name="tagihan">
+    </div>
+    <div class="form-group">
+        <label class="label-for" for="dibayar" >Dibayar</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" name="dibayar" id="dibayar" class="form-control-plaintext text-right input-number" >
+        </div>
+    </div>
+    <div class="form-group form-tagihan">
+        <label for="kembalian" class="label-for">Kembalian</label>
+        <input type="text" readonly="" name="kembalian" id="kembalian" class="form-control text-right" >
+    </div>
+   
+    
+</form>
+
+    <script type="text/javascript" src="includes/manasik/penjualan_manasik/tab_pembayaran/js/pembayaran-commander.js"></script>
+    <script type="text/javascript">
+      // display_pembayaran_json(global_pembayaran_json);
+    </script>
+</div>
