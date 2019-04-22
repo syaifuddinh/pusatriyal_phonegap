@@ -344,7 +344,7 @@
 				$('#status').text('Sedang Berjalan . . . ');
 				$.ajax({
 					type: 'get',
-					url: url('/api/gpspush'),
+					url: url('api/gpspush'),
 					dataType: 'json',
 					data: {id:sr_id, latitude, longitude},
 					success : function(response){
@@ -356,7 +356,7 @@
 			$.ajax({
 				type: 'get',
 				data: {sr_id, status},
-				url: url('/api/updatestatus'),
+				url: url('api/updatestatus'),
 				dataType: 'JSON',
 				success : function(response){
 				}
@@ -465,7 +465,7 @@
 		    resume: true,
 		    hidden: false,
 		    bigText: false
-		})
+		});
 
 		cordova.plugins.backgroundMode.on('activate', function() {
 		   cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
@@ -473,24 +473,7 @@
 
 	</script>
 
-	<script>
-	$("body")
-        .on('mousedown touchstart', function (e) {
-            console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
-            xDown = e.touches[0].clientX;
-            yDown = e.touches[0].clientY;
-        })
-        .on('mouseup touchend',function (e) {
-        	var touchend = e.originalEvent.changedTouches[0];
-        	console.log('touchend :', touchend);
-            // console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
-            // xUp = e.touches[0].clientX;
-            // yUp = e.touches[0].clientY;
-            // if (xDown != xUp || yDown != yUp) {
-            //     alert('Swiped');   
-            // }
-        })	
-    </script>
+	
 
 </body>
 </html>
