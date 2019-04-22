@@ -1,4 +1,3 @@
-console.log(window.location.pathname);
 var Routing = {
 	el : null,
 	history : ['dashboard_menu.html'],
@@ -12,8 +11,16 @@ var Routing = {
 			x += 1;
 			this.history.splice(x, length);
 		}
-		$('#btn-menu').css('display', 'none');
-		$('#btn-backward').css('display', 'block');
+		if(this.history.length == 1) {
+			
+			$('#btn-menu').css('display', 'block');
+			$('#btn-backward').css('display', 'none');
+		}
+		else {
+			
+			$('#btn-menu').css('display', 'none');
+			$('#btn-backward').css('display', 'block');
+		}
 	},	
 	history_pop : function() {
 		this.history.pop();

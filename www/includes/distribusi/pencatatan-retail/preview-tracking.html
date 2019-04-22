@@ -54,8 +54,9 @@ function getdata(){
   });
 }
 
+map = L.map('mapid');
 function getmap(response, count){
-  var map = L.map('mapid').setView([response[count - 1].rdt_latitude, response[count - 1].rdt_longitude], 13);
+  map.setView([response[count - 1].rdt_latitude, response[count - 1].rdt_longitude], 13);
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
