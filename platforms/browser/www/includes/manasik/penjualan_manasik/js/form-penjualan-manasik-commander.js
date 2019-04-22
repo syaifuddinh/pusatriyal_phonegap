@@ -248,18 +248,18 @@ function createPDF(dom) {
 		# iOS: www/<css-folder>/<your-file.css>
 		# Android: file:///android_asset/www/<css-folder>/<your-file.css>
 	*/	 	
-	// var date = new Date();
-	// var tanggal = date.getDay();
-	// var bulan = date.getMonth();
-	// var year = date.getFullYear();
-	// var tanggal = tanggal+'-'+bulan+'-'+year;
+	var date = new Date();
+	var tanggal = date.getDay();
+	var bulan = date.getMonth();
+	var year = date.getFullYear();
+	var tanggal = tanggal+'-'+bulan+'-'+year;
 
-	//   var opts = {
-	//       // documentSize: "A4",	
-	//       landscape: "portrait",
-	//       type: "share",
-	//       fileName: 'antrian-manasik '+tanggal+'.pdf'
-	//   }
+	  var opts = {
+	      // documentSize: "A4",	
+	      landscape: "portrait",
+	      type: "share",
+	      fileName: 'antrian-manasik '+tanggal+'.pdf'
+	  }
 
 	 	var html = '<html>'+
 		 				'<head>'+
@@ -275,9 +275,9 @@ function createPDF(dom) {
 							'</div>'+
 						'</body>'+
 					'</html>';
-	cordova.plugins.printer.print(html);
-	  // pdf.fromData(html,
-	  //         opts)
-	  //     .then(progressHide)
-	  //     .catch(progressHide);
+	 
+	  pdf.fromData(html,
+	          opts)
+	      .then(progressHide)
+	      .catch(progressHide);
 }
