@@ -122,7 +122,7 @@
         <variable name="FCM_VERSION" value="11.6.2" />
     </plugin>
     <plugin name="cordova-pdf-generator" spec="^2.0.8" />
-    <plugin name="cordova-plugin-printer" spec="^0.8.0">
+    <plugin name="cordova-plugin-printer" spec="^5.4.0">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="28.+" />
     </plugin>
     <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
