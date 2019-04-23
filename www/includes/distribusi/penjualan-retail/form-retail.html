@@ -1,0 +1,846 @@
+<div class="subcontent" style="">
+<style>
+    .table-accordion{
+      font-size: 9pt;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .title-edit
+    {
+        margin-top: 60px;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        width: 70%;
+        border: none;
+        color: #14c56d;
+    }
+
+    .d-none{
+      display: none;
+    }
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    .listx
+    {
+      font-weight: bold;
+    }
+
+    .card-body {
+      border-bottom:1px solid #e7e7e7;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    #login .container #login-row #login-column #login-box {
+      margin-top: 60px;
+      max-width: 600px;
+      height: 320px;
+    }
+    #login .container #login-row #login-column #login-box #login-form {
+      padding: 26px;
+      margin-bottom: 35mm;
+    }
+    #login .container #login-row #login-column #login-box #login-form #register-link {
+      margin-top: -85px;
+    }
+
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    form {
+      padding-left: 5mm;
+      padding-right: 5mm;
+    }
+    .iziToast-buttons{
+      width: 100%;
+    }
+    .rounded-btn{
+      bottom: 0;
+      right: 0;
+    }
+</style>
+
+<div class="pusatriyal-submit btn-group">
+
+  <button class="btn btn-primary rounded-btn" onclick="simpan()">
+    <i class="fa fa-check"></i>
+  </button>
+</div>
+<div class="breadcrumb-pusatriyal">
+  <span class="active">Form Penjualan</span>
+</div>
+<form method="post"  enctype="multipart/form-data" id="myform">
+<input type="hidden" name="_token" id="_token">
+<!-- <input type="hidden" name="sm_id" id="sm_id"> -->
+  <div class="form-group">
+      <label for="tipe" class="label-for">Type</label>
+      <div class="border-bottom border-bottom-1">
+        <select class="form-control" name="tipe" readonly>
+					<option value="PEMESANAN" selected>
+						PEMESANAN
+					</option>
+					<option value="PENJUALAN">
+						PENJUALAN
+					</option>
+				</select>
+    </div>
+  </div>
+    <div class="form-group">
+        <label for="sr_marketing" class="label-for">Marketing</label>
+        <div class="border-bottom border-bottom-1">
+        <select class="form-control" name="sr_marketing" id="sr_marketing">
+
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="cabang" class="label-for">Cabang</label>
+        <div class="border-bottom border-bottom-1">
+          <select class="select2 cabang" id="cabang" name="cabang" required="" disabled="">
+
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="netto" class="label-for">Netto</label><br>
+      <input type="netto" class="form-control netto" name="netto" readonly value="">
+    </div>
+    <div class="form-group">
+      <label for="nota" class="label-for">Nota</label><br>
+      <input type="nota" class="form-control nota" name="nota" readonly value="">
+    </div>
+    <div class="form-group input-daterange">
+      <label for="tgl_transaksi" class="label-for">Tanggal</label><br>
+      <div class="border-bottom border-bottom-1">
+      <input type="text" class="form-control tgl_transaksi" value="" id="tgl_transaksi" name="tgl_transaksi">
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="pengirim" class="label-for">Petugas Pengirim</label>
+        <div class="border-bottom border-bottom-1">
+        <select class="form-control" name="pengirim" id="pengirim">
+
+        </select>
+      </div>
+    </div>
+    <div class="form-group input-daterange">
+      <label for="sr_tanggal_pengiriman" class="label-for">Tanggal Pengiriman</label><br>
+      <div class="border-bottom border-bottom-1">
+      <input type="text" class="form-control" value="" id="sr_tanggal_pengiriman" name="sr_tanggal_pengiriman">
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="customer" class="label-for">Customer</label>
+        <div class="border-bottom border-bottom-1">
+        <select class="form-control" name="customer" id="customer">
+
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="keterangan" class="label-for">Keterangan</label><br>
+      <input type="keterangan" class="form-control keterangan" name="keterangan" value="">
+    </div>
+    <div class="form-group">
+        <label for="metode_pembayaran" class="label-for">Metode Pembayaran</label>
+        <div class="border-bottom border-bottom-1">
+          <select class="form-control input-sm" id="metode_pembayaran" name="metode_pembayaran">
+    							<option value="CASH" selected="">Cash</option>
+    							<option value="TRANSFER">Transfer</option>
+    			</select>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="sr_status_pembayaran" class="label-for">Status Pembayaran</label>
+        <div class="border-bottom border-bottom-1">
+          <select class="form-control input-sm" id="sr_status_pembayaran" name="sr_status_pembayaran">
+  							<option value="0" selected="">Belum Terbayar</option>
+  							<option value="1">Sudah Terbayar</option>
+  				</select>
+      </div>
+    </div>
+    <div class="form-group d-none">
+        <label for="bank" class="label-for">Bank</label>
+        <input type="text" class="form-control input-sm" name="bank" id="bank">
+    </div>
+    <div class="form-group d-none">
+        <label for="atas_nama" class="label-for">Atas Nama</label>
+        <input type="text" class="form-control input-sm" name="atas_nama" id="atas_nama">
+    </div>
+    <div class="form-group d-none">
+        <label for="sr_bukti_transfer" class="label-for">Bukti Transfer</label>
+        <input type="file" class="form-control" name="sr_bukti_transfer" id="sr_bukti_transfer">
+    </div>
+    <div class="form-group">
+      <img src="" alt="" id="preview_sr_bukti_transfer">
+    </div>
+
+    <fieldset class="mb-3">
+
+      <div class="form-group">
+        <label>Pecahan</label>
+        <div class="border-bottom border-bottom-1">
+          <select class="select2 item" id="item">
+
+					</select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Stock</label>
+        <div class="input-group">
+          <input type="number" min="0" id="stockitem" class="form-control stockitem text-right" readonly="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Qty</label>
+        <div class="border-bottom border-bottom-1">
+          <div class="input-group">
+            <input type="number" min="0" id="qtyitem" class="form-control qtyitem text-right">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" type="button" id="tambahdata">Tambah ke list</button>
+      </div>
+      <div class="form-group">
+        <div style="padding:10px" class="text-right">
+  					<label class="radio"> <input class="checkbox hrgrate" type="checkbox" id="hrgrate" name="tipe_rate">
+  						<span class="btn-grup-detail"> Setting Harga Rate sesuai Nota ? </span>
+  					</label>
+  				</div>
+      </div>
+    </fieldset>
+    <div id="form-list-item">
+
+    </div>
+</form>
+
+  <script type="text/javascript">
+  var dataitem = [];
+  var user_comp = localStorage.getItem('m_comp_id');
+  $(document).ready(function(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = dd + '-' + mm + '-' + yyyy;
+    $('#tgl_transaksi').val(today);
+    $('#sr_tanggal_pengiriman').val(today);
+
+    // $('#myform').attr('action', url('api/riyal/distribusi/retail/penjualan/save'));
+
+    cabang = $('#cabang').val();
+    date = $('.tgl_transaksi').val();
+    $.ajax({
+      type : "get",
+      data : {date,cabang},
+      dataType : "json",
+      url : url('api/riyal/distribusi/retail/penjualan/nota'),
+      success : function (response){
+        if(response.status == 'sukses'){
+
+          $('.nota').val(response.info);
+        }
+      },
+      error : function (){
+        iziToast.warning({
+          title: 'Maaf',
+          message: 'Gagal mencari transaksi',
+        });
+
+      }
+    });
+    user_comp = localStorage.getItem('m_comp_id');
+    $.ajax({
+      type: 'get',
+      data: {user_comp},
+      dataType: 'json',
+      url: url('api/riyal/distribusi/retail/penjualan/tambahapi'),
+      success : function(response){
+        var html = '';
+        for (var i = 0; i < response.member.length; i++) {
+          html += '<option value="'+response.member[i].m_id+'">'+response.member[i].m_name+'</option>';
+        }
+        $('#sr_marketing').html(html);
+        $('#sr_marketing').select2();
+        var html = '';
+        for (var i = 0; i < response.cabang.length; i++) {
+          html += '<option value="'+response.cabang[i].c_code+'">'+response.cabang[i].c_name+'</option>';
+        }
+        $('#cabang').html(html);
+        $('#cabang').select2();
+        var html = '<option value=""> TIDAK ADA PETUGAS </option>';
+        for (var i = 0; i < response.member.length; i++) {
+          html += '<option value="'+response.member[i].m_id+'">'+response.member[i].m_name+'</option>';
+        }
+        $('#pengirim').html(html);
+        $('#pengirim').select2();
+        var html = '<option value=""> Pilih Customer </option>';
+        for (var i = 0; i < response.customer.length; i++) {
+          html += '<option value="'+response.customer[i].c_id+'">'+response.customer[i].c_name+'</option>';
+        }
+        $('#customer').html(html);
+        $('#customer').select2();
+        var html = '<option value=""> Pilih Pecahan Uang </option>';
+        for (var i = 0; i < response.item.length; i++) {
+          html += '<option value="'+response.item[i].ir_id+'">'+response.item[i].ir_code + ' - ' + response.item[i].ir_name +'</option>';
+        }
+        $('#item').html(html);
+        $('#item').select2();
+        console.log(response.item_fix);
+        dataitem = response.item_fix;
+
+      }
+    });
+  });
+
+  $('.tgl_transaksi').change(function(){
+  cabang = $('#cabang').val();
+
+  date = $('.tgl_transaksi').val();
+  $.ajax({
+    type : "get",
+    data : {date,cabang},
+    dataType : "json",
+    url : url('api/riyal/distribusi/retail/penjualan/nota'),
+    success : function (response){
+      if(response.status == 'sukses'){
+
+        $('.nota').val(response.info);
+      }
+    },
+    error : function (){
+      iziToast.warning({
+        title: 'Maaf',
+        message: 'Gagal mencari transaksi',
+      });
+
+    }
+  });
+})
+
+$('#metode_pembayaran').change(function(){
+  var ini, bank, atas_nama, no_rekening;
+  ini = $(this);
+  bank = $('#bank');
+  atas_nama = $('#atas_nama');
+  no_rekening = $('#no_rekening');
+  sr_bukti_transfer = $('#sr_bukti_transfer');
+
+  if (ini.val() === 'CASH') {
+    bank.parents('div').addClass('d-none');
+    atas_nama.parents('div').addClass('d-none');
+    no_rekening.parents('div').addClass('d-none');
+    sr_bukti_transfer.parents('div').addClass('d-none');
+  } else if (ini.val() === 'TRANSFER'){
+    bank.parents('div').removeClass('d-none');
+    atas_nama.parents('div').removeClass('d-none');
+    no_rekening.parents('div').removeClass('d-none');
+    sr_bukti_transfer.parents('div').removeClass('d-none');
+  }
+});
+
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#preview_sr_bukti_transfer').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#sr_bukti_transfer").change(function() {
+  readURL(this);
+});
+
+no = 1;
+$('#qtyitem').keypress(function(e){
+	if(e.which == 13) {
+		e.preventDefault();
+		$('#tambahdata').trigger('click');
+	}
+})
+
+$('#tambahdata').click(function(){
+	item = $('#item').val();
+
+	qty = $('#qtyitem').val();
+	stock = $('#stockitem').val();
+	if(stock == 0){
+		iziToast.warning({
+			title: 'Maaf',
+			message: 'Pecahan Uang tersebut tidak tersedia untuk saat ini',
+		});
+		return false;
+	}
+
+	if(qty == ''){
+		qty = 0;
+	}
+
+
+	if ($('input.hrgrate').is(':checked')) {
+		rule = 'Y';
+	}
+	else {
+		rule = 'T';
+	}
+
+
+
+	customer = $('#customer').val();
+	if(customer == ''){
+		iziToast.warning({
+			title: 'Maaf',
+			message: 'Harap Pilih Customer',
+		});
+		return false;
+	}
+
+
+
+	idmem = localStorage.getItem('m_id');
+	tgl_transaksi = $('.tgl_transaksi').val();
+  user_comp = localStorage.getItem('m_comp_id');
+  code_comp = localStorage.getItem('m_comp_code');
+	$.ajax({
+		type : "get",
+		data : {item,idmem,tgl_transaksi,rule,customer, user_comp, code_comp},
+		dataType : "json",
+		url : url('api/riyal/distribusi/retail/penjualan/item/'),
+		success : function (response){
+			if(response.stock == 0){
+				iziToast.warning({
+					title: 'Maaf',
+					message: 'Pecahan Uang tersebut tidak tersedia untuk saat ini',
+				});
+				return false;
+			}
+
+			if(response.status == 'tdk_ok'){
+				harga = response.data;
+				nilai = response.nilaiitem;
+				totalharga = parseFloat(parseFloat(qty) * parseFloat(nilai) * parseFloat(harga)).toFixed(2);
+        totalharga = addCommas(totalharga);
+        harga =  addCommas(response.data);
+			}
+			else if(response.status == 'paket'){
+				harga = response.data;
+				nilai = response.nilaiitem;
+
+				totalharga = parseFloat(parseFloat(harga)  * parseFloat(qty)).toFixed(2);
+        totalharga = addCommas(totalharga);
+        harga =  addCommas(response.data);
+			}
+			else {
+				if(response.status == 'ok'){
+//par.find('#harga').val(addCommas(response.data));
+        nilai = response.nilaiitem;
+
+
+        totalharga = parseFloat(parseFloat(response.data) * parseFloat(qty)).toFixed(2);
+        totalharga = addCommas(totalharga);
+        harga =  addCommas(response.data);
+}
+
+}
+valueqty = parseFloat(nilai) * parseFloat(qty);
+
+var option = "";
+for (var i = 0; i < dataitem.length; i++) {
+  option += "<option value='"+dataitem[i].ir_id+"'> "+dataitem[i].ir_code+" - "+dataitem[i].ir_name+" </option>";
+}
+
+if(rule == 'T' || response.status == 'paket'){
+	var html2 = "<td> <input type='text' class='form-control harga text-right' id='harga"+no+"' name='harga[]' value='"+harga+"' onchange='price(this)' readonly data-item='"+item+"' data-no='"+no+"'> </td>";
+
+
+	var totalhtml = "<td> <input type='text' class='form-control totalharga text-right' id='totalharga"+no+"' name='total[]' readonly value='"+totalharga+"' data-item='"+item+"' data-no='"+no+"'></td>";
+}
+else if(rule == 'Y'){
+	var html2 = "<td> <input type='text' class='form-control harga text-right' id='harga"+no+"' name='harga[]' value='"+harga+"' onchange='price(this)' data-item='"+item+"' data-no='"+no+"'> </td>";
+
+
+	var totalhtml = "<td> <input type='text' class='form-control totalharga text-right' id='totalharga"+no+"' name='total[]' value='"+totalharga+"' data-item='"+item+"' data-no='"+no+"' readonly></td>";
+}
+
+$('#form-list-item').append(
+      '<div class="accordion">'+
+            '<div class="card">'+
+              '<div class="card-header bg-success header-collapse p-0" id="header-'+ no +'">'+
+                '<h5 class="mb-0">'+
+                  '<button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapse-'+ no +'" aria-expanded="true" aria-controls="collapse-'+ no +'">'+
+                  'Box '+no+''+
+                  '</button>'+
+                '</h5>'+
+              '</div>'+
+
+              '<div id="collapse-'+ no +'" class="collapse datalist-collapse" aria-labelledby="header-'+ no +'" data-parent="#form-list-item">'+
+                '<div class="card">'+
+                  '<div class="card-body card-forlist p-3">'+
+
+                    '<table class="w-100 table-accordion">'+
+                    '<tr>'+
+                      '<th>Pecahan</th>'+
+                      '<td>'+
+                        '<div class="input-group">'+
+                          '<select disabled="true" class="select2'+no+' item" id="itemdana'+no+'" style="width:100%" name="item[]" onchange="item(this)" data-item="'+item+'" data-qty="'+qty+'" data-no="'+no+'">'+option+'</select>'+
+                        '</div>'+
+                      '</td>'+
+                    '</tr>'+
+                      '<tr>'+
+                        '<th>Stock</th>'+
+                        '<td>'+
+                          '<div class="input-group">'+
+                            response.stock+
+                          '</div>'+
+                        '</td>'+
+                      '</tr>'+
+                      '<tr>'+
+                        '<th>Qty</th>'+
+                        "<td> <input type='text' class='form-control qty text-right' name='qty[]' value="+qty+" onkeyup='price(this)' data-item='"+item+"' data-no='"+no+"'>  <input type='hidden' class='form-control nilaitoreal' name='nilaitoreal[]' value="+nilai+" data-no='"+no+"'> </td>" +
+                      '</tr>'+
+                      '<tr>'+
+                        '<th>Value QTY</th>'+
+                        "<td> <input type='text' class='form-control valueqty text-right' id='valueqty"+no+"' name='valueqty[]' value="+valueqty+" data-no='"+no+"' readonly> </td>"+
+                      '</tr>'+
+                      '<tr>'+
+                      '<tr>'+
+                        '<th>Price (Rp)</th>'+
+                        html2+
+                      '</tr>'+
+                      '<tr>'+
+                      '<tr>'+
+                        '<th>Total</th>'+
+                        totalhtml+
+                      '</tr>'+
+                      '<tr>'+
+                    '</table>'+
+
+                  '</div>'+
+                  '<div class="card-footer">'+
+                    '<button class="btn btn-danger btn-sm btn-hapus pull-right btn-hapus-accordion" type="button"><i class="fa fa-trash-o"></i> Hapus</button>'+
+                  '</div>'+
+                  ''+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+        '</div>'
+      );
+//	splititem = item.split('');
+
+$('.select2'+no).val(item);
+$('#qtyitem').val('')
+$('#item').select2('open');
+
+no++;
+
+hslnetto = 0;
+$('.totalharga').each(function(){
+	val = $(this).val();
+	val = val.replace(/\./g,'');
+	val = val.replace(/,/g,'.');
+
+	hslnetto = parseFloat(parseFloat(hslnetto) + parseFloat(val));
+});
+
+netto = addCommas(hslnetto);
+$('.netto').val(netto);
+
+},
+error : function (){
+	iziToast.warning({
+		title: 'Maaf',
+		message: 'Gagal mencari transaksi',
+	});
+
+}
+})
+});
+
+$('#form-list-item').on('click', '.btn-hapus-accordion', function(){
+  $(this).parents('.accordion').remove();
+});
+
+$('.hrgrate').change(function(){
+	if ($('input.hrgrate').is(':checked')) {
+		$('.harga').attr('readonly' , false);
+	}
+	else {
+		$('.harga').attr('readonly' , true);
+	}
+})
+
+
+  $('.input-daterange').datepicker({
+    format:'dd-mm-yyyy'
+  });
+
+  $('#item').change(function(){
+		item = $(this).val();
+    user_comp = localStorage.getItem('m_comp_id');
+		$.ajax({
+			data : {item, user_comp},
+			url : url('api/riyal/distribusi/retail/penjualan/cekstock'),
+			type : "get",
+			dataType : "json",
+			success : function(response){
+				$('#stockitem').val(response);
+			}
+		});
+	});
+
+  $('#form-list-item').on('change', '.item', function(){
+    item = $(this).val();
+    no = $(this).data('no');
+    qty = $('.qty' + '[data-no = '+no+']').val();
+    idmem = localStorage.getItem('m_id');
+    customer = $('#customer').val();
+
+
+    tgl_transaksi = $('.tgl_transaksi').val();
+    if ($('input.hrgrate').is(':checked')) {
+      rule = 'Y';
+    }
+    else {
+      rule = 'T';
+    }
+    $.ajax({
+      type : "get",
+      data : {item,idmem,tgl_transaksi,rule, customer},
+      dataType : "json",
+      url : url('/riyal/distribusi/retail/penjualan/item/'),
+      success : function (response){
+
+        if(response.stock == 0){
+          iziToast.warning({
+            title: 'Maaf',
+            message: 'Pecahan Uang tidak tersedia untuk saat ini',
+          });
+        }
+
+  if(response.status == 'tdk_ok'){ //default
+    harga = response.data;
+    nilai = response.nilaiitem;
+    totalharga = parseFloat(parseFloat(harga) * parseFloat(nilai) * parseFloat(qty)).toFixed(2);
+    totalharga = accounting.formatMoney(totalharga, "" , 2 , "." , ",")
+  }
+  else if(response.status == 'paket'){
+    harga = response.data;
+    nilai = response.nilaiitem;
+    totalharga = parseFloat(parseFloat(harga) * parseFloat(nilai) * parseFloat(qty)).toFixed(2);
+    totalharga = accounting.formatMoney(totalharga, "" , 2 , "." , ",")
+  }
+  else {
+
+    if(response.status == 'ok'){
+  //par.find('#harga').val(addCommas(response.data));
+  harga = response.data;
+  nilai = response.nilaiitem;
+  totalharga = parseFloat(parseFloat(harga) * parseFloat(nilai) * parseFloat(qty)).toFixed(2);
+  totalharga = accounting.formatMoney(totalharga, "" , 2 , "." , ",")
+
+  }
+  }
+
+
+
+  valueqty = parseFloat(qty) * parseFloat(nilai);
+  $('.valueqty' + '[data-no = '+no+']').val(valueqty);
+  $('.harga' +  '[data-no = '+no+']').val(addCommas(harga));
+  $('.nilaitoreal' +  '[data-no = '+no+']').val(nilai);
+  $('.totalharga' +  '[data-no = '+no+']').val(totalharga);
+  }
+  });
+  })
+
+  function addCommas(nStr) {
+		nStr += '';
+		x = nStr.split('.');
+		x1 = x[0];
+		x2 = x.length > 1 ? ',' + x[1] : '';
+		var rgx = /(\d+)(\d{3})/;
+		while (rgx.test(x1)) {
+			x1 = x1.replace(rgx, '$1' + '.' + '$2');
+		}
+		return x1 + x2;
+	}
+
+  function simpan(){
+    length = no;
+    if(length == 0){
+      iziToast.warning({
+        title: 'ERROR',
+        message: 'Harap tambah data pecahan uang terlebih dahulu',
+      });
+      return false;
+    }
+
+    keterangan = $('.keterangan').val();
+    if(keterangan == ''){
+      iziToast.warning({
+        title: 'MAAF',
+        message: 'Keterangan Harap di Isi',
+      });
+      return false;
+    }
+
+    customer = $('#customer').val();
+    if(customer == ''){
+      iziToast.warning({
+        title: 'ERROR',
+        message: 'Harap pilih customernya',
+      });
+      return false;
+    }
+    iziToast.show({
+      theme: 'dark',
+      icon: 'icon-person',
+      position : 'center',
+      message: 'Apakah Anda yakin untuk menyimpan data ini ?',
+      progressBarColor: 'rgb(0, 255, 184)',
+      buttons: [
+      ['<button>IYA </button>', function (instance, toast) {
+        code_comp = localStorage.getItem('m_comp_code');
+        username = localStorage.getItem('m_id');
+        user_comp = localStorage.getItem('m_comp_id');
+        var formdata = new FormData();
+        formdata.append( 'sr_bukti_transfer', $('#sr_bukti_transfer')[0].files[0]);
+        $.ajax({
+          processData: false, //important
+          contentType: false,
+          cache: false,
+          type: "post",
+          data: formdata,
+          url: url('api/riyal/distribusi/retail/penjualan/save')+'?'+$('#myform').serialize()+'&code_comp='+code_comp+'&username='+username+'&user_comp='+user_comp,
+          dataType: 'JSON',
+          success : function(response){
+            if (response === "sukses") {
+              iziToast.success({
+                title:'Sukses!',
+                message:'Data berhasil disimpan!'
+              });
+            Routing.load_page('includes/distribusi/penjualan-retail/transaksi-pemesanan.html');
+            } else if(response === 'gagal'){
+              iziToast.error({
+                title:'Gagal!',
+                message:'Data gagal disimpan!'
+              });
+            }
+          },
+          error : function(){
+            iziToast.warning({
+              title: 'ERROR',
+              message: 'ERROR hubungi Developer',
+            });
+          }
+        });
+      }, true], // true to focus
+      ['<button> TIDAK </button>', function (instance, toast) {
+        instance.hide({
+          transitionOut: 'fadeOutUp',
+          onClosing: function(instance, toast, closedBy){
+            console.info('closedBy: ' + closedBy); // The return will be: 'closedBy: buttonName'
+          }
+          }, toast, 'buttonName');
+          }]
+          ],
+          onOpening: function(instance, toast){
+            console.info('callback abriu!');
+          },
+          onClosing: function(instance, toast, closedBy){
+          console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+          }
+    });
+  }
+
+  function price(a){
+
+  qty = $(a).val();
+  if (qty == "") {
+    qty = 0;
+  } else {
+    qty = qty;
+  }
+  no = $(a).data('no');
+  nilaitoreal = $('#valueqty'+no).val();
+  valueqty = parseFloat(qty) * parseFloat(nilaitoreal);
+  harga = $('#harga'+no).val();
+  harga = harga.replace(/\./g,'');
+
+  total = parseFloat(parseFloat(valueqty) * parseFloat(harga)).toFixed(2);
+
+  $('#totalharga'+no).val(addCommas(total));
+
+  netto = 0;
+  $('.totalharga').each(function(){
+    val = $(this).val()
+    val = val.replace(/\./g,'');
+    val = val.replace(/,/g,'.');
+    if(val != ''){
+      netto = parseFloat(parseFloat(val) + parseFloat(netto)).toFixed(2);
+    }
+  });
+
+  console.log(netto + 'netto');
+  netto = accounting.formatMoney(netto, "", 2, ".",',');
+  $('.netto').val(netto);
+}
+
+  </script>
+</div>
