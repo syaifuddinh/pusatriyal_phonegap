@@ -16,7 +16,7 @@
 <div class="pusatriyal-submit btn-group">
   		<button type="button" class="btn btn-success" id="selesai" onclick="selesai()">Selesai</button>
 </div>
-<div id="mapid"></div>
+<div id="weathermap"></div>
 <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 
 <script>
@@ -84,6 +84,21 @@ function selesai(){
   clearInterval(interval);
   Routing.load_page('includes/distribusi/jadwal-pengantaran-corporate/index.html');
 }
+
+// function buildMap(lat,lon)  {
+//     document.getElementById('weathermap').innerHTML = "<div id='map' style='width: 100%; height: 100%;'></div>";
+//     var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+//                     osmAttribution = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,' +
+//                         ' <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+//     osmLayer = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttribution});
+//     var map = new L.Map('map');
+//     map.setView(new L.LatLng(lat,lon), 9 );
+//     map.addLayer(osmLayer);
+//     var validatorsLayer = new OsmJs.Weather.LeafletLayer({lang: 'en'});
+//     map.addLayer(validatorsLayer);
+// }
+
+document.getElementById('weathermap').innerHTML = "<div id='mapid' style='width: 100%; height: 100%;'></div>";
 
 </script>
 

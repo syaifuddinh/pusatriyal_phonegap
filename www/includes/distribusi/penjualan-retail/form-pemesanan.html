@@ -280,27 +280,6 @@
 
     // $('#myform').attr('action', url('api/riyal/distribusi/retail/penjualan/save'));
 
-    cabang = $('#cabang').val();
-    date = $('.tgl_transaksi').val();
-    $.ajax({
-      type : "get",
-      data : {date,cabang},
-      dataType : "json",
-      url : url('api/riyal/distribusi/retail/penjualan/nota'),
-      success : function (response){
-        if(response.status == 'sukses'){
-
-          $('.nota').val(response.info);
-        }
-      },
-      error : function (){
-        iziToast.warning({
-          title: 'Maaf',
-          message: 'Gagal mencari transaksi',
-        });
-
-      }
-    });
     user_comp = localStorage.getItem('m_comp_id');
     $.ajax({
       type: 'get',
@@ -340,6 +319,28 @@
         $('#item').select2();
         console.log(response.item_fix);
         dataitem = response.item_fix;
+
+      }
+    });
+
+    cabang = localStorage.getItem('m_comp_code');
+    date = $('.tgl_transaksi').val();
+    $.ajax({
+      type : "get",
+      data : {date,cabang},
+      dataType : "json",
+      url : url('api/riyal/distribusi/retail/penjualan/nota'),
+      success : function (response){
+        if(response.status == 'sukses'){
+
+          $('.nota').val(response.info);
+        }
+      },
+      error : function (){
+        iziToast.warning({
+          title: 'Maaf',
+          message: 'Gagal mencari transaksi',
+        });
 
       }
     });
@@ -383,6 +384,7 @@ $('#metode_pembayaran').change(function(){
     atas_nama.parents('div').addClass('d-none');
     no_rekening.parents('div').addClass('d-none');
     sr_bukti_transfer.parents('div').addClass('d-none');
+    $('.subcontent').removeClass('d-none');
   } else if (ini.val() === 'TRANSFER'){
     bank.parents('div').removeClass('d-none');
     atas_nama.parents('div').removeClass('d-none');
@@ -464,144 +466,150 @@ $('#tambahdata').click(function(){
 		dataType : "json",
 		url : url('api/riyal/distribusi/retail/penjualan/item/'),
 		success : function (response){
-			if(response.stock == 0){
-				iziToast.warning({
-					title: 'Maaf',
-					message: 'Pecahan Uang tersebut tidak tersedia untuk saat ini',
-				});
-				return false;
-			}
+      if (qty != 0 || qty != "") {
+        if(response.stock == 0){
+          iziToast.warning({
+            title: 'Maaf',
+            message: 'Pecahan Uang tersebut tidak tersedia untuk saat ini',
+          });
+          return false;
+        }
 
-			if(response.status == 'tdk_ok'){
-				harga = response.data;
-				nilai = response.nilaiitem;
-				totalharga = parseFloat(parseFloat(qty) * parseFloat(nilai) * parseFloat(harga)).toFixed(2);
-        totalharga = addCommas(totalharga);
-        harga =  addCommas(response.data);
-			}
-			else if(response.status == 'paket'){
-				harga = response.data;
-				nilai = response.nilaiitem;
+        if(response.status == 'tdk_ok'){
+          harga = response.data;
+          nilai = response.nilaiitem;
+          totalharga = parseFloat(parseFloat(qty) * parseFloat(nilai) * parseFloat(harga)).toFixed(2);
+          totalharga = addCommas(totalharga);
+          harga =  addCommas(response.data);
+        }
+        else if(response.status == 'paket'){
+          harga = response.data;
+          nilai = response.nilaiitem;
 
-				totalharga = parseFloat(parseFloat(harga)  * parseFloat(qty)).toFixed(2);
-        totalharga = addCommas(totalharga);
-        harga =  addCommas(response.data);
-			}
-			else {
-				if(response.status == 'ok'){
-//par.find('#harga').val(addCommas(response.data));
-        nilai = response.nilaiitem;
-
-
-        totalharga = parseFloat(parseFloat(response.data) * parseFloat(qty)).toFixed(2);
-        totalharga = addCommas(totalharga);
-        harga =  addCommas(response.data);
-}
-
-}
-valueqty = parseFloat(nilai) * parseFloat(qty);
-
-var option = "";
-for (var i = 0; i < dataitem.length; i++) {
-  option += "<option value='"+dataitem[i].ir_id+"'> "+dataitem[i].ir_code+" - "+dataitem[i].ir_name+" </option>";
-}
-
-if(rule == 'T' || response.status == 'paket'){
-	var html2 = "<td> <input type='text' class='form-control harga text-right' id='harga"+no+"' name='harga[]' value='"+harga+"' onchange='price(this)' readonly data-item='"+item+"' data-no='"+no+"'> </td>";
+          totalharga = parseFloat(parseFloat(harga)  * parseFloat(qty)).toFixed(2);
+          totalharga = addCommas(totalharga);
+          harga =  addCommas(response.data);
+        }
+        else {
+          if(response.status == 'ok'){
+  //par.find('#harga').val(addCommas(response.data));
+          nilai = response.nilaiitem;
 
 
-	var totalhtml = "<td> <input type='text' class='form-control totalharga text-right' id='totalharga"+no+"' name='total[]' readonly value='"+totalharga+"' data-item='"+item+"' data-no='"+no+"'></td>";
-}
-else if(rule == 'Y'){
-	var html2 = "<td> <input type='text' class='form-control harga text-right' id='harga"+no+"' name='harga[]' value='"+harga+"' onchange='price(this)' data-item='"+item+"' data-no='"+no+"'> </td>";
+          totalharga = parseFloat(parseFloat(response.data) * parseFloat(qty)).toFixed(2);
+          totalharga = addCommas(totalharga);
+          harga =  addCommas(response.data);
+  }
+
+  }
+  valueqty = parseFloat(nilai) * parseFloat(qty);
+
+  var option = "";
+  for (var i = 0; i < dataitem.length; i++) {
+    option += "<option value='"+dataitem[i].ir_id+"'> "+dataitem[i].ir_code+" - "+dataitem[i].ir_name+" </option>";
+  }
+
+  if(rule == 'T' || response.status == 'paket'){
+    var html2 = "<td> <input type='text' class='form-control harga text-right' id='harga"+no+"' name='harga[]' value='"+harga+"' onchange='price(this)' readonly data-item='"+item+"' data-no='"+no+"'> </td>";
 
 
-	var totalhtml = "<td> <input type='text' class='form-control totalharga text-right' id='totalharga"+no+"' name='total[]' value='"+totalharga+"' data-item='"+item+"' data-no='"+no+"' readonly></td>";
-}
+    var totalhtml = "<td> <input type='text' class='form-control totalharga text-right' id='totalharga"+no+"' name='total[]' readonly value='"+totalharga+"' data-item='"+item+"' data-no='"+no+"'></td>";
+  }
+  else if(rule == 'Y'){
+    var html2 = "<td> <input type='text' class='form-control harga text-right' id='harga"+no+"' name='harga[]' value='"+harga+"' onchange='price(this)' data-item='"+item+"' data-no='"+no+"'> </td>";
 
-$('#form-list-item').append(
-      '<div class="accordion">'+
-            '<div class="card">'+
-              '<div class="card-header bg-success header-collapse p-0" id="header-'+ no +'">'+
-                '<h5 class="mb-0">'+
-                  '<button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapse-'+ no +'" aria-expanded="true" aria-controls="collapse-'+ no +'">'+
-                  'Box '+no+''+
-                  '</button>'+
-                '</h5>'+
-              '</div>'+
 
-              '<div id="collapse-'+ no +'" class="collapse datalist-collapse" aria-labelledby="header-'+ no +'" data-parent="#form-list-item">'+
-                '<div class="card">'+
-                  '<div class="card-body card-forlist p-3">'+
+    var totalhtml = "<td> <input type='text' class='form-control totalharga text-right' id='totalharga"+no+"' name='total[]' value='"+totalharga+"' data-item='"+item+"' data-no='"+no+"' readonly></td>";
+  }
 
-                    '<table class="w-100 table-accordion">'+
-                    '<tr>'+
-                      '<th>Pecahan</th>'+
-                      '<td>'+
-                        '<div class="input-group">'+
-                          '<select disabled="true" class="select2'+no+' item" id="itemdana'+no+'" style="width:100%" name="item[]" onchange="item(this)" data-item="'+item+'" data-qty="'+qty+'" data-no="'+no+'">'+option+'</select>'+
-                        '</div>'+
-                      '</td>'+
-                    '</tr>'+
+  $('#form-list-item').append(
+        '<div class="accordion">'+
+              '<div class="card">'+
+                '<div class="card-header bg-success header-collapse p-0" id="header-'+ no +'">'+
+                  '<h5 class="mb-0">'+
+                    '<button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapse-'+ no +'" aria-expanded="true" aria-controls="collapse-'+ no +'">'+
+                    'Box '+no+''+
+                    '</button>'+
+                  '</h5>'+
+                '</div>'+
+
+                '<div id="collapse-'+ no +'" class="collapse datalist-collapse" aria-labelledby="header-'+ no +'" data-parent="#form-list-item">'+
+                  '<div class="card">'+
+                    '<div class="card-body card-forlist p-3">'+
+
+                      '<table class="w-100 table-accordion">'+
                       '<tr>'+
-                        '<th>Stock</th>'+
+                        '<th>Pecahan</th>'+
                         '<td>'+
                           '<div class="input-group">'+
-                            response.stock+
+                          '<select class="select2'+no+' item" id="itemdana'+no+'" style="width:100%" name="itemselect[]" onchange="item(this)" data-item="'+item+'" data-qty="'+qty+'" data-no="'+no+'">'+option+'</select>'+
+                          '<input type="hidden" id="item'+no+'" name="item[]" value="">'+
                           '</div>'+
                         '</td>'+
                       '</tr>'+
-                      '<tr>'+
-                        '<th>Qty</th>'+
-                        "<td> <input type='text' class='form-control qty text-right' name='qty[]' value="+qty+" onkeyup='price(this)' data-item='"+item+"' data-no='"+no+"'>  <input type='hidden' class='form-control nilaitoreal' name='nilaitoreal[]' value="+nilai+" data-no='"+no+"'> </td>" +
-                      '</tr>'+
-                      '<tr>'+
-                        '<th>Value QTY</th>'+
-                        "<td> <input type='text' class='form-control valueqty text-right' id='valueqty"+no+"' name='valueqty[]' value="+valueqty+" data-no='"+no+"' readonly> </td>"+
-                      '</tr>'+
-                      '<tr>'+
-                      '<tr>'+
-                        '<th>Price (Rp)</th>'+
-                        html2+
-                      '</tr>'+
-                      '<tr>'+
-                      '<tr>'+
-                        '<th>Total</th>'+
-                        totalhtml+
-                      '</tr>'+
-                      '<tr>'+
-                    '</table>'+
+                        '<tr>'+
+                          '<th>Stock</th>'+
+                          '<td>'+
+                            '<div class="input-group">'+
+                              response.stock+
+                            '</div>'+
+                          '</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                          '<th>Qty</th>'+
+                          "<td> <input type='text' class='form-control qty text-right' name='qty[]' value="+qty+" onkeyup='price(this)' data-item='"+item+"' data-no='"+no+"'>  <input type='hidden' class='form-control nilaitoreal' name='nilaitoreal[]' value="+nilai+" data-no='"+no+"'> </td>" +
+                        '</tr>'+
+                        '<tr>'+
+                          '<th>Value QTY</th>'+
+                          "<td> <input type='text' class='form-control valueqty text-right' id='valueqty"+no+"' name='valueqty[]' value="+valueqty+" data-no='"+no+"' readonly> </td>"+
+                        '</tr>'+
+                        '<tr>'+
+                        '<tr>'+
+                          '<th>Price (Rp)</th>'+
+                          html2+
+                        '</tr>'+
+                        '<tr>'+
+                        '<tr>'+
+                          '<th>Total</th>'+
+                          totalhtml+
+                        '</tr>'+
+                        '<tr>'+
+                      '</table>'+
 
+                    '</div>'+
+                    '<div class="card-footer">'+
+                      '<button class="btn btn-danger btn-sm btn-hapus pull-right btn-hapus-accordion" type="button"><i class="fa fa-trash-o"></i> Hapus</button>'+
+                    '</div>'+
+                    ''+
                   '</div>'+
-                  '<div class="card-footer">'+
-                    '<button class="btn btn-danger btn-sm btn-hapus pull-right btn-hapus-accordion" type="button"><i class="fa fa-trash-o"></i> Hapus</button>'+
-                  '</div>'+
-                  ''+
                 '</div>'+
               '</div>'+
-            '</div>'+
-        '</div>'
-      );
-//	splititem = item.split('');
+          '</div>'
+        );
+  //	splititem = item.split('');
 
-$('.select2'+no).val(item);
-$('#qtyitem').val('')
-$('#item').select2('open');
+  $('.select2'+no).val(item);
+  $('.select2'+no).select2();
+  $('#qtyitem').val('')
+  $('#item').select2('open');
+  $('.select2'+no).select2("disabled", true);
+  $('#item'+no).val(item);
 
-no++;
+  no++;
 
-hslnetto = 0;
-$('.totalharga').each(function(){
-	val = $(this).val();
-	val = val.replace(/\./g,'');
-	val = val.replace(/,/g,'.');
+  hslnetto = 0;
+  $('.totalharga').each(function(){
+    val = $(this).val();
+    val = val.replace(/\./g,'');
+    val = val.replace(/,/g,'.');
 
-	hslnetto = parseFloat(parseFloat(hslnetto) + parseFloat(val));
-});
+    hslnetto = parseFloat(parseFloat(hslnetto) + parseFloat(val));
+  });
 
-netto = addCommas(hslnetto);
-$('.netto').val(netto);
+  netto = addCommas(hslnetto);
+  $('.netto').val(netto);
 
+      }
 },
 error : function (){
 	iziToast.warning({
