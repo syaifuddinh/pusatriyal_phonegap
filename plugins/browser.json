@@ -6,10 +6,6 @@
   "config_munge": {
     "files": {}
   },
-  "installed_plugins": {
-    "phonegap-plugin-push": {
-      "PACKAGE_NAME": "com.phonegap.pusatriyal"
-    }
-  },
+  "installed_plugins": {},
   "dependent_plugins": {}
 }

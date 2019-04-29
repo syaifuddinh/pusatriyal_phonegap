@@ -484,14 +484,6 @@ module.exports = [
     "merges": [
       "cordova.plugins.diagnostic.external_storage"
     ]
-  },
-  {
-    "id": "phonegap-plugin-push.PushNotification",
-    "file": "plugins/phonegap-plugin-push/www/push.js",
-    "pluginId": "phonegap-plugin-push",
-    "clobbers": [
-      "PushNotification"
-    ]
   }
 ];
 module.exports.metadata = 
@@ -516,9 +508,7 @@ module.exports.metadata =
   "cordova-plugin-vibration": "2.1.6",
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-support-google-services": "1.1.0",
-  "cordova.plugins.diagnostic": "4.0.12",
-  "phonegap-plugin-multidex": "1.0.0",
-  "phonegap-plugin-push": "2.2.3"
+  "cordova.plugins.diagnostic": "4.0.12"
 };
 // BOTTOM OF METADATA
 });
