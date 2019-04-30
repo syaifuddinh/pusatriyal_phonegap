@@ -13,6 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
 		<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 		<link rel="stylesheet" type="text/css" href="./node_modules/select2/dist/css/select2.min.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<style>
 			.rounded-btn {
 		width: 12mm;
@@ -87,13 +88,13 @@
 		<button type="button" class="btn text-alamraya" id="btn-backward" style="display:none">
 			<i class="fa fa-chevron-left"></i>
 		</button>
-		<button class="btn text-alamraya" type="button">
+		<button class="btn btn-notif text-alamraya" pusatriyal-role="routing" pusatriyal-target="notifikasi.html" type="button">
 			<i class="fa fa-bell-o"></i>
+			<span class="badge-notif animated infinite" id="headcountnotif">0</span>
 		</button>
 	</section>
 	<content></content>
 	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" src="js/firebase.js"></script>
 	<script type="text/javascript" src="config/config.js"></script>
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
@@ -110,6 +111,7 @@
 	<script type="text/javascript" src="js/features/logout.js"></script>
 	<script type="text/javascript" src="js/notification/SmartNotification.min.js"></script>
 	<script type="text/javascript" src="js/pusher.min.js"></script>
+	<script type="text/javascript" src="js/js-cookie/js.cookie.js"></script>
 
 	<script type="text/javascript">	
 	
@@ -480,7 +482,62 @@
 		});
 
 	</script>
+	<script type="text/javascript">
+			function notifcount(){
+				$.ajax({
+					type: 'get',
+					dataType : 'JSON',
+					url: url('api/notifcount'),
+					success : function(response){
+						// $('#countnotif').text('('+response+')');
 
+						$('#headcountnotif').text(response);
+						
+					}
+				})
+			}
+
+
+			var countcookie;
+			var datacookie = [];
+			function alertnotif(){
+				$.ajax({
+					type: 'get',
+					dataType: 'json',
+					url: url('api/alertnotif'),
+					success : function(response){
+						if (Cookies.get('notif'+response.n_id) == 'Y') {
+							Cookies.set('notif'+response.n_id, "Y", { expires: 7 });
+						} else {
+							Cookies.set('notif'+response.n_id, "N", { expires: 7 });
+							countcookie = response.length;
+							datacookie = response;
+						}
+					}
+				});
+			}
+
+
+			function checkcookie(){
+					if (Cookies.get('notif'+datacookie.n_id) == "N") {
+							iziToast.info({
+								message: '<b>'+datacookie.n_menu+'</b> '+datacookie.n_code+' telah dibuat!',
+								position: 'topRight'
+							});
+							Cookies.set('notif'+datacookie.n_id, "Y", { expires: 7 });
+					}
+			}			
+			
+		alertnotif();
+
+		notifcount();
+
+		setInterval(function(){
+			notifcount();
+			alertnotif();
+			checkcookie();
+		}, 5000)
+	</script>
 
 </body>
 </html>

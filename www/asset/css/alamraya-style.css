@@ -316,3 +316,19 @@ fieldset{
 .div-antrian-pdf .badge-antrian{
 	font-size: 200pt;
 }
+.badge-notif{
+    height: 30px;
+    
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 9pt;
+    background-color: #FF0700;
+    
+    color: white;
+    position: absolute;
+    top: 9px;
+    left: -25px;
+}
+.btn-notif{
+	position: relative;
+}
