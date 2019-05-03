@@ -65,6 +65,9 @@
     "cordova.plugins.diagnostic": {
       "ANDROID_SUPPORT_VERSION": "27.+",
       "PACKAGE_NAME": "com.phonegap.pusatriyal"
+    },
+    "cordova-plugin-texttospeech": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
     }
   },
   "dependent_plugins": {

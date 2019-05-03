@@ -6,8 +6,23 @@
   "config_munge": {
     "files": {}
   },
-  "installed_plugins": {},
+  "installed_plugins": {
+    "cordova-plugin-texttospeech": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
+    }
+  },
   "dependent_plugins": {},
-  "modules": [],
-  "plugin_metadata": {}
+  "modules": [
+    {
+      "file": "plugins/cordova-plugin-texttospeech/www/tts.js",
+      "id": "cordova-plugin-texttospeech.tts",
+      "pluginId": "cordova-plugin-texttospeech",
+      "clobbers": [
+        "TTS"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "cordova-plugin-texttospeech": "0.1.1"
+  }
 }

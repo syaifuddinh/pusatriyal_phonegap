@@ -484,6 +484,14 @@ module.exports = [
     "merges": [
       "cordova.plugins.diagnostic.external_storage"
     ]
+  },
+  {
+    "id": "cordova-plugin-texttospeech.tts",
+    "file": "plugins/cordova-plugin-texttospeech/www/tts.js",
+    "pluginId": "cordova-plugin-texttospeech",
+    "clobbers": [
+      "TTS"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -508,7 +516,8 @@ module.exports.metadata =
   "cordova-plugin-vibration": "2.1.6",
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-support-google-services": "1.1.0",
-  "cordova.plugins.diagnostic": "4.0.12"
+  "cordova.plugins.diagnostic": "4.0.12",
+  "cordova-plugin-texttospeech": "0.1.1"
 };
 // BOTTOM OF METADATA
 });

@@ -6,6 +6,10 @@
   "config_munge": {
     "files": {}
   },
-  "installed_plugins": {},
+  "installed_plugins": {
+    "cordova-plugin-texttospeech": {
+      "PACKAGE_NAME": "com.phonegap.pusatriyal"
+    }
+  },
   "dependent_plugins": {}
 }

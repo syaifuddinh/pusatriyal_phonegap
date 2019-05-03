@@ -28,20 +28,20 @@
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xxhdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-ldpi_screen.png.flat",
-        "source": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\src\\main\\res\\drawable-land-ldpi\\screen.png"
-    },
-    {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_cab_background_top_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-ldpi_screen.png.flat",
+        "source": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\src\\main\\res\\drawable-land-ldpi\\screen.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_radio_material.xml.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_cab_background_top_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_mode_close_item_material.xml.flat",
@@ -128,12 +128,12 @@
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable\\abc_seekbar_track_material.xml"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
-    },
-    {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-mdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media_custom.xml.flat",
@@ -200,20 +200,20 @@
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
-    },
-    {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xhdpi-v4\\abc_text_select_handle_left_mtrl_light.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_text_select_handle_left_mtrl_light.png"
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\8516e5fbd761a53a5a115b4fa1c7eec0\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_text_select_handle_left_mtrl_light.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
@@ -256,12 +256,12 @@
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xhdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_holo_light.xml.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -432,12 +432,12 @@
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xhdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-mdpi-v4\\abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -516,12 +516,12 @@
         "source": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\src\\main\\res\\drawable-port-ldpi\\screen.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
-    },
-    {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_cab_background_internal_bg.xml.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable\\abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_action_tombstone.xml.flat",
@@ -532,12 +532,12 @@
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable\\abc_item_background_holo_light.xml"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_background_transition_holo_light.xml.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
-    },
-    {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_select_dialog_multichoice_material.xml.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_background_transition_holo_light.xml.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -592,12 +592,12 @@
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-ldrtl-xxxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-hdpi_screen.png.flat",
-        "source": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\src\\main\\res\\drawable-port-hdpi\\screen.png"
-    },
-    {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_half_black_36dp.png.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-hdpi_screen.png.flat",
+        "source": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\src\\main\\res\\drawable-port-hdpi\\screen.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
@@ -628,12 +628,12 @@
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-mdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
-    },
-    {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_half_black_16dp.png.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
@@ -656,24 +656,24 @@
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_tint_switch_track.xml.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\color\\abc_tint_switch_track.xml"
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-mdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_text_select_handle_middle_mtrl_dark.png.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xxhdpi-v4\\abc_text_select_handle_middle_mtrl_dark.png"
     },
     {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-mdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
-    },
-    {
-        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
-        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xxxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_tint_switch_track.xml.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\color\\abc_tint_switch_track.xml"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xhdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
+        "source": "C:\\Users\\AKBAR\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\a87ec05d5d6055a0eff420347c4c4f8b\\res\\drawable-xxxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
     },
     {
         "merged": "D:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_tile_bg.xml.flat",

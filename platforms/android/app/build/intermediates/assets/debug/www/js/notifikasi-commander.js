@@ -1,16 +1,16 @@
 $('#list-for-filter').html('');
-
 function getData(){
+
 	$.ajax({
+		url: url('api/notif'),
 		type: 'get',
 		dataType: 'JSON',
-		url: url('api/notif'),
 		success : function(response){
 			var dom = $('rawcontent').html();
 
 			console.log(response);
 			for (var i = 0; i < response.length; i++) {
-				var datai = response[i];
+				datai = response[i];
 				var el = $(dom);
 				el.find('.card-title').text(datai.n_menu);
 				el.find('.card-subtitle').text(datai.n_code + ' telah dibuat.');
@@ -19,7 +19,7 @@ function getData(){
 				$('#list-for-filter').append(el);
 			}
 
-
+			el = null;
 		}
 	});
 }
