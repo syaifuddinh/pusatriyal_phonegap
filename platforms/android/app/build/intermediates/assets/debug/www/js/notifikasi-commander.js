@@ -1,13 +1,13 @@
-$('#list-for-filter').html('');
 function getData(){
-
 	$.ajax({
 		url: url('api/notif'),
 		type: 'get',
 		dataType: 'JSON',
 		success : function(response){
-			var dom = $('rawcontent').html();
+			$('#list-for-filter').html('');
+			datai = null;
 
+			var dom = $('rawcontent').html();
 			console.log(response);
 			for (var i = 0; i < response.length; i++) {
 				datai = response[i];
