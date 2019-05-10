@@ -1,0 +1,103 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-pdf-generator@^2.0.8",
+        "scope": null,
+        "escapedName": "cordova-pdf-generator",
+        "name": "cordova-pdf-generator",
+        "rawSpec": "^2.0.8",
+        "spec": ">=2.0.8 <3.0.0",
+        "type": "range"
+      },
+      "D:\\hybridapp\\pusatriyal_phonegap"
+    ]
+  ],
+  "_from": "cordova-pdf-generator@>=2.0.8 <3.0.0",
+  "_hasShrinkwrap": false,
+  "_id": "cordova-pdf-generator@2.0.8",
+  "_inCache": true,
+  "_location": "/cordova-pdf-generator",
+  "_nodeVersion": "8.11.4",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-pdf-generator_2.0.8_1548714176249_0.5357254078547387"
+  },
+  "_npmUser": {
+    "name": "cvaldezr",
+    "email": "cvaldezrx@gmail.com"
+  },
+  "_npmVersion": "6.6.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-pdf-generator@^2.0.8",
+    "scope": null,
+    "escapedName": "cordova-pdf-generator",
+    "name": "cordova-pdf-generator",
+    "rawSpec": "^2.0.8",
+    "spec": ">=2.0.8 <3.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-pdf-generator/-/cordova-pdf-generator-2.0.8.tgz",
+  "_shasum": "2bc222d2f8958082e35ebfa6216567421d63edb4",
+  "_shrinkwrap": null,
+  "_spec": "cordova-pdf-generator@^2.0.8",
+  "_where": "D:\\hybridapp\\pusatriyal_phonegap",
+  "author": {
+    "name": "cesar"
+  },
+  "bugs": {
+    "url": "https://github.com/cesarvr/pdf-generator/issues"
+  },
+  "cordova": {
+    "id": "cordova-pdf-generator",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "dependencies": {},
+  "description": "is a HTML to PDF (offline) Generator.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-HIEWtypWERg8s5lpwOyhz71eq94e0XvbnTpaBUTneY1Tol3RHpsCvxniv5uN/MfrF9hi2e4FeTsGWzrZAeblTw==",
+    "shasum": "2bc222d2f8958082e35ebfa6216567421d63edb4",
+    "tarball": "https://registry.npmjs.org/cordova-pdf-generator/-/cordova-pdf-generator-2.0.8.tgz",
+    "fileCount": 18,
+    "unpackedSize": 771705,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJcT4DBCRA9TVsSAnZWagAAiBYP/AlyPclgsVMTMOVZ452Z\nOoetuHO7gI+N0CGJ6KjKmI5Ks3HiVNVNu51FrDsBqUyaHFmHcZHAz86mh0XB\nVYYK/BuevdVDk+v/NuNTQ3FcNPiPfgcwayTEORORzJMbglHV+A54smSkQRbs\nWKMG7HLOFnt2aVbs5cA9/t0Q3hO1JSg9xtofT2WU5dGmsdr9S/30yFUVXxVt\nZLcSD5K4+8uISnxkNqg/M53+9lAUFd21IQe+PV+0hIyhkXD1hCeyk3ZR3w0R\n8guosYmV/2sW7Q3SbIZecbAJyfwUVOCGTP4JY3kNuqRxiznrBCqMyNBXGN2E\nWbLYxLI5Ol9696nTTUKQDGbZ7/xthq9tbWHq0766x5OlJpcEvpyYoWJIZM50\nZtCmWA9qSjNQKxlSvg3LBgnUPb0Ve1+bAW7vSlV2GEm67WgW8iaOOV5SZqFY\nmvOOFH5ksF6TX5MkqH8ajd63SYQeKEQUHu8icwwEkomXPGVnR8Nm7VpowPGZ\nNSSbznFxo2aBhMVpAJGUjpTh5Y9DM5OgM4FeHY0bA8auFtku+AXnupRgNrpo\n1PwoiSJyEWyzyDPKCfFF2+wNPoXa35Des2SsXs/Hpg7b7tZurjNNlcKMGKxg\nSHhsQt3nJlGZBHMP59GyX5gVDUycC+ErmhqfwTCS/SbjJKddr9id+DOXa3z5\n7wZX\r\n=9h46\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.4.0"
+    }
+  ],
+  "gitHead": "ea4fd0b241d2c01429dcdfa1c2de6e58539f6f4b",
+  "homepage": "https://github.com/cesarvr/pdf-generator#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "cvaldezr",
+      "email": "cvaldezrx@gmail.com"
+    }
+  ],
+  "name": "cordova-pdf-generator",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cesarvr/pdf-generator.git"
+  },
+  "version": "2.0.8"
+}

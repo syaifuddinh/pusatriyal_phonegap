@@ -80,6 +80,10 @@
         <param name="android-package" value="cordova.plugins.Diagnostic_External_Storage" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="TTS">
+        <param name="android-package" value="com.wordsbaking.cordova.tts.TTS" />
+        <param name="onload" value="true" />
+    </feature>
     <name>Pusat Riyal</name>
     <description>
         Sistem Informasi Pusat Riyal.

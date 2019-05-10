@@ -13,6 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
 		<link rel="stylesheet" type="text/css" href="./node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 		<link rel="stylesheet" type="text/css" href="./node_modules/select2/dist/css/select2.min.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<style>
 			.rounded-btn {
 		width: 12mm;
@@ -87,8 +88,9 @@
 		<button type="button" class="btn text-alamraya" id="btn-backward" style="display:none">
 			<i class="fa fa-chevron-left"></i>
 		</button>
-		<button class="btn text-alamraya" type="button">
+		<button class="btn btn-notif text-alamraya" pusatriyal-role="routing" pusatriyal-target="notifikasi.html" type="button">
 			<i class="fa fa-bell-o"></i>
+			<span class="badge-notif animated infinite" id="headcountnotif">0</span>
 		</button>
 	</section>
 	<content></content>
@@ -109,7 +111,7 @@
 	<script type="text/javascript" src="js/features/logout.js"></script>
 	<script type="text/javascript" src="js/notification/SmartNotification.min.js"></script>
 	<script type="text/javascript" src="js/pusher.min.js"></script>
-	<script type="text/javascript" src="js/firebase.js"></script>
+	<script type="text/javascript" src="js/js-cookie/js.cookie.js"></script>
 
 	<script type="text/javascript">	
 	
@@ -168,28 +170,36 @@
 			console.error(error);
 		});
 		function get_currency(v) {
-		if( /^\d([0-9\.]+)$/.test(v) ) {
-			var desimal = '';
-			if( /\./.test(v) ==  true ) {
-				v = parseFloat(v);
-				v = v.toFixed(2);
+
+			if( /^\d([0-9\.]+)$/.test(v) ) {
+
+				var desimal = '';
+				if( /\./.test(v) ==  true ) {
+					v = parseFloat(v);
+					v = v.toFixed(2);
+					v = v.toString();
+					desimal = v.split('.')[1];
+					v = v.split('.')[0];
+				}
+
+
 				v = v.toString();
-				desimal = v.split('.')[1];
-				v = v.split('.')[0];
+				var res = v.split('');
+				res = res.reverse().join('');
+				currStr = v;
+				if(res.length > 3) {
+					var currPtr = /(\w{3})/g;
+					var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
+				}
+
+
+				currStr += desimal != '' ? ',' + desimal : '';
+				return currStr;
 			}
-			v = v.toString();
-			var res = v.split('');
-			res = res.reverse().join('');
-			currStr = v;
-			if(res.length > 3) {
-				var currPtr = /(\w{3})/g;
-				var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
-			}
-			currStr += desimal != '' ? ',' + desimal : '';
-			return currStr;
+
+			return v;
 		}
-		return v;
-		}
+
 	</script>
 	<script type="text/javascript">
 		function onDeviceReady(){
@@ -344,7 +354,7 @@
 				$('#status').text('Sedang Berjalan . . . ');
 				$.ajax({
 					type: 'get',
-					url: url('/api/gpspush'),
+					url: url('api/gpspush'),
 					dataType: 'json',
 					data: {id:sr_id, latitude, longitude},
 					success : function(response){
@@ -356,7 +366,7 @@
 			$.ajax({
 				type: 'get',
 				data: {sr_id, status},
-				url: url('/api/updatestatus'),
+				url: url('api/updatestatus'),
 				dataType: 'JSON',
 				success : function(response){
 				}
@@ -440,7 +450,7 @@
 	    var channel = pusher.subscribe('my-channel');
 	    channel.bind('my-event', function(data) {
 	      
-	      navigator.notification.alert(data.message, alertCallback, ['Pusher Get'], ['Oke']);
+	      navigator.notification.alert(data.message, alertCallback, 'Pusher Get', 'Oke');
 	      function alertCallback(){
 	      	console.log(data);
 	      }
@@ -465,32 +475,73 @@
 		    resume: true,
 		    hidden: false,
 		    bigText: false
-		})
+		});
 
 		cordova.plugins.backgroundMode.on('activate', function() {
 		   cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
 		});
 
 	</script>
+	<script type="text/javascript">
+			function notifcount(){
+				$.ajax({
+					type: 'get',
+					dataType : 'JSON',
+					url: url('api/notifcount'),
+					success : function(response){
+						// $('#countnotif').text('('+response+')');
 
-	<script>
-	$("body")
-        .on('mousedown touchstart', function (e) {
-            console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
-            xDown = e.touches[0].clientX;
-            yDown = e.touches[0].clientY;
-        })
-        .on('mouseup touchend',function (e) {
-        	var touchend = e.originalEvent.changedTouches[0];
-        	console.log('touchend :', touchend);
-            // console.log("(x,y) = (" + e.touches[0].clientX + "," + e.touches[0].clientY +")");
-            // xUp = e.touches[0].clientX;
-            // yUp = e.touches[0].clientY;
-            // if (xDown != xUp || yDown != yUp) {
-            //     alert('Swiped');   
-            // }
-        })	
-    </script>
+						$('#headcountnotif').text(response);
+						
+					}
+				})
+			}
+
+
+			var countcookie;
+			var datacookie = [];
+			function alertnotif(){
+				$.ajax({
+					type: 'get',
+					dataType: 'json',
+					url: url('api/alertnotif'),
+					success : function(response){
+						if (Cookies.get('notif'+response.n_id) == 'Y') {
+							Cookies.set('notif'+response.n_id, "Y", { expires: 7 });
+						} else {
+							Cookies.set('notif'+response.n_id, "N", { expires: 7 });
+							countcookie = response.length;
+							datacookie = response;
+						}
+					}
+				});
+			}
+
+
+			function checkcookie(){
+					if (Cookies.get('notif'+datacookie.n_id) == "N") {
+							iziToast.info({
+								message: '<b>'+datacookie.n_menu+'</b> '+datacookie.n_code+' telah dibuat!',
+								position: 'topRight',
+								timeout:8000
+							});
+							
+							navigator.notification.beep(2);
+
+							Cookies.set('notif'+datacookie.n_id, "Y", { expires: 7 });
+					}
+			}			
+			
+		alertnotif();
+
+		notifcount();
+
+		setInterval(function(){
+			notifcount();
+			alertnotif();
+			checkcookie();
+		}, 5000)
+	</script>
 
 </body>
 </html>

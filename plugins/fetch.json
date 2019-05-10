@@ -34,9 +34,9 @@
   "cordova-plugin-file": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-file@~4.3.3"
+      "id": "cordova-plugin-file@^4.0.0"
     },
-    "is_top_level": true,
+    "is_top_level": false,
     "variables": {}
   },
   "cordova-plugin-device": {
@@ -175,6 +175,14 @@
       "id": "cordova-support-google-services@~1.1.0"
     },
     "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-texttospeech": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-texttospeech"
+    },
+    "is_top_level": true,
     "variables": {}
   }
 }

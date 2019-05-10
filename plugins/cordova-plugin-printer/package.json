@@ -1,0 +1,118 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-printer@^0.8.0",
+        "scope": null,
+        "escapedName": "cordova-plugin-printer",
+        "name": "cordova-plugin-printer",
+        "rawSpec": "^0.8.0",
+        "spec": ">=0.8.0 <0.9.0",
+        "type": "range"
+      },
+      "D:\\hybridapp\\pusatriyal_phonegap"
+    ]
+  ],
+  "_from": "cordova-plugin-printer@>=0.8.0 <0.9.0",
+  "_hasShrinkwrap": false,
+  "_id": "cordova-plugin-printer@0.8.0",
+  "_inCache": true,
+  "_location": "/cordova-plugin-printer",
+  "_nodeVersion": "11.10.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-printer_0.8.0_1551471143697_0.113992686253783"
+  },
+  "_npmUser": {
+    "name": "katzer",
+    "email": "katzer@appplant.de"
+  },
+  "_npmVersion": "6.8.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-printer@^0.8.0",
+    "scope": null,
+    "escapedName": "cordova-plugin-printer",
+    "name": "cordova-plugin-printer",
+    "rawSpec": "^0.8.0",
+    "spec": ">=0.8.0 <0.9.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-printer/-/cordova-plugin-printer-0.8.0.tgz",
+  "_shasum": "9ae2e9e85dc1adfcce9d37a42d273e20b0914d0e",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-printer@^0.8.0",
+  "_where": "D:\\hybridapp\\pusatriyal_phonegap",
+  "author": {
+    "name": "Sebastián Katzer"
+  },
+  "bugs": {
+    "url": "https://github.com/katzer/cordova-plugin-printer/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-printer",
+    "platforms": [
+      "ios",
+      "android",
+      "windows",
+      "browser"
+    ]
+  },
+  "dependencies": {},
+  "description": "Prints HTML documents",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-Olu2SuCedztO6PtXoHwA4J/emOxZlj64Ya9aZhcxoXJITG+RDF6Nb3oThcpYPTa73+py+gPF7r19lv3Q8RR/Nw==",
+    "shasum": "9ae2e9e85dc1adfcce9d37a42d273e20b0914d0e",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-printer/-/cordova-plugin-printer-0.8.0.tgz",
+    "fileCount": 35,
+    "unpackedSize": 136020,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJceZIoCRA9TVsSAnZWagAAytoP/0uktjX0Lfnsyhj/o91J\nw0mESkEMC0ckZQYA65wlL9sj0BPI0YiAk8f6jEv7aCxuv95Opb43Jg7CmwcM\nd0uyl45e5RG6qUcL4R2hEQ0jwxZH+MvJaGqHfHA7Ky5r9oCejXNvHoarv44q\nfTols8Om8uO0L42zkrC5iuW0699+/eP9NYkyOdNchZWLR8ZtqeMgCXtso5cf\nQRPGAPl7QAnxkrTjfmPxTC+3gWoouDVOgMVvtZXV75iNXG0PsOmdN6Akxi+v\n51CScBZZQmu6y1JHLejxHKDMvqBPsu5gRS+kBF9WIeGyBHgW6YpiAJEfA8To\ndhzqXLPkLuELEJ+7naCIftBzZwLdOic8V3nxiHTJNLuH/uKkHc3VeupLXCbP\naV0ZLfBkJxwxWZfyItEv0JyGh0Pk7eN/iq7B9hliRzwDBlXqwOFSofdC2eU2\n0EI5ovRRzr6EPoDE6SviV1Qnw4ea4CH48T2MduKJffrXpKAEbmNAeGy1kARq\nBzoi7RLpx9D8C5pWODe5D6dSo+EjlSVOZ4IXW0uHmuDU2FahLDlKtA1AYbE8\nAqpuGTjfmDsRgQFA7FTZg18o3XludV/kx/gYEV4N7lsjFtIYW4Ph5T513v8z\nf0L1OwPK8xPig7+P9wytTTeHC5qVQd3R9QiERxZqgGmWkPHe6tpRHoERYBJs\n2Zq+\r\n=gJ8i\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    },
+    {
+      "name": "android-sdk",
+      "version": ">=19"
+    },
+    {
+      "name": "apple-ios",
+      "version": ">=8.0"
+    }
+  ],
+  "gitHead": "912eb5c0e650e97f1f5ebc96e6360bba3e21e696",
+  "homepage": "https://github.com/katzer/cordova-plugin-printer#readme",
+  "keywords": [
+    "appplant",
+    "printer",
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "cordova-windows",
+    "cordova-browser"
+  ],
+  "license": "Apache 2.0",
+  "maintainers": [
+    {
+      "name": "katzer",
+      "email": "katzer@appplant.de"
+    }
+  ],
+  "name": "cordova-plugin-printer",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katzer/cordova-plugin-printer.git"
+  },
+  "version": "0.8.0"
+}
