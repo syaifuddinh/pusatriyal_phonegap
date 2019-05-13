@@ -1,0 +1,299 @@
+<div class="subcontent">
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .title-edit
+    {
+        margin-top: 60px;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        width: 70%;
+        border: none;
+        color: #14c56d;
+    }
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    .listx
+    {
+      font-weight: bold;
+    }
+
+    .card-body {
+      border-bottom:1px solid #e7e7e7;
+    }
+    .card {
+      margin-left: 4mm;
+      margin-right: 4mm;
+      margin-bottom: 10mm;
+    }
+
+</style>
+
+<div class="breadcrumb-pusatriyal">
+  <span class="active">Otoriasi Penjualan Retail</span>
+</div>
+
+<div class="form-group m-3" id="div-filter">
+  <div class="border-bottom border-bottom-1">
+    <input type="text" class="form-control-plaintext" name="" onkeyup="table()" id="input-filter-customer" placeholder="Cari Data"
+    >
+  </div>
+
+</div>
+<div class="card maincard" id="list-for-filter">
+
+</div>
+
+  <rawcontent class='datalist'>
+    <div class="card-filter">
+      <div class="card-body">
+        <h5 class="card-title mb-3 font-weight-bold">Card title</h5>
+        <h6 class="card-subtitle" style="margin-bottom: 1mm">Some example text. Some example text.</h6>
+        <a href="#" class="badge badge-primary card-info-first">Card link</a>
+      </div>
+    </div>
+  </rawcontent>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    var request = [];
+    $.ajax({
+      url: url('api/riyal/distribusi/otorisasi_perubahan_harga/get_data'),
+      type    : 'get',
+      dataType : 'json',
+      success : function(resp){
+        console.log(resp);
+        var card = $('.card');
+        units = resp;
+        var unit, rawcontent, content;
+        if(units.data.length > 0) {
+          rawcontent = $('rawcontent.datalist').html();
+          for(x = 0;x < units.data.length;x++) {
+            unit = units.data[x];
+            content = $(rawcontent);
+
+            if (unit.sr_status_persetujuan == 1) {
+              var clasname = "badge badge-success card-info-first";
+              var text = "Disetujui";
+            } else {
+              var clasname = "badge badge-danger card-info-first";
+              var text = "Belum Disetujui";
+            }
+
+            if (unit.sr_type == 'R') {
+              var retail = "Retail";
+            } else {
+              var retail = "Corporate";
+            }
+            // Set-up routing untuk menampilkan preview
+            content.attr('pusatriyal-role', 'routing');
+            content.attr('pusatriyal-target', 'includes/otorisasi/retail/preview.html');
+            content.attr('pusatriyal-callback', 'preview_pemesanan_func');
+            content.append(
+              '<input type="hidden" name="sr_id" value="' + unit.sr_id + '">'
+            )
+            content.find('.card-title').text(
+              unit.sr_code
+            );
+            content.find('.card-subtitle').html(
+              '<table cellpadding="5px">'+
+                '<tr>'+
+                  '<th width="30%">Retail / Agen</th>'+
+                  '<td>'+unit.retail+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                  '<th width="30%">Marketing</th>'+
+                  '<td>'+unit.m_name+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                  '<th width="30%">Metode Pembayaran</th>'+
+                  '<td>'+unit.sr_metode_transfer+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                  '<th width="30%">Komoditas</th>'+
+                  '<td>'+unit.sr_tipe_penjualan+'</td>'+
+                '</tr>'+
+              '</table>'
+            );
+            content.find('.card-info-first').attr('class', clasname);
+            content.find('.card-info-first').text(
+              'Status : '+
+              text
+            );
+            $('.card').append(content);
+            }
+            Routing.load_routing();
+          }
+        else {
+          card.html('<div class="card-body"><h4 class="card-title">Tidak Ada Data Yang Ditampilkan</h4></div>')
+        }
+
+      },
+      error: function(jqXHR, exception) {
+        if (jqXHR.status === 0) {
+            alert('Not connect.\n Verify Network.');
+        } else if (jqXHR.status == 404) {
+            alert('Requested page not found. [404]');
+        } else if (jqXHR.status == 500) {
+            alert('Internal Server Error [500].');
+        } else if (exception === 'parsererror') {
+            alert('Requested JSON parse failed.');
+        } else if (exception === 'timeout') {
+            alert('Time out error.');
+        } else if (exception === 'abort') {
+            alert('Ajax request aborted.');
+        } else {
+            alert('Uncaught Error.\n' + jqXHR.responseText);
+        }
+      }
+    });
+  });
+
+  function table(){
+    $('#list-for-filter').html("");
+    var keyword = $('#input-filter-customer').val();
+    $.ajax({
+      url: url('api/marketing/otorisasi/manasik/dataapi'),
+      type    : 'get',
+      data: {keyword},
+      dataType : 'json',
+      success : function(resp){
+        $('#list-for-filter').html("");
+        var card = $('.card');
+        units = resp;
+        var unit, rawcontent, content;
+        if(units.data.length > 0) {
+          rawcontent = $('rawcontent.datalist').html();
+          for(x = 0;x < units.data.length;x++) {
+            unit = units.data[x];
+            content = $(rawcontent);
+
+            if (unit.sr_status_persetujuan == 1) {
+              var clasname = "badge badge-success card-info-first";
+              var text = "Disetujui";
+            } else {
+              var clasname = "badge badge-danger card-info-first";
+              var text = "Belum Disetujui";
+            }
+
+            if (unit.sr_type == 'R') {
+              var retail = "Retail";
+            } else {
+              var retail = "Corporate";
+            }
+            // Set-up routing untuk menampilkan preview
+            content.attr('pusatriyal-role', 'routing');
+            content.attr('pusatriyal-target', 'includes/otorisasi/retail/preview.html');
+            content.attr('pusatriyal-callback', 'preview_pemesanan_func');
+            content.append(
+              '<input type="hidden" name="sr_id" value="' + unit.sr_id + '">'
+            )
+            content.find('.card-title').text(
+              unit.sr_code
+            );
+            content.find('.card-subtitle').html(
+              '<table cellpadding="5px">'+
+                '<tr>'+
+                  '<th width="30%">Retail / Agen</th>'+
+                  '<td>'+unit.retail+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                  '<th width="30%">Marketing</th>'+
+                  '<td>'+unit.m_name+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                  '<th width="30%">Metode Pembayaran</th>'+
+                  '<td>'+unit.sr_metode_transfer+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                  '<th width="30%">Komoditas</th>'+
+                  '<td>'+unit.sr_tipe_penjualan+'</td>'+
+                '</tr>'+
+              '</table>'
+            );
+            content.find('.card-info-first').attr('class', clasname);
+            content.find('.card-info-first').text(
+              'Status : '+
+              text
+            );
+            $('.card').append(content);
+            }
+            Routing.load_routing();
+          }
+        else {
+          card.html('<div class="card-body"><h4 class="card-title">Tidak Ada Data Yang Ditampilkan</h4></div>')
+        }
+
+      },
+      error: function(jqXHR, exception) {
+        if (jqXHR.status === 0) {
+            alert('Not connect.\n Verify Network.');
+        } else if (jqXHR.status == 404) {
+            alert('Requested page not found. [404]');
+        } else if (jqXHR.status == 500) {
+            alert('Internal Server Error [500].');
+        } else if (exception === 'parsererror') {
+            alert('Requested JSON parse failed.');
+        } else if (exception === 'timeout') {
+            alert('Time out error.');
+        } else if (exception === 'abort') {
+            alert('Ajax request aborted.');
+        } else {
+            alert('Uncaught Error.\n' + jqXHR.responseText);
+        }
+      }
+    });
+  }
+
+  function preview_pemesanan_func(dom){
+  	var el = $(dom);
+
+  	var id = el.find('[name="sr_id"]').val();
+  	var tes;
+  	for (var i = 0; i < units.data.length; i++) {
+  		tes = units.data[i];
+  		if (parseInt(tes.sr_id) === parseInt(id)) {
+  			customer_json = tes;        
+  			preview_pemesanan_json(customer_json);
+  		}
+  	}
+  }
+
+  function preview_pemesanan_json(json){
+  	$('#sr_id').val(json.sr_id);
+    $('#komodasi').val(json.sr_tipe_penjualan.toUpperCase());
+
+      $('#hargaterjual').val(get_currency(parseInt(json.sr_net)));
+
+    if (json.sr_status_persetujuan == 0) {
+			$('#approve').css('display', '');
+		} else {
+			$('#approve').css('display', 'none');
+		}
+  }
+  </script>
+</div>
