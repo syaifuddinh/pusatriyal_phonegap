@@ -361,12 +361,13 @@ function createPDF(dom) {
 							'</div>'+
 						'</body>'+
 					'</html>';
-<<<<<<< HEAD
 
-	  pdf.fromData(html,
-	          opts)
-	      .then(progressHide)
-	      .catch(progressHide);
+
+  cordova.plugins.printer.print(html);
+	  // pdf.fromData(html,
+	  //         opts)
+	  //     .then(progressHide)
+	  //     .catch(progressHide);
 }
 
 function getberdasarkan(){
@@ -420,9 +421,5 @@ function getberdasarkan(){
 				}
 			});
 	}
-  cordova.plugins.printer.print(html);
-	  // pdf.fromData(html,
-	  //         opts)
-	  //     .then(progressHide)
-	  //     .catch(progressHide);
-}
+
+
