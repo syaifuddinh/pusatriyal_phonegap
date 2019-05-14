@@ -1,4 +1,4 @@
-host = 'http://192.168.100.8/git/pusatriyal/';
+host = 'http://localhost/git/pusatriyal/';
 client_secret = 'HLyFA0xhYBtB1d7ULUX4Ta0guEnrPqLKr5mhSIat';
 client_id = 2;
 grant_type = 'password';

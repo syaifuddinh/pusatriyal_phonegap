@@ -12,7 +12,7 @@ html,body{
 	width: 100%;
 }
 
-rawcontent, .hidden {
+rawcontent, rawkonten, .hidden {
 	display:none;
 }
 .menu-header {

@@ -507,7 +507,7 @@
 					dataType: 'json',
 					url: url('api/alertnotif'),
 					success : function(response){
-						if (Cookies.get('notif'+response.n_id) == 'Y') {
+						if (Cookies.get('notif'+response.n_id) === 'Y') {
 							Cookies.set('notif'+response.n_id, "Y", { expires: 7 });
 						} else {
 							Cookies.set('notif'+response.n_id, "N", { expires: 7 });
@@ -520,16 +520,16 @@
 
 
 			function checkcookie(){
-					if (Cookies.get('notif'+datacookie.n_id) == "N") {
+					if (Cookies.get('notif'+datacookie.n_id) === "N") {
 							iziToast.info({
 								message: '<b>'+datacookie.n_menu+'</b> '+datacookie.n_code+' telah dibuat!',
 								position: 'topRight',
 								timeout:8000
 							});
 							
-							navigator.notification.beep(2);
-
 							Cookies.set('notif'+datacookie.n_id, "Y", { expires: 7 });
+							
+							navigator.notification.beep(2);
 					}
 			}			
 			
