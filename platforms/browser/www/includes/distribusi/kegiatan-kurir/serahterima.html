@@ -139,6 +139,11 @@
     </div>
 </div>
 
+<div class="form-group" id="notif">
+    <label for="metode" class="label-for">Kirim notifikasi cek uang yang ditransfer ke admin?</label>
+    <button type="button" class="btn btn-warning" onclick="kirimnotif()" name="button">Kirim Notifikasi <i class="fa fa-bell"> </i></button>
+</div>
+
 <div class="form-group">
     <label for="Senilai" class="label-for">Yang Harus Dibayar</label>
     <div class="border-bottom border-bottom-1">
@@ -150,6 +155,14 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
+
+      var metode = $('#metode').val();
+      if (metode == 'CASH') {
+        $('#notif').css('display', 'none');
+      } else {
+        $('#notif').css('display', '');
+      }
+
       $.ajax({
         type: 'get',
         data: {id:$('#sr_id').val()},
@@ -251,11 +264,20 @@
     //   });
     // }
 
+    $('#metode').on('change', function(){
+      var metode = $('#metode').val();
+      if (metode == 'CASH') {
+        $('#notif').css('display', 'none');
+      } else {
+        $('#notif').css('display', '');
+      }
+    });
+
     function selesai(){
       id = $('#sr_id').val();
       $.ajax({
         type: 'get',
-        data: {id},
+        data: {id, metode:$('#metode').val()},
         dataType: 'json',
         url: url('api/riyal/distribusi/retail/penjualan/selesaiserah'),
         success : function(res){
@@ -270,6 +292,21 @@
               title:'Gagal!',
               message:'Data gagal disimpan!'
             });
+          }
+        }
+      });
+    }
+
+    function kirimnotif(){
+      var sr_id = $('#sr_id').val();
+      $.ajax({
+        type: 'get',
+        data: {sr_id},
+        dataType: 'json',
+        url: url('api/riyal/distribusi/retail/penjualan/kirimnotif'),
+        success : function(response){
+          if (response == 'sukses') {
+            $('#notif').css('display', 'none');
           }
         }
       });
