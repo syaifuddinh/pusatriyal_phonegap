@@ -171,7 +171,7 @@
       </select>
     </div>
 
-        <input type="hidden" name="paket" id="paket" class="form-control" value="">
+        <input type="hidden" name="paket" id="paket" value="">
         <div id="hiddeninput">
         </div>
 
@@ -218,16 +218,16 @@
       <button class="btn btn-primary btn-block" type="button" id="btn-tambah">Tambah dilist</button>
 
     </fieldset>
-<form id="list-penjualan-form">
+<form id="list-penjualan-form"style="margin-bottom: 25mm">
     <div class="form-group form-tagihan">
         <label for="tagihan" class="label-for">Total Harga</label>
         <input type="text" readonly="" name="" id="total_harga" class="form-control text-right">
         <input type="hidden" name="sm_net">
     </div>
-    <div id="div-produk-dibawa" style="margin-bottom: 25mm">
+    <div id="div-produk-dibawa">
 
     </div>
-    <div id="div-paket-dibawa" style="margin-bottom: 25mm">
+    <div id="div-paket-dibawa" >
 
     </div>
 </form>
@@ -273,7 +273,7 @@
                         <small>Qty</small>
                       </th>
                       <td>
-                        <input type="number" class="form-control form-control-sm" name="qty[]">
+                        <input type="number" class="form-control form-control-sm" name="qty[]" value="0">
                       </td>
                     </tr>
                     <tr>
@@ -330,7 +330,7 @@
                         <small>Qty</small>
                       </th>
                       <td>
-                        <input type="number" class="form-control form-control-sm" name="qty[]">
+                        <input type="number" class="form-control form-control-sm" name="qty[]" value="0">
                       </td>
                     </tr>
                     <tr>
@@ -362,8 +362,6 @@
         </div>
 </rawcontent>
 
-
-</form>
 
 <div class="modal fade" id="modal-antrian" tabindex="-1" role="dialog" aria-labelledby="status-title" aria-hidden="true">
   <div class="modal-dialog" role="document">

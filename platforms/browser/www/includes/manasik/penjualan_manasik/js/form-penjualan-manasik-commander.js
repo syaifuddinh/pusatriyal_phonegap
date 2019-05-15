@@ -22,7 +22,7 @@ $.ajax({
 		sessioncode:localStorage.getItem('kode_pelaksanaan')
 	},
 	success:function(res){
-		console.log(res);
+		console.log('get data first time',res);
 		$('#idcus').html('');
 		$('#barang').html('');
 		customer = res.customer;
@@ -30,10 +30,10 @@ $.ajax({
 		var dataexecution = res.dataexecution;
 		$('#barang').append('<option value="">--Pilih Barang--</option>');
 		$('#idcus').append('<option value="">--Pilih Customer--</option>');
-
+		console.log(res);
 		for(var i =0; i<barang.length;i++){
 			var optioni = barang[i];
-			$('#barang').append('<option value="'+ optioni.ir_id +'" data-harga="'+optioni.ir_price+'" data-stok="'+optioni.mdt_sisa+'" data-stokantri="'+optioni.ir_created_at+'" data-nilairiyal="'+optioni.ir_nilaitoreal+'">'+ optioni.ir_name +'</option>');
+			$('#barang').append('<option value="'+ optioni.ir_id +'" flag="'+ optioni.ir_flag +'" data-harga="'+optioni.ir_price+'" data-stok="'+optioni.mdt_sisa+'" data-stokantri="'+optioni.ir_created_at+'" data-nilairiyal="'+optioni.ir_nilaitoreal+'">'+ optioni.ir_name +'</option>');
 		}
 
 		for(var j=0;j<customer.length;j++){
@@ -100,41 +100,46 @@ $('#idcus').change(function(){
 
 });
 
-$('#barang').on('select2:select',function(){
+$('#barang').on('select2:select, select2:close',function(){
 	var barang = $(this).val();
-  var flag = $('option[value='+barang+']').attr('flag');
-  if (flag == "PAKET") {
-  $('#div-produk-dibawa"').html('');
-  $('#div-paket-dibawa"').html('');
+  var flag = $(this).find('option[value='+barang+']').attr('flag');
+  console.log(flag);
+if (flag === "PAKET") {
+  $('#div-produk-dibawa').html('');
+  $('#div-paket-dibawa').html('');
   $('#div-produk-dibawa').css('display', '');
-  $('#div-paket-dibawa"').css('display', 'none');
-  var paket = $('#pilih_barang').val();
+  $('#div-paket-dibawa').css('display', 'none');
+  var paket = $('#barang').val();
   $('#paket').val(paket);
   var html1 = "";
   $.ajax({
     type: 'get',
-    data: {paket},
-    url: baseUrl + '/marketing/manasik/penjualan_manasik/getpaket',
+    url:  url('api/marketing/manasik/penjualan_manasik/getpaket_android'),
     dataType: 'json',
+    data: {
+    	paket: paket,
+    	sessioncode: localStorage.getItem('kode_pelaksanaan')
+    },
     success : function(response){
       for (var i = 0; i < response.data.length; i++) {
         html1 += '<input type="hidden" name="tmpstok" id="tmpstok'+response.data[i].ir_id+'" value="'+parseInt(response.data[i].mdt_sisa)+'">';
         html1 += '<input type="hidden" name="tmpstokantri" id="tmpstokantri'+response.data[i].mdt_item+'" value="'+parseInt(response.data[i].ir_created_at)+'">';
         html1 += '<input type="hidden" name="nilairiyal" id="nilairiyal'+response.data[i].mdt_item+'" value="'+parseInt(response.data[i].ir_nilaitoreal)+'">';
       }
-
+      console.log(response);
     $('#hiddeninput').html(html1);
     for (var i = 0; i < response.data.length; i++) {
+    	var singkat_loop = response.data[i];
       var stok = $('#tmpstok'+response.data[i].ir_id).val();
       var dom = $('rawkonten').html();
       var el = $(dom);
 
-      var nilairiyal = $('#barang option:selected').data('nilairiyal');
-      var itemname = $('#barang option:selected').text();
-      var itemid = $('#barang').val();
-      var harga = $('#harga').val().replace(/[^0-9\-]+/g,"");
-      var stok = $('#stok').val()
-      var stokantri = $('#stokantri').val();
+      var nilairiyal = singkat_loop.ir_nilaitoreal;
+      var itemname = singkat_loop.ir_code + ' - ' + singkat_loop.ir_name;
+      var itemid = singkat_loop.ir_id;
+      var harga = singkat_loop.prm_price;
+      var stok = singkat_loop.mdt_sisa;
+      var stokantri = singkat_loop.mdt_terjual;
       var qty = $('#qtyenter').val();
       var total = parseInt(harga) * parseInt(qty) * parseInt(nilairiyal);
 
@@ -163,12 +168,12 @@ $('#barang').on('select2:select',function(){
       //   '<input type="text" name="jumlahhargapaket[]" style="text-align:right;" id="jumlahhargapaket'+response.data[i].ir_id+'" class="form-control input-sm" readonly value="'+get_currency(parseInt(response.data[i].prm_totalharga * response.data[i].prm_qty * response.data[i].ir_nilaitoreal))+'"><input type="hidden" name="tmptotalpaket[]" id="tmptotalpaket'+response.data[i].ir_id+'" value="">',
       //   '<button type="button" class="btn btn-danger btn-sm btn-hapus" title="Delete"><i class="fa fa-trash-o"></i></button>'
       //   ]).draw(false).node();
-        syncqty(response.data[i].ir_id);
+        // syncqty(response.data[i].ir_id);
     }
     $('#total_harga').val(get_currency(response.total.ir_harga_paket));
     }
   });
-} else if (flag == "PECAHAN") {
+} else if (flag === "PECAHAN") {
 	var customer = $('input[name=idcus]').val();
 	if (customer === '' || customer === null) {
 		$(this).prop('disabled', true);
@@ -191,7 +196,7 @@ $('#barang').on('select2:select',function(){
 			if (response.length == undefined) {
 				$('#harga').val(0);
 			} else {
-				$('#harga').val(get_currency(parseInt(response)));
+				$('#harga').val(get_currency(parseInt(response.rs_price)));
 			}
 
 			if (stok == undefined) {
@@ -361,23 +366,24 @@ function createPDF(dom) {
 							'</div>'+
 						'</body>'+
 					'</html>';
-<<<<<<< HEAD
 
-	  pdf.fromData(html,
-	          opts)
-	      .then(progressHide)
-	      .catch(progressHide);
+
+  cordova.plugins.printer.print(html);
+	  // pdf.fromData(html,
+	  //         opts)
+	  //     .then(progressHide)
+	  //     .catch(progressHide);
 }
 
 function getberdasarkan(){
-		var html = '<option value="">--Pilih Barang--</option>';
+		var html = '<option value="" disabled="">--Pilih Barang--</option>';
 		var html1 = '';
 
 		$('#barang').html(html);
 		$('#hiddeninput').html(html1);
 
 		var sessioncode = localStorage.getItem('kode_pelaksanaan');
-			var html = '<option value="">--Pilih Barang--</option>';
+			var html = '<option value="" disabled="">--Pilih Barang--</option>';
 			var html1 = '';
 			$.ajax({
 				type: 'get',
@@ -385,10 +391,11 @@ function getberdasarkan(){
 				dataType: 'json',
 				url: url('api/marketing/manasik/penjualan_manasik/getbarang'),
 				success : function(response){
+					console.log('func getberdasarkan()',response);
 					var berdasarkan = $('#berdasarkan').val();
 					if (berdasarkan == "pecahan") {
 						for (var i = 0; i < response.barang.length; i++) {
-							html += '<option value="'+response.barang[i].ir_id+'" flag="'+response.barang[i].ir_flag+'">'+response.barang[i].ir_name+'</option>';
+							html += '<option value="'+response.barang[i].ir_id+'" flag="'+response.barang[i].ir_flag+'" data-stok="'+ response.barang[i].mdt_sisa +'" data-stokantri="'+ response.barang[i].mdt_terjual +'">'+response.barang[i].ir_name+'</option>';
 							html1 += '<input type="hidden" name="tmpstok" id="tmpstok'+response.barang[i].mdt_item+'" value="'+parseInt(response.barang[i].mdt_sisa)+'">';
 							html1 += '<input type="hidden" name="tmpstokantri" id="tmpstokantri'+response.barang[i].mdt_item+'" value="'+parseInt(response.barang[i].ir_created_at)+'">';
 							html1 += '<input type="hidden" name="nilairiyal" id="nilairiyal'+response.barang[i].mdt_item+'" value="'+parseInt(response.barang[i].ir_nilaitoreal)+'">';
@@ -399,6 +406,8 @@ function getberdasarkan(){
 						$('#divstockantrian').css('display', '');
 						$('#divqty').css('display', '');
 						$('#div-produk-dibawa').html('');
+						$('#btn-tambah').css('display', '');
+
 					} else if (berdasarkan == "paket") {
 						for (var i = 0; i < response.paket.length; i++) {
 						html += '<option value="'+response.paket[i].ir_id+'" flag="'+response.paket[i].ir_flag+'">'+response.paket[i].ir_name+'</option>';
@@ -411,18 +420,19 @@ function getberdasarkan(){
 						$('#divstockantrian').css('display', 'none');
 						$('#divqty').css('display', 'none');
 						$('#div-produk-dibawa').html('');
+						$('#btn-tambah').css('display', 'none');
 					}
 					}
 
 					$('#barang').html(html);
 					$('#hiddeninput').html(html1);
 					$('input[name=marketing]').val(response.dataexecution.me_pic);
+				},
+				complete:function(){
+					$('#barang').select2('open');
 				}
 			});
 	}
-  cordova.plugins.printer.print(html);
-	  // pdf.fromData(html,
-	  //         opts)
-	  //     .then(progressHide)
-	  //     .catch(progressHide);
-}
+
+
+getberdasarkan();
