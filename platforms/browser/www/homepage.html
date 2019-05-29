@@ -114,8 +114,8 @@
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/js-cookie/js.cookie.js"></script>
 
-	<script type="text/javascript">	
-	
+	<script type="text/javascript">
+
 		loading_icon = $('#loading_icon');
 		iziToast.settings({
 			position:'topRight'//Where it will be shown. It can be bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
@@ -149,7 +149,7 @@
 			localStorage.removeItem('username');
 			window.location.href = 'index.html';
 		})
-	
+
 	</script>
 	<script type="text/javascript">
 		cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
@@ -409,12 +409,14 @@
 		function pushgps(sr_id, type){
 		interval = setInterval(function () {
 			$('#status').text('Sedang Berjalan . . . ');
+			var comp = localStorage.getItem('m_comp_id');
 				$.ajax({
 					type: 'get',
 					url: url('/api/gpspush'),
 					dataType: 'json',
-					data: {id:sr_id, type, latitude, longitude},
+					data: {id:sr_id, type, latitude, longitude, comp},
 					success : function(response){
+				
 					}
 				});
 			}, 5000);
@@ -450,7 +452,7 @@
 
 	    var channel = pusher.subscribe('my-channel');
 	    channel.bind('my-event', function(data) {
-	      
+
 	      navigator.notification.alert(data.message, alertCallback, 'Pusher Get', 'Oke');
 	      function alertCallback(){
 	      	console.log(data);
@@ -479,7 +481,7 @@
 		});
 
 		cordova.plugins.backgroundMode.on('activate', function() {
-		   cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+		   cordova.plugins.backgroundMode.disableWebViewOptimizations();
 		});
 
 	</script>
@@ -493,7 +495,7 @@
 						// $('#countnotif').text('('+response+')');
 
 						$('#headcountnotif').text(response);
-						
+
 					}
 				})
 			}
@@ -526,13 +528,13 @@
 								position: 'topRight',
 								timeout:8000
 							});
-							
+
 							Cookies.set('notif'+datacookie.n_id, "Y", { expires: 7 });
-							
+
 							navigator.notification.beep(2);
 					}
-			}			
-			
+			}
+
 		alertnotif();
 
 		notifcount();

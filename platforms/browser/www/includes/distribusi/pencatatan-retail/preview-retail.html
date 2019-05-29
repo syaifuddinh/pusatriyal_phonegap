@@ -290,8 +290,13 @@
             '</div>'+
           '</div>';
         }
-        console.log(html);
         $('#list-item').html(html);
+
+        if (response.status == 'yes') {
+          $('#antar').css('display', '');
+        } else {
+          $('#antar').css('display', 'none');
+        }
       }
     });
   });
