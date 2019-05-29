@@ -63,15 +63,15 @@
 			</div>
 			<ul>
 				<li class="pt-3 pr-3 pl-3">
-					<select class="form-control form-control-sm" id="select_comp"></select>
-				</li>
-				<li>
-					<a href="#">Profile</a>
-				</li>
-				<li>
-					<a href="#">Credit</a>
-				</li>
-			</ul>
+				<select class="form-control form-control-sm" id="select_comp"></select>
+			</li>
+			<li>
+				<a href="#">Profile</a>
+			</li>
+			<li>
+				<a href="#">Credit</a>
+			</li>
+		</ul>
 		<div class="sidebar-footer">
 			<ul class="sidebar-logout">
 				<li>
@@ -83,14 +83,14 @@
 	<div class="sidebar-menu-off"></div>
 	<section class="menu-header" style="background: #007139;position:fixed;width: 100%;top: 0;left: 0">
 		<button type="button" class="btn text-alamraya" id="btn-menu">
-			<i class="fa fa-bars"></i>
+		<i class="fa fa-bars"></i>
 		</button>
 		<button type="button" class="btn text-alamraya" id="btn-backward" style="display:none">
-			<i class="fa fa-chevron-left"></i>
+		<i class="fa fa-chevron-left"></i>
 		</button>
 		<button class="btn btn-notif text-alamraya" pusatriyal-role="routing" pusatriyal-target="notifikasi.html" type="button">
-			<i class="fa fa-bell-o"></i>
-			<span class="badge-notif animated infinite" id="headcountnotif">0</span>
+		<i class="fa fa-bell-o"></i>
+		<span class="badge-notif animated infinite" id="headcountnotif">0</span>
 		</button>
 	</section>
 	<content></content>
@@ -113,31 +113,19 @@
 	<script type="text/javascript" src="js/pusher.min.js"></script>
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/js-cookie/js.cookie.js"></script>
-
 	<script type="text/javascript">
 
-		loading_icon = $('#loading_icon');
-		iziToast.settings({
-			position:'topRight'//Where it will be shown. It can be bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
-		})
-		$.extend( $.fn.datepicker.defaults, {disableTouchKeyboard:true});
-		$(document).ready(function(){
-			$('#btn-menu, .sidebar-menu-off').click(function(){
-				$('body').toggleClass('sidebar-collapse');
-			});
-			$('#btn-backward').click(function(){
-				Routing.backward();
-			});
-			Routing.init('content');
-			csrf_token = '';
-			$.fn.select2.defaults.set("width", "100%");
-			$('#btn-logout').click(function(){
-				localStorage.removeItem('access_token');
-				localStorage.removeItem('refresh_token');
-				localStorage.removeItem('token_type');
-				localStorage.removeItem('username');
-				window.location.href = 'index.html';
-			})
+	loading_icon = $('#loading_icon');
+	iziToast.settings({
+		position:'topRight'//Where it will be shown. It can be bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
+	})
+	$.extend( $.fn.datepicker.defaults, {disableTouchKeyboard:true});
+	$(document).ready(function(){
+		$('#btn-menu, .sidebar-menu-off').click(function(){
+			$('body').toggleClass('sidebar-collapse');
+		});
+		$('#btn-backward').click(function(){
+			Routing.backward();
 		});
 		Routing.init('content');
 		csrf_token = '';
@@ -149,7 +137,7 @@
 			localStorage.removeItem('username');
 			window.location.href = 'index.html';
 		})
-
+});
 	</script>
 	<script type="text/javascript">
 		cordova.plugins.diagnostic.requestLocationAuthorization(function(status){
@@ -171,9 +159,7 @@
 			console.error(error);
 		});
 		function get_currency(v) {
-
 			if( /^\d([0-9\.]+)$/.test(v) ) {
-
 				var desimal = '';
 				if( /\./.test(v) ==  true ) {
 					v = parseFloat(v);
@@ -182,8 +168,6 @@
 					desimal = v.split('.')[1];
 					v = v.split('.')[0];
 				}
-
-
 				v = v.toString();
 				var res = v.split('');
 				res = res.reverse().join('');
@@ -192,50 +176,39 @@
 					var currPtr = /(\w{3})/g;
 					var currStr = res.replace(currPtr, '$1.').split('').reverse().join('').replace(/^\.(.*)/, '$1');
 				}
-
-
 				currStr += desimal != '' ? ',' + desimal : '';
 				return currStr;
 			}
-
 			return v;
 		}
-
 	</script>
 	<script type="text/javascript">
 		function onDeviceReady(){
 			/**
-			 * Determine whether the file loaded from PhoneGap or not
-			 */
+			* Determine whether the file loaded from PhoneGap or not
+			*/
 			function isPhoneGap() {
-			    return (window.cordova || window.PhoneGap || window.phonegap)
-			    && /^file:\/{3}[^\/]/i.test(window.location.href)
-			    && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
+			return (window.cordova || window.PhoneGap || window.phonegap)
+			&& /^file:\/{3}[^\/]/i.test(window.location.href)
+			&& /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
 			}
-
 			if ( isPhoneGap() ) {
-			    cordova.plugins.diagnostic.isLocationAvailable(function(available){
-				    console.log("Location is " + (available ? "available" : "not available"));
-				    if (!available) {
-				    	var confirmation = confirm('GPS tidak aktif!\n'+
-				    		'Ingin masuk ke pengaturan GPS?');
-
-				    	if (confirmation) {
-				    		cordova.plugins.diagnostic.switchToLocationSettings();
-				    	}
-				    }
+			cordova.plugins.diagnostic.isLocationAvailable(function(available){
+				console.log("Location is " + (available ? "available" : "not available"));
+				if (!available) {
+					var confirmation = confirm('GPS tidak aktif!\n'+
+						'Ingin masuk ke pengaturan GPS?');
+					if (confirmation) {
+						cordova.plugins.diagnostic.switchToLocationSettings();
+					}
+				}
 				}, function(error){
-				    console.error("The following error occurred: "+error);
+				console.error("The following error occurred: "+error);
 				});
-
-			    console.log('Running on phonegap');
-
+			console.log('Running on phonegap');
 			} else {
-			    console.log("Not running on PhoneGap!");
+			console.log("Not running on PhoneGap!");
 			}
-
-
-
 			$.ajax({
 				url:url('api/get_Mmember'),
 				dataType:'json',
@@ -246,27 +219,25 @@
 					var datay;
 					for(var d = 0;d<m_mem_global.length; d++){
 						datay = m_mem_global[d];
-
 							var appendx = '<option value="'+ datay.c_id +'">'+datay.c_name+'</option>'
-
 						$('#select_comp').append(appendx);
 					}
 				},
 				error: function(jqXHR, exception) {
 					if (jqXHR.status === 0) {
-					    alert('Not connect.\n Verify Network.');
+					alert('Not connect.\n Verify Network.');
 					} else if (jqXHR.status == 404) {
-					    alert('Requested page not found. [404]');
+					alert('Requested page not found. [404]');
 					} else if (jqXHR.status == 500) {
-					    alert('Internal Server Error [500].');
+					alert('Internal Server Error [500].');
 					} else if (exception === 'parsererror') {
-					    alert('Requested JSON parse failed.');
+					alert('Requested JSON parse failed.');
 					} else if (exception === 'timeout') {
-					    alert('Time out error.');
+					alert('Time out error.');
 					} else if (exception === 'abort') {
-					    alert('Ajax request aborted.');
+					alert('Ajax request aborted.');
 					} else {
-					    alert('Uncaught Error.\n' + jqXHR.responseText);
+					alert('Uncaught Error.\n' + jqXHR.responseText);
 					}
 				},
 				complete:function(){
@@ -278,7 +249,6 @@
 						$('#select_comp').val(parseInt(get_m_comp_id));
 					} else {
 						var idx = $('#select_comp').val();
-
 						var pengulangan, sama;
 						for (var i = 0; i < m_mem_global.length; i++) {
 							pengulangan = m_mem_global[i];
@@ -286,7 +256,6 @@
 								sama = pengulangan;
 							}
 						}
-
 						localStorage.setItem('m_comp_code', sama.c_code);
 						localStorage.setItem('m_comp_id', $('#select_comp').val());
 						localStorage.setItem('m_comp_name', $('#select_comp option:selected').text());
@@ -296,7 +265,6 @@
 					console.log(localStorage.getItem('m_comp_code'));
 				}
 			})
-
 			$('#select_comp').change(function(){
 				var idx = $(this).val();
 				localStorage.setItem('m_comp_id', idx);
@@ -308,18 +276,14 @@
 						sama = pengulangan;
 					}
 				}
-
 				localStorage.setItem('m_comp_code', sama.c_code);
 			});
-
 		}
-
 		if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-		  document.addEventListener("deviceready", onDeviceReady, false);
+		document.addEventListener("deviceready", onDeviceReady, false);
 		} else {
 			$(document).ready(function(){
-
-			  onDeviceReady(); //this is the browser
+			onDeviceReady(); //this is the browser
 			});
 		}
 		var user_comp = localStorage.getItem('m_comp_id');
@@ -416,7 +380,7 @@
 					dataType: 'json',
 					data: {id:sr_id, type, latitude, longitude, comp},
 					success : function(response){
-				
+
 					}
 				});
 			}, 5000);
@@ -443,6 +407,7 @@
 		PUSHER_APP_SECRET="a3c2fd863104e1f91b42"
 		PUSHER_APP_CLUSTER="mt1"
 		// Enable pusher logging - don't include this in production
+
 	    Pusher.logToConsole = true;
 
 	    var pusher = new Pusher(PUSHER_APP_KEY, {
@@ -459,31 +424,26 @@
 	      }
 	    });
 
-
 		// Background Mode set enable
 		cordova.plugins.backgroundMode.enable();
 		cordova.plugins.backgroundMode.excludeFromTaskList();
 		cordova.plugins.backgroundMode.overrideBackButton();
 		setInterval(function(){
 			var is_background_mode = cordova.plugins.backgroundMode.isActive();
-
 			console.log(is_background_mode);
 		},  5000);
-
 		cordova.plugins.backgroundMode.setDefaults({
-		    title: 'Pusat Riyal',
-		    text: 'Menunggu info terbaru ..',
-		    icon: 'icon', // this will look for icon.png in platforms/android/res/drawable|mipmap
-		    color: '#007139', // hex format like 'F14F4D'
-		    resume: true,
-		    hidden: false,
-		    bigText: false
+		title: 'Pusat Riyal',
+		text: 'Menunggu info terbaru ..',
+		icon: 'icon', // this will look for icon.png in platforms/android/res/drawable|mipmap
+		color: '#007139', // hex format like 'F14F4D'
+		resume: true,
+		hidden: false,
+		bigText: false
 		});
-
 		cordova.plugins.backgroundMode.on('activate', function() {
-		   cordova.plugins.backgroundMode.disableWebViewOptimizations();
+		cordova.plugins.backgroundMode.disableWebViewOptimizations();
 		});
-
 	</script>
 	<script type="text/javascript">
 			function notifcount(){
@@ -493,14 +453,11 @@
 					url: url('api/notifcount'),
 					success : function(response){
 						// $('#countnotif').text('('+response+')');
-
 						$('#headcountnotif').text(response);
 
 					}
 				})
 			}
-
-
 			var countcookie;
 			var datacookie = [];
 			function alertnotif(){
@@ -519,8 +476,6 @@
 					}
 				});
 			}
-
-
 			function checkcookie(){
 					if (Cookies.get('notif'+datacookie.n_id) === "N") {
 							iziToast.info({
@@ -534,17 +489,380 @@
 							navigator.notification.beep(2);
 					}
 			}
-
 		alertnotif();
-
 		notifcount();
-
 		setInterval(function(){
 			notifcount();
 			alertnotif();
 			checkcookie();
 		}, 5000)
 	</script>
-
+	<script type="text/javascript">
+	//Akses
+	if(localStorage.getItem('m_id') != null){
+		$(document).ready(function(){
+				var mem = localStorage.getItem('m_id');
+				var attribute = $.map($('.user_role'), function (el) { return el; });
+				console.log(attribute);
+				var role = [];
+				for (var i = 0; i < attribute.length; i++) {
+					role[i] = $(attribute[i]).data('role');
+				}
+				var privilege = [];
+				for (var i = 0; i < attribute.length; i++) {
+					privilege[i] = $(attribute[i]).data('privilege');
+				}
+				var sidebar = [];
+				for (var i = 0; i < attribute.length; i++) {
+					sidebar[i] = $(attribute[i]).data('sidebar');
+								}
+					$.ajax({
+						type: 'get',
+						data: {mem:mem},
+						dataType: 'json',
+						url: url('api/getrole'),
+						success : function(response){
+							console.log(response);
+							for (var i = 0; i < privilege.length; i++) {
+								var readG = 'N';
+								var readM = 'N';
+								var status = 'N';
+								if (privilege[i] == 'read') {
+									status = 'N';
+									for (r=0; r < response.length; r++) {
+										if (response[r].mm_type == 'G') {
+											if (response[r].m_name == role[i]) {
+											if (response[r].mm_read == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+											}
+										}
+										if (response[r].mm_type == 'M') {
+											if (response[r].m_name == role[i]) {
+											if (response[r].mm_read == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+										}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+															}
+								} else if (privilege[i] == 'insert') {
+									status = 'N';
+									for (l=0; l < response.length; l++) {
+										if (response[l].mm_type == 'G') {
+											if (response[l].m_name == role[i]) {
+											if (response[l].mm_insert == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+										}
+										}
+										if (response[l].mm_type == 'M') {
+											if (response[l].m_name == role[i]) {
+											if (response[l].mm_insert == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+									}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+									}
+								} else if (privilege[i] == 'update') {
+									status = 'N';
+									for (u=0; u < response.length; u++) {
+										if (response[u].mm_type == 'G') {
+											if (response[u].m_name == role[i]) {
+											if (response[u].mm_update == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+										}
+										}
+										if (response[u].mm_type == 'M') {
+											if (response[u].m_name == role[i]) {
+											if (response[u].mm_update == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+										}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+									}
+								} else if (privilege[i] == 'delete') {
+									status = 'N';
+									for (d=0; d < response.length; d++) {
+										if (response[d].mm_type == 'G') {
+											if (response[d].m_name == role[i]) {
+											if (response[d].mm_delete == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+										}
+										}
+										if (response[d].mm_type == 'M') {
+											if (response[d].m_name == role[i]) {
+											if (response[d].mm_delete == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+										}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+									}
+								} else if (privilege[i] == 'print') {
+									status = 'N';
+									for (p=0; p < response.length; p++) {
+										if (response[p].mm_type == 'G') {
+											if (response[p].m_name == role[i]) {
+											if (response[p].mm_print == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+										}
+										}
+										if (response[p].mm_type == 'M') {
+											if (response[p].m_name == role[i]) {
+											if (response[p].mm_print == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+										}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+									}
+								}
+								if (status == 'Y') {
+									$(attribute[i]).css('display', '');
+																													}	else if (status == 'N') {
+									$(attribute[i]).css('display', 'none');
+																}
+							}
+						}
+										});
+		});
+					function refreshakses(){
+				var mem = localStorage.getItem('m_id');
+				var attribute = $.map($('.user_role'), function (el) { return el; });
+				var role = [];
+				for (var i = 0; i < attribute.length; i++) {
+					role[i] = $(attribute[i]).data('role');
+				}
+				var privilege = [];
+				for (var i = 0; i < attribute.length; i++) {
+					privilege[i] = $(attribute[i]).data('privilege');
+				}
+				var sidebar = [];
+				for (var i = 0; i < attribute.length; i++) {
+					sidebar[i] = $(attribute[i]).data('sidebar');
+				}
+					$.ajax({
+						type: 'get',
+						data: {mem:mem},
+						dataType: 'json',
+						url: url('api/getrole'),
+						success : function(response){
+							for (var i = 0; i < privilege.length; i++) {
+								var readG = 'N';
+								var readM = 'N';
+								var status = 'N';
+								if (privilege[i] == 'read') {
+									status = 'N';
+									for (r=0; r < response.length; r++) {
+										if (response[r].mm_type == 'G') {
+											if (response[r].m_name == role[i]) {
+											if (response[r].mm_read == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+											}
+										}
+										if (response[r].mm_type == 'M') {
+											if (response[r].m_name == role[i]) {
+											if (response[r].mm_read == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+										}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+									}
+								} else if (privilege[i] == 'insert') {
+									status = 'N';
+									for (l=0; l < response.length; l++) {
+										if (response[l].mm_type == 'G') {
+											if (response[l].m_name == role[i]) {
+											if (response[l].mm_insert == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+										}
+										}
+										if (response[l].mm_type == 'M') {
+											if (response[l].m_name == role[i]) {
+											if (response[l].mm_insert == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+									}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+									}
+								} else if (privilege[i] == 'update') {
+									status = 'N';
+									for (u=0; u < response.length; u++) {
+										if (response[u].mm_type == 'G') {
+											if (response[u].m_name == role[i]) {
+											if (response[u].mm_update == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+										}
+										}
+										if (response[u].mm_type == 'M') {
+											if (response[u].m_name == role[i]) {
+											if (response[u].mm_update == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+										}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+									}
+								} else if (privilege[i] == 'delete') {
+									status = 'N';
+									for (d=0; d < response.length; d++) {
+										if (response[d].mm_type == 'G') {
+											if (response[d].m_name == role[i]) {
+											if (response[d].mm_delete == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+										}
+										}
+										if (response[d].mm_type == 'M') {
+											if (response[d].m_name == role[i]) {
+											if (response[d].mm_delete == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+										}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+									}
+								} else if (privilege[i] == 'print') {
+									status = 'N';
+									for (p=0; p < response.length; p++) {
+										if (response[p].mm_type == 'G') {
+											if (response[p].m_name == role[i]) {
+											if (response[p].mm_print == 'Y') {
+												readG = 'Y';
+											} else {
+												readG = 'N';
+											}
+										}
+										}
+										if (response[p].mm_type == 'M') {
+											if (response[p].m_name == role[i]) {
+											if (response[p].mm_print == 'Y') {
+												readM = 'Y';
+											} else {
+												readM = 'N';
+											}
+										}
+										}
+									}
+									if (readM == 'Y') {
+										status = 'Y';
+									} else if (readG == 'Y') {
+										status = 'Y';
+									} else {
+										status = 'N';
+									}
+								}
+								if (status == 'Y') {
+									$(attribute[i]).css('display', '');
+																													}	else if (status == 'N') {
+									$(attribute[i]).css('display', 'none');
+																}
+							}
+						}
+										});
+		}
+	}
+	</script>
 </body>
 </html>
