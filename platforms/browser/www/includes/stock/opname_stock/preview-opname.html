@@ -1,173 +1,163 @@
 <div class="subcontent" style="">
-<style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-    }
-
-    .title-edit
-    {
-        margin-top: 60px;
-        margin-left: 20px;
-        margin-bottom: 30px;
-        width: 70%;
-        border: none;
-        color: #14c56d;
-    }
-
-    .btnSubmit
-    {
-        border-radius: 50mm;
-        margin-top: 8mm;
-        margin-bottom: 50px;
-        padding: 3mm 10mm;
-        border: none;
-        cursor: pointer;
-        background: #42ec98;
-        color: #FFFFFF;
-        font-weight: bold;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .border-bottom-1 {
-        border-bottom: 2px solid #42ec98 !important;
-    }
-    .label-for
-    {
-      font-weight: bold;
-      color: #646464ff;
-      margin-bottom: 0px;
-    }
-    .listx
-    {
-      font-weight: bold;
-    }
-
-    .card-body {
-      border-bottom:1px solid #e7e7e7;
-    }/*
-    .card {
-      margin-left: 4mm;
-      margin-right: 4mm;
-      margin-bottom: 10mm;
-    }
-    */
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-    }
-    #login .container #login-row #login-column #login-box {
-      margin-top: 60px;
-      max-width: 600px;
-      height: 320px;
-    }
-    #login .container #login-row #login-column #login-box #login-form {
-      padding: 26px;
-      margin-bottom: 35mm;
-    }
-    #login .container #login-row #login-column #login-box #login-form #register-link {
-      margin-top: -85px;
-    }
-
-
-    .btnSubmit
-    {
-        border-radius: 50mm;
-        margin-top: 8mm;
-        margin-bottom: 50px;
-        padding: 3mm 10mm;
-        border: none;
-        cursor: pointer;
-        background: #42ec98;
-        color: #FFFFFF;
-        font-weight: bold;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .border-bottom-1 {
-        border-bottom: 2px solid #42ec98 !important;
-    }
-    .label-for
-    {
-      font-weight: bold;
-      color: #646464ff;
-      margin-bottom: 0px;
-    }
-    form {
-      padding-left: 5mm;
-      padding-right: 5mm;
-    }
-</style>
-
-<div class="pusatriyal-submit btn-group">
-  
-  <button class="btn btn-success" id="btn-approve" >
+  <style>
+  body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  }
+  .title-edit
+  {
+  margin-top: 60px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  width: 70%;
+  border: none;
+  color: #14c56d;
+  }
+  .btnSubmit
+  {
+  border-radius: 50mm;
+  margin-top: 8mm;
+  margin-bottom: 50px;
+  padding: 3mm 10mm;
+  border: none;
+  cursor: pointer;
+  background: #42ec98;
+  color: #FFFFFF;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .border-bottom-1 {
+  border-bottom: 2px solid #42ec98 !important;
+  }
+  .label-for
+  {
+  font-weight: bold;
+  color: #646464ff;
+  margin-bottom: 0px;
+  }
+  .listx
+  {
+  font-weight: bold;
+  }
+  .card-body {
+  border-bottom:1px solid #e7e7e7;
+  }/*
+  .card {
+  margin-left: 4mm;
+  margin-right: 4mm;
+  margin-bottom: 10mm;
+  }
+  */
+  body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  }
+  #login .container #login-row #login-column #login-box {
+  margin-top: 60px;
+  max-width: 600px;
+  height: 320px;
+  }
+  #login .container #login-row #login-column #login-box #login-form {
+  padding: 26px;
+  margin-bottom: 35mm;
+  }
+  #login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+  }
+  .btnSubmit
+  {
+  border-radius: 50mm;
+  margin-top: 8mm;
+  margin-bottom: 50px;
+  padding: 3mm 10mm;
+  border: none;
+  cursor: pointer;
+  background: #42ec98;
+  color: #FFFFFF;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .border-bottom-1 {
+  border-bottom: 2px solid #42ec98 !important;
+  }
+  .label-for
+  {
+  font-weight: bold;
+  color: #646464ff;
+  margin-bottom: 0px;
+  }
+  form {
+  padding-left: 5mm;
+  padding-right: 5mm;
+  }
+  </style>
+  <div class="pusatriyal-submit btn-group">
+    
+    <button class="btn btn-success user_role" data-role="Daftar Opname Stock (Android)" data-privilege="edit" id="btn-approve" >
     <i class="fa fa-check-circle"></i> Approve
-  </button>
-  <button class="btn btn-danger" id="btn-tolak">
+    </button>
+    <button class="btn btn-danger user_role" data-role="Daftar Opname Stock (Android)" data-privilege="delete" id="btn-tolak">
     <i class="fa fa-times-circle"></i> Reject
-  </button>
-</div>
-<div class="breadcrumb-pusatriyal">
-  <span class="active">Preview Opname Stock</span>
-</div>
-<form id="opname-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
-<input type="hidden" name="_token" id="_token">
-<input type="hidden" name="or_id" id="or_id">
+    </button>
+  </div>
+  <div class="breadcrumb-pusatriyal">
+    <span class="active">Preview Opname Stock</span>
+  </div>
+  <form id="opname-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
+    <input type="hidden" name="_token" id="_token">
+    <input type="hidden" name="or_id" id="or_id">
     <div class="w-100 text-center mb-3">
       <h3>Nota</h3>
       <h5 id="nota">
-          ?
+      ?
       </h5>
     </div>
     <div class="form-group">
-        <label class="label-for" for="tgl_opname" >Tanggal Opname</label><br>
-        <div class="border-bottom border-bottom-1">
-          <input type="text" readonly="" name="tgl_opname" id="tgl_opname" class="form-control-plaintext" >
-        </div>
+      <label class="label-for" for="tgl_opname" >Tanggal Opname</label><br>
+      <div class="border-bottom border-bottom-1">
+        <input type="text" readonly="" name="tgl_opname" id="tgl_opname" class="form-control-plaintext" >
+      </div>
     </div>
     <div class="form-group">
-        <label for="posisi" class="label-for">Posisi Item</label><br>
-        <div class="border-bottom border-bottom-1" id="mp_place">
-          <input type="text" readonly="" name="posisi" id="posisi" class="form-control-plaintext" >
-        </div>
+      <label for="posisi" class="label-for">Posisi Item</label><br>
+      <div class="border-bottom border-bottom-1" id="mp_place">
+        <input type="text" readonly="" name="posisi" id="posisi" class="form-control-plaintext" >
+      </div>
     </div>
     <div class="form-group">
-        <label for="staff" class="label-for">Staff</label><br>
-        <div class="border-bottom border-bottom-1">
-          <input type="text" readonly="" name="staff" id="staff" class="form-control-plaintext" >
-        </div>
-
+      <label for="staff" class="label-for">Staff</label><br>
+      <div class="border-bottom border-bottom-1">
+        <input type="text" readonly="" name="staff" id="staff" class="form-control-plaintext" >
+      </div>
     </div>
     <div id="list-item">
-
-    </div>     
     </div>
-<rawcontent class="datalist">
+  </div>
+  <rawcontent class="datalist">
   <div class="accordion">
     <div class="card">
       <div class="card-header bg-success header-collapse p-0" id="headingOne">
         <h5 class="mb-0">
-          <button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            BRG/0001 - 10 Riyal
-          </button>
+        <button class="btn btn-link btn-block btn-header text-white collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        BRG/0001 - 10 Riyal
+        </button>
         </h5>
       </div>
-
       <div id="collapseOne" class="collapse datalist-collapse" aria-labelledby="headingOne" data-parent="#list-item">
         <div class="card">
           <div class="card-body card-forlist p-3">
-
-            <span> 
+            <span>
               <small class="font-weight-bold">Qty Sistem</small> <small id="qty_sistem">10</small>
             </span>
             <br>
-            <span> 
+            <span>
               <small class="font-weight-bold">Qty Real</small> <small id="qty_real">10</small>
             </span>
           </div>
           <div class="card-footer">
-            <span> 
+            <span>
               <span class="font-weight-bold">Status</span> <span id="status">Hilang</span>
             </span>
           </div>
@@ -176,13 +166,379 @@
       </div>
     </div>
   </div>
-</rawcontent>
-      
-    
+  </rawcontent>
+  
+  
 </form>
-
-    <script type="text/javascript" src="includes/stock/opname_stock/js/preview-opname-commander.js"></script>
-  <script type="text/javascript">
-    // display_pembayaran_json(global_pembayaran_json);
-  </script>
+<script type="text/javascript" src="includes/stock/opname_stock/js/preview-opname-commander.js"></script>
+<script type="text/javascript">
+// display_pembayaran_json(global_pembayaran_json);
+</script>
+<script type="text/javascript">
+//Akses
+if(localStorage.getItem('m_id') != null){
+$(document).ready(function(){
+var mem = localStorage.getItem('m_id');
+var attribute = $.map($('.user_role'), function (el) { return el; });
+console.log(attribute);
+var role = [];
+for (var i = 0; i < attribute.length; i++) {
+role[i] = $(attribute[i]).data('role');
+}
+var privilege = [];
+for (var i = 0; i < attribute.length; i++) {
+privilege[i] = $(attribute[i]).data('privilege');
+}
+var sidebar = [];
+for (var i = 0; i < attribute.length; i++) {
+sidebar[i] = $(attribute[i]).data('sidebar');
+}
+$.ajax({
+type: 'get',
+data: {mem:mem},
+dataType: 'json',
+url: url('api/getrole'),
+success : function(response){
+console.log(response);
+for (var i = 0; i < privilege.length; i++) {
+var readG = 'N';
+var readM = 'N';
+var status = 'N';
+if (privilege[i] == 'read') {
+status = 'N';
+for (r=0; r < response.length; r++) {
+if (response[r].mm_type == 'G') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[r].mm_type == 'M') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'insert') {
+status = 'N';
+for (l=0; l < response.length; l++) {
+if (response[l].mm_type == 'G') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[l].mm_type == 'M') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'update') {
+status = 'N';
+for (u=0; u < response.length; u++) {
+if (response[u].mm_type == 'G') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[u].mm_type == 'M') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'delete') {
+status = 'N';
+for (d=0; d < response.length; d++) {
+if (response[d].mm_type == 'G') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[d].mm_type == 'M') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'print') {
+status = 'N';
+for (p=0; p < response.length; p++) {
+if (response[p].mm_type == 'G') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[p].mm_type == 'M') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+}
+if (status == 'Y') {
+$(attribute[i]).css('display', '');
+} else if (status == 'N') {
+$(attribute[i]).css('display', 'none');
+}
+}
+}
+});
+});
+function refreshakses(){
+var mem = localStorage.getItem('m_id');
+var attribute = $.map($('.user_role'), function (el) { return el; });
+var role = [];
+for (var i = 0; i < attribute.length; i++) {
+role[i] = $(attribute[i]).data('role');
+}
+var privilege = [];
+for (var i = 0; i < attribute.length; i++) {
+privilege[i] = $(attribute[i]).data('privilege');
+}
+var sidebar = [];
+for (var i = 0; i < attribute.length; i++) {
+sidebar[i] = $(attribute[i]).data('sidebar');
+}
+$.ajax({
+type: 'get',
+data: {mem:mem},
+dataType: 'json',
+url: url('api/getrole'),
+success : function(response){
+for (var i = 0; i < privilege.length; i++) {
+var readG = 'N';
+var readM = 'N';
+var status = 'N';
+if (privilege[i] == 'read') {
+status = 'N';
+for (r=0; r < response.length; r++) {
+if (response[r].mm_type == 'G') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[r].mm_type == 'M') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'insert') {
+status = 'N';
+for (l=0; l < response.length; l++) {
+if (response[l].mm_type == 'G') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[l].mm_type == 'M') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'update') {
+status = 'N';
+for (u=0; u < response.length; u++) {
+if (response[u].mm_type == 'G') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[u].mm_type == 'M') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'delete') {
+status = 'N';
+for (d=0; d < response.length; d++) {
+if (response[d].mm_type == 'G') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[d].mm_type == 'M') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'print') {
+status = 'N';
+for (p=0; p < response.length; p++) {
+if (response[p].mm_type == 'G') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[p].mm_type == 'M') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+}
+if (status == 'Y') {
+$(attribute[i]).css('display', '');
+} else if (status == 'N') {
+$(attribute[i]).css('display', 'none');
+}
+}
+}
+});
+}
+}
+</script>
 </div>

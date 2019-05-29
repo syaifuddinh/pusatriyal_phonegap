@@ -1,58 +1,420 @@
 <div class="subcontent">
-<style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-    }
-
-    .title-edit
-    {
-        margin-top: 60px;
-        margin-left: 20px;
-        margin-bottom: 30px;
-        width: 70%;
-        border: none;
-        color: #14c56d;
-    }
-
-    .btnSubmit
-    {
-        border-radius: 50mm;
-        margin-top: 8mm;
-        margin-bottom: 50px;
-        padding: 3mm 10mm;
-        border: none;
-        cursor: pointer;
-        background: #42ec98;
-        color: #FFFFFF;
-        font-weight: bold;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .border-bottom-1 {
-        border-bottom: 2px solid #42ec98 !important;
-    }
-    .label-for
-    {
-      font-weight: bold;
-      color: #646464ff;
-      margin-bottom: 0px;
-    }
-    .listx
-    {
-      font-weight: bold;
-    }
-</style>
-
-
-<div class="breadcrumb-pusatriyal">
-  <span class="active">Distribusi Retail</span>
+  <style>
+  body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  }
+  .title-edit
+  {
+  margin-top: 60px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  width: 70%;
+  border: none;
+  color: #14c56d;
+  }
+  .btnSubmit
+  {
+  border-radius: 50mm;
+  margin-top: 8mm;
+  margin-bottom: 50px;
+  padding: 3mm 10mm;
+  border: none;
+  cursor: pointer;
+  background: #42ec98;
+  color: #FFFFFF;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .border-bottom-1 {
+  border-bottom: 2px solid #42ec98 !important;
+  }
+  .label-for
+  {
+  font-weight: bold;
+  color: #646464ff;
+  margin-bottom: 0px;
+  }
+  .listx
+  {
+  font-weight: bold;
+  }
+  </style>
+  <div class="breadcrumb-pusatriyal">
+    <span class="active">Distribusi Retail</span>
+  </div>
+  <div class="list-group list-group-flush">
+    <a style="cursor:pointer;" pusatriyal-role="routing" pusatriyal-target="includes/distribusi/penjualan-retail/penjualan-retail.html" class="list-group-item list-group-item-action listx user_role" data-role="Penjualan Retail (Android)" data-privilege="read">Penjualan Retail</a>
+    <a style="cursor:pointer;" pusatriyal-role="routing" pusatriyal-target="includes/distribusi/kegiatan-kurir/kegiatan-kurir.html" class="list-group-item list-group-item-action listx user_role" data-role="Kegiatan Kurir (Android)" data-privilege="read">Kegiatan Kurir</a>
+    <a pusatriyal-role="routing" style="cursor:pointer;" pusatriyal-target="includes/distribusi/pencatatan-retail/pencatatan-retail.html" class="list-group-item list-group-item-action listx user_role" data-role="Jadwal Pengantaran Retail (Android)" data-privilege="read">Jadwal Pengantaran Retail</a>
+    <a pusatriyal-role="routing" style="cursor:pointer;" pusatriyal-target="includes/distribusi/history-pengantaran/history-pengantaran.html" class="list-group-item list-group-item-action listx user_role" data-role="History Pengantaran Retail (Android)" data-privilege="read">History Pengantaran</a>
+  </div>
 </div>
-<div class="list-group list-group-flush">
-  <a style="cursor:pointer;" pusatriyal-role="routing" pusatriyal-target="includes/distribusi/penjualan-retail/penjualan-retail.html" class="list-group-item list-group-item-action listx">Penjualan Retail</a>
-  <a style="cursor:pointer;" pusatriyal-role="routing" pusatriyal-target="includes/distribusi/kegiatan-kurir/kegiatan-kurir.html" class="list-group-item list-group-item-action listx">Kegiatan Kurir</a>
-  <a pusatriyal-role="routing" style="cursor:pointer;" pusatriyal-target="includes/distribusi/pencatatan-retail/pencatatan-retail.html" class="list-group-item list-group-item-action listx">Jadwal Pengantaran Retail</a>
-  <a pusatriyal-role="routing" style="cursor:pointer;" pusatriyal-target="includes/distribusi/history-pengantaran/history-pengantaran.html" class="list-group-item list-group-item-action listx">History Pengantaran</a>
-</div>
-
-</div>
+<script type="text/javascript">
+//Akses
+if(localStorage.getItem('m_id') != null){
+$(document).ready(function(){
+var mem = localStorage.getItem('m_id');
+var attribute = $.map($('.user_role'), function (el) { return el; });
+console.log(attribute);
+var role = [];
+for (var i = 0; i < attribute.length; i++) {
+role[i] = $(attribute[i]).data('role');
+}
+var privilege = [];
+for (var i = 0; i < attribute.length; i++) {
+privilege[i] = $(attribute[i]).data('privilege');
+}
+var sidebar = [];
+for (var i = 0; i < attribute.length; i++) {
+sidebar[i] = $(attribute[i]).data('sidebar');
+}
+$.ajax({
+type: 'get',
+data: {mem:mem},
+dataType: 'json',
+url: url('api/getrole'),
+success : function(response){
+console.log(response);
+for (var i = 0; i < privilege.length; i++) {
+var readG = 'N';
+var readM = 'N';
+var status = 'N';
+if (privilege[i] == 'read') {
+status = 'N';
+for (r=0; r < response.length; r++) {
+if (response[r].mm_type == 'G') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[r].mm_type == 'M') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'insert') {
+status = 'N';
+for (l=0; l < response.length; l++) {
+if (response[l].mm_type == 'G') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[l].mm_type == 'M') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'update') {
+status = 'N';
+for (u=0; u < response.length; u++) {
+if (response[u].mm_type == 'G') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[u].mm_type == 'M') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'delete') {
+status = 'N';
+for (d=0; d < response.length; d++) {
+if (response[d].mm_type == 'G') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[d].mm_type == 'M') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'print') {
+status = 'N';
+for (p=0; p < response.length; p++) {
+if (response[p].mm_type == 'G') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[p].mm_type == 'M') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+}
+if (status == 'Y') {
+$(attribute[i]).css('display', '');
+} else if (status == 'N') {
+$(attribute[i]).css('display', 'none');
+}
+}
+}
+});
+});
+function refreshakses(){
+var mem = localStorage.getItem('m_id');
+var attribute = $.map($('.user_role'), function (el) { return el; });
+var role = [];
+for (var i = 0; i < attribute.length; i++) {
+role[i] = $(attribute[i]).data('role');
+}
+var privilege = [];
+for (var i = 0; i < attribute.length; i++) {
+privilege[i] = $(attribute[i]).data('privilege');
+}
+var sidebar = [];
+for (var i = 0; i < attribute.length; i++) {
+sidebar[i] = $(attribute[i]).data('sidebar');
+}
+$.ajax({
+type: 'get',
+data: {mem:mem},
+dataType: 'json',
+url: url('api/getrole'),
+success : function(response){
+for (var i = 0; i < privilege.length; i++) {
+var readG = 'N';
+var readM = 'N';
+var status = 'N';
+if (privilege[i] == 'read') {
+status = 'N';
+for (r=0; r < response.length; r++) {
+if (response[r].mm_type == 'G') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[r].mm_type == 'M') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'insert') {
+status = 'N';
+for (l=0; l < response.length; l++) {
+if (response[l].mm_type == 'G') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[l].mm_type == 'M') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'update') {
+status = 'N';
+for (u=0; u < response.length; u++) {
+if (response[u].mm_type == 'G') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[u].mm_type == 'M') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'delete') {
+status = 'N';
+for (d=0; d < response.length; d++) {
+if (response[d].mm_type == 'G') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[d].mm_type == 'M') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'print') {
+status = 'N';
+for (p=0; p < response.length; p++) {
+if (response[p].mm_type == 'G') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[p].mm_type == 'M') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+}
+if (status == 'Y') {
+$(attribute[i]).css('display', '');
+} else if (status == 'N') {
+$(attribute[i]).css('display', 'none');
+}
+}
+}
+});
+}
+}
+</script>

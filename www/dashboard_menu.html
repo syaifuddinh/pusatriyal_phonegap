@@ -1,12 +1,9 @@
 <div class="mb-5">
 	<div class="bg-top">
-
 	</div>
 	<div class="content">
-
 		<div class="row">
-
-			<div class="col-md-3 col-6 mt-5">
+			<div class="col-md-3 col-6 mt-5 user_role user_role" data-role="Distribusi (Android)" data-privilege="read">
 				<a href="#" class="text-dark"  pusatriyal-role='routing' pusatriyal-target='includes/distribusi/menu-distribusi.html'>
 					<div class="card text-center">
 						<div class="card-body card-body-custom">
@@ -16,8 +13,7 @@
 					</div>
 				</a>
 			</div>
-
-			<div class="col-md-3 col-6 mt-5">
+			<div class="col-md-3 col-6 mt-5 user_role" data-role="Penjualan (Android)" data-privilege="read">
 				<a href="#" class="text-dark" pusatriyal-role='routing' pusatriyal-target='includes/penjualan/menu-penjualan.html'>
 					<div class="card text-center">
 						<div class="card-body card-body-custom">
@@ -27,8 +23,7 @@
 					</div>
 				</a>
 			</div>
-
-			<div class="col-md-3 col-6 mt-5">
+			<div class="col-md-3 col-6 mt-5 user_role" data-role="Manasik (Android)" data-privilege="read">
 				<a href="#" class="text-dark" pusatriyal-role='routing' pusatriyal-target='includes/manasik/menu-manasik.html'>
 					<div class="card text-center">
 						<div class="card-body card-body-custom">
@@ -38,8 +33,7 @@
 					</div>
 				</a>
 			</div>
-
-			<div class="col-md-3 col-6 mt-5">
+			<div class="col-md-3 col-6 mt-5 user_role" data-role="Otorisasi (Android)" data-privilege="read">
 				<a href="#" class="text-dark" pusatriyal-role='routing' pusatriyal-target='includes/otorisasi/menu-otorisasi.html'>
 					<div class="card text-center">
 						<div class="card-body card-body-custom">
@@ -49,8 +43,7 @@
 					</div>
 				</a>
 			</div>
-
-			<div class="col-md-3 col-6 mt-5">
+			<div class="col-md-3 col-6 mt-5 user_role" data-role="Kulakan (Android)" data-privilege="read">
 				<a href="#" class="text-dark" pusatriyal-role="routing" pusatriyal-target="includes/kulakan/menu-kulakan.html">
 					<div class="card text-center">
 						<div class="card-body card-body-custom">
@@ -60,9 +53,7 @@
 					</div>
 				</a>
 			</div>
-
-
-			<div class="col-md-3 col-6 mt-5">
+			<div class="col-md-3 col-6 mt-5 user_role" data-role="Stock (Android)" data-privilege="read">
 				<a href="#" pusatriyal-role="routing" pusatriyal-target="includes/stock/menu-stock.html" class="text-dark">
 					<div class="card text-center">
 						<div class="card-body card-body-custom">
@@ -72,13 +63,375 @@
 					</div>
 				</a>
 			</div>
-
-
-
-
 		</div>
 	</div>
 	<div class="bg-bottom">
-
 	</div>
 </div>
+<script type="text/javascript">
+//Akses
+if(localStorage.getItem('m_id') != null){
+$(document).ready(function(){
+var mem = localStorage.getItem('m_id');
+var attribute = $.map($('.user_role'), function (el) { return el; });
+console.log(attribute);
+var role = [];
+for (var i = 0; i < attribute.length; i++) {
+role[i] = $(attribute[i]).data('role');
+}
+var privilege = [];
+for (var i = 0; i < attribute.length; i++) {
+privilege[i] = $(attribute[i]).data('privilege');
+}
+var sidebar = [];
+for (var i = 0; i < attribute.length; i++) {
+sidebar[i] = $(attribute[i]).data('sidebar');
+}
+$.ajax({
+type: 'get',
+data: {mem:mem},
+dataType: 'json',
+url: url('api/getrole'),
+success : function(response){
+console.log(response);
+for (var i = 0; i < privilege.length; i++) {
+var readG = 'N';
+var readM = 'N';
+var status = 'N';
+if (privilege[i] == 'read') {
+status = 'N';
+for (r=0; r < response.length; r++) {
+if (response[r].mm_type == 'G') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[r].mm_type == 'M') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'insert') {
+status = 'N';
+for (l=0; l < response.length; l++) {
+if (response[l].mm_type == 'G') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[l].mm_type == 'M') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'update') {
+status = 'N';
+for (u=0; u < response.length; u++) {
+if (response[u].mm_type == 'G') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[u].mm_type == 'M') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'delete') {
+status = 'N';
+for (d=0; d < response.length; d++) {
+if (response[d].mm_type == 'G') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[d].mm_type == 'M') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'print') {
+status = 'N';
+for (p=0; p < response.length; p++) {
+if (response[p].mm_type == 'G') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[p].mm_type == 'M') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+}
+if (status == 'Y') {
+$(attribute[i]).css('display', '');
+} else if (status == 'N') {
+$(attribute[i]).css('display', 'none');
+}
+}
+}
+});
+});
+function refreshakses(){
+var mem = localStorage.getItem('m_id');
+var attribute = $.map($('.user_role'), function (el) { return el; });
+var role = [];
+for (var i = 0; i < attribute.length; i++) {
+role[i] = $(attribute[i]).data('role');
+}
+var privilege = [];
+for (var i = 0; i < attribute.length; i++) {
+privilege[i] = $(attribute[i]).data('privilege');
+}
+var sidebar = [];
+for (var i = 0; i < attribute.length; i++) {
+sidebar[i] = $(attribute[i]).data('sidebar');
+}
+$.ajax({
+type: 'get',
+data: {mem:mem},
+dataType: 'json',
+url: url('api/getrole'),
+success : function(response){
+for (var i = 0; i < privilege.length; i++) {
+var readG = 'N';
+var readM = 'N';
+var status = 'N';
+if (privilege[i] == 'read') {
+status = 'N';
+for (r=0; r < response.length; r++) {
+if (response[r].mm_type == 'G') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[r].mm_type == 'M') {
+if (response[r].m_name == role[i]) {
+if (response[r].mm_read == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'insert') {
+status = 'N';
+for (l=0; l < response.length; l++) {
+if (response[l].mm_type == 'G') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[l].mm_type == 'M') {
+if (response[l].m_name == role[i]) {
+if (response[l].mm_insert == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'update') {
+status = 'N';
+for (u=0; u < response.length; u++) {
+if (response[u].mm_type == 'G') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[u].mm_type == 'M') {
+if (response[u].m_name == role[i]) {
+if (response[u].mm_update == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'delete') {
+status = 'N';
+for (d=0; d < response.length; d++) {
+if (response[d].mm_type == 'G') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[d].mm_type == 'M') {
+if (response[d].m_name == role[i]) {
+if (response[d].mm_delete == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+} else if (privilege[i] == 'print') {
+status = 'N';
+for (p=0; p < response.length; p++) {
+if (response[p].mm_type == 'G') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readG = 'Y';
+} else {
+readG = 'N';
+}
+}
+}
+if (response[p].mm_type == 'M') {
+if (response[p].m_name == role[i]) {
+if (response[p].mm_print == 'Y') {
+readM = 'Y';
+} else {
+readM = 'N';
+}
+}
+}
+}
+if (readM == 'Y') {
+status = 'Y';
+} else if (readG == 'Y') {
+status = 'Y';
+} else {
+status = 'N';
+}
+}
+if (status == 'Y') {
+$(attribute[i]).css('display', '');
+} else if (status == 'N') {
+$(attribute[i]).css('display', 'none');
+}
+}
+}
+});
+}
+}
+</script>
