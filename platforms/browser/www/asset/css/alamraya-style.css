@@ -10,6 +10,7 @@
 html,body{
 	height: 100%;
 	width: 100%;
+	/*font-family: Arial;*/
 }
 
 rawcontent, rawkonten, .hidden {
@@ -105,7 +106,7 @@ rawcontent, rawkonten, .hidden {
 	top: 0;
 	/*left: -200px;*/
 	width: 0px;
-	max-width: 200px; 
+	max-width: 200px;
 	height: 100%;
 	transition: .3s ease;
 	font-family: 'Arial';
@@ -221,7 +222,7 @@ rawcontent, rawkonten, .hidden {
 }
 
 #div-filter .checkbox-group{
-	
+
 	max-height: 0px;
 	overflow: hidden;
 
@@ -260,7 +261,7 @@ rawcontent, rawkonten, .hidden {
 	font-size: 25pt;
 }
 fieldset{
-	border:1px solid #14c56d; 
+	border:1px solid #14c56d;
 	padding: .75rem;
 }
 .card-body.card-forlist{
@@ -294,7 +295,7 @@ fieldset{
 }
 .sidebar-footer{
 	position: absolute;
-	bottom: 0;	
+	bottom: 0;
 	width: 100%;
 }
 .sidebar-logout{
@@ -309,7 +310,7 @@ fieldset{
 	bottom: 0;
 	left: 0;
 	right: 0;
-	
+
 	margin: auto;
 	font-size: 350pt;
 }
@@ -318,12 +319,12 @@ fieldset{
 }
 .badge-notif{
     height: 30px;
-    
+
     padding: 6px;
     border-radius: 6px;
     font-size: 9pt;
     background-color: #FF0700;
-    
+
     color: white;
     position: absolute;
     top: 9px;
