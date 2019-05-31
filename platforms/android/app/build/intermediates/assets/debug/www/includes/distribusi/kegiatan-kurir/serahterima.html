@@ -277,7 +277,7 @@
       id = $('#sr_id').val();
       $.ajax({
         type: 'get',
-        data: {id, metode:$('#metode').val()},
+        data: {id, metode:$('#metode').val(), user_comp:localStorage.getItem('m_comp_id')},
         dataType: 'json',
         url: url('api/riyal/distribusi/retail/penjualan/selesaiserah'),
         success : function(res){
