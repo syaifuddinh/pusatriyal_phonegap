@@ -66,7 +66,7 @@
   "cordova-plugin-globalization": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-globalization@^1.11.0"
+      "id": "cordova-plugin-globalization@~1.0.7"
     },
     "is_top_level": true,
     "variables": {}
@@ -169,18 +169,10 @@
       "PLAY_SERVICES_VERSION": "15.+"
     }
   },
-  "cordova-support-google-services": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-support-google-services@~1.1.0"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
   "cordova-plugin-texttospeech": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-texttospeech"
+      "id": "cordova-plugin-texttospeech@^0.1.1"
     },
     "is_top_level": true,
     "variables": {}

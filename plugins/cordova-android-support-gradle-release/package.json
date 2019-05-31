@@ -1,42 +1,19 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "cordova-android-support-gradle-release@^2.1.0",
-        "scope": null,
-        "escapedName": "cordova-android-support-gradle-release",
-        "name": "cordova-android-support-gradle-release",
-        "rawSpec": "^2.1.0",
-        "spec": ">=2.1.0 <3.0.0",
-        "type": "range"
-      },
-      "D:\\hybridapp\\pusatriyal_phonegap"
-    ]
-  ],
-  "_from": "cordova-android-support-gradle-release@>=2.1.0 <3.0.0",
-  "_hasShrinkwrap": false,
+  "_from": "cordova-android-support-gradle-release@^2.1.0",
   "_id": "cordova-android-support-gradle-release@2.1.0",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha512-rKqNQ5PCHuZ/qUWYrLz5dKJpdJ/ArkhTCEv4CxbFuny0a0JNg5lwufmZ7qfVIqxoK0Nvs9XsIYKiFSGxaQ8lTg==",
   "_location": "/cordova-android-support-gradle-release",
-  "_nodeVersion": "8.11.1",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/cordova-android-support-gradle-release_2.1.0_1553586235446_0.8819751651615346"
-  },
-  "_npmUser": {
-    "name": "davealden",
-    "email": "dave@workingedge.co.uk"
-  },
-  "_npmVersion": "5.6.0",
   "_phantomChildren": {},
   "_requested": {
+    "type": "range",
+    "registry": true,
     "raw": "cordova-android-support-gradle-release@^2.1.0",
-    "scope": null,
-    "escapedName": "cordova-android-support-gradle-release",
     "name": "cordova-android-support-gradle-release",
+    "escapedName": "cordova-android-support-gradle-release",
     "rawSpec": "^2.1.0",
-    "spec": ">=2.1.0 <3.0.0",
-    "type": "range"
+    "saveSpec": null,
+    "fetchSpec": "^2.1.0"
   },
   "_requiredBy": [
     "#USER",
@@ -44,38 +21,21 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-android-support-gradle-release/-/cordova-android-support-gradle-release-2.1.0.tgz",
   "_shasum": "2d41db1eb7fc5dea32b6514336a37a5e00dfbc21",
-  "_shrinkwrap": null,
   "_spec": "cordova-android-support-gradle-release@^2.1.0",
-  "_where": "D:\\hybridapp\\pusatriyal_phonegap",
+  "_where": "D:\\Android\\cordova\\pusatriyal_phonegap",
   "author": {
     "name": "Dave Alden"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "q": "^1.4.1",
     "semver": "5.1.0",
     "xml2js": "~0.4.19"
   },
+  "deprecated": false,
   "description": "Cordova/Phonegap plugin to align various versions of the Android Support libraries specified by other plugins to a specific version",
   "devDependencies": {},
-  "directories": {},
-  "dist": {
-    "integrity": "sha512-rKqNQ5PCHuZ/qUWYrLz5dKJpdJ/ArkhTCEv4CxbFuny0a0JNg5lwufmZ7qfVIqxoK0Nvs9XsIYKiFSGxaQ8lTg==",
-    "shasum": "2d41db1eb7fc5dea32b6514336a37a5e00dfbc21",
-    "tarball": "https://registry.npmjs.org/cordova-android-support-gradle-release/-/cordova-android-support-gradle-release-2.1.0.tgz",
-    "fileCount": 7,
-    "unpackedSize": 22001,
-    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJcmdg8CRA9TVsSAnZWagAAFr8P/RNNGyUrElIrbbyGXtPk\nvxbjVrWWtGDn3ORxzwyjiFS4ZFSg5ZoMiWOUC7KVlQVpZEe3vdSBixvptzWA\n/OWTYvErfKPFImzTXhbK5ym6zlFHk4wKkZZrv6NqZu4ataL+8d3KOD7cY9WI\n6KTwpWkDCTz5Hw7W1BDQeByHIT/JSozLR6+xIrVJ3/ZI4MR8GimJA6Qq+Zjq\nyuYMSMO14TYShlrgAhCl6ttA6gPIKNOcFZ6NwQjIAEt7mjQ3igPCAsT1RpMU\nGOcukusC/uz+f/iUvlI7v5mfsCunwk/CgDABiFS96FL7CQvZhoExbn57WVJQ\nPb6HUmCBiihX+GGlQM8L8OnxxNSm6+xJ0qwNzKdrM9zBxjfgv0CiHVkKqNuu\nWUcjT3UH+mkSnbxcgTT0gXHMFCp2X4WUTfqOPIHWeLYU5QYdh0zFrcY7nx4S\nk6iojTaklYpm9AWMC21sD5fE6DAkOgys9zQbltc+j556AemCawvaCh9pI5ug\nv6h6Zd0t3Tw72bMi2uPiTHA2RaAmRtCLYvLj7yOogsokCfVBRN7zYXL1UbCo\n7ZNjKeVNOw+NkmcFByv3jh2xX5LB4+P7Tn5OUdLghE4Vv3LHL1j2M6AyMMbF\nWx7iOX3GYhaJbZ2s14W9wQO6LvsnJzjkIVWZBSIloCEl6m6/FS4pAWZdgjaN\n/UkN\r\n=eP8P\r\n-----END PGP SIGNATURE-----\r\n"
-  },
-  "gitHead": "4f115b366b2febe1b8c38f28d4cfb11266dfc160",
   "license": "MIT",
-  "maintainers": [
-    {
-      "name": "davealden",
-      "email": "dave@workingedge.co.uk"
-    }
-  ],
   "name": "cordova-android-support-gradle-release",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
   "version": "2.1.0"
 }

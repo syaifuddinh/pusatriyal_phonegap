@@ -1,0 +1,360 @@
+<div class="subcontent" style="">
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .title-edit
+    {
+        margin-top: 60px;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        width: 70%;
+        border: none;
+        color: #14c56d;
+    }
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    .listx
+    {
+      font-weight: bold;
+    }
+
+    .card-body {
+      border-bottom:1px solid #e7e7e7;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    #login .container #login-row #login-column #login-box {
+      margin-top: 60px;
+      max-width: 600px;
+      height: 320px;
+    }
+    #login .container #login-row #login-column #login-box #login-form {
+      padding: 26px;
+      margin-bottom: 35mm;
+    }
+    #login .container #login-row #login-column #login-box #login-form #register-link {
+      margin-top: -85px;
+    }
+
+
+    .btnSubmit
+    {
+        border-radius: 50mm;
+        margin-top: 8mm;
+        margin-bottom: 50px;
+        padding: 3mm 10mm;
+        border: none;
+        cursor: pointer;
+        background: #42ec98;
+        color: #FFFFFF;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .border-bottom-1 {
+        border-bottom: 2px solid #42ec98 !important;
+    }
+    .label-for
+    {
+      font-weight: bold;
+      color: #646464ff;
+      margin-bottom: 0px;
+    }
+    form {
+      padding-left: 5mm;
+      padding-right: 5mm;
+    }
+    .iziToast-buttons{
+      width: 100%;
+    }
+</style>
+
+<div class="pusatriyal-submit btn-group">
+  <button class="btn btn-primary" id="btn-selanjutnya" disabled pusatriyal-role="routing" pusatriyal-target="includes/distribusi/kegiatan-kurir/serahterima.html" pusatriyal-callback="selanjutnya">
+    Serah Terima
+  </button>
+</div>
+<div class="breadcrumb-pusatriyal">
+  <span class="active">Preview Item</span>
+</div>
+<form id="opname-form" class="form" action="" method="post" autocomplete="off" style="margin-bottom: 25mm">
+<input type="hidden" name="_token" id="_token">
+<input type="hidden" name="a_id" id="a_id">
+
+<table class="table table-stripped table-bordered">
+  <thead>
+    <th>No</th>
+    <th>Item</th>
+    <th>QTY</th>
+    <th width="20%"> <center><button type="button" class="btn btn-info" id="checkall" onclick="checkAll()" name="button">Select All 🗹</button></center> </th>
+  </thead>
+  <tbody id="showdata">
+
+  </tbody>
+</table>
+    <!-- <div class="form-group">
+        <label for="kode" class="label-for">Kode Agen</label>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="kode" id="kode" class="form-control-plaintext">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="label-for" for="nama" >Nama Agen</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="nama" id="nama" class="form-control-plaintext" >
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="label-for" for="email" >Email Agen</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="email" id="email" class="form-control-plaintext" >
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="label-for" for="nohp" >No HP</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="nohp" id="nohp" class="form-control-plaintext" >
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="label-for" for="group" >Tanggal Lahir</label><br>
+        <div class="border-bottom border-bottom-1">
+          <input type="text" readonly="" name="tanggallahir" id="tanggallahir" class="form-control-plaintext tanggal-lahir">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="label-for" for="group" >Alamat</label><br>
+        <div class="border-bottom border-bottom-1">
+          <textarea class="form-control-plaintext" id="alamat" readonly="" name="alamat"></textarea>
+        </div>
+    </div> -->
+
+</form>
+
+  <script type="text/javascript">
+    var id = 0;
+    $(document).ready(function(){
+      id = $('#a_id').val();
+      var html = "";
+      $.ajax({
+        type: 'get',
+        data: {id:id},
+        dataType: 'JSON',
+        url: url('api/riyal/distribusi/retail/penjualan/getitemkurir'),
+        success : function(response){
+          var status = 'yes';
+          for (var i = 0; i < response.length; i++) {
+            var unit = response[i];
+            if (unit.srdt_kurir_receive == "Y") {
+              var receive = '<center><input type="checkbox" class="check" name="check[]" id="check'+unit.ir_id+'" checked onclick="uncek('+unit.ir_id+')" value="Y"></center>';
+            } else {
+              status = 'no';
+              var receive = '<center><input type="checkbox" class="check" name="check[]" id="check'+unit.ir_id+'" onclick="cek('+unit.ir_id+')" value="N"></center>';
+            }
+            html += '<tr>'+
+            '<td>'+(i + 1)+'</td>'+
+            '<td>'+unit.ir_name+'<input type="hidden" name="item'+unit.ir_id+'" id="item" value="'+unit.ir_id+'"></td>'+
+            '<td style="text-align:right;">'+parseInt(unit.srdt_qty)+'</td>'+
+            '<td>'+receive+'</td>'+
+            '</tr>';
+          }
+
+          if (status == 'yes') {
+            $('#btn-selanjutnya').attr('disabled', false);
+          } else {
+            $('#btn-selanjutnya').attr('disabled', true);
+          }
+
+          $('#showdata').html(html);
+        }
+      });
+    });
+
+    function cek(id){
+      var check = 'Y';
+      var sr_id = $('#a_id').val();
+      $.ajax({
+        type: 'get',
+        data: {id, sr_id, check},
+        dataType: 'JSON',
+        url: url('api/riyal/distribusi/retail/penjualan/checkuncheck'),
+        success : function(response){
+        }
+      });
+      $('#check'+id).attr('onclick', 'uncek('+id+')');
+      $('#check'+id).attr('value', 'Y');
+      cekdata();
+    }
+
+    function uncek(id){
+      var check = 'N';
+      var sr_id = $('#a_id').val();
+      $.ajax({
+        type: 'get',
+        data: {id, sr_id, check},
+        dataType: 'JSON',
+        url: url('api/riyal/distribusi/retail/penjualan/checkuncheck'),
+        success : function(response){
+        }
+      });
+      $('#check'+id).attr('onclick', 'cek('+id+')');
+      $('#check'+id).attr('value', 'N');
+      cekdata();
+    }
+
+    function checkAll()
+    {
+      var checkboxes = new Array();
+      checkboxes = document.getElementsByClassName('check');
+
+      for (var i=0; i<checkboxes.length; i++)  {
+          checkboxes[i].click();
+      }
+
+      cekdata();
+    }
+
+    function cekdata(){
+      var cek = [];
+      var $j_object = $(".check");
+      $j_object.each( function(i){
+        cek.push($j_object.eq(i).val());
+      });
+
+      var status = 'yes';
+      for (var i = 0; i < cek.length; i++) {
+        if (cek[i] == "N") {
+          status = 'no';
+        }
+      }
+
+      if (status == 'yes') {
+        $('#btn-selanjutnya').attr('disabled', false);
+      } else {
+        $('#btn-selanjutnya').attr('disabled', true);
+      }
+    }
+
+    function selanjutnya(){            
+      $('#sr_id').val(id);
+    }
+    // preview_agen_json(json);
+    //
+    // function edit_agen_func(dom){
+    // 	el = $(dom);
+    // 	var id = el.find('#a_id').val();
+    // 	var tes;
+    // 	for(var i = 0;i<units.length; i++){
+    // 		tes = units[i];
+    // 		if (tes.a_id === parseInt(id)) {
+    // 			json = tes
+    // 			console.log('if statement is true');
+    // 		}
+    // 	}
+    //
+    //   $('#btn-edit').append('<input type="hidden" name="a_id" id="a_id">');
+    //   $('#a_id').val(json.a_id);
+    //   $('#kode').val(json.a_code);
+    //   $('#nama').val(json.a_name);
+    //   $('#email').val(json.a_email);
+    //   $('#nohp').val(json.a_hp);
+    //   $('#alamat').val(json.a_address);
+    //   $('#tanggallahir').val(json.a_birthday);
+    //
+    // }
+    //
+    // function hapus(){
+    //   iziToast.question({
+    //     timeout:false,
+    //       close: false,
+    //       overlayClose:true,
+    //       overlay: true,
+    //       displayMode: 'once',
+    //       id: 'question',
+    //       zindex: 999,
+    //       title: 'Konfirmasi!',
+    //       message: 'Apa anda yakin mau menghapus data ini?',
+    //       position: 'center',
+    //       buttons: [
+    //           ['<button class="w-100 mt-3"><b>YES</b></button>', function (instance, toast) {
+    //         $.ajax({
+    //           url:url('api/master/customer/hapus_agen'),
+    //           data:{id:$('#a_id').val()},
+    //           type:'get',
+    //           success:function(res){
+    //             if (res.status === "berhasil") {
+    //               iziToast.success({
+    //                 title:'Sukses!',
+    //                 message:'Data berhasil dihapus!'
+    //               });
+    //             Routing.load_page('includes/distribusi/pencatatan-agen/pencatatan-agen.html');
+    //             } else if(res.status === 'gagal'){
+    //               iziToast.error({
+    //                 title:'Gagal!',
+    //                 message:'Data gagal dihapus!'
+    //               });
+    //             }
+    //           },
+    //           error: function(jqXHR, exception) {
+    //             if (jqXHR.status === 0) {
+    //                 alert('Not connect.\n Verify Network.');
+    //             } else if (jqXHR.status == 404) {
+    //                 alert('Requested page not found. [404]');
+    //             } else if (jqXHR.status == 500) {
+    //                 alert('Internal Server Error [500].');
+    //             } else if (exception === 'parsererror') {
+    //                 alert('Requested JSON parse failed.');
+    //             } else if (exception === 'timeout') {
+    //                 alert('Time out error.');
+    //             } else if (exception === 'abort') {
+    //                 alert('Ajax request aborted.');
+    //             } else {
+    //                 alert('Uncaught Error.\n' + jqXHR.responseText);
+    //             }
+    //           }
+    //         });
+    //               instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+    //
+    //           }, true],
+    //           ['<button class="w-100 mt-3">NO</button>', function (instance, toast) {
+    //
+    //               instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+    //
+    //           }],
+    //       ]
+    //   });
+    // }
+  </script>
+</div>

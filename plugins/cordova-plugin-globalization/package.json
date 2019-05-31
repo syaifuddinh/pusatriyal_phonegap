@@ -1,27 +1,27 @@
 {
-  "_from": "cordova-plugin-globalization@^1.11.0",
-  "_id": "cordova-plugin-globalization@1.11.0",
+  "_from": "cordova-plugin-globalization@~1.0.7",
+  "_id": "cordova-plugin-globalization@1.0.9",
   "_inBundle": false,
-  "_integrity": "sha1-6sMVgQAphJOvowvolA5pj2HvvP4=",
+  "_integrity": "sha1-RluZmP7qC4iIRNCc19oCv6Jst6M=",
   "_location": "/cordova-plugin-globalization",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-globalization@^1.11.0",
+    "raw": "cordova-plugin-globalization@~1.0.7",
     "name": "cordova-plugin-globalization",
     "escapedName": "cordova-plugin-globalization",
-    "rawSpec": "^1.11.0",
+    "rawSpec": "~1.0.7",
     "saveSpec": null,
-    "fetchSpec": "^1.11.0"
+    "fetchSpec": "~1.0.7"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-globalization/-/cordova-plugin-globalization-1.11.0.tgz",
-  "_shasum": "eac3158100298493afa30be8940e698f61efbcfe",
-  "_spec": "cordova-plugin-globalization@^1.11.0",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-globalization/-/cordova-plugin-globalization-1.0.9.tgz",
+  "_shasum": "465b9998feea0b888844d09cd7da02bfa26cb7a3",
+  "_spec": "cordova-plugin-globalization@~1.0.7",
   "_where": "D:\\Android\\cordova\\pusatriyal_phonegap",
   "author": {
     "name": "Apache Software Foundation"
@@ -90,5 +90,5 @@
     "test": "npm run eslint"
   },
   "types": "./types/index.d.ts",
-  "version": "1.11.0"
+  "version": "1.0.9"
 }

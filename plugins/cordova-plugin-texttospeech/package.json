@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-plugin-texttospeech",
+  "_from": "cordova-plugin-texttospeech@^0.1.1",
   "_id": "cordova-plugin-texttospeech@0.1.1",
   "_inBundle": false,
   "_integrity": "sha1-YKokbOT/K0b405VoPI7NJJhMlzg=",
   "_location": "/cordova-plugin-texttospeech",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-texttospeech",
+    "raw": "cordova-plugin-texttospeech@^0.1.1",
     "name": "cordova-plugin-texttospeech",
     "escapedName": "cordova-plugin-texttospeech",
-    "rawSpec": "",
+    "rawSpec": "^0.1.1",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^0.1.1"
   },
   "_requiredBy": [
     "#USER",
@@ -21,7 +21,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-texttospeech/-/cordova-plugin-texttospeech-0.1.1.tgz",
   "_shasum": "60aa246ce4ff2b46f8d395683c8ecd24984c9738",
-  "_spec": "cordova-plugin-texttospeech",
+  "_spec": "cordova-plugin-texttospeech@^0.1.1",
   "_where": "D:\\Android\\cordova\\pusatriyal_phonegap",
   "author": {
     "name": "Martin Reinhardt"

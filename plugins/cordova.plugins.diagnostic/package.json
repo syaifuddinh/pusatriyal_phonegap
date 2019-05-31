@@ -1,42 +1,19 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "cordova.plugins.diagnostic@^4.0.12",
-        "scope": null,
-        "escapedName": "cordova.plugins.diagnostic",
-        "name": "cordova.plugins.diagnostic",
-        "rawSpec": "^4.0.12",
-        "spec": ">=4.0.12 <5.0.0",
-        "type": "range"
-      },
-      "D:\\hybridapp\\pusatriyal_phonegap"
-    ]
-  ],
-  "_from": "cordova.plugins.diagnostic@>=4.0.12 <5.0.0",
-  "_hasShrinkwrap": false,
+  "_from": "cordova.plugins.diagnostic@^4.0.12",
   "_id": "cordova.plugins.diagnostic@4.0.12",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha512-GOMY92LPibmI8IbqooGhzIw1SJjbdlqtZ4LUaIXzqP+T381B+WDLDUkxcmJc60M8Nryw77lH+jX5izfadixwKQ==",
   "_location": "/cordova.plugins.diagnostic",
-  "_nodeVersion": "8.11.1",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/cordova.plugins.diagnostic_4.0.12_1551887379151_0.9660176434320227"
-  },
-  "_npmUser": {
-    "name": "davealden",
-    "email": "dave@workingedge.co.uk"
-  },
-  "_npmVersion": "5.6.0",
   "_phantomChildren": {},
   "_requested": {
+    "type": "range",
+    "registry": true,
     "raw": "cordova.plugins.diagnostic@^4.0.12",
-    "scope": null,
-    "escapedName": "cordova.plugins.diagnostic",
     "name": "cordova.plugins.diagnostic",
+    "escapedName": "cordova.plugins.diagnostic",
     "rawSpec": "^4.0.12",
-    "spec": ">=4.0.12 <5.0.0",
-    "type": "range"
+    "saveSpec": null,
+    "fetchSpec": "^4.0.12"
   },
   "_requiredBy": [
     "#USER",
@@ -44,15 +21,15 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova.plugins.diagnostic/-/cordova.plugins.diagnostic-4.0.12.tgz",
   "_shasum": "25a6ec0a1bed8f8d4eb61b217dce1189d10ee70f",
-  "_shrinkwrap": null,
   "_spec": "cordova.plugins.diagnostic@^4.0.12",
-  "_where": "D:\\hybridapp\\pusatriyal_phonegap",
+  "_where": "D:\\Android\\cordova\\pusatriyal_phonegap",
   "author": {
     "name": "Dave Alden"
   },
   "bugs": {
     "url": "https://github.com/dpa99c/cordova-diagnostic-plugin/issues"
   },
+  "bundleDependencies": false,
   "cordova": {
     "id": "cordova.plugins.diagnostic",
     "platforms": [
@@ -67,17 +44,8 @@
     "elementtree": "^0.1.6",
     "minimist": "1.2.0"
   },
+  "deprecated": false,
   "description": "Cordova/Phonegap plugin to check the state of Location/WiFi/Camera/Bluetooth device settings.",
-  "devDependencies": {},
-  "directories": {},
-  "dist": {
-    "integrity": "sha512-GOMY92LPibmI8IbqooGhzIw1SJjbdlqtZ4LUaIXzqP+T381B+WDLDUkxcmJc60M8Nryw77lH+jX5izfadixwKQ==",
-    "shasum": "25a6ec0a1bed8f8d4eb61b217dce1189d10ee70f",
-    "tarball": "https://registry.npmjs.org/cordova.plugins.diagnostic/-/cordova.plugins.diagnostic-4.0.12.tgz",
-    "fileCount": 71,
-    "unpackedSize": 653341,
-    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJcf+wUCRA9TVsSAnZWagAA6P0P/A6koYhz9AlJvL244+fX\nPFOGeXXuY770CCOicQl2SBuef5SwgLqZrTltvPkLJbWWo3tTuvB+RLYtN7Xa\nYJaLdjXNh5ZHgXUaQGhCYZ+6oFy13I/s17RAoAImvP9Z0TCsXPZuNwu5xswz\nS4R52P6GZrTNZ1MB0O9he+NDzeM08b//fGZS/gGsjap9KRKng+xBNnUQw6bH\neGf/zTT22/nTg+GyFqAmprh5uzHXkZinP5S1BnIqKihGZbQZ/uz6J+tSDDlS\nwYW4SizkjY7adC2Tem20g5xEgZaIwxQ0NS6eCFfR660lGQ81SnAg1LHiZFqx\nQvKET57TXzOcrdsTODGYjL32k46HiYkUK4TlmgOs4RDX3iMWLTcq0nwgkfpd\nUkJHpl0W8yXi3hr0d3s6F5X3x97A5pOoCbbSXACOkavRxo0TxcoRVvqCkpQl\nLnTJZ43JdIh3nBB7cvsK4uaWW/x46x44r5VEfuVY8nOOKLb9kO3f95e6dHY2\nj6F9Jfq4++lm1cHBHmB75zHQlsHZKVoGLLfTWGngmAGtQdyP3BbMHjX2qub9\nfhzFiuhGHxq+HYj+q8jw4viMUZT8Cr0xGYakwJlcyDC4oxHjOap13KxH28vn\nfllCvV1vAMxwYUHEnVIs5wYrKUNSidref3dXssjt3tIUJBgvs6rbZhoHxGm2\nGZd3\r\n=BcQo\r\n-----END PGP SIGNATURE-----\r\n"
-  },
   "engines": {
     "cordovaDependencies": {
       "4.0.0": {
@@ -87,7 +55,6 @@
       }
     }
   },
-  "gitHead": "b189fc78ecd333117b2669eb66295f92ded7ec99",
   "homepage": "https://github.com/dpa99c/cordova-diagnostic-plugin#readme",
   "issue": "https://github.com/dpa99c/cordova-diagnostic-plugin/issues",
   "keywords": [
@@ -106,15 +73,7 @@
     "settings"
   ],
   "license": "MIT",
-  "maintainers": [
-    {
-      "name": "davealden",
-      "email": "dave@workingedge.co.uk"
-    }
-  ],
   "name": "cordova.plugins.diagnostic",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dpa99c/cordova-diagnostic-plugin.git"
