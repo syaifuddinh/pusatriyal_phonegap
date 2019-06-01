@@ -1,4 +1,4 @@
-#Fri May 31 10:05:46 ICT 2019
+#Fri May 31 14:47:00 ICT 2019
 base.0=D\:\\Android\\cordova\\pusatriyal_phonegap\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex
